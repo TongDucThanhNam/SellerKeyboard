@@ -5,6 +5,7 @@
     "storage_bucket": "seller-keyboard.appspot.com"
   },
   "client": [
+
     {
       "client_info": {
         "mobilesdk_app_id": "1:161913740587:android:f809ccd6d2f0e14603f96e",
@@ -25,5 +26,5 @@
       }
     }
   ],
-  "configuration_version": "1"
+  "configuration_version": "1",
 }
