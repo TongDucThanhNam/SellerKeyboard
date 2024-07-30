@@ -2,10 +2,10 @@
     <string name="app_name">Seller Keyboard</string>
     <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
+    <string name="first_fragment_label">Quản lý Snippet</string>
+    <string name="second_fragment_label">Thêm snippet</string>
     <string name="next">Next</string>
-    <string name="previous">Previous</string>
+    <string name="previous">Quay lại</string>
 
     <string name="lorem_ipsum">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in scelerisque sem. Mauris
@@ -45,4 +45,9 @@
     </string>
     <string name="fast_input_label">Seller Keyboard</string>
     <string name="todo">TODO</string>
+    <string name="image_description">Image\n</string>
+    <string name="label">hint\n</string>
+    <string name="submit">Submit</string>
+    <string name="keyword">Nhap keyword\n</string>
+    <string name="imagePicker">nhap images\n</string>
 </resources>

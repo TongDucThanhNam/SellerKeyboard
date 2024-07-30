@@ -20,6 +20,13 @@ import androidx.core.view.inputmethod.EditorInfoCompat;
 import androidx.core.view.inputmethod.InputConnectionCompat;
 import androidx.core.view.inputmethod.InputContentInfoCompat;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.storage.FileDownloadTask;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -27,6 +34,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 
@@ -43,6 +51,8 @@ public class ImageKeyboard extends InputMethodService {
     private File mWebpFile;
     ArrayList<Button> buttons = new ArrayList<>();
     ArrayList<ButtonData> buttonDatas = new ArrayList<>();
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private List<SnippetItem> snippetItemList = new ArrayList<>();
 
 
     private boolean isCommitContentSupported(
@@ -69,30 +79,30 @@ public class ImageKeyboard extends InputMethodService {
         return false;
     }
 
-    private void doCommitContent(@NonNull String description, @NonNull String mimeType,
-                                 @NonNull File file) {
-        final EditorInfo editorInfo = getCurrentInputEditorInfo();
-
-        // Validate packageName again just in case.
-        if (validatePackageName(editorInfo)) {
-            return;
-        }
-
-        final Uri contentUri = FileProvider.getUriForFile(this, AUTHORITY, file);
-
-        // As you as an IME author are most likely to have to implement your own content provider
-        // to support CommitContent API, it is important to have a clear spec about what
-        // applications are going to be allowed to access the content that your are going to share.
-        final int flag = getFlag();
-
-        final InputContentInfoCompat inputContentInfoCompat = new InputContentInfoCompat(
-                contentUri,
-                new ClipDescription(description, new String[]{mimeType}),
-                null /* linkUrl */);
-        InputConnectionCompat.commitContent(
-                getCurrentInputConnection(), getCurrentInputEditorInfo(), inputContentInfoCompat,
-                flag, null);
-    }
+//    private void doCommitContent(@NonNull String description, @NonNull String mimeType,
+//                                 @NonNull File file) {
+//        final EditorInfo editorInfo = getCurrentInputEditorInfo();
+//
+//        // Validate packageName again just in case.
+//        if (validatePackageName(editorInfo)) {
+//            return;
+//        }
+//
+//        final Uri contentUri = FileProvider.getUriForFile(this, AUTHORITY, file);
+//
+//        // As you as an IME author are most likely to have to implement your own content provider
+//        // to support CommitContent API, it is important to have a clear spec about what
+//        // applications are going to be allowed to access the content that your are going to share.
+//        final int flag = getFlag();
+//
+//        final InputContentInfoCompat inputContentInfoCompat = new InputContentInfoCompat(
+//                contentUri,
+//                new ClipDescription(description, new String[]{mimeType}),
+//                null /* linkUrl */);
+//        InputConnectionCompat.commitContent(
+//                getCurrentInputConnection(), getCurrentInputEditorInfo(), inputContentInfoCompat,
+//                flag, null);
+//    }
 
     private static int getFlag() {
         return InputConnectionCompat.INPUT_CONTENT_GRANT_READ_URI_PERMISSION;
@@ -111,31 +121,49 @@ public class ImageKeyboard extends InputMethodService {
         super.onCreate();
 
         // TODO: Avoid file I/O in the main thread.
-        final File imagesDir = new File(getFilesDir(), "images");
-        imagesDir.mkdirs();
-        mGifFile = getFileForResource(this, R.raw.animated_gif, imagesDir, "image.gif");
-        mPngFile = getFileForResource(this, R.raw.dessert_android, imagesDir, "image.png");
-        mWebpFile = getFileForResource(this, R.raw.animated_webp, imagesDir, "image.webp");
+//        final File imagesDir = new File(getFilesDir(), "images");
+//        imagesDir.mkdirs();
+//        mGifFile = getFileForResource(this, R.raw.animated_gif, imagesDir, "image.gif");
+//        mPngFile = getFileForResource(this, R.raw.dessert_android, imagesDir, "image.png");
+//        mWebpFile = getFileForResource(this, R.raw.animated_webp, imagesDir, "image.webp");
+        
+
     }
 
     //Create a button to insert GIF, PNG, WebP
     @Override
     public View onCreateInputView() {
         //Using ArrayList buttons
-        buttonDatas.add(new ButtonData("Insert GIF", MIME_TYPE_GIF, mGifFile));
-        buttonDatas.add(new ButtonData("Insert PNG", MIME_TYPE_PNG, mPngFile));
-        buttonDatas.add(new ButtonData("Insert WebP", MIME_TYPE_WEBP, mWebpFile));
-        buttonDatas.add(new ButtonData("Insert WebP", MIME_TYPE_WEBP, mWebpFile));
+//        buttonDatas.add(new ButtonData("Insert GIF", MIME_TYPE_GIF, mGifFile));
 
-        buttonDatas.add(new ButtonData("Insert WebP", MIME_TYPE_WEBP, mWebpFile));
-        buttonDatas.add(new ButtonData("Insert WebP", MIME_TYPE_WEBP, mWebpFile));
-        buttonDatas.add(new ButtonData("Insert WebP", MIME_TYPE_WEBP, mWebpFile));
-        buttonDatas.add(new ButtonData("Insert WebP", MIME_TYPE_WEBP, mWebpFile));
+        //get Data from firebase
+        snippetItemList.clear();
+        db.collection("snippets")
+                .get()
+                .addOnCompleteListener(task -> {
+                    //print data
+                    if (task.isSuccessful()) {
+                        for (QueryDocumentSnapshot document : task.getResult()) {
+                            //print data
+                            Log.d("TAG", document.getId() + " => " + document.getData());
+
+                            String title = document.getString("title");
+                            String content = document.getString("content");
+                            String imageUrls = document.getString("imageUrls");
+
+                            snippetItemList.add(new SnippetItem(title, content, imageUrls));
+                        }
+                        //
+                    } else {
+                        // Handle errors
+                    }
+                });
 
 
-        for (ButtonData button : buttonDatas) {
+        Log.d(TAG, "onCreateInputView: " + snippetItemList.size());
+        for (SnippetItem snippetItem : snippetItemList) {
             Button imageButton = new Button(this);
-            imageButton.setText(button.getName());
+            imageButton.setText(snippetItem.getTitle());
             imageButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -146,19 +174,7 @@ public class ImageKeyboard extends InputMethodService {
 
                             Thread.sleep(random.nextInt(100) + 400);
                             if (inputConnection != null) {
-                                String text = "Shop Nhận Làm đúng theo yêu cầu, cắt sản phẩm theo số đo thực tế của Bạn\n\n" +
-                                        "[ Bạn phải đo chính xác Centimet nhé]\n\n" +
-                                        "Chỉ cần bạn đặt một size tương đương, gần giống với số đo thực tế của bạn, rồi đặt đơn hàng.\n\n" +
-                                        "Lưu ý: gửi số Đo phủ nhé! Phủ bì là đã tính cả viền (đo tới đâu là dán tới đó)\n\n" +
-                                        "💥Chiều rộng đo từ tráiqua phải là : ?\n" +
-                                        "💥Chiều cao từ trên xuống dưới là : ?\n" +
-                                        "💥Số lượng : ?\n" +
-                                        "💥Màu Sắc : ?\n\n" +
-                                        "Cần tư vấn thêm \n" +
-                                        "Bạn nhắn cho shop nhé!\n\n" +
-                                        "Shop có thể mặc định giử thêm thông tin để bạn hiểu thêm ạ\n\n" +
-                                        "Ước mong nhận được đơn hàng của Bạn!\n";
-                                inputConnection.commitText(text, 1);
+                                inputConnection.commitText(snippetItem.getContent(), 1);
                             } else {
                                 Log.d("Onclick", "inputConnection is null");
                             }
@@ -168,7 +184,11 @@ public class ImageKeyboard extends InputMethodService {
                             inputConnection.performEditorAction(EditorInfo.IME_ACTION_SEND);
                             Thread.sleep(500);
 
-                            ImageKeyboard.this.doCommitContent("Image", button.getMIMEType(), button.getFile());
+                            //send imageUrls
+                            ImageKeyboard.this.doCommitContent(
+                                    "imageUrls",
+                                    snippetItem.getImageUrls()
+                            );
 
                         } catch (InterruptedException e) {
                             e.printStackTrace();
@@ -188,11 +208,59 @@ public class ImageKeyboard extends InputMethodService {
         );
         layout.setLayoutParams(layoutParams);
 
-        for (Button button: buttons) {
+        for (Button button : buttons) {
             layout.addView(button);
         }
         return layout;
     }
+
+    private void doCommitContent(String description, String imageUrls) {
+        FirebaseStorage storage = FirebaseStorage.getInstance();
+        StorageReference imageRef = storage.getReferenceFromUrl(imageUrls);
+
+        try {
+            final File localFile = File.createTempFile("image", "jpg"); // Create a temporary file
+            imageRef.getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+                    // Get the local Uri for the downloaded file
+                    Uri contentUri = Uri.fromFile(localFile);
+                    // Use the contentUri
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception exception) {
+                    // Handle any errors
+                }
+            });
+
+            // get image from firebase storage
+            final Uri contentUri = Uri.fromFile(localFile);
+
+            // As you as an IME author are most likely to have to implement your own content provider
+            // to support CommitContent API, it is important to have a clear spec about what
+            // applications are going to be allowed to access the content that your are going to share.
+            final int flag = getFlag();
+
+            final InputContentInfoCompat inputContentInfoCompat = new InputContentInfoCompat(
+                    contentUri,
+                    new ClipDescription(description, new String[]{MIME_TYPE_PNG}),
+                    null /* linkUrl */);
+            InputConnectionCompat.commitContent(
+                    getCurrentInputConnection(), getCurrentInputEditorInfo(), inputContentInfoCompat,
+                    flag, null);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        final EditorInfo editorInfo = getCurrentInputEditorInfo();
+
+        // Validate packageName again just in case.
+        if (validatePackageName(editorInfo)) {
+            return;
+        }
+    }
+
 
     @Override
     public boolean onEvaluateFullscreenMode() {
