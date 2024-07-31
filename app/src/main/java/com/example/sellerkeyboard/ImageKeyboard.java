@@ -1,7 +1,6 @@
 package com.example.sellerkeyboard;
 
 import android.content.ClipDescription;
-import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
@@ -9,36 +8,28 @@ import android.inputmethodservice.InputMethodService;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputConnection;
 import android.widget.Button;
 import android.widget.GridLayout;
-import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.RawRes;
-import androidx.core.view.inputmethod.EditorInfoCompat;
+import androidx.core.content.FileProvider;
 import androidx.core.view.inputmethod.InputConnectionCompat;
 import androidx.core.view.inputmethod.InputContentInfoCompat;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.CustomTarget;
 import com.bumptech.glide.request.transition.Transition;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.storage.FileDownloadTask;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
+import com.google.android.filament.BuildConfig;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -48,49 +39,16 @@ import java.util.Random;
 public class ImageKeyboard extends InputMethodService {
 
     private static final String TAG = "ImageKeyboard";
-    private static final String AUTHORITY = "com.example.sellerkeyboard.fileprovider";
-    private static final String MIME_TYPE_GIF = "image/gif";
     private static final String MIME_TYPE_PNG = "image/png";
+    File tempFile = null;
+
 
     ArrayList<Button> buttons = new ArrayList<>();
     private List<Snippet> snippetItemList = new ArrayList<>();
 
 
-    private boolean isCommitContentSupported(
-            @Nullable EditorInfo editorInfo, @NonNull String mimeType) {
-        if (editorInfo == null) {
-            return false;
-        }
-
-        final InputConnection ic = getCurrentInputConnection();
-        if (ic == null) {
-            return false;
-        }
-
-        if (validatePackageName(editorInfo)) {
-            return false;
-        }
-
-        final String[] supportedMimeTypes = EditorInfoCompat.getContentMimeTypes(editorInfo);
-        for (String supportedMimeType : supportedMimeTypes) {
-            if (ClipDescription.compareMimeTypes(mimeType, supportedMimeType)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
     private static int getFlag() {
-//        return InputConnectionCompat.INPUT_CONTENT_GRANT_READ_URI_PERMISSION; //
-        return 1;
-    }
-
-    private boolean validatePackageName(@Nullable EditorInfo editorInfo) {
-        if (editorInfo == null) {
-            return true;
-        }
-        final String packageName = editorInfo.packageName;
-        return packageName == null;
+        return InputConnectionCompat.INPUT_CONTENT_GRANT_READ_URI_PERMISSION; //
     }
 
     @Override
@@ -107,44 +65,58 @@ public class ImageKeyboard extends InputMethodService {
         for (Snippet snippetItem : snippetItemList) {
             Button imageButton = new Button(this);
             imageButton.setText(snippetItem.getTitle());
-            imageButton.setOnClickListener(view -> {
-                new Thread(() -> {
-                    try {
-                        Random random = new Random();
-                        InputConnection inputConnection = getCurrentInputConnection();
+            imageButton.setOnClickListener(view -> new Thread(() -> {
+                try {
+                    Random random = new Random();
+                    InputConnection inputConnection = getCurrentInputConnection();
 
-                        Thread.sleep(random.nextInt(100) + 400);
-                        if (inputConnection != null) {
-                            inputConnection.commitText(snippetItem.getContent(), 1);
-                        } else {
-                            Log.d("Onclick", "inputConnection is null");
-                        }
-
-                        Thread.sleep(500);
-                        assert inputConnection != null;
-                        inputConnection.performEditorAction(EditorInfo.IME_ACTION_SEND);
-                        Thread.sleep(500);
-
-                        // Send imageUrls
-                        ImageKeyboard.this.doCommitContent(
-                                "imageUrls",
-                                snippetItem.getImageUrl()
-                        );
-
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
+                    Thread.sleep(random.nextInt(100) + 400);
+                    if (inputConnection != null) {
+                        inputConnection.commitText(snippetItem.getContent(), 1);
+                    } else {
+                        Log.d("Onclick", "inputConnection is null");
                     }
-                }).start();
-            });
+
+                    Thread.sleep(500);
+                    assert inputConnection != null;
+                    inputConnection.performEditorAction(EditorInfo.IME_ACTION_SEND);
+                    Thread.sleep(500);
+
+                    // Send imageUrls
+                    ImageKeyboard.this.doCommitContent(
+                            snippetItem.getImageUrl()
+                    );
+
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }).start());
             buttons.add(imageButton);
         }
 
-        //Grid Layout
         final GridLayout layout = new GridLayout(this);
-        layout.setColumnCount(3); // Set the desired number of columns
+
+        // 1. Full chiều rộng
+        layout.setLayoutParams(new ViewGroup.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+        ));
+
+        // 2. Thiết lập số cột
+        layout.setColumnCount(3);
+
+        // 3. Căn giữa text (cho tất cả button trong GridLayout)
+        layout.setAlignmentMode(GridLayout.ALIGN_MARGINS);
+
+        // 4. Thêm button vào GridLayout
         for (Button button : buttons) {
+            // 4.1. Căn giữa text trong button
+            button.setGravity(Gravity.CENTER);
+
+            // 4.2. Thêm button vào layout
             layout.addView(button);
         }
+
         return layout;
     }
 
@@ -154,41 +126,52 @@ public class ImageKeyboard extends InputMethodService {
     }
 
 
-
-    private void doCommitContent(String description, String imageUrls) {
-        //get Image from local storage
+    private void doCommitContent(String imageUrls) {
         Glide.with(this)
                 .load(imageUrls)
-                .into(
-                        new CustomTarget<Drawable>() {
-                            @Override
-                            public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
-                                Bitmap bitmap = ((BitmapDrawable) resource).getBitmap();
-                                String path = MediaStore.Images.Media.insertImage(getContentResolver(), bitmap, "Image Description", null);
-                                Uri uri = Uri.parse(path);
-                                final int flag = getFlag();
-                                final InputContentInfoCompat inputContentInfoCompat = new InputContentInfoCompat(
-                                        uri,
-                                        new ClipDescription(description, new String[]{MIME_TYPE_PNG}),
-                                        null
-                                );
-                                InputConnectionCompat.commitContent(
-                                        getCurrentInputConnection(), getCurrentInputEditorInfo(), inputContentInfoCompat,
-                                        flag, null);
+                .into(new CustomTarget<Drawable>() {
+                    @Override
+                    public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
+                        Bitmap bitmap = ((BitmapDrawable) resource).getBitmap();
+                        try {
+                            tempFile = File.createTempFile("temp_image", ".jpg", ImageKeyboard.this.getCacheDir());
+                            String tempFilePath = tempFile.getAbsolutePath();
+                            Log.d(TAG, "onResourceReady: " + tempFilePath);
+
+                            FileOutputStream outputStream = new FileOutputStream(tempFile);
+                            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream);
+                            outputStream.close();
+
+                            //check if tempFile[0] is null
+                            if (tempFile == null) {
+                                Log.d(TAG, "doCommitContent: tempFile[0] is null");
                             }
 
-                            @Override
-                            public void onLoadCleared(@Nullable Drawable placeholder) {
-                            }
+                            Uri uri = FileProvider.getUriForFile(ImageKeyboard.this, "com.example.sellerkeyboard.fileprovider", tempFile);
+                            final int flag = getFlag();
+                            final InputContentInfoCompat inputContentInfoCompat = new InputContentInfoCompat(
+                                    uri,
+                                    new ClipDescription("imageUrls", new String[]{MIME_TYPE_PNG}),
+                                    null
+                            );
+                            InputConnectionCompat.commitContent(
+                                    getCurrentInputConnection(),
+                                    getCurrentInputEditorInfo(),
+                                    inputContentInfoCompat,
+                                    flag,
+                                    null
+                            );
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
                         }
-                );
+                    }
 
-        final EditorInfo editorInfo = getCurrentInputEditorInfo();
+                    @Override
+                    public void onLoadCleared(@Nullable Drawable placeholder) {
+                    }
+                });
 
-        // Validate packageName again just in case.
-        if (validatePackageName(editorInfo)) {
-            return;
-        }
+
     }
 
 

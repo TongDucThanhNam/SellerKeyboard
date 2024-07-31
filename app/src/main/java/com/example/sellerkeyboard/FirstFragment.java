@@ -1,7 +1,6 @@
 package com.example.sellerkeyboard;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,17 +11,15 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sellerkeyboard.databinding.FragmentFirstBinding;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class FirstFragment extends Fragment {
 
     private FragmentFirstBinding binding;
-    private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private List<SnippetItem> snippetItemList = new ArrayList<>();
+    private final List<SnippetItem> snippetItemList = new ArrayList<>();
     private MyAdapter myAdapter;
 
 
@@ -47,15 +44,19 @@ public class FirstFragment extends Fragment {
     }
 
     private void fetchDataFromSqlite() {
-        snippetItemList.clear();
         SnippetDbHelper dbHelper = new SnippetDbHelper(getContext());
         List<Snippet> snippets = dbHelper.getAllSnippets();
-        for (Snippet snippet : snippets) {
-            snippetItemList.add(new SnippetItem(snippet.getTitle(), snippet.getContent(), snippet.getImageUrl()));
-        }
 
+        // Clear the list and notify the adapter of item range removal
+        int oldSize = snippetItemList.size();
+        snippetItemList.clear();
+        myAdapter.notifyItemRangeRemoved(0, oldSize);
 
-        myAdapter.notifyDataSetChanged();
+        // Add new items and notify the adapter of item range insertion
+        snippetItemList.addAll(snippets.stream()
+                .map(snippet -> new SnippetItem(snippet.getTitle(), snippet.getContent(), snippet.getImageUrl()))
+                .collect(Collectors.toList()));
+        myAdapter.notifyItemRangeInserted(0, snippetItemList.size());
     }
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {

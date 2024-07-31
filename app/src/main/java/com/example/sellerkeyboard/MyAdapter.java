@@ -1,6 +1,5 @@
 package com.example.sellerkeyboard;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,7 +31,7 @@ public class MyAdapter extends RecyclerView.Adapter<SnippetViewHolder> {
         holder.getTitleTextView().setText(viewItem.getTitle());
         holder.getContentTextView().setText(viewItem.getContent());
         //Log image URL
-        Log.d("MyAdapter", "onBindViewHolder: imageUrl: " + viewItem.getImageUrls());
+//        Log.d("MyAdapter", "onBindViewHolder: imageUrl: " + viewItem.getImageUrls());
 
         // imageUrl null check
         if (viewItem.getImageUrls() == null) {
@@ -41,10 +40,9 @@ public class MyAdapter extends RecyclerView.Adapter<SnippetViewHolder> {
         } else {
             holder.getImageUrls().setVisibility(View.VISIBLE);
             Glide.with(holder.itemView.getContext())
-                    .load(viewItem.getImageUrls().toString())
+                    .load(viewItem.getImageUrls())
                     .centerCrop()
                     .into(holder.getImageUrls());
-//            Log.d("MyAdapter", "onBindViewHolder: imageUrl is not null");
         }
     }
 

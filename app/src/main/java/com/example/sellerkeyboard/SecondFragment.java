@@ -23,24 +23,17 @@ import com.bumptech.glide.request.target.CustomTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.example.sellerkeyboard.databinding.FragmentSecondBinding;
 import com.google.android.material.snackbar.Snackbar;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Objects;
 import java.util.UUID;
 
 public class SecondFragment extends Fragment {
 
     private FragmentSecondBinding binding;
     private ActivityResultLauncher<Intent> imagePickerLauncher;
-
-    //Prepare Firebase
-    FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference myRef = database.getReference("snippets");
-    FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     @Override
     public View onCreateView(
@@ -85,15 +78,13 @@ public class SecondFragment extends Fragment {
     }
 
     private void uploadImageAndSaveData() {
-        String title = binding.titleEditText.getText().toString();
-        String description = binding.contentEditText.getText().toString();
+        String title = Objects.requireNonNull(binding.titleEditText.getText()).toString();
+        String description = Objects.requireNonNull(binding.contentEditText.getText()).toString();
         Uri imageUri = (Uri) binding.imagePickerView.getTag();
 
         if (imageUri != null) {
-            String imageUrl =  saveImageToInternalStorage(binding.getRoot());
+            saveImageToInternalStorage(binding.getRoot());
             //save to SQLite
-//            saveDataToSQLite(title, description, imageUrl);
-//            Log.d("SQLite", "Snippet added to SQLite database, has image");
         } else {
             // Handle case where no image is selected
             //save to SQLite
@@ -102,7 +93,7 @@ public class SecondFragment extends Fragment {
         }
     }
 
-    private String saveImageToInternalStorage(View view) {
+    private void saveImageToInternalStorage(View view) {
         Uri imageUri = (Uri) binding.imagePickerView.getTag();
         if (imageUri != null) {
             Glide.with(this)
@@ -112,7 +103,7 @@ public class SecondFragment extends Fragment {
                         @Override
                         public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
                             String imageUrl = saveImageWithGlide(resource);
-                            saveDataToSQLite(binding.titleEditText.getText().toString(), binding.contentEditText.getText().toString(), imageUrl);
+                            saveDataToSQLite(Objects.requireNonNull(binding.titleEditText.getText()).toString(), Objects.requireNonNull(binding.contentEditText.getText()).toString(), imageUrl);
                         }
 
                         @Override
@@ -127,54 +118,12 @@ public class SecondFragment extends Fragment {
         } else {
             Snackbar.make(binding.getRoot(), "Chưa chọn ảnh!", Snackbar.LENGTH_SHORT).show();
         }
-        return null;
-    }
-
-//    // Trong phương thức xử lý sự kiện lưu ảnh, ví dụ: onClick() của button "Lưu"
-//    public String saveImageToInternalStorage(View view) {
-//        Uri imageUri = (Uri) binding.imagePickerView.getTag();
-//        String imageUrl = null;
-//        if (imageUri != null) {
-//            // 1. Lấy Bitmap từ Uri
-//            Bitmap bitmap = getBitmapFromUri(imageUri);
-//
-//            //Check if bitmap is not null
-//            Log.d("Image", "Bitmap is null: " + (bitmap == null));
-//            if (bitmap != null) {
-//                // 2. Lưu ảnh với Glide
-//                imageUrl = saveImageWithGlide(bitmap);
-//            } else {
-//                // Xử lý lỗi khi lấy Bitmap
-//                Snackbar.make(binding.getRoot(), "Lỗi khi lưu ảnh!", Snackbar.LENGTH_SHORT).show();
-//            }
-//        } else {
-//            // Xử lý trường hợp chưa chọn ảnh
-//            Snackbar.make(binding.getRoot(), "Chưa chọn ảnh!", Snackbar.LENGTH_SHORT).show();
-//        }
-//        return imageUrl;
-//    }
-
-    // Phương thức lấy Bitmap từ Uri
-    private Bitmap getBitmapFromUri(Uri uri) {
-        // Sử dụng Glide để lấy Bitmap từ Uri
-        Bitmap bitmap = null;
-
-        try {
-            bitmap = Glide.with(this)
-                    .asBitmap()
-                    .load(uri)
-                    .submit()
-                    .get();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return bitmap;
     }
 
     //return file.getAbsolutePath()
     private String saveImageWithGlide(Bitmap bitmap) {
         String imageName = "img_" + UUID.randomUUID().toString() + ".jpg";
-        File file = new File(getContext().getCacheDir(), imageName); // Or another suitable directory
+        File file = new File(requireContext().getCacheDir(), imageName); // Or another suitable directory
         try (FileOutputStream fos = new FileOutputStream(file)) {
             bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos); // You can adjust the quality (0-100)
         } catch (IOException e) {
