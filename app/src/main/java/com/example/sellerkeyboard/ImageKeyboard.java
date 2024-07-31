@@ -15,7 +15,6 @@ import android.widget.LinearLayout;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RawRes;
-import androidx.core.content.FileProvider;
 import androidx.core.view.inputmethod.EditorInfoCompat;
 import androidx.core.view.inputmethod.InputConnectionCompat;
 import androidx.core.view.inputmethod.InputContentInfoCompat;
@@ -52,7 +51,7 @@ public class ImageKeyboard extends InputMethodService {
     ArrayList<Button> buttons = new ArrayList<>();
     ArrayList<ButtonData> buttonDatas = new ArrayList<>();
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private List<SnippetItem> snippetItemList = new ArrayList<>();
+    private List<Snippet> snippetItemList = new ArrayList<>();
 
 
     private boolean isCommitContentSupported(
@@ -79,31 +78,6 @@ public class ImageKeyboard extends InputMethodService {
         return false;
     }
 
-//    private void doCommitContent(@NonNull String description, @NonNull String mimeType,
-//                                 @NonNull File file) {
-//        final EditorInfo editorInfo = getCurrentInputEditorInfo();
-//
-//        // Validate packageName again just in case.
-//        if (validatePackageName(editorInfo)) {
-//            return;
-//        }
-//
-//        final Uri contentUri = FileProvider.getUriForFile(this, AUTHORITY, file);
-//
-//        // As you as an IME author are most likely to have to implement your own content provider
-//        // to support CommitContent API, it is important to have a clear spec about what
-//        // applications are going to be allowed to access the content that your are going to share.
-//        final int flag = getFlag();
-//
-//        final InputContentInfoCompat inputContentInfoCompat = new InputContentInfoCompat(
-//                contentUri,
-//                new ClipDescription(description, new String[]{mimeType}),
-//                null /* linkUrl */);
-//        InputConnectionCompat.commitContent(
-//                getCurrentInputConnection(), getCurrentInputEditorInfo(), inputContentInfoCompat,
-//                flag, null);
-//    }
-
     private static int getFlag() {
         return InputConnectionCompat.INPUT_CONTENT_GRANT_READ_URI_PERMISSION;
     }
@@ -119,86 +93,115 @@ public class ImageKeyboard extends InputMethodService {
     @Override
     public void onCreate() {
         super.onCreate();
-
-        // TODO: Avoid file I/O in the main thread.
-//        final File imagesDir = new File(getFilesDir(), "images");
-//        imagesDir.mkdirs();
-//        mGifFile = getFileForResource(this, R.raw.animated_gif, imagesDir, "image.gif");
-//        mPngFile = getFileForResource(this, R.raw.dessert_android, imagesDir, "image.png");
-//        mWebpFile = getFileForResource(this, R.raw.animated_webp, imagesDir, "image.webp");
-        
-
     }
 
     //Create a button to insert GIF, PNG, WebP
     @Override
     public View onCreateInputView() {
-        //Using ArrayList buttons
-//        buttonDatas.add(new ButtonData("Insert GIF", MIME_TYPE_GIF, mGifFile));
+        snippetItemList = new ArrayList<>(); // Initialize snippetItemList
 
-        //get Data from firebase
-        snippetItemList.clear();
-        db.collection("snippets")
-                .get()
-                .addOnCompleteListener(task -> {
-                    //print data
-                    if (task.isSuccessful()) {
-                        for (QueryDocumentSnapshot document : task.getResult()) {
-                            //print data
-                            Log.d("TAG", document.getId() + " => " + document.getData());
+//        fetchDataFromFirestore();
+        fetchDataFromSQLite();
 
-                            String title = document.getString("title");
-                            String content = document.getString("content");
-                            String imageUrls = document.getString("imageUrls");
-
-                            snippetItemList.add(new SnippetItem(title, content, imageUrls));
-                        }
-                        //
-                    } else {
-                        // Handle errors
-                    }
-                });
-
-
-        Log.d(TAG, "onCreateInputView: " + snippetItemList.size());
-        for (SnippetItem snippetItem : snippetItemList) {
+//        return createKeyboardView();
+        buttons.clear(); // Clear existing buttons
+        for (Snippet snippetItem : snippetItemList) {
             Button imageButton = new Button(this);
             imageButton.setText(snippetItem.getTitle());
-            imageButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    new Thread(() -> {
-                        try {
-                            Random random = new Random();
-                            InputConnection inputConnection = getCurrentInputConnection();
+            imageButton.setOnClickListener(view -> {
+                new Thread(() -> {
+                    try {
+                        Random random = new Random();
+                        InputConnection inputConnection = getCurrentInputConnection();
 
-                            Thread.sleep(random.nextInt(100) + 400);
-                            if (inputConnection != null) {
-                                inputConnection.commitText(snippetItem.getContent(), 1);
-                            } else {
-                                Log.d("Onclick", "inputConnection is null");
-                            }
-
-                            Thread.sleep(500);
-                            assert inputConnection != null;
-                            inputConnection.performEditorAction(EditorInfo.IME_ACTION_SEND);
-                            Thread.sleep(500);
-
-                            //send imageUrls
-                            ImageKeyboard.this.doCommitContent(
-                                    "imageUrls",
-                                    snippetItem.getImageUrls()
-                            );
-
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
+                        Thread.sleep(random.nextInt(100) + 400);
+                        if (inputConnection != null) {
+                            inputConnection.commitText(snippetItem.getContent(), 1);
+                        } else {
+                            Log.d("Onclick", "inputConnection is null");
                         }
-                    }).start();
-                }
+
+                        Thread.sleep(500);
+                        assert inputConnection != null;
+                        inputConnection.performEditorAction(EditorInfo.IME_ACTION_SEND);
+                        Thread.sleep(500);
+
+                        // Send imageUrls
+                        ImageKeyboard.this.doCommitContent(
+                                "imageUrls",
+                                snippetItem.getImageUrl()
+                        );
+
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }).start();
             });
             buttons.add(imageButton);
         }
 
+        //Grid Layout
+        final GridLayout layout = new GridLayout(this);
+        layout.setColumnCount(3); // Set the desired number of columns
+        for (Button button : buttons) {
+            layout.addView(button);
+        }
+        return layout;
+    }
+
+    private void fetchDataFromSQLite() {
+        SnippetDbHelper dbHelper = new SnippetDbHelper(this);
+        snippetItemList = dbHelper.getAllSnippets();
+//        updateUI();
+    }
+
+    private void updateUI() {
+        buttons.clear(); // Clear existing buttons
+        for (Snippet snippetItem : snippetItemList) {
+            Button imageButton = new Button(this);
+            imageButton.setText(snippetItem.getTitle());
+            imageButton.setOnClickListener(view -> {
+                new Thread(() -> {
+                    try {
+                        Random random = new Random();
+                        InputConnection inputConnection = getCurrentInputConnection();
+
+                        Thread.sleep(random.nextInt(100) + 400);
+                        if (inputConnection != null) {
+                            inputConnection.commitText(snippetItem.getContent(), 1);
+                        } else {
+                            Log.d("Onclick", "inputConnection is null");
+                        }
+
+                        Thread.sleep(500);
+                        assert inputConnection != null;
+                        inputConnection.performEditorAction(EditorInfo.IME_ACTION_SEND);
+                        Thread.sleep(500);
+
+                        // Send imageUrls
+                        ImageKeyboard.this.doCommitContent(
+                                "imageUrls",
+                                snippetItem.getImageUrl()
+                        );
+
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }).start();
+            });
+            buttons.add(imageButton);
+        }
+
+        // Refresh the keyboard view
+        final GridLayout layout = new GridLayout(this);
+        layout.setColumnCount(3); // Set the desired number of columns
+        for (Button button : buttons) {
+            layout.addView(button);
+        }
+        setInputView(layout);
+    }
+
+    private View createKeyboardView() {
         final GridLayout layout = new GridLayout(this);
         layout.setColumnCount(3); // Set the desired number of columns
 
@@ -211,6 +214,9 @@ public class ImageKeyboard extends InputMethodService {
         for (Button button : buttons) {
             layout.addView(button);
         }
+
+        updateUI();
+
         return layout;
     }
 
@@ -226,6 +232,23 @@ public class ImageKeyboard extends InputMethodService {
                     // Get the local Uri for the downloaded file
                     Uri contentUri = Uri.fromFile(localFile);
                     // Use the contentUri
+                    Log.d(TAG, "onSuccess: " + contentUri);
+
+
+                    // As you as an IME author are most likely to have to implement your own content provider
+                    // to support CommitContent API, it is important to have a clear spec about what
+                    // applications are going to be allowed to access the content that your are going to share.
+                    final int flag = getFlag();
+
+
+
+                    final InputContentInfoCompat inputContentInfoCompat = new InputContentInfoCompat(
+                            contentUri,
+                            new ClipDescription(description, new String[]{MIME_TYPE_PNG}),
+                            null /* linkUrl */);
+                    InputConnectionCompat.commitContent(
+                            getCurrentInputConnection(), getCurrentInputEditorInfo(), inputContentInfoCompat,
+                            flag, null);
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
@@ -234,21 +257,6 @@ public class ImageKeyboard extends InputMethodService {
                 }
             });
 
-            // get image from firebase storage
-            final Uri contentUri = Uri.fromFile(localFile);
-
-            // As you as an IME author are most likely to have to implement your own content provider
-            // to support CommitContent API, it is important to have a clear spec about what
-            // applications are going to be allowed to access the content that your are going to share.
-            final int flag = getFlag();
-
-            final InputContentInfoCompat inputContentInfoCompat = new InputContentInfoCompat(
-                    contentUri,
-                    new ClipDescription(description, new String[]{MIME_TYPE_PNG}),
-                    null /* linkUrl */);
-            InputConnectionCompat.commitContent(
-                    getCurrentInputConnection(), getCurrentInputEditorInfo(), inputContentInfoCompat,
-                    flag, null);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -274,42 +282,6 @@ public class ImageKeyboard extends InputMethodService {
     public void onStartInputView(EditorInfo info, boolean restarting) {
         for (Button button : buttons) {
             button.setEnabled(isCommitContentSupported(info, MIME_TYPE_GIF));
-        }
-    }
-
-    private static File getFileForResource(
-            @NonNull Context context, @RawRes int res, @NonNull File outputDir,
-            @NonNull String filename) {
-        final File outputFile = new File(outputDir, filename);
-        final byte[] buffer = new byte[4096];
-        InputStream resourceReader = null;
-        try {
-            try {
-                resourceReader = context.getResources().openRawResource(res);
-                OutputStream dataWriter = null;
-                try {
-                    dataWriter = new FileOutputStream(outputFile);
-                    while (true) {
-                        final int numRead = resourceReader.read(buffer);
-                        if (numRead <= 0) {
-                            break;
-                        }
-                        dataWriter.write(buffer, 0, numRead);
-                    }
-                    return outputFile;
-                } finally {
-                    if (dataWriter != null) {
-                        dataWriter.flush();
-                        dataWriter.close();
-                    }
-                }
-            } finally {
-                if (resourceReader != null) {
-                    resourceReader.close();
-                }
-            }
-        } catch (IOException e) {
-            return null;
         }
     }
 }
