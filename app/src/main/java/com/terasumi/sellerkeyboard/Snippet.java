@@ -1,4 +1,4 @@
-package com.example.sellerkeyboard;
+package com.terasumi.sellerkeyboard;
 
 public class Snippet {
     private int id;

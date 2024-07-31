@@ -8,7 +8,7 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="com.example.sellerkeyboard" />
+                  <option name="appId" value="com.terasumi.sellerkeyboard" />
                   <option name="mobileSdkAppId" value="1:161913740587:android:f809ccd6d2f0e14603f96e" />
                   <option name="projectId" value="seller-keyboard" />
                   <option name="projectNumber" value="161913740587" />

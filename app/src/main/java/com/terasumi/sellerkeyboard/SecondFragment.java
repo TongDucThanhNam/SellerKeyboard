@@ -1,4 +1,4 @@
-package com.example.sellerkeyboard;
+package com.terasumi.sellerkeyboard;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -21,8 +21,8 @@ import androidx.fragment.app.Fragment;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.CustomTarget;
 import com.bumptech.glide.request.transition.Transition;
-import com.example.sellerkeyboard.databinding.FragmentSecondBinding;
 import com.google.android.material.snackbar.Snackbar;
+import com.terasumi.sellerkeyboard.databinding.FragmentSecondBinding;
 
 import java.io.File;
 import java.io.FileOutputStream;

@@ -1,4 +1,4 @@
-package com.example.sellerkeyboard;
+package com.terasumi.sellerkeyboard;
 
 import android.content.ClipDescription;
 import android.graphics.Bitmap;
@@ -6,7 +6,6 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.inputmethodservice.InputMethodService;
 import android.net.Uri;
-import android.provider.MediaStore;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -25,7 +24,6 @@ import androidx.core.view.inputmethod.InputContentInfoCompat;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.CustomTarget;
 import com.bumptech.glide.request.transition.Transition;
-import com.google.android.filament.BuildConfig;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -147,7 +145,7 @@ public class ImageKeyboard extends InputMethodService {
                                 Log.d(TAG, "doCommitContent: tempFile[0] is null");
                             }
 
-                            Uri uri = FileProvider.getUriForFile(ImageKeyboard.this, "com.example.sellerkeyboard.fileprovider", tempFile);
+                            Uri uri = FileProvider.getUriForFile(ImageKeyboard.this, "com.terasumi.sellerkeyboard.fileprovider", tempFile);
                             final int flag = getFlag();
                             final InputContentInfoCompat inputContentInfoCompat = new InputContentInfoCompat(
                                     uri,

@@ -1,4 +1,4 @@
-package com.example.sellerkeyboard;
+package com.terasumi.sellerkeyboard;
 
 import static org.junit.Assert.assertEquals;
 

@@ -1,4 +1,4 @@
-package com.example.sellerkeyboard;
+package com.terasumi.sellerkeyboard;
 
 import android.content.ContentValues;
 import android.content.Context;

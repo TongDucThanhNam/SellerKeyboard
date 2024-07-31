@@ -1,14 +1,14 @@
 plugins {
     id("com.android.application")
-    id("com.google.gms.google-services")
+//    id("com.google.gms.google-services")
 }
 
 android {
-    namespace = "com.example.sellerkeyboard"
+    namespace = "com.terasumi.sellerkeyboard"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.sellerkeyboard"
+        applicationId = "com.terasumi.sellerkeyboard"
         minSdk = 33
         targetSdk = 34
         versionCode = 1
@@ -43,13 +43,13 @@ dependencies {
     implementation("com.google.ar.sceneform:filament-android:1.17.1")
     implementation("com.google.ar.sceneform:rendering:1.17.1")
     implementation("androidx.annotation:annotation-jvm:1.8.1")
-    implementation(platform("com.google.firebase:firebase-bom:33.1.2"))
+//    implementation(platform("com.google.firebase:firebase-bom:33.1.2"))
     implementation("androidx.navigation:navigation-runtime:2.7.7")
     implementation("androidx.navigation:navigation-ui:2.7.7")
     implementation("androidx.navigation:navigation-fragment:2.7.7")
-    implementation("com.google.firebase:firebase-database:21.0.0")
-    implementation("com.google.firebase:firebase-firestore:25.0.0")
-    implementation("com.google.firebase:firebase-storage:21.0.0")
+//    implementation("com.google.firebase:firebase-database:21.0.0")
+//    implementation("com.google.firebase:firebase-firestore:25.0.0")
+//    implementation("com.google.firebase:firebase-storage:21.0.0")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.2.1")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")

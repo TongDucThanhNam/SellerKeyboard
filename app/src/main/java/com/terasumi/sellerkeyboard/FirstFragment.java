@@ -1,4 +1,4 @@
-package com.example.sellerkeyboard;
+package com.terasumi.sellerkeyboard;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.sellerkeyboard.databinding.FragmentFirstBinding;
+import com.terasumi.sellerkeyboard.databinding.FragmentFirstBinding;
 
 import java.util.ArrayList;
 import java.util.List;

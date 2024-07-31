@@ -1,4 +1,4 @@
-package com.example.sellerkeyboard;
+package com.terasumi.sellerkeyboard;
 
 import android.os.Bundle;
 import android.view.Menu;
@@ -11,7 +11,7 @@ import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-import com.example.sellerkeyboard.databinding.ActivityMainBinding;
+import com.terasumi.sellerkeyboard.databinding.ActivityMainBinding;
 
 
 public class MainActivity extends AppCompatActivity {
