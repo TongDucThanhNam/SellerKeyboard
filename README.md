@@ -10,6 +10,7 @@ A keyboard have template for seller can easy to use in chat with customer using 
 - [x] Support images
 - [x] Manage snippets
 - [x] Keyboard view
+- [x] Support multiple chat apps
 - [ ] Support multiple languages
 
 ## Screenshots
