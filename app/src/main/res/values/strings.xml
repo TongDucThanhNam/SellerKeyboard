@@ -4,13 +4,15 @@
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">Quản lý Snippet</string>
     <string name="second_fragment_label">Thêm snippet</string>
-    <string name="next">Next</string>
-    <string name="previous">Quay lại</string>
     <string name="fast_input_label">Seller Keyboard</string>
     <string name="todo">TODO</string>
     <string name="image_description">Image\n</string>
-    <string name="label">Nhập content</string>
-    <string name="submit">Submit</string>
-    <string name="keyword">Nhập Keywork</string>
+    <string name="label">Nhập nội dung</string>
+    <string name="submit">Lưu</string>
+    <string name="keyword">Nhập từ khoá</string>
     <string name="imagePicker">Nhập hình ảnh</string>
+    <string name="change_keyboard">Thay đổi bàn phím</string>
+    <string name="language_setting">Bật/tắt bàn phím</string>
+    <string name="product_list_description">List snippet items\n</string>
+    <string name="item_description">A snippet</string>
 </resources>

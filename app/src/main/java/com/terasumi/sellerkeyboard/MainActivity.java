@@ -1,9 +1,12 @@
 package com.terasumi.sellerkeyboard;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
@@ -57,7 +60,12 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if (id == R.id.action_settings) {
+        if (id == R.id.change_keyboard) {
+            showKeyboardPickerDialog();
+            return true;
+        }
+        if (id == R.id.language_setting) {
+            openOnScreenKeyboardSettings();
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -68,5 +76,15 @@ public class MainActivity extends AppCompatActivity {
         NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment_content_main);
         NavController navController = navHostFragment.getNavController();
         return NavigationUI.navigateUp(navController, appBarConfiguration) || super.onSupportNavigateUp();
+    }
+
+    public void showKeyboardPickerDialog() {
+        InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+        inputMethodManager.showInputMethodPicker();
+    }
+
+    public void openOnScreenKeyboardSettings() {
+        Intent keyboardSettingsIntent = new Intent(Settings.ACTION_INPUT_METHOD_SETTINGS);
+        startActivity(keyboardSettingsIntent);
     }
 }

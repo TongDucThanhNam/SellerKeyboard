@@ -8,9 +8,9 @@
     tools:context=".FirstFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:background="@color/design_default_color_surface"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/design_default_color_surface"
         android:padding="16dp">
 
         <!-- Recycle View -->
@@ -18,13 +18,14 @@
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:contentDescription="@string/product_list_description"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:layout_editor_absoluteX="-3dp"
-            tools:listitem="@layout/item_list"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteX="-3dp"
+            tools:listitem="@layout/item_list">
 
         </androidx.recyclerview.widget.RecyclerView>
 

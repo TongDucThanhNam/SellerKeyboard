@@ -9,10 +9,10 @@ android {
 
     defaultConfig {
         applicationId = "com.terasumi.sellerkeyboard"
-        minSdk = 33
-        targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
+        minSdk = 24 // Android 7.0
+        targetSdk = 34 // Android 14
+        versionCode = 5
+        versionName = "1.0.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -37,12 +37,13 @@ android {
 }
 
 dependencies {
+
     implementation("androidx.appcompat:appcompat:1.7.0")
     implementation("com.google.android.material:material:1.12.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("com.google.ar.sceneform:filament-android:1.17.1")
     implementation("com.google.ar.sceneform:rendering:1.17.1")
-    implementation("androidx.annotation:annotation-jvm:1.8.1")
+    implementation("androidx.annotation:annotation-jvm:1.8.2")
 //    implementation(platform("com.google.firebase:firebase-bom:33.1.2"))
     implementation("androidx.navigation:navigation-runtime:2.7.7")
     implementation("androidx.navigation:navigation-ui:2.7.7")
@@ -54,7 +55,9 @@ dependencies {
     androidTestImplementation("androidx.test.ext:junit:1.2.1")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")
     //Glide for image loading
-    implementation("com.github.bumptech.glide:glide:4.15.1")
-    annotationProcessor("com.github.bumptech.glide:compiler:4.15.1")
-
+    implementation("com.github.bumptech.glide:glide:4.16.0")
+    annotationProcessor("com.github.bumptech.glide:compiler:4.16.0")
+    //google voice input
+    implementation(files("libs/voiceimeutils.jar"))
+//    implementation("com.google.ar:core:1.44.0") // Thay thế bằng phiên bản ARCore mới nhất nếu cần
 }
