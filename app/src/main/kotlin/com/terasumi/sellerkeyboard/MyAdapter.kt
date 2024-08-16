@@ -1,53 +1,32 @@
-package com.terasumi.sellerkeyboard;
+package com.terasumi.sellerkeyboard
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
-
-import com.bumptech.glide.Glide;
-
-import java.util.List;
-
-public class MyAdapter extends RecyclerView.Adapter<SnippetViewHolder> {
-    private final List<SnippetItem> viewItemsList;
-
-    public MyAdapter(List<SnippetItem> viewItemsList) {
-        this.viewItemsList = viewItemsList;
+class MyAdapter(private val viewItemsList: List<SnippetItem>) :
+    RecyclerView.Adapter<SnippetViewHolder>() {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SnippetViewHolder {
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_list, parent, false)
+        return SnippetViewHolder(view)
     }
 
-    @NonNull
-    @Override
-    public SnippetViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_list, parent, false);
-        return new SnippetViewHolder(view);
-    }
-
-    @Override
-    public void onBindViewHolder(@NonNull SnippetViewHolder holder, int position) {
-        SnippetItem viewItem = viewItemsList.get(position);
-        holder.getTitleTextView().setText(viewItem.getTitle());
-        holder.getContentTextView().setText(viewItem.getContent());
-        //Log image URL
-//        Log.d("MyAdapter", "onBindViewHolder: imageUrl: " + viewItem.getImageUrls());
+    override fun onBindViewHolder(holder: SnippetViewHolder, position: Int) {
+        val viewItem = viewItemsList[position]
+        holder.titleTextView.text = viewItem.title
+        holder.contentTextView.text = viewItem.content
 
         // imageUrl null check
-        if (viewItem.getImageUrls() == null) {
-            holder.getImageUrls().setVisibility(View.GONE);
-//            Log.d("MyAdapter", "onBindViewHolder: imageUrl is null");
-        } else {
-            holder.getImageUrls().setVisibility(View.VISIBLE);
-            Glide.with(holder.itemView.getContext())
-                    .load(viewItem.getImageUrls())
-                    .centerCrop()
-                    .into(holder.getImageUrls());
-        }
+        holder.imageUrls.visibility = View.VISIBLE
+        Glide.with(holder.itemView.context)
+            .load(viewItem.imageUrls)
+            .centerCrop()
+            .into(holder.imageUrls)
     }
 
-    @Override
-    public int getItemCount() {
-        return viewItemsList.size();
+    override fun getItemCount(): Int {
+        return viewItemsList.size
     }
 }

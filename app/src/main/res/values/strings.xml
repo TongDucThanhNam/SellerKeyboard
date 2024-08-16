@@ -15,4 +15,6 @@
     <string name="language_setting">Bật/tắt bàn phím</string>
     <string name="product_list_description">List snippet items\n</string>
     <string name="item_description">A snippet</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

@@ -1,71 +1,70 @@
-package com.terasumi.sellerkeyboard;
+package com.terasumi.sellerkeyboard
 
-import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import android.content.ContentValues.TAG
+import android.os.Bundle
+import android.util.Log
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.terasumi.sellerkeyboard.databinding.FragmentFirstBinding
+import java.util.stream.Collectors
 
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import com.terasumi.sellerkeyboard.databinding.FragmentFirstBinding;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
-
-public class FirstFragment extends Fragment {
-
-    private FragmentFirstBinding binding;
-    private final List<SnippetItem> snippetItemList = new ArrayList<>();
-    private MyAdapter myAdapter;
+class HomeFragment : Fragment() {
+    private var binding: FragmentFirstBinding? = null
+    private val snippetItemList: MutableList<SnippetItem> = ArrayList()
+    private var myAdapter: MyAdapter? = null
 
 
-    @Override
-    public View onCreateView(
-            @NonNull LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState
-    ) {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        binding = FragmentFirstBinding.inflate(inflater, container, false)
 
-        binding = FragmentFirstBinding.inflate(inflater, container, false);
+        val recyclerView = binding!!.recyclerView
+        myAdapter = MyAdapter(snippetItemList)
+        recyclerView.adapter = myAdapter
+        recyclerView.layoutManager = LinearLayoutManager(context)
 
-        RecyclerView recyclerView = binding.recyclerView;
-        myAdapter = new MyAdapter(snippetItemList);
-        recyclerView.setAdapter(myAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        //        fetchDataFromFirestore();
+        fetchDataFromSqlite()
 
-//        fetchDataFromFirestore();
-        fetchDataFromSqlite();
-
-        return binding.getRoot();
-
+        return binding!!.root
     }
 
-    private void fetchDataFromSqlite() {
-        SnippetDbHelper dbHelper = new SnippetDbHelper(getContext());
-        List<Snippet> snippets = dbHelper.getAllSnippets();
+    private fun fetchDataFromSqlite() {
+        try {
+            val dbHelper = context?.let { SnippetDbHelper(it) }
+            val snippets = dbHelper?.allSnippets
 
-        // Clear the list and notify the adapter of item range removal
-        int oldSize = snippetItemList.size();
-        snippetItemList.clear();
-        myAdapter.notifyItemRangeRemoved(0, oldSize);
+            // Clear the list and notify the adapter of item range removal
+            val oldSize = snippetItemList.size
+            snippetItemList.clear()
+            myAdapter!!.notifyItemRangeRemoved(0, oldSize)
 
-        // Add new items and notify the adapter of item range insertion
-        snippetItemList.addAll(snippets.stream()
-                .map(snippet -> new SnippetItem(snippet.getTitle(), snippet.getContent(), snippet.getImageUrl()))
-                .collect(Collectors.toList()));
-        myAdapter.notifyItemRangeInserted(0, snippetItemList.size());
+            // Add new items and notify the adapter of item range insertion
+            if (snippets != null) {
+                snippetItemList.addAll(snippets.stream()
+                    .map { snippet: Snippet ->
+                        SnippetItem(
+                            snippet.title,
+                            snippet.content,
+                            snippet.imageUrl
+                        )
+                    }
+                    .collect(Collectors.toList()))
+            }
+            myAdapter!!.notifyItemRangeInserted(0, snippetItemList.size)
+        } catch (e: Exception) {
+            e.printStackTrace()
+            Log.e(TAG, "Error fetching data from SQLite")
+        }
     }
 
-    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        binding = null;
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding = null
     }
 }

@@ -1,247 +1,238 @@
-package com.terasumi.sellerkeyboard;
+package com.terasumi.sellerkeyboard
 
-import android.content.ClipDescription;
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
-import android.inputmethodservice.InputMethodService;
-import android.net.Uri;
-import android.util.Log;
-import android.view.Gravity;
-import android.view.View;
-import android.view.inputmethod.EditorInfo;
-import android.view.inputmethod.InputConnection;
-import android.widget.Button;
-import android.widget.GridLayout;
-import android.widget.ImageButton;
+import android.content.ClipDescription
+import android.graphics.Bitmap
+import android.graphics.drawable.BitmapDrawable
+import android.graphics.drawable.Drawable
+import android.inputmethodservice.InputMethodService
+import android.util.Log
+import android.view.Gravity
+import android.view.View
+import android.view.inputmethod.EditorInfo
+import android.widget.Button
+import android.widget.GridLayout
+import androidx.core.content.FileProvider
+import androidx.core.content.res.ResourcesCompat
+import androidx.core.view.inputmethod.InputConnectionCompat
+import androidx.core.view.inputmethod.InputContentInfoCompat
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.target.CustomTarget
+import com.bumptech.glide.request.transition.Transition
+import com.google.android.voiceime.VoiceRecognitionTrigger
+import java.io.File
+import java.io.FileOutputStream
+import java.io.IOException
+import java.util.Random
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.core.content.FileProvider;
-import androidx.core.content.res.ResourcesCompat;
-import androidx.core.view.inputmethod.InputConnectionCompat;
-import androidx.core.view.inputmethod.InputContentInfoCompat;
+class ImageKeyboard : InputMethodService() {
+    //    File tempFile = null;
+    private var buttons: ArrayList<Button>? = ArrayList()
+    private var snippetItemList: List<Snippet> = ArrayList()
+    private var mVoiceRecognitionTrigger: VoiceRecognitionTrigger? = null
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.target.CustomTarget;
-import com.bumptech.glide.request.transition.Transition;
-import com.google.android.voiceime.VoiceRecognitionTrigger;
-
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-
-
-public class ImageKeyboard extends InputMethodService {
-
-    private static final String TAG = "ImageKeyboard";
-    private static final String MIME_TYPE_PNG = "image/png";
-//    File tempFile = null;
-
-
-    ArrayList<Button> buttons = new ArrayList<>();
-    private List<Snippet> snippetItemList = new ArrayList<>();
-    private VoiceRecognitionTrigger mVoiceRecognitionTrigger;
     //    Button mButton;
-    Button openGoogleVoiceButton;
-    GridLayout mLayout;
+    private var openGoogleVoiceButton: Button? = null
+    private var mLayout: GridLayout? = null
 
 
-    private static int getFlag() {
-        return InputConnectionCompat.INPUT_CONTENT_GRANT_READ_URI_PERMISSION; //
-    }
-
-    @Override
-    public void onCreate() {
-        super.onCreate();
+    override fun onCreate() {
+        super.onCreate()
         // Initialize VoiceRecognitionTrigger
-        Log.i(TAG, "#onCreate");
+        Log.i(TAG, "#onCreate")
 
         // Create the voice recognition trigger, and register the listener.
         // The trigger has to unregistered, when the IME is destroyed.
-        mVoiceRecognitionTrigger = new VoiceRecognitionTrigger(this);
-        mVoiceRecognitionTrigger.register(new VoiceRecognitionTrigger.Listener() {
-
-            @Override
-            public void onVoiceImeEnabledStatusChange() {
-                // The call back is done on the main thread.
-                updateVoiceImeStatus();
-            }
-        });
+        mVoiceRecognitionTrigger = VoiceRecognitionTrigger(this)
+        mVoiceRecognitionTrigger!!.register { // The call back is done on the main thread.
+            updateVoiceImeStatus()
+        }
     }
 
     /**
      * Update the microphone icon to reflect the status of the voice recognition.
      */
-    private void updateVoiceImeStatus() {
-        Log.i(TAG, "#updateVoiceImeStatus");
+    private fun updateVoiceImeStatus() {
+        Log.i(TAG, "#updateVoiceImeStatus")
 
         if (openGoogleVoiceButton == null) {
-            Log.i(TAG, "openGoogleVoiceButton is null");
-            return;
+            Log.i(TAG, "openGoogleVoiceButton is null")
+            return
         }
 
-        if (mVoiceRecognitionTrigger.isInstalled()) {
-            openGoogleVoiceButton.setVisibility(View.VISIBLE);
-            if (mVoiceRecognitionTrigger.isEnabled()) {
+        if (mVoiceRecognitionTrigger!!.isInstalled) {
+            openGoogleVoiceButton!!.visibility = View.VISIBLE
+            if (mVoiceRecognitionTrigger!!.isEnabled) {
                 // Voice recognition is installed and enabled.
-                Log.i(TAG, "Voice recognition is enabled.");
-                openGoogleVoiceButton.setEnabled(true);
+                Log.i(TAG, "Voice recognition is enabled.")
+                openGoogleVoiceButton!!.isEnabled = true
             } else {
                 // Voice recognition is installed, but it is not enabled (no network).
                 // The microphone icon is displayed greyed-out.
-                Log.i(TAG, "Voice recognition is disabled.");
-                openGoogleVoiceButton.setEnabled(false);
+                Log.i(TAG, "Voice recognition is disabled.")
+                openGoogleVoiceButton!!.isEnabled = false
             }
         } else {
             // Voice recognition is not installed, and the microphone icon is not displayed.
-            Log.i(TAG, "Voice recognition is not installed.");
-            openGoogleVoiceButton.setVisibility(View.GONE);
+            Log.i(TAG, "Voice recognition is not installed.")
+            openGoogleVoiceButton!!.visibility = View.GONE
         }
-        mLayout.invalidate();
+        mLayout?.invalidate()
     }
 
-    /**
-     * Returns the language of the IME. The langauge is used in voice recognition to match the
-     * current language of the IME.
-     */
-    private String getImeLanguage() {
-        return "vi-VN";
-    }
+    private val imeLanguage: String
+        /**
+         * Returns the language of the IME. The langauge is used in voice recognition to match the
+         * current language of the IME.
+         */
+        get() = "vi-VN"
 
     //Create a button to insert GIF, PNG, WebP
-    @Override
-    public View onCreateInputView() {
-        snippetItemList = new ArrayList<>(); // Initialize snippetItemList
-        fetchDataFromSQLite();
-        buttons.clear(); // Clear existing buttons
-        for (Snippet snippetItem : snippetItemList) {
-            Button imageButton = getButton(snippetItem);
-            buttons.add(imageButton);
+    override fun onCreateInputView(): GridLayout? {
+        snippetItemList = ArrayList() // Initialize snippetItemList
+        fetchDataFromSQLite()
+        buttons!!.clear() // Clear existing buttons
+        for (snippetItem in snippetItemList) {
+            val imageButton = getButton(snippetItem)
+            buttons!!.add(imageButton)
         }
 
         //contraint layout
-        View rootView = getLayoutInflater().inflate(R.layout.keyboard, null);
-        mLayout = rootView.findViewById(R.id.buttonGrid);
+        val rootView = layoutInflater.inflate(R.layout.keyboard, null)
+        mLayout = rootView.findViewById(R.id.buttonGrid)
         //config layout
 //        openGoogleVoiceButton = new ImageButton(this);
-        openGoogleVoiceButton = new Button(this);
-        openGoogleVoiceButton.setText("Voice");
-        Drawable voiceDrawable = ResourcesCompat.getDrawable(getResources(), R.drawable.voice, null);
-        voiceDrawable.setBounds(0, 0, 50, 50); // Set the desired width and height
-        openGoogleVoiceButton.setCompoundDrawables(voiceDrawable, null, null, null);        openGoogleVoiceButton.setHeight(3);
+        openGoogleVoiceButton = Button(this)
+        openGoogleVoiceButton!!.text = "Voice"
+        val voiceDrawable = ResourcesCompat.getDrawable(
+            resources, R.drawable.voice, null
+        )
+        voiceDrawable!!.setBounds(0, 0, 50, 50) // Set the desired width and height
+        openGoogleVoiceButton!!.setCompoundDrawables(voiceDrawable, null, null, null)
+        openGoogleVoiceButton!!.height = 3
 
-        openGoogleVoiceButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mVoiceRecognitionTrigger.startVoiceRecognition(getImeLanguage());
+        openGoogleVoiceButton!!.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(view: View) {
+                mVoiceRecognitionTrigger!!.startVoiceRecognition(this@ImageKeyboard.imeLanguage)
             }
-        });
+        })
 
-        buttons.add(0, openGoogleVoiceButton);
+        buttons!!.add(0, openGoogleVoiceButton!!)
 
         // Get the screen width
-        int screenWidth = getResources().getDisplayMetrics().widthPixels - 6; // 6 is the padding of the layout
+        val screenWidth = resources.displayMetrics.widthPixels - 6 // 6 is the padding of the layout
+
         // Set the number of columns
-
-        for (Button button : buttons) {
-            button.setGravity(Gravity.CENTER);
+        for (button in buttons!!) {
+            button.gravity = Gravity.CENTER
             //buton = screen width / 4
-            button.setWidth(screenWidth / 4);
-            mLayout.addView(button);
+            button.width = screenWidth / 4
+            mLayout?.addView(button)
         }
-        return mLayout;
+        return mLayout as GridLayout?
     }
 
-    private @NonNull Button getButton(Snippet snippetItem) {
-        Button imageButton = new Button(this);
-        imageButton.setText(snippetItem.getTitle());
-        imageButton.setOnClickListener(view -> new Thread(() -> {
-            try {
-                Random random = new Random();
-                InputConnection inputConnection = getCurrentInputConnection();
-
-                Thread.sleep(random.nextInt(100) + 400);
-                if (inputConnection != null) {
-                    inputConnection.commitText(snippetItem.getContent(), 1);
-                } else {
-                    Log.d("Onclick", "inputConnection is null");
-                }
-
-                Thread.sleep(500);
-                assert inputConnection != null;
-                inputConnection.performEditorAction(EditorInfo.IME_ACTION_SEND);
-//                    inputConnection.performEditorAction(EditorInfo.IME_ACTION_DONE);
-                Thread.sleep(500);
-
-                // Send imageUrls
-                ImageKeyboard.this.doCommitContent(snippetItem.getImageUrl());
-
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }).start());
-        return imageButton;
-    }
-
-    private void fetchDataFromSQLite() {
-        SnippetDbHelper dbHelper = new SnippetDbHelper(this);
-        snippetItemList = dbHelper.getAllSnippets();
-    }
-
-
-    private void doCommitContent(String imageUrl) {
-        Glide.with(this).load(imageUrl).into(new CustomTarget<Drawable>() {
-            @Override
-            public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
-                Bitmap bitmap = ((BitmapDrawable) resource).getBitmap();
+    private fun getButton(snippetItem: Snippet): Button {
+        val imageButton = Button(this)
+        imageButton.text = snippetItem.title
+        imageButton.setOnClickListener { view: View? ->
+            Thread {
                 try {
-                    File tempFile = File.createTempFile("temp_image", ".jpg", getCacheDir());
-                    try (FileOutputStream outputStream = new FileOutputStream(tempFile)) {
-                        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream);
-                    }
-                    Uri uri = FileProvider.getUriForFile(ImageKeyboard.this, "com.terasumi.sellerkeyboard.fileprovider", tempFile);
-                    InputContentInfoCompat inputContentInfo = new InputContentInfoCompat(uri, new ClipDescription("imageUrls", new String[]{"image/jpeg"}), null);
-                    InputConnectionCompat.commitContent(getCurrentInputConnection(), getCurrentInputEditorInfo(), inputContentInfo, getFlag(), null);
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
-            }
+                    val random = Random()
+                    val inputConnection = currentInputConnection
 
-            @Override
-            public void onLoadCleared(@Nullable Drawable placeholder) {
-            }
-        });
+                    Thread.sleep((random.nextInt(100) + 400).toLong())
+                    inputConnection?.commitText(snippetItem.content, 1)
+                        ?: Log.d("Onclick", "inputConnection is null")
+
+                    Thread.sleep(500)
+                    checkNotNull(inputConnection)
+                    inputConnection.performEditorAction(EditorInfo.IME_ACTION_SEND)
+                    //                    inputConnection.performEditorAction(EditorInfo.IME_ACTION_DONE);
+                    Thread.sleep(500)
+
+                    // Send imageUrls
+                    this@ImageKeyboard.doCommitContent(snippetItem.imageUrl)
+                } catch (e: InterruptedException) {
+                    e.printStackTrace()
+                }
+            }.start()
+        }
+        return imageButton
+    }
+
+    private fun fetchDataFromSQLite() {
+        val dbHelper = SnippetDbHelper(this)
+        snippetItemList = dbHelper.allSnippets
     }
 
 
-    @Override
-    public boolean onEvaluateFullscreenMode() {
+    private fun doCommitContent(imageUrl: String) {
+        Glide.with(this).load(imageUrl).into(object : CustomTarget<Drawable>() {
+            override fun onResourceReady(resource: Drawable, transition: Transition<in Drawable>?) {
+                val bitmap = (resource as BitmapDrawable).bitmap
+                try {
+                    val tempFile = File.createTempFile("temp_image", ".jpg", cacheDir)
+                    FileOutputStream(tempFile).use { outputStream ->
+                        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream)
+                    }
+                    val uri = FileProvider.getUriForFile(
+                        this@ImageKeyboard,
+                        "com.terasumi.sellerkeyboard.fileprovider",
+                        tempFile
+                    )
+                    val inputContentInfo = InputContentInfoCompat(
+                        uri,
+                        ClipDescription("imageUrls", arrayOf("image/jpeg")),
+                        null
+                    )
+                    InputConnectionCompat.commitContent(
+                        currentInputConnection,
+                        currentInputEditorInfo,
+                        inputContentInfo,
+                        flag,
+                        null
+                    )
+                } catch (e: IOException) {
+                    throw RuntimeException(e)
+                }
+            }
+
+            override fun onLoadCleared(placeholder: Drawable?) {
+            }
+        })
+    }
+
+
+    override fun onEvaluateFullscreenMode(): Boolean {
         // In full-screen mode the inserted content is likely to be hidden by the IME. Hence in this
         // sample we simply disable full-screen mode.
-        return false;
+        return false
     }
 
     //
-    @Override
-    public void onStartInputView(EditorInfo info, boolean restarting) {
+    override fun onStartInputView(info: EditorInfo, restarting: Boolean) {
         if (buttons != null) {
-            for (Button button : buttons) {
-                button.setEnabled(true);
+            for (button in buttons!!) {
+                button.isEnabled = true
             }
         }
     }
 
-    @Override
-    public void onDestroy() {
-        Log.i(TAG, "#onDestroy");
-        super.onDestroy();
+    override fun onDestroy() {
+        Log.i(TAG, "#onDestroy")
+        super.onDestroy()
 
         if (mVoiceRecognitionTrigger != null) {
-            mVoiceRecognitionTrigger.unregister(this);
+            mVoiceRecognitionTrigger!!.unregister(this)
         }
+    }
+
+    companion object {
+        private const val TAG = "ImageKeyboard"
+        private const val MIME_TYPE_PNG = "image/png"
+
+
+        private val flag: Int
+            get() = InputConnectionCompat.INPUT_CONTENT_GRANT_READ_URI_PERMISSION //
     }
 }
