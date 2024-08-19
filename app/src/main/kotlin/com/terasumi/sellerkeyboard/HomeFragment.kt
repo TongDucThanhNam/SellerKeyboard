@@ -8,35 +8,44 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.terasumi.sellerkeyboard.databinding.FragmentFirstBinding
+import com.terasumi.sellerkeyboard.databinding.HomeFragmentBinding
 import java.util.stream.Collectors
 
 class HomeFragment : Fragment() {
-    private var binding: FragmentFirstBinding? = null
+    private var binding: HomeFragmentBinding? = null
     private val snippetItemList: MutableList<SnippetItem> = ArrayList()
     private var myAdapter: MyAdapter? = null
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentFirstBinding.inflate(inflater, container, false)
+        return try {
+            Log.d(TAG, "onCreateView")
 
-        val recyclerView = binding!!.recyclerView
-        myAdapter = MyAdapter(snippetItemList)
-        recyclerView.adapter = myAdapter
-        recyclerView.layoutManager = LinearLayoutManager(context)
+            binding = HomeFragmentBinding.inflate(inflater, container, false)
 
-        //        fetchDataFromFirestore();
-        fetchDataFromSqlite()
+            val recyclerView = binding!!.recyclerView
+            myAdapter = MyAdapter(snippetItemList)
+            recyclerView.adapter = myAdapter
+            recyclerView.layoutManager = LinearLayoutManager(context)
 
-        return binding!!.root
+            // fetchDataFromFirestore()
+            fetchDataFromSqlite()
+
+            binding!!.root
+        } catch (e: Exception) {
+            Log.e(TAG, "Error in onCreateView", e)
+            View(context)
+        }
     }
 
     private fun fetchDataFromSqlite() {
         try {
             val dbHelper = context?.let { SnippetDbHelper(it) }
+            Log.d(TAG, "Fetching data from SQLite" + dbHelper.toString())
+
+
             val snippets = dbHelper?.allSnippets
 
             // Clear the list and notify the adapter of item range removal
@@ -44,27 +53,34 @@ class HomeFragment : Fragment() {
             snippetItemList.clear()
             myAdapter!!.notifyItemRangeRemoved(0, oldSize)
 
+            Log.d(TAG, "Fetched ${snippets?.size} snippets from SQLite")
+
             // Add new items and notify the adapter of item range insertion
             if (snippets != null) {
                 snippetItemList.addAll(snippets.stream()
                     .map { snippet: Snippet ->
-                        SnippetItem(
-                            snippet.title,
-                            snippet.content,
-                            snippet.imageUrl
-                        )
+                        snippet.imageUrl.let {
+                            SnippetItem(
+                                snippet.title,
+                                snippet.content,
+                                it
+                            )
+                        }
                     }
                     .collect(Collectors.toList()))
             }
             myAdapter!!.notifyItemRangeInserted(0, snippetItemList.size)
         } catch (e: Exception) {
-            e.printStackTrace()
-            Log.e(TAG, "Error fetching data from SQLite")
+            Log.e(TAG, "Error fetching data from SQLite", e)
         }
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
-        binding = null
+        try {
+            binding = null
+        } catch (e: Exception) {
+            Log.e(TAG, "Error in onDestroyView", e)
+        }
     }
 }

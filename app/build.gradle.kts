@@ -2,6 +2,8 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
 //    id("com.google.gms.google-services")
+    //jetpack compose
+
 }
 
 
@@ -28,6 +30,10 @@ android {
             )
         }
     }
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.5.14" // Use the appropriate version
+    }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
@@ -40,6 +46,7 @@ android {
     //
     buildFeatures {
         viewBinding = true
+        compose = true
     }
 }
 
@@ -67,4 +74,17 @@ dependencies {
     //google voice input
     implementation(files("libs/voiceimeutils.jar"))
 //    implementation("com.google.ar:core:1.44.0") // Thay thế bằng phiên bản ARCore mới nhất nếu cần
+    // Material Design 3
+    implementation("androidx.compose.material3:material3:1.2.1")
+
+    // Optional - Included automatically by material, only add when you need
+    // the icons but not the material library (e.g. when using Material3 or a
+    // custom design system based on Foundation)
+    implementation("androidx.compose.material:material-icons-core")
+    // Optional - Add full set of material icons
+    implementation("androidx.compose.material:material-icons-extended")
+    // Optional - Add window size utils
+    implementation("androidx.compose.material3:material3-window-size-class")
+
+
 }

@@ -13,7 +13,6 @@ class SnippetDbHelper(context: Context) :
     }
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
-        // Handle database upgrade
         db.execSQL("DROP TABLE IF EXISTS $TABLE_SNIPPETS")
         onCreate(db)
     }
@@ -25,9 +24,7 @@ class SnippetDbHelper(context: Context) :
             put(COLUMN_CONTENT, snippet.content)
             put(COLUMN_IMAGE_URL, snippet.imageUrl)
         }
-        return db.use {
-            it.insert(TABLE_SNIPPETS, null, values)
-        }
+        return db.insert(TABLE_SNIPPETS, null, values)
     }
 
     fun getSnippet(id: Int): Snippet? {
@@ -57,8 +54,7 @@ class SnippetDbHelper(context: Context) :
             val db = readableDatabase
             val columns = arrayOf(COLUMN_ID, COLUMN_TITLE, COLUMN_CONTENT, COLUMN_IMAGE_URL)
 
-            db.query(TABLE_SNIPPETS, columns, null, null, null, null, null).use { cursor ->
-                while (cursor.moveToNext()) {
+            db.query(TABLE_SNIPPETS, columns, null, null, null, null, null).use { cursor ->                while (cursor.moveToNext()) {
                     val id = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_ID))
                     val title = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_TITLE))
                     val content = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_CONTENT))
@@ -79,9 +75,7 @@ class SnippetDbHelper(context: Context) :
         val selection = "$COLUMN_ID = ?"
         val selectionArgs = arrayOf(snippet.id.toString())
 
-        return db.use {
-            it.update(TABLE_SNIPPETS, values, selection, selectionArgs)
-        }
+        return db.update(TABLE_SNIPPETS, values, selection, selectionArgs)
     }
 
     fun deleteSnippet(id: Int): Int {
@@ -89,9 +83,7 @@ class SnippetDbHelper(context: Context) :
         val selection = "$COLUMN_ID = ?"
         val selectionArgs = arrayOf(id.toString())
 
-        return db.use {
-            it.delete(TABLE_SNIPPETS, selection, selectionArgs)
-        }
+        return db.delete(TABLE_SNIPPETS, selection, selectionArgs)
     }
 
     companion object {

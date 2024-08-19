@@ -19,7 +19,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
 import com.google.android.material.snackbar.Snackbar
-import com.terasumi.sellerkeyboard.databinding.FragmentSecondBinding
+import com.terasumi.sellerkeyboard.databinding.AddSnippetFragmentBinding
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
@@ -27,7 +27,7 @@ import java.util.Objects
 import java.util.UUID
 
 class AddSnippetFragment : Fragment() {
-    private var binding: FragmentSecondBinding? = null
+    private var binding: AddSnippetFragmentBinding? = null
     private var imagePickerLauncher: ActivityResultLauncher<Intent>? = null
 
     override fun onCreateView(
@@ -35,7 +35,7 @@ class AddSnippetFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         return try {
-            binding = FragmentSecondBinding.inflate(inflater, container, false)
+            binding = AddSnippetFragmentBinding.inflate(inflater, container, false)
             binding!!.root
         } catch (e: Exception) {
             Log.e("AddSnippetFragment", "Error in onCreateView", e)
@@ -55,7 +55,8 @@ class AddSnippetFragment : Fragment() {
                         val data = result.data
                         if (data != null && data.data != null) {
                             val imageUri = data.data
-                            val imageView = binding!!.root.findViewById<ImageView>(R.id.imagePickerView)
+                            val imageView =
+                                binding!!.root.findViewById<ImageView>(R.id.imagePickerView)
                             imageView.setImageURI(imageUri)
                             imageView.tag = imageUri
                         }
@@ -103,13 +104,14 @@ class AddSnippetFragment : Fragment() {
             Log.d("Title", title)
             val description = binding!!.contentEditText.text.toString()
             Log.d("Description", description)
-//            val imageUri = binding!!.imagePickerView.tag as Uri
             if (binding!!.imagePickerView.tag == null) {
-                Snackbar.make(binding!!.root, "Vui lòng chọn ảnh", Snackbar.LENGTH_SHORT).show()
-                return
+//                Snackbar.make(binding!!.root, "Vui lòng chọn ảnh", Snackbar.LENGTH_SHORT).show()
+//                return
+                saveDataToSQLite(title, description, null)
+                Log.d("SQLite", "Snippet added to SQLite database, no image");
+            } else {
+                saveImageToInternalStorage(binding!!.root)
             }
-
-            saveImageToInternalStorage(binding!!.root)
         } catch (e: Exception) {
             Log.e("AddSnippetFragment", "Error uploading image and saving data", e)
         }
@@ -179,13 +181,16 @@ class AddSnippetFragment : Fragment() {
     private fun saveDataToSQLite(title: String, content: String, imageUrls: String?) {
         try {
             // Insert a new snippet
-            val snippet = imageUrls?.let { Snippet(title, content, it) }
-            if (snippet != null) {
-                context?.let { SnippetDbHelper(it) }?.addSnippet(snippet)
+            //if ImageUrls is null, it means no image is selected
+            val snippet = if (imageUrls != null) {
+                Snippet(title, content, imageUrls)
+            } else {
+                Snippet(title, content, "")
             }
+            context?.let { SnippetDbHelper(it) }?.addSnippet(snippet)
             Log.d("SQLite", "Snippet added to SQLite database")
 
-            // Snackbar notification success for user
+            // Snack bar notification success for user
             Snackbar.make(binding!!.root, "Data saved successfully", Snackbar.LENGTH_SHORT).show()
             // Return to FirstFragment
             parentFragmentManager.popBackStack()
