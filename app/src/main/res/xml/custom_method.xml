@@ -3,7 +3,8 @@
 <input-method xmlns:android="http://schemas.android.com/apk/res/android"
     android:settingsActivity="com.terasumi.sellerkeyboard.SettingsActivity"
     android:icon="@drawable/image_holder">
-    <subtype android:name="voice"
+    <subtype
+        android:name="voice"
         android:icon="@drawable/icon"
         android:languageTag="vi_VN"
         android:imeSubtypeMode="voice"

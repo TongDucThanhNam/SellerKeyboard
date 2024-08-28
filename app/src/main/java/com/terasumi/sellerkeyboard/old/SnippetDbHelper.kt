@@ -1,4 +1,4 @@
-package com.terasumi.sellerkeyboard
+package com.terasumi.sellerkeyboard.old
 
 import android.content.ContentValues
 import android.content.Context
@@ -54,7 +54,8 @@ class SnippetDbHelper(context: Context) :
             val db = readableDatabase
             val columns = arrayOf(COLUMN_ID, COLUMN_TITLE, COLUMN_CONTENT, COLUMN_IMAGE_URL)
 
-            db.query(TABLE_SNIPPETS, columns, null, null, null, null, null).use { cursor ->                while (cursor.moveToNext()) {
+            db.query(TABLE_SNIPPETS, columns, null, null, null, null, null).use { cursor ->
+                while (cursor.moveToNext()) {
                     val id = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_ID))
                     val title = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_TITLE))
                     val content = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_CONTENT))

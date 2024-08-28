@@ -40,3 +40,4 @@ References:
 - [Create an input method](https://developer.android.com/develop/ui/views/touch-and-input/creating-input-method)
 - [Image keyboard support](https://developer.android.com/develop/ui/views/touch-and-input/image-keyboard)
 - [Google Voice Typing integration](https://github.com/johnjamesmiller/google-voice-typing-integration)
+- https://github.com/THEAccess/compose-keyboard-ime/tree/main

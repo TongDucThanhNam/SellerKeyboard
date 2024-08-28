@@ -1,20 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:tools="http://schemas.android.com/tools"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
     <!-- add necessary permission -->
-    <!-- Devices running Android 12L (API level 32) or lower  -->
+    <!-- Devices running Android 12L (API level 32) or lower -->
     <uses-permission
         android:name="android.permission.READ_EXTERNAL_STORAGE"
-        android:maxSdkVersion="32" />
-
-    <!-- Devices running Android 13 (API level 33) or higher -->
+        android:maxSdkVersion="32" /> <!-- Devices running Android 13 (API level 33) or higher -->
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
     <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
-
-
-    <!-- To handle the reselection within the app on devices running Android 14
-         or higher if your app targets Android 14 (API level 34) or higher.  -->
+    <!--
+ To handle the reselection within the app on devices running Android 14
+         or higher if your app targets Android 14 (API level 34) or higher.
+    -->
     <uses-permission android:name="android.permission.READ_MEDIA_VISUAL_USER_SELECTED" />
 
     <application
@@ -26,19 +24,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
-<!--        <uses-library-->
-<!--            android:name="com.google.ar.core"-->
-<!--            android:required="true" />-->
-        <meta-data
-            android:name="com.google.ar.core.min_apk_version"
-            tools:node="remove" />
-
         <activity
-            android:name="com.google.ar.core.InstallActivity"
-            tools:remove="android:configChanges" />
-        <activity
-            android:name=".MainActivity"
+            android:name=".HomeActivity"
             android:exported="true"
+            android:label="@string/title_activity_home"
             android:theme="@style/Theme.MyApplication">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -47,8 +36,9 @@
             </intent-filter>
         </activity>
 
+
         <service
-            android:name=".ImageKeyboard"
+            android:name=".SellerKeyboard"
             android:exported="true"
             android:label="@string/fast_input_label"
             android:permission="android.permission.BIND_INPUT_METHOD"
@@ -56,12 +46,55 @@
             <intent-filter>
                 <action android:name="android.view.InputMethod" />
             </intent-filter>
+
             <meta-data
                 android:name="android.view.im"
                 android:resource="@xml/custom_method" />
         </service>
 
+
+        <!--        <activity-->
+        <!--            android:name=".ComposeActivity"-->
+        <!--            android:exported="false"-->
+        <!--            android:label="@string/title_activity_compose"-->
+        <!--            android:theme="@style/Theme.MyApplication" /> &lt;!&ndash; <uses-library &ndash;&gt;-->
+        <!-- android:name="com.google.ar.core" -->
+        <!-- android:required="true" /> -->
+        <meta-data
+            android:name="com.google.ar.core.min_apk_version"
+            tools:node="remove" />
+
+        <activity
+            android:name="com.google.ar.core.InstallActivity"
+            tools:remove="android:configChanges" />
+
+        <!--        <activity-->
+        <!--            android:name=".MainActivity"-->
+        <!--            android:exported="true"-->
+        <!--            android:theme="@style/Theme.MyApplication">-->
+        <!--            <intent-filter>-->
+        <!--                <action android:name="android.intent.action.MAIN" />-->
+
+        <!--                <category android:name="android.intent.category.LAUNCHER" />-->
+        <!--            </intent-filter>-->
+        <!--        </activity>-->
+
+        <!--        <service-->
+        <!--            android:name=".ImageKeyboard"-->
+        <!--            android:exported="true"-->
+        <!--            android:label="@string/fast_input_label"-->
+        <!--            android:permission="android.permission.BIND_INPUT_METHOD"-->
+        <!--            android:theme="@style/Theme.MyApplication">-->
+        <!--            <intent-filter>-->
+        <!--                <action android:name="android.view.InputMethod" />-->
+        <!--            </intent-filter>-->
+
+        <!--            <meta-data-->
+        <!--                android:name="android.view.im"-->
+        <!--                android:resource="@xml/custom_method" />-->
+        <!--        </service>-->
         <!-- Optional: an activity for controlling the IME settings. -->
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.terasumi.sellerkeyboard.fileprovider"
@@ -72,6 +105,5 @@
                 android:resource="@xml/file_paths" />
         </provider>
     </application>
-
 
 </manifest>

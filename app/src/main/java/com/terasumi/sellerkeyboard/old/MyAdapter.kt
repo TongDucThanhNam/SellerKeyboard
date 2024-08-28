@@ -1,10 +1,11 @@
-package com.terasumi.sellerkeyboard
+package com.terasumi.sellerkeyboard.old
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.terasumi.sellerkeyboard.R
 
 class MyAdapter(private val viewItemsList: List<SnippetItem>) :
     RecyclerView.Adapter<SnippetViewHolder>() {

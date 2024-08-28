@@ -1,7 +1,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.terasumi.sellerkeyboard.MainActivity">
+    tools:context="com.terasumi.sellerkeyboard.old.MainActivity">
     <item
         android:id="@+id/language_setting"
         android:orderInCategory="100"

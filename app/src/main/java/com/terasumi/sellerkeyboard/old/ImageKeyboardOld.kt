@@ -1,4 +1,4 @@
-package com.terasumi.sellerkeyboard
+package com.terasumi.sellerkeyboard.old
 
 import android.content.ClipDescription
 import android.graphics.Bitmap
@@ -19,12 +19,13 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
 import com.google.android.voiceime.VoiceRecognitionTrigger
+import com.terasumi.sellerkeyboard.R
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
 import java.util.Random
 
-class ImageKeyboard : InputMethodService() {
+class ImageKeyboardOld : InputMethodService() {
     //    File tempFile = null;
     private var buttons: ArrayList<Button>? = ArrayList()
     private var snippetItemList: List<Snippet> = ArrayList()
@@ -112,7 +113,7 @@ class ImageKeyboard : InputMethodService() {
 
         openGoogleVoiceButton!!.setOnClickListener(object : View.OnClickListener {
             override fun onClick(view: View) {
-                mVoiceRecognitionTrigger!!.startVoiceRecognition(this@ImageKeyboard.imeLanguage)
+                mVoiceRecognitionTrigger!!.startVoiceRecognition(this@ImageKeyboardOld.imeLanguage)
             }
         })
 
@@ -151,7 +152,7 @@ class ImageKeyboard : InputMethodService() {
                     Thread.sleep(500)
 
                     // Send imageUrls
-                    this@ImageKeyboard.doCommitContent(snippetItem.imageUrl)
+                    this@ImageKeyboardOld.doCommitContent(snippetItem.imageUrl)
                 } catch (e: InterruptedException) {
                     e.printStackTrace()
                 }
@@ -176,7 +177,7 @@ class ImageKeyboard : InputMethodService() {
                         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream)
                     }
                     val uri = FileProvider.getUriForFile(
-                        this@ImageKeyboard,
+                        this@ImageKeyboardOld,
                         "com.terasumi.sellerkeyboard.fileprovider",
                         tempFile
                     )

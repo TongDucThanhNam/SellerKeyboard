@@ -1,8 +1,10 @@
-package com.terasumi.sellerkeyboard
+package com.terasumi.sellerkeyboard.old
 
+//import androidx.navigation.ui.AppBarConfiguration.Builder.build
 import android.content.Intent
 import android.os.Bundle
 import android.provider.Settings
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -11,11 +13,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.fragment.NavHostFragment
-import android.util.Log
 import androidx.navigation.ui.AppBarConfiguration
-//import androidx.navigation.ui.AppBarConfiguration.Builder.build
 import androidx.navigation.ui.NavigationUI.navigateUp
 import androidx.navigation.ui.NavigationUI.setupActionBarWithNavController
+import com.terasumi.sellerkeyboard.R
 import com.terasumi.sellerkeyboard.databinding.ActivityMainBinding
 
 

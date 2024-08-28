@@ -1,4 +1,4 @@
-package com.terasumi.sellerkeyboard
+package com.terasumi.sellerkeyboard.old
 
 import android.content.ContentValues.TAG
 import android.os.Bundle

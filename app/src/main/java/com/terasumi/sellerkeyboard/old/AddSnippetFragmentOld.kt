@@ -1,4 +1,4 @@
-package com.terasumi.sellerkeyboard
+package com.terasumi.sellerkeyboard.old
 
 import android.app.Activity
 import android.content.Intent
@@ -19,6 +19,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
 import com.google.android.material.snackbar.Snackbar
+import com.terasumi.sellerkeyboard.R
 import com.terasumi.sellerkeyboard.databinding.AddSnippetFragmentBinding
 import java.io.File
 import java.io.FileOutputStream
@@ -26,7 +27,7 @@ import java.io.IOException
 import java.util.Objects
 import java.util.UUID
 
-class AddSnippetFragment : Fragment() {
+class AddSnippetFragmentOld : Fragment() {
     private var binding: AddSnippetFragmentBinding? = null
     private var imagePickerLauncher: ActivityResultLauncher<Intent>? = null
 
