@@ -98,6 +98,7 @@ class SellerKeyboard : LifecycleInputMethodService(), ViewModelStoreOwner, Saved
             }
 
             override fun onLoadCleared(placeholder: Drawable?) {
+
             }
         })
     }

@@ -16,8 +16,8 @@ android {
         applicationId = "com.terasumi.sellerkeyboard"
         minSdk = 25 // Android 7.1
         targetSdk = 34 // Android 14
-        versionCode = 5
-        versionName = "1.0.0"
+        versionCode = 6
+        versionName = "1.0.1"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -121,4 +121,7 @@ dependencies {
     ksp("androidx.room:room-compiler:2.6.1")
     //Gson
     implementation("com.google.code.gson:gson:2.11.0")
+
+    //exp4j
+    implementation("net.objecthunter:exp4j:0.4.8")
 }

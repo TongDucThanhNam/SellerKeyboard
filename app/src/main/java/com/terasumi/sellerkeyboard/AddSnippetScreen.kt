@@ -150,6 +150,7 @@ fun AddSnippetScreen(
                 value = content,
                 onValueChange = { content = it },
                 label = { Text("Nhập nội dung") },
+                maxLines = 5,
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(bottom = 8.dp),

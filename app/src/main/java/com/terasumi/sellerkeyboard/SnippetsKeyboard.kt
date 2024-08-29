@@ -67,16 +67,32 @@ fun SnippetsKeyboard(listSnippets: List<Snippets>) {
             items(listSnippets.size) { index ->
                 FilledTonalButton(
                     onClick = {
-                        // Input Method Service
-                        Log.d("Snippet", "Snippet Clicked ${listSnippets[index].title}")
+                        Thread {
+                            try {
+                                // Input Method Service
+                                Log.d("Snippet", "Snippet Clicked ${listSnippets[index].title}")
+                                Log.d("Snippet", "Snippet Clicked ${listSnippets[index].content}")
+                                Log.d("Snippet", "Snippet Clicked ${listSnippets[index].imageUrls}")
 
-                        //InputConnection
-                        val inputConnection = (context as SellerKeyboard).currentInputConnection
-                        inputConnection?.commitText(listSnippets[index].content, 1)
-                        inputConnection?.performEditorAction(EditorInfo.IME_ACTION_SEND)
+                                //InputConnection
+                                val inputConnection =
+                                    (context as SellerKeyboard).currentInputConnection
+                                inputConnection?.commitText(listSnippets[index].content, 1)
+                                inputConnection?.performEditorAction(EditorInfo.IME_ACTION_SEND)
 
-                        //doCommitContent
-//                        (context as SellerKeyboard).doCommitContent()
+                                Thread.sleep(500)
+
+                                //doCommitContent
+                                listSnippets[index].imageUrls.forEach { imageUrl ->
+                                    context.doCommitContent(imageUrl)
+                                    Thread.sleep(500)
+                                }
+
+                                Log.d("Snippet", "Snippet Clicked ${listSnippets[index].title}")
+                            } catch (e: InterruptedException) {
+                                e.printStackTrace()
+                            }
+                        }.start()
 
                     },
                     modifier = Modifier

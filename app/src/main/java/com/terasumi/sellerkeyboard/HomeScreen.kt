@@ -7,8 +7,6 @@ import android.content.Intent
 import android.graphics.BitmapFactory
 import android.provider.Settings
 import android.util.Log
-import android.view.inputmethod.InputMethodManager
-import androidx.appcompat.app.AppCompatActivity.INPUT_METHOD_SERVICE
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -90,7 +88,10 @@ fun HomeScreen(navController: NavController) {
                     colors = TopAppBarDefaults.topAppBarColors(containerColor = MaterialTheme.colorScheme.primary),
                     actions = {
                         IconButton(onClick = { showMenu = !showMenu }) {
-                            Icon(imageVector = Icons.Default.Settings, contentDescription = "Settings")
+                            Icon(
+                                imageVector = Icons.Default.Settings,
+                                contentDescription = "Settings"
+                            )
                         }
                         DropdownMenu(expanded = showMenu, onDismissRequest = { showMenu = false }) {
                             DropdownMenuItem(text = { Text("Bật/tắt bàn phím") }, onClick = {
@@ -145,7 +146,14 @@ fun HomeScreen(navController: NavController) {
 @SuppressLint("CoroutineCreationDuringComposition")
 @OptIn(ExperimentalWearMaterialApi::class)
 @Composable
-fun ItemCard(snippetId: Int, title: String, content: String, imageUrls: List<String>, navController: NavController, listSnippets: MutableState<List<Snippets>>) {
+fun ItemCard(
+    snippetId: Int,
+    title: String,
+    content: String,
+    imageUrls: List<String>,
+    navController: NavController,
+    listSnippets: MutableState<List<Snippets>>
+) {
     val context = LocalContext.current
     val swipeAble = rememberSwipeableState(initialValue = 0)
     val scope = rememberCoroutineScope()
@@ -163,12 +171,21 @@ fun ItemCard(snippetId: Int, title: String, content: String, imageUrls: List<Str
     }
 
     Box(modifier = Modifier.fillMaxWidth()) {
-        AnimatedVisibility(visible = isRevealed, modifier = Modifier.align(Alignment.CenterEnd).padding(end = 16.dp)) {
+        AnimatedVisibility(
+            visible = isRevealed,
+            modifier = Modifier
+                .align(Alignment.CenterEnd)
+                .padding(end = 16.dp)
+        ) {
             IconButton(onClick = {
                 isDeleted = true
                 deleteDataFromSQLite(context, snippetId, listSnippets)
             }) {
-                Icon(imageVector = Icons.Default.Delete, contentDescription = "Delete", tint = Color.Red)
+                Icon(
+                    imageVector = Icons.Default.Delete,
+                    contentDescription = "Delete",
+                    tint = Color.Red
+                )
             }
         }
 
@@ -177,7 +194,12 @@ fun ItemCard(snippetId: Int, title: String, content: String, imageUrls: List<Str
                 .fillMaxWidth()
                 .padding(16.dp)
                 .offset { IntOffset(swipeAble.offset.value.roundToInt(), 0) }
-                .swipeable(state = swipeAble, anchors = anchors, thresholds = { _, _ -> FractionalThreshold(0.3f) }, orientation = Orientation.Horizontal)
+                .swipeable(
+                    state = swipeAble,
+                    anchors = anchors,
+                    thresholds = { _, _ -> FractionalThreshold(0.3f) },
+                    orientation = Orientation.Horizontal
+                )
                 .clickable { navController.navigate("editSnippet/$snippetId") },
             elevation = CardDefaults.cardElevation(4.dp),
             shape = RoundedCornerShape(8.dp)
@@ -189,14 +211,25 @@ fun ItemCard(snippetId: Int, title: String, content: String, imageUrls: List<Str
                         val imageFile = File(imageUrls.getOrNull(0) ?: "")
                         val bitmap = BitmapFactory.decodeFile(imageFile.absolutePath)
                         if (bitmap != null) {
-                            Image(bitmap = bitmap.asImageBitmap(), contentDescription = "Image", modifier = Modifier.size(64.dp))
+                            Image(
+                                bitmap = bitmap.asImageBitmap(),
+                                contentDescription = "Image",
+                                modifier = Modifier.size(64.dp)
+                            )
                         } else {
-                            Image(painter = painterResource(id = R.drawable.icon), contentDescription = "Image", modifier = Modifier.size(64.dp))
+                            Image(
+                                painter = painterResource(id = R.drawable.icon),
+                                contentDescription = "Image",
+                                modifier = Modifier.size(64.dp)
+                            )
                         }
 
                         Text(
                             text = content,
-                            modifier = Modifier.padding(start = 16.dp).align(Alignment.CenterVertically).fillMaxWidth(),
+                            modifier = Modifier
+                                .padding(start = 16.dp)
+                                .align(Alignment.CenterVertically)
+                                .fillMaxWidth(),
                             maxLines = 4,
                             overflow = TextOverflow.Ellipsis
                         )
@@ -209,16 +242,30 @@ fun ItemCard(snippetId: Int, title: String, content: String, imageUrls: List<Str
     isRevealed = swipeAble.currentValue == 1
 }
 
-private fun deleteDataFromSQLite(context: Context, snippetId: Int, listSnippets: MutableState<List<Snippets>>) {
-    SnippetsDao(DatabaseHelper(context)).deleteSnippetById(snippetId)
+private fun deleteDataFromSQLite(
+    context: Context,
+    snippetId: Int,
+    listSnippets: MutableState<List<Snippets>>
+) {
+//    SnippetsDao(DatabaseHelper(context)).deleteSnippetById(snippetId)
+    val dbHelper = DatabaseHelper(context)
+    dbHelper.use {
+        val snippetsDao = SnippetsDao(dbHelper)
+        snippetsDao.deleteSnippetById(snippetId)
+    }
     Log.d("HomeScreen", "Deleted snippet with ID $snippetId from SQLite")
     listSnippets.value = fetchDataFromSQLite(context)
 }
 
 fun fetchDataFromSQLite(context: Context): List<Snippets> {
-    val snippets = SnippetsDao(DatabaseHelper(context)).fetchSnippets()
-    Log.d("HomeScreen", "Fetched ${snippets.size} snippets from SQLite")
-    return snippets
+//    val snippets = SnippetsDao(DatabaseHelper(context)).fetchSnippets()
+    val dbHelper = DatabaseHelper(context)
+    dbHelper.use {
+        val snippetsDao = SnippetsDao(dbHelper)
+        val snippets = snippetsDao.fetchSnippets()
+        Log.d("HomeScreen", "Fetched ${snippets.size} snippets from SQLite")
+        return snippets
+    }
 }
 
 @Preview(showBackground = true)
@@ -233,6 +280,12 @@ fun HomeScreenPreview() {
 @Composable
 fun ItemCardPreview() {
     SellerKeyboardTheme {
-        ItemCard(snippetId = 1, title = "Title", content = "Content", imageUrls = listOf(""), navController = rememberNavController(), listSnippets = remember { mutableStateOf(listOf()) })
+        ItemCard(
+            snippetId = 1,
+            title = "Title",
+            content = "Content",
+            imageUrls = listOf(""),
+            navController = rememberNavController(),
+            listSnippets = remember { mutableStateOf(listOf()) })
     }
 }

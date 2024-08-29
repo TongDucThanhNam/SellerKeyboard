@@ -21,19 +21,24 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import net.objecthunter.exp4j.ExpressionBuilder
 
 @Composable
 fun CalculateContent() {
     Column(
 //        modifier = Modifier.fillMaxSize()
     ) {
+        val context = LocalContext.current
+        val expression = remember { mutableStateOf("") }
         val result = remember { mutableStateOf("") }
+
 
         //TextField
         TextField(
-            value = result.value,
+            value = expression.value,
             onValueChange = { /*TODO*/ },
             modifier = Modifier
                 .fillMaxWidth()
@@ -47,22 +52,30 @@ fun CalculateContent() {
         ) {
             //Calculate
             Button(
-                onClick = { /*TODO*/ },
+                onClick = {
+                    //Input Method Service
+                    val inputConnection = (context as SellerKeyboard).currentInputConnection
+                    inputConnection?.commitText(expression.value, 1)
+                },
                 modifier = Modifier
 //                    .fillMaxWidth()
 //                    .padding(16.dp)
             ) {
-                Text(text = "Calculate")
+                Text(text = "Send Expression")
             }
 
             //Send
             Button(
-                onClick = { /*TODO*/ },
+                onClick = {
+                    //Input Method Service
+                    val inputConnection = (context as SellerKeyboard).currentInputConnection
+                    inputConnection?.commitText(result.value, 1)
+                },
                 modifier = Modifier
 //                    .fillMaxWidth()
 //                    .padding(16.dp)
             ) {
-                Text(text = "Send")
+                Text(text = "Send Result")
             }
         }
 
@@ -129,7 +142,7 @@ fun CalculateContent() {
                     OutlinedButton(
                         onClick = {
                             /*TODO*/
-                            handleCalculatorButton(buttonText, result)
+                            handleCalculatorButton(buttonText, expression, result)
                         },
                         colors = ButtonDefaults.buttonColors(
                             contentColor = Color.Black,
@@ -149,29 +162,50 @@ fun CalculateContent() {
     }
 }
 
-fun handleCalculatorButton(buttonText: String, result: MutableState<String>) {
-    Log.d("handleCalculatorButton", "buttonText: $buttonText, result: ${result.value}")
+fun handleCalculatorButton(
+    buttonText: String,
+    expression: MutableState<String>,
+    result: MutableState<String>
+) {
+    Log.d("handleCalculatorButton", "buttonText: $buttonText, expression: ${expression.value}")
     when (buttonText) {
         "C" -> {
             // Clear
-            result.value = ""
+            expression.value = ""
         }
 
         "D" -> {
             // Delete
-            if (result.value.isNotEmpty()) {
-                result.value = result.value.dropLast(1)
+            if (expression.value.isNotEmpty()) {
+                expression.value = expression.value.dropLast(1)
             }
         }
 
         "=" -> {
             // Calculate
             // Add calculation logic here
+            try {
+                val cal = ExpressionBuilder(expression.value).build().evaluate()
+                val formattedResult = if (cal % 1 == 0.0) {
+                    cal.toInt().toString() // Convert to integer if it's a whole number
+                } else {
+                    cal.toString() // Keep as double otherwise
+                }
+                expression.value += " = $formattedResult"
+                result.value = formattedResult
+            } catch (e: Exception) {
+                expression.value = "Error"
+            }
+        }
+
+        "E" -> {
+            // Enter
+            expression.value += "\n"
         }
 
         else -> {
             // Append
-            result.value += buttonText
+            expression.value += buttonText
         }
     }
 }

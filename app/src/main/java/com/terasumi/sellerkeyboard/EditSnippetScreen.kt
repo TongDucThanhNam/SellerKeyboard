@@ -31,6 +31,7 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.rememberTopAppBarState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -51,14 +52,17 @@ import com.bumptech.glide.request.target.SimpleTarget
 import com.bumptech.glide.request.transition.Transition
 import com.terasumi.sellerkeyboard.ui.theme.SellerKeyboardTheme
 import kotlinx.coroutines.runBlocking
+import java.io.File
+import java.io.FileOutputStream
+import java.io.IOException
+import java.util.UUID
+
 
 @SuppressLint("MutableCollectionMutableState")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun EditSnippetScreen(navController: NavHostController, snippetId: Int) {
     val context = LocalContext.current
-    val dbHelper = DatabaseHelper(context)
-    val snippetsDao = SnippetsDao(dbHelper)
 
     val snippet = remember { mutableStateOf<Snippets?>(null) }
 
@@ -68,24 +72,46 @@ fun EditSnippetScreen(navController: NavHostController, snippetId: Int) {
 //    var bitmap by remember { mutableStateOf<Bitmap?>(null) }
 
     var imageUris by remember { mutableStateOf<List<Uri>>(emptyList()) }
-    var bitmaps by remember { mutableStateOf<List<Bitmap>>(emptyList()) }
+    val bitmaps = remember { mutableStateOf<List<Bitmap>>(emptyList()) }
 
-
-    LaunchedEffect(snippetId) {
-        Log.d("EditSnippetScreen", "Snippet ID: $snippetId")
-        snippet.value = snippetsDao.fetchSnippetById(snippetId)
+    DisposableEffect(Unit) {
+        onDispose {
+            snippet.value = null
+            title = TextFieldValue("")
+            content = TextFieldValue("")
+            imageUris = emptyList()
+            bitmaps.value = emptyList()
+        }
     }
 
+
+    // Step 1: Define a new state to track the loading status of bitmaps
+    var isBitmapLoading by remember { mutableStateOf(false) }
+
+    // Step 2: Use LaunchedEffect to load bitmaps only when snippetId changes
+    LaunchedEffect(snippetId) {
+        Log.d("EditSnippetScreen", "Snippet ID: $snippetId")
+        val dbHelper = DatabaseHelper(context)
+        dbHelper.use {
+            val snippetsDao = SnippetsDao(dbHelper)
+            snippet.value = snippetsDao.fetchSnippetById(snippetId)
+        }
+        isBitmapLoading = true
+    }
+
+
+    // Step 3: Update the bitmaps state outside of the LaunchedEffect
     LaunchedEffect(snippet.value) {
         Log.d("EditSnippetScreen", "Snippet: ${snippet.value}")
         snippet.value?.let {
             title = TextFieldValue(it.title)
             content = TextFieldValue(it.content)
-            // TODO: Load image from URL
-
             Log.d("EditSnippetScreen", "Snippet images: ${it.imageUrls}")
-            it.imageUrls.forEach { imageUrl ->
-                // Tải ảnh bất đồng bộ với Glide
+            bitmaps.value = listOf()
+
+            var updatedBitmaps = listOf<Bitmap>()
+
+            snippet.value?.imageUrls?.forEach { imageUrl ->
                 Glide.with(context)
                     .asBitmap()
                     .load(imageUrl)
@@ -94,11 +120,16 @@ fun EditSnippetScreen(navController: NavHostController, snippetId: Int) {
                             resource: Bitmap,
                             transition: Transition<in Bitmap>?
                         ) {
-                            // Thêm Bitmap vào list
-                            bitmaps = bitmaps + resource
+                            Log.d("Fetch bimap from imageUrls", "Bitmap: $resource")
+                            updatedBitmaps = updatedBitmaps + resource
+                            isBitmapLoading = false
                         }
                     })
             }
+            bitmaps.value = updatedBitmaps
+
+            Log.d("EditSnippetScreen", "Bitmaps: ${bitmaps.value}")
+
         }
     }
 
@@ -109,7 +140,7 @@ fun EditSnippetScreen(navController: NavHostController, snippetId: Int) {
         contract = ActivityResultContracts.GetMultipleContents()
     ) { uris: List<Uri> ->
         imageUris = uris
-        bitmaps = runBlocking {
+        bitmaps.value = runBlocking {
             uris.map { uri ->
                 loadBitmap(context, uri)
             }
@@ -195,14 +226,14 @@ fun EditSnippetScreen(navController: NavHostController, snippetId: Int) {
                     imagePickerLauncher.launch("image/*")
                 }
                 .align(Alignment.CenterHorizontally)) {
-                if (bitmaps.isNotEmpty()) {
-                    Log.d("EditSnippets", "Number of bitmaps: ${bitmaps.size}")
+                if (bitmaps.value.isNotEmpty()) {
+                    Log.d("EditSnippets", "Number of bitmaps: ${bitmaps.value.size}")
 
                     Row(
                         modifier = Modifier
                             .fillMaxWidth()
                     ) {
-                        bitmaps.forEach { bitmap ->
+                        bitmaps.value.forEach { bitmap ->
                             Image(
                                 bitmap = bitmap.asImageBitmap(),
                                 contentDescription = null,
@@ -228,7 +259,15 @@ fun EditSnippetScreen(navController: NavHostController, snippetId: Int) {
                         // uploadImageAndSaveData(context, title.text, content.text, imageUri, bitmap)
 
                         //Update snippet
-                        updateSnippet(context, snippetId, title.text, content.text, imageUris, bitmaps, navController)
+                        updateSnippet(
+                            context,
+                            snippetId,
+                            title.text,
+                            content.text,
+                            imageUris,
+                            bitmaps.value,
+                            navController
+                        )
                     }
                 }) {
                 Text(text = "Lưu lại")
@@ -258,13 +297,47 @@ fun updateSnippet(
     bitmaps: List<Bitmap>,
     navController: NavHostController
 ) {
+    Log.d("EditSnippetScreen", "Snippet ID: $snippetId, Title: $title, Content: $content")
+    Log.d("EditSnippetScreen", "Bitmaps: $bitmaps")
+
     if (bitmaps.isNotEmpty()) {
+        // save bitmap to internal storage
+        val imageUrls = mutableListOf<String>()
+        bitmaps.forEach { bitmap ->
+            val imageUrl = saveImageWithGlide(bitmap, context)
+            imageUrls.add(imageUrl)
+        }
+
+        updateDataToSQLite(context, snippetId, title, content, imageUrls, navController)
+
+    } else {
         // Upload image and save data
         // uploadImageAndSaveData(context, title, content, imageUri, bitmap)
         updateDataToSQLiteNoImage(context, snippetId, title, content, navController)
-    } else {
-        // Update snippet
-        updateDataToSQLite(context, snippetId, title, content, emptyList(), navController)
+    }
+}
+
+private fun saveImageWithGlide(bitmap: Bitmap, context: Context): String {
+    return try {
+        val imageName = "img_" + UUID.randomUUID().toString() + ".jpg"
+        val file = File(context.cacheDir, imageName) // Or another suitable directory
+        try {
+            FileOutputStream(file).use { fos ->
+                bitmap.compress(
+                    Bitmap.CompressFormat.JPEG, // You can choose PNG too
+                    100,
+                    fos
+                ) // You can adjust the quality (0-100)
+            }
+        } catch (e: IOException) {
+            e.printStackTrace() // Handle the exception appropriately
+        }
+        // Now you have the file path: file.getAbsolutePath()
+        Log.d("Image", "Image saved to internal storage: " + file.absolutePath)
+        file.absolutePath
+    } catch (e: Exception) {
+        Log.e("AddSnippetFragment", "Error saving image with Glide", e)
+        ""
     }
 }
 
@@ -278,13 +351,22 @@ private fun updateDataToSQLite(
 ) {
     // Update snippet
     val dbHelper = DatabaseHelper(context)
-    val snippetsDao = SnippetsDao(dbHelper)
-    snippetsDao.updateSnippetById(
-        snippetId = snippetId,
-        title = title,
-        content = content,
-        imageUrls = imageUrls
-    )
+//    val snippetsDao = SnippetsDao(dbHelper)
+//    snippetsDao.updateSnippetById(
+//        snippetId = snippetId,
+//        title = title,
+//        content = content,
+//        imageUrls = imageUrls
+//    )
+    dbHelper.use {
+        val snippetsDao = SnippetsDao(dbHelper)
+        snippetsDao.updateSnippetById(
+            snippetId = snippetId,
+            title = title,
+            content = content,
+            imageUrls = imageUrls
+        )
+    }
     //Log
     Log.d("EditSnippetScreen", "Update snippet success")
     //Show SnackBar
@@ -292,6 +374,7 @@ private fun updateDataToSQLite(
     //Navigate back
     navController.popBackStack()
 }
+
 //update Data to SQLite no Image
 private fun updateDataToSQLiteNoImage(
     context: Context,
@@ -302,12 +385,20 @@ private fun updateDataToSQLiteNoImage(
 ) {
     // Update snippet
     val dbHelper = DatabaseHelper(context)
-    val snippetsDao = SnippetsDao(dbHelper)
-    snippetsDao.updateSnippetByIdNoImageUrls(
-        snippetId = snippetId,
-        title = title,
-        content = content
-    )
+//    val snippetsDao = SnippetsDao(dbHelper)
+//    snippetsDao.updateSnippetByIdNoImageUrls(
+//        snippetId = snippetId,
+//        title = title,
+//        content = content
+//    )
+    dbHelper.use {
+        val snippetsDao = SnippetsDao(dbHelper)
+        snippetsDao.updateSnippetByIdNoImageUrls(
+            snippetId = snippetId,
+            title = title,
+            content = content
+        )
+    }
     //Log
     Log.d("EditSnippetScreen", "Update snippet success")
     //Show SnackBar
@@ -315,4 +406,3 @@ private fun updateDataToSQLiteNoImage(
     //Navigate back
     navController.popBackStack()
 }
-
