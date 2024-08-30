@@ -1,0 +1,37 @@
+<resources>
+    <string name="app_name">Seller Keyboard</string>
+    <!--  Boarding  -->
+    <string name="enable_seller_keyboard">Bật Seller Keyboard</string>
+    <string name="welcome_message">"Chào mừng bạn đến với ứng dụng Seller Keyboard !"</string>
+    <string name="enable_keyboard_prompt">"Trước tiên bạn phải bật bàn phím Seller Keyboard để sử dụng ứng dụng."</string>
+    <!--HomePage-->
+    <string name="homepage">Trang chủ</string>
+
+    <!-- Add Snippet -->
+    <string name="add_snippet">Thêm Snippet</string>
+
+    <!-- Edit Snippet -->
+    <string name="edit_snippet">Sửa Snippet</string>
+
+    <!-- Form -->
+    <string name="enter_label">Nhập nhãn</string>
+    <string name="enter_content">Nhập nội dung</string>
+    <string name="save">Lưu</string>
+
+    <!-- Menu -->
+    <string name="enable_keyboard">Bật/tắt bàn phím</string>
+    <string name="change_keyboard">Thay đổi bàn phím</string>
+    <string name="voice">Voice Assistance</string>
+    <string name="subtype">Cài đặt ngôn ngữ phụ</string>
+
+    <!-- Keyboard content -->
+
+    <string name="snippet_list">Danh sách Snippets</string>
+    <string name="calculator">Máy tính</string>
+
+    <!-- Calculator  -->
+    <string name="enter_expression">Nhập biểu thức</string>
+    <string name="send_expression">Gửi cả biểu thức</string>
+    <string name="send_result">Gửi kết quả</string>
+
+</resources>

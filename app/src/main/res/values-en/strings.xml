@@ -4,8 +4,6 @@
     <string name="enable_seller_keyboard">Enable Seller Keyboard</string>
     <string name="welcome_message">Welcome to the Seller Keyboard app!</string>
     <string name="enable_keyboard_prompt">First, you need to enable the Seller Keyboard to use the app.</string>
-
-
     <!-- HomePage -->
     <string name="homepage">Home Page</string>
 

@@ -52,6 +52,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.IntOffset
@@ -76,6 +77,12 @@ fun HomeScreen(navController: NavController) {
 
     val listSnippets = remember { mutableStateOf(listOf<Snippets>()) }
 
+    //stringResource
+//    val homePage = StringResources.homepage
+    val homePage = remember {
+        StringResources.homepage
+    }
+
     LaunchedEffect(context) {
         listSnippets.value = fetchDataFromSQLite(context)
     }
@@ -84,7 +91,7 @@ fun HomeScreen(navController: NavController) {
         Scaffold(
             topBar = {
                 TopAppBar(
-                    title = { Text("Trang chủ") },
+                    title = { Text(homePage) },
                     colors = TopAppBarDefaults.topAppBarColors(containerColor = MaterialTheme.colorScheme.primary),
                     actions = {
                         IconButton(onClick = { showMenu = !showMenu }) {

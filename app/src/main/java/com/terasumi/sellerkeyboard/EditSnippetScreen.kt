@@ -10,6 +10,7 @@ import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -42,6 +43,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -70,6 +72,27 @@ fun EditSnippetScreen(navController: NavHostController, snippetId: Int) {
     var content by remember { mutableStateOf(TextFieldValue("")) }
 //    var imageUri by remember { mutableStateOf<Uri?>(null) }
 //    var bitmap by remember { mutableStateOf<Bitmap?>(null) }
+
+    //stringResource
+//    val editSnippet = StringResources.edit_snippet
+//    val enterLabel = StringResources.enter_label
+//    val enterContent = StringResources.enter_content
+//    val save = StringResources.save
+    val editSnippet = remember {
+        StringResources.edit_snippet
+    }
+    val enterLabel = remember {
+        StringResources.enter_label
+    }
+
+    val enterContent = remember {
+        StringResources.enter_content
+    }
+
+    val save = remember {
+        StringResources.save
+    }
+
 
     var imageUris by remember { mutableStateOf<List<Uri>>(emptyList()) }
     val bitmaps = remember { mutableStateOf<List<Bitmap>>(emptyList()) }
@@ -136,6 +159,12 @@ fun EditSnippetScreen(navController: NavHostController, snippetId: Int) {
     //top app bar
     val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior(rememberTopAppBarState())
 
+    val imageResource = if (isSystemInDarkTheme()) {
+        R.drawable.bxs_image_add // Replace with your dark mode image resource
+    } else {
+        R.drawable.bx_image_add // Replace with your light mode image resource
+    }
+
     val imagePickerLauncher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.GetMultipleContents()
     ) { uris: List<Uri> ->
@@ -150,7 +179,7 @@ fun EditSnippetScreen(navController: NavHostController, snippetId: Int) {
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text(text = "Sửa tin nhẵn mẫu") },
+                title = { Text(text = editSnippet) },
                 navigationIcon = {
                     IconButton(onClick = {
                         navController.popBackStack()
@@ -181,7 +210,7 @@ fun EditSnippetScreen(navController: NavHostController, snippetId: Int) {
             OutlinedTextField(
                 value = title,
                 onValueChange = { title = it },
-                label = { Text("Nhập nhãn") },
+                label = { Text(enterLabel) },
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(bottom = 8.dp),
@@ -202,7 +231,7 @@ fun EditSnippetScreen(navController: NavHostController, snippetId: Int) {
             OutlinedTextField(
                 value = content,
                 onValueChange = { content = it },
-                label = { Text("Nhập nội dung") },
+                label = { Text(enterContent) },
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(bottom = 8.dp),
@@ -245,7 +274,8 @@ fun EditSnippetScreen(navController: NavHostController, snippetId: Int) {
                     }
                 } else {
                     Image(
-                        painter = painterResource(id = R.drawable.image_holder),
+                        modifier = Modifier.size(100.dp),
+                        painter = painterResource(id = imageResource),
                         contentDescription = null
                     )
                 }
@@ -270,7 +300,7 @@ fun EditSnippetScreen(navController: NavHostController, snippetId: Int) {
                         )
                     }
                 }) {
-                Text(text = "Lưu lại")
+                Text(text = save)
             }
         }
     }

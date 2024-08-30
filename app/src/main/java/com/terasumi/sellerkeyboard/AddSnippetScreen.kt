@@ -9,6 +9,7 @@ import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -44,6 +45,7 @@ import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -77,6 +79,16 @@ fun AddSnippetScreen(
 
     val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior(rememberTopAppBarState())
 
+    //stringResource
+//    val addSnippet = StringResources.add_snippet
+//    val enterLabel = StringResources.enter_label
+//    val enterContent = StringResources.enter_content
+//    val save = StringResources.save
+    val addSnippet = remember { StringResources.add_snippet }
+    val enterLabel = remember { StringResources.enter_label }
+    val enterContent = remember { StringResources.enter_content }
+    val save = remember { StringResources.save }
+
     val imagePickerLauncher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.GetMultipleContents()
     ) { uris: List<Uri> ->
@@ -88,6 +100,12 @@ fun AddSnippetScreen(
         }
     }
     val localLifecycleOwner = LocalLifecycleOwner.current
+
+    val imageResource = if (isSystemInDarkTheme()) {
+        R.drawable.bxs_image_add // Replace with your dark mode image resource
+    } else {
+        R.drawable.bx_image_add // Replace with your light mode image resource
+    }
 
     LaunchedEffect(navigationViewModel.navigationEvent) {
         navigationViewModel.navigationEvent.observe(localLifecycleOwner) { directions ->
@@ -105,7 +123,7 @@ fun AddSnippetScreen(
 
         topBar = {
             TopAppBar(
-                title = { Text(text = "Thêm tin nhắn mẫu") },
+                title = { Text(text = addSnippet) },
                 navigationIcon = {
                     IconButton(onClick = { navController.popBackStack() }) {
                         Icon(
@@ -126,11 +144,16 @@ fun AddSnippetScreen(
             )
         }
     ) { contentPadding ->
-        Column(modifier = Modifier.padding(contentPadding)) {
+        Column(
+            modifier =
+            Modifier
+                .padding(contentPadding)
+                .padding(16.dp)
+        ) {
             OutlinedTextField(
                 value = title,
                 onValueChange = { title = it },
-                label = { Text("Nhập từ khoá") },
+                label = { Text(enterLabel) },
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(bottom = 8.dp),
@@ -149,7 +172,7 @@ fun AddSnippetScreen(
             OutlinedTextField(
                 value = content,
                 onValueChange = { content = it },
-                label = { Text("Nhập nội dung") },
+                label = { Text(enterContent) },
                 maxLines = 5,
                 modifier = Modifier
                     .fillMaxWidth()
@@ -191,7 +214,9 @@ fun AddSnippetScreen(
                     }
                 } else {
                     Image(
-                        painter = painterResource(id = R.drawable.image_holder),
+                        painter = painterResource(id = imageResource),
+                        modifier = Modifier
+                            .size(100.dp),
                         contentDescription = null
                     )
                 }
@@ -209,7 +234,7 @@ fun AddSnippetScreen(
                     )
                 }
             }) {
-                Text(text = "Lưu")
+                Text(text = save)
             }
         }
     }

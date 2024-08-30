@@ -13,8 +13,8 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
@@ -22,6 +22,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import net.objecthunter.exp4j.ExpressionBuilder
@@ -35,14 +36,31 @@ fun CalculateContent() {
         val expression = remember { mutableStateOf("") }
         val result = remember { mutableStateOf("") }
 
+        //stringResource
+//        val expressionText = StringResources.enter_expression
+//        val sendExpression = StringResources.send_expression
+//        val sendResult = StringResources.send_result
+        val expressionText = remember {
+            StringResources.enter_expression
+        }
+
+        val sendExpression = remember {
+            StringResources.send_expression
+        }
+
+        val sendResult = remember {
+            StringResources.send_result
+        }
+
 
         //TextField
-        TextField(
+        OutlinedTextField(
             value = expression.value,
             onValueChange = { /*TODO*/ },
+            label = { Text(text = expressionText ) },
             modifier = Modifier
                 .fillMaxWidth()
-//                .padding(16.dp)
+                .padding(16.dp)
         )
 
         //Button Calculate and Send
@@ -61,7 +79,7 @@ fun CalculateContent() {
 //                    .fillMaxWidth()
 //                    .padding(16.dp)
             ) {
-                Text(text = "Send Expression")
+                Text(text = sendExpression)
             }
 
             //Send
@@ -75,7 +93,7 @@ fun CalculateContent() {
 //                    .fillMaxWidth()
 //                    .padding(16.dp)
             ) {
-                Text(text = "Send Result")
+                Text(text = sendResult)
             }
         }
 

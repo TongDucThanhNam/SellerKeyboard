@@ -2,8 +2,6 @@ package com.terasumi.sellerkeyboard
 
 import android.content.Intent
 import android.provider.Settings
-import android.view.inputmethod.InputMethodManager
-import androidx.appcompat.app.AppCompatActivity.INPUT_METHOD_SERVICE
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -18,30 +16,29 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.pager.HorizontalPager
-import androidx.compose.foundation.pager.PagerState
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
 import com.terasumi.sellerkeyboard.ui.theme.SellerKeyboardTheme
 
 //On Boarding Screen
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun BoardingScreen(navController: NavController) {
+fun BoardingScreen() {
     Box(modifier = Modifier.fillMaxSize()) {
         val pagerState = rememberPagerState(pageCount = {
             1
@@ -51,7 +48,7 @@ fun BoardingScreen(navController: NavController) {
             modifier = Modifier.fillMaxSize()
         ) { page ->
             // Our page content
-            OnboardingPage(page, pagerState, navController)
+            OnboardingPage(page)
         }
         Row(
             Modifier
@@ -77,12 +74,11 @@ fun BoardingScreen(navController: NavController) {
 }
 
 //
-@OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun OnboardingPage(page: Int, pageState: PagerState, navController: NavController) {
+fun OnboardingPage(page: Int) {
     when (page) {
         0 -> {
-            FirstBoardingPage(pageState, navController)
+            FirstBoardingPage()
         }
 
 //        1 -> {
@@ -96,10 +92,24 @@ fun OnboardingPage(page: Int, pageState: PagerState, navController: NavControlle
 }
 
 //Enable keyboard
-@OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun FirstBoardingPage(pageState: PagerState, navController: NavController) {
+fun FirstBoardingPage() {
     val context = LocalContext.current
+
+    //stringResource
+//    val enableKeyboard = StringResources.enable_keyboard
+//    val welcomeMessage = StringResources.welcome_message
+//    val enableKeyboardPrompt = StringResources.enable_keyboard_prompt
+    val enableKeyboard = remember {
+        StringResources.enable_keyboard
+    }
+    val welcomeMessage = remember {
+        StringResources.welcome_message
+    }
+    val enableKeyboardPrompt = remember {
+        StringResources.enable_keyboard_prompt
+    }
+
 
     // Content for the first page
     Box(modifier = Modifier.fillMaxSize()) {
@@ -109,14 +119,14 @@ fun FirstBoardingPage(pageState: PagerState, navController: NavController) {
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(
-                text = "Chào mừng bạn đến với ứng dụng Seller Keyboard !",
+                text = welcomeMessage,
                 fontSize = 24.sp,
                 fontWeight = FontWeight.Bold,
                 textAlign = TextAlign.Center
             )
             Spacer(modifier = Modifier.height(16.dp))
             Text(
-                text = "Trước tiên bạn phải bật bàn phím Seller Keyboard để sử dụng ứng dụng.",
+                text = enableKeyboardPrompt,
                 fontSize = 16.sp,
                 textAlign = TextAlign.Center
             )
@@ -135,94 +145,49 @@ fun FirstBoardingPage(pageState: PagerState, navController: NavController) {
                 .padding(16.dp)
                 .align(Alignment.BottomCenter)
         ) {
-            Text("Bật Seller Keyboard")
+            Text(enableKeyboard)
         }
     }
 }
 
-//Select Keyboard
-@OptIn(ExperimentalFoundationApi::class)
-@Composable
-fun SecondBoardingPage(pageState: PagerState) {
-    val context = LocalContext.current
-
-    // Content for the second page
-    Box(modifier = Modifier.fillMaxSize()) {
-        Column(
-            modifier = Modifier.fillMaxSize(),
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            Text(
-                text = "Welcome to the Second Page!",
-                fontSize = 24.sp,
-                fontWeight = FontWeight.Bold
-            )
-            Spacer(modifier = Modifier.height(16.dp))
-            Text(
-                text = "This is the content for the second page.",
-                fontSize = 16.sp
-            )
-        }
-
-        Button(
-            onClick = {
-                //TODO: Implement logic to select keyboard
-                val inputMethodManager =
-                    context.getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
-                inputMethodManager.showInputMethodPicker()
-
-                // Navigate to the next page
-                var currentPage = pageState.currentPage
-                currentPage += 1
-            },
-            modifier = Modifier
-                .padding(16.dp)
-                .align(Alignment.BottomCenter)
-
-        ) {
-            Text("Select Keyboard")
-        }
-    }
-}
-
-//Tutorial Screen
-@OptIn(ExperimentalFoundationApi::class)
-@Composable
-fun TutorialScreen(pageState: PagerState) {
-    Box(modifier = Modifier.fillMaxSize()) {
-        Column(
-            modifier = Modifier.fillMaxSize(),
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            Text(
-                text = "Welcome to the Tutorial Screen!",
-                fontSize = 24.sp,
-                fontWeight = FontWeight.Bold
-            )
-            Spacer(modifier = Modifier.height(16.dp))
-            Text(
-                text = "This is the content for the tutorial screen.",
-                fontSize = 16.sp
-            )
-        }
-
-        Button(
-            onClick = {
-                //TODO: Implement logic to navigate to the main screen
-
-                // Navigate to the main screen
-
-            },
-            modifier = Modifier
-                .padding(16.dp)
-                .align(Alignment.BottomCenter)
-        ) {
-            Text("Get Started")
-        }
-    }
-}
+//
+////Tutorial Screen
+//@OptIn(ExperimentalFoundationApi::class)
+//@Composable
+//fun TutorialScreen(pageState: PagerState) {
+//    Box(modifier = Modifier.fillMaxSize()) {
+//        Column(
+//            modifier = Modifier.fillMaxSize(),
+//            verticalArrangement = Arrangement.Center,
+//            horizontalAlignment = Alignment.CenterHorizontally
+//        ) {
+//            Text(
+//                text = "Welcome to the Tutorial Screen!",
+//                fontSize = 24.sp,
+//                fontWeight = FontWeight.Bold
+//            )
+//            Spacer(modifier = Modifier.height(16.dp))
+//            Text(
+//                text = "This is the content for the tutorial screen.",
+//                fontSize = 16.sp
+//            )
+//        }
+//
+//        Button(
+//            onClick = {
+//                //TODO: Implement logic to navigate to the main screen
+//
+//                // Navigate to the main screen
+//
+//            },
+//            modifier = Modifier
+//                .padding(16.dp)
+//                .align(Alignment.BottomCenter)
+//        ) {
+//            Text("Get Started")
+//        }
+//    }
+//}
 
 
 // On Boarding Screen
@@ -230,7 +195,7 @@ fun TutorialScreen(pageState: PagerState) {
 @Composable
 fun BoardingPreview() {
     SellerKeyboardTheme {
-        BoardingScreen(navController = rememberNavController())
+        BoardingScreen()
     }
 }
 
