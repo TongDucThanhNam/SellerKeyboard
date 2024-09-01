@@ -1,4 +1,4 @@
-package com.terasumi.sellerkeyboard
+package com.terasumi.sellerkeyboard.main
 
 import SnippetsDao
 import android.annotation.SuppressLint
@@ -43,7 +43,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -52,6 +51,9 @@ import androidx.navigation.compose.rememberNavController
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.SimpleTarget
 import com.bumptech.glide.request.transition.Transition
+import com.terasumi.sellerkeyboard.R
+import com.terasumi.sellerkeyboard.database.DatabaseHelper
+import com.terasumi.sellerkeyboard.database.Snippets
 import com.terasumi.sellerkeyboard.ui.theme.SellerKeyboardTheme
 import kotlinx.coroutines.runBlocking
 import java.io.File
@@ -65,34 +67,34 @@ import java.util.UUID
 @Composable
 fun EditSnippetScreen(navController: NavHostController, snippetId: Int) {
     val context = LocalContext.current
-
     val snippet = remember { mutableStateOf<Snippets?>(null) }
-
     var title by remember { mutableStateOf(TextFieldValue("")) }
     var content by remember { mutableStateOf(TextFieldValue("")) }
-//    var imageUri by remember { mutableStateOf<Uri?>(null) }
-//    var bitmap by remember { mutableStateOf<Bitmap?>(null) }
 
     //stringResource
-//    val editSnippet = StringResources.edit_snippet
-//    val enterLabel = StringResources.enter_label
-//    val enterContent = StringResources.enter_content
-//    val save = StringResources.save
+    val resources = context.resources
+//    val editSnippet = resources.getString(R.string.edit_snippet)
+//    val enterLabel = resources.getString(R.string.enter_label)
+//    val enterContent = resources.getString(R.string.enter_content)
+//    val save = resources.getString(R.string.save)
+
     val editSnippet = remember {
-        StringResources.edit_snippet
+        resources.getString(R.string.edit_snippet)
     }
+
     val enterLabel = remember {
-        StringResources.enter_label
+        resources.getString(R.string.enter_label)
     }
 
     val enterContent = remember {
-        StringResources.enter_content
+        resources.getString(R.string.enter_content)
     }
 
     val save = remember {
-        StringResources.save
+        resources.getString(R.string.save)
     }
 
+    var isBitmapLoading by remember { mutableStateOf(false) }
 
     var imageUris by remember { mutableStateOf<List<Uri>>(emptyList()) }
     val bitmaps = remember { mutableStateOf<List<Bitmap>>(emptyList()) }
@@ -107,13 +109,8 @@ fun EditSnippetScreen(navController: NavHostController, snippetId: Int) {
         }
     }
 
-
-    // Step 1: Define a new state to track the loading status of bitmaps
-    var isBitmapLoading by remember { mutableStateOf(false) }
-
-    // Step 2: Use LaunchedEffect to load bitmaps only when snippetId changes
     LaunchedEffect(snippetId) {
-        Log.d("EditSnippetScreen", "Snippet ID: $snippetId")
+//        Log.d("EditSnippetScreen", "Snippet ID: $snippetId")
         val dbHelper = DatabaseHelper(context)
         dbHelper.use {
             val snippetsDao = SnippetsDao(dbHelper)
@@ -125,11 +122,11 @@ fun EditSnippetScreen(navController: NavHostController, snippetId: Int) {
 
     // Step 3: Update the bitmaps state outside of the LaunchedEffect
     LaunchedEffect(snippet.value) {
-        Log.d("EditSnippetScreen", "Snippet: ${snippet.value}")
+//        Log.d("EditSnippetScreen", "Snippet: ${snippet.value}")
         snippet.value?.let {
             title = TextFieldValue(it.title)
             content = TextFieldValue(it.content)
-            Log.d("EditSnippetScreen", "Snippet images: ${it.imageUrls}")
+//            Log.d("EditSnippetScreen", "Snippet images: ${it.imageUrls}")
             bitmaps.value = listOf()
 
             var updatedBitmaps = listOf<Bitmap>()
@@ -143,7 +140,7 @@ fun EditSnippetScreen(navController: NavHostController, snippetId: Int) {
                             resource: Bitmap,
                             transition: Transition<in Bitmap>?
                         ) {
-                            Log.d("Fetch bimap from imageUrls", "Bitmap: $resource")
+//                            Log.d("Fetch bimap from imageUrls", "Bitmap: $resource")
                             updatedBitmaps = updatedBitmaps + resource
                             isBitmapLoading = false
                         }
@@ -151,7 +148,7 @@ fun EditSnippetScreen(navController: NavHostController, snippetId: Int) {
             }
             bitmaps.value = updatedBitmaps
 
-            Log.d("EditSnippetScreen", "Bitmaps: ${bitmaps.value}")
+//            Log.d("EditSnippetScreen", "Bitmaps: ${bitmaps.value}")
 
         }
     }
@@ -256,7 +253,7 @@ fun EditSnippetScreen(navController: NavHostController, snippetId: Int) {
                 }
                 .align(Alignment.CenterHorizontally)) {
                 if (bitmaps.value.isNotEmpty()) {
-                    Log.d("EditSnippets", "Number of bitmaps: ${bitmaps.value.size}")
+//                    Log.d("EditSnippets", "Number of bitmaps: ${bitmaps.value.size}")
 
                     Row(
                         modifier = Modifier
@@ -284,7 +281,7 @@ fun EditSnippetScreen(navController: NavHostController, snippetId: Int) {
             Button(
                 modifier = Modifier.align(Alignment.CenterHorizontally), onClick = {
                     if (validateFormData(title.text, content.text)) {
-                        Log.d("EditSnippetScreen", "Title: ${title.text}, Content: ${content.text}")
+//                        Log.d("EditSnippetScreen", "Title: ${title.text}, Content: ${content.text}")
                         //TODO: Upload image and save data
                         // uploadImageAndSaveData(context, title.text, content.text, imageUri, bitmap)
 
@@ -327,8 +324,8 @@ fun updateSnippet(
     bitmaps: List<Bitmap>,
     navController: NavHostController
 ) {
-    Log.d("EditSnippetScreen", "Snippet ID: $snippetId, Title: $title, Content: $content")
-    Log.d("EditSnippetScreen", "Bitmaps: $bitmaps")
+//    Log.d("EditSnippetScreen", "Snippet ID: $snippetId, Title: $title, Content: $content")
+//    Log.d("EditSnippetScreen", "Bitmaps: $bitmaps")
 
     if (bitmaps.isNotEmpty()) {
         // save bitmap to internal storage
@@ -363,7 +360,7 @@ private fun saveImageWithGlide(bitmap: Bitmap, context: Context): String {
             e.printStackTrace() // Handle the exception appropriately
         }
         // Now you have the file path: file.getAbsolutePath()
-        Log.d("Image", "Image saved to internal storage: " + file.absolutePath)
+//        Log.d("Image", "Image saved to internal storage: " + file.absolutePath)
         file.absolutePath
     } catch (e: Exception) {
         Log.e("AddSnippetFragment", "Error saving image with Glide", e)
@@ -398,7 +395,7 @@ private fun updateDataToSQLite(
         )
     }
     //Log
-    Log.d("EditSnippetScreen", "Update snippet success")
+//    Log.d("EditSnippetScreen", "Update snippet success")
     //Show SnackBar
 
     //Navigate back
@@ -430,7 +427,7 @@ private fun updateDataToSQLiteNoImage(
         )
     }
     //Log
-    Log.d("EditSnippetScreen", "Update snippet success")
+//    Log.d("EditSnippetScreen", "Update snippet success")
     //Show SnackBar
 
     //Navigate back

@@ -1,4 +1,4 @@
-package com.terasumi.sellerkeyboard
+package com.terasumi.sellerkeyboard.database
 
 
 import android.content.Context

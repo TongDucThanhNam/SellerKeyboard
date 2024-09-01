@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/key_primary"
+    android:layout_width="30dp"
+    android:layout_height="42dp"
+    android:background="@drawable/key_primary">
+
+    <RelativeLayout
+        android:id="@+id/key"
+        android:layout_width="30dp"
+        android:layout_height="37dp">
+
+        <RelativeLayout
+            android:id="@+id/letter"
+            android:layout_width="15dp"
+            android:layout_height="28dp">
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/a"
+            android:layout_width="15dp"
+            android:layout_height="26dp"
+            android:gravity="center_horizontal|center_vertical"
+            android:text="a"
+            android:textAppearance="@style/a" />
+
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

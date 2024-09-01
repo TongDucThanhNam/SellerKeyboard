@@ -1,4 +1,4 @@
-package com.terasumi.sellerkeyboard
+package com.terasumi.sellerkeyboard.service
 
 import android.content.ClipDescription
 import android.content.ContentValues.TAG
@@ -23,6 +23,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
 import com.google.android.voiceime.VoiceRecognitionTrigger
+import com.terasumi.sellerkeyboard.keyboard.KeyboardContentView
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException

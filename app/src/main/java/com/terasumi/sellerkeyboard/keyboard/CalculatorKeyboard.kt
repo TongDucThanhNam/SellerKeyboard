@@ -1,18 +1,20 @@
-package com.terasumi.sellerkeyboard
+package com.terasumi.sellerkeyboard.keyboard
 
-import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Calculate
+import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -22,78 +24,120 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.terasumi.sellerkeyboard.R
+import com.terasumi.sellerkeyboard.service.SellerKeyboard
+import com.terasumi.sellerkeyboard.ui.theme.DefaultAccent1
+import com.terasumi.sellerkeyboard.ui.theme.DefaultAccent3
 import net.objecthunter.exp4j.ExpressionBuilder
 
 @Composable
-fun CalculateContent() {
+fun CalculatorKeyboard() {
     Column(
-//        modifier = Modifier.fillMaxSize()
+        modifier = Modifier
     ) {
         val context = LocalContext.current
         val expression = remember { mutableStateOf("") }
         val result = remember { mutableStateOf("") }
 
         //stringResource
-//        val expressionText = StringResources.enter_expression
-//        val sendExpression = StringResources.send_expression
-//        val sendResult = StringResources.send_result
+        val resources = context.resources
         val expressionText = remember {
-            StringResources.enter_expression
+            resources.getString(R.string.enter_expression)
         }
 
         val sendExpression = remember {
-            StringResources.send_expression
+            resources.getString(R.string.send_expression)
         }
 
         val sendResult = remember {
-            StringResources.send_result
+            resources.getString(R.string.send_result)
         }
 
 
         //TextField
         OutlinedTextField(
+            leadingIcon = {
+                Icon(
+                    imageVector = Icons.Default.Calculate,
+                    contentDescription = null
+                )
+            },
+            readOnly = true,
             value = expression.value,
             onValueChange = { /*TODO*/ },
-            label = { Text(text = expressionText ) },
+            label = { Text(text = expressionText) },
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(16.dp)
         )
 
         //Button Calculate and Send
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceEvenly
+        LazyRow(
+            horizontalArrangement = Arrangement.spacedBy(4.dp),
         ) {
-            //Calculate
-            Button(
-                onClick = {
-                    //Input Method Service
-                    val inputConnection = (context as SellerKeyboard).currentInputConnection
-                    inputConnection?.commitText(expression.value, 1)
-                },
-                modifier = Modifier
-//                    .fillMaxWidth()
-//                    .padding(16.dp)
-            ) {
-                Text(text = sendExpression)
-            }
+            items(3) {
+                when (it) {
+                    0 -> {
+                        // Delete
+                        Button(
+                            onClick = {
+                                // Input Method Service
+                                val inputConnection =
+                                    (context as SellerKeyboard).currentInputConnection
+                                inputConnection?.deleteSurroundingText(1, 0)
+                            },
+                            colors = ButtonDefaults.buttonColors(
+                                contentColor = MaterialTheme.colorScheme.onSurface,
+                                containerColor = MaterialTheme.colorScheme.surface
+                            ),
+                            content = {
+                                Icon(imageVector = Icons.Default.Delete, contentDescription = null)
+                                Text(text = "Delete")
+                            },
+                            modifier = Modifier
+                        )
+                    }
 
-            //Send
-            Button(
-                onClick = {
-                    //Input Method Service
-                    val inputConnection = (context as SellerKeyboard).currentInputConnection
-                    inputConnection?.commitText(result.value, 1)
-                },
-                modifier = Modifier
-//                    .fillMaxWidth()
-//                    .padding(16.dp)
-            ) {
-                Text(text = sendResult)
+                    1 -> {
+                        // Calculate
+                        Button(
+                            onClick = {
+                                // Input Method Service
+                                val inputConnection =
+                                    (context as SellerKeyboard).currentInputConnection
+                                inputConnection?.commitText(expression.value, 1)
+                            },
+                            colors = ButtonDefaults.buttonColors(
+                                contentColor = MaterialTheme.colorScheme.onSurface,
+                                containerColor = MaterialTheme.colorScheme.surface
+                            ),
+                            modifier = Modifier
+                        ) {
+                            Text(text = sendExpression)
+                        }
+                    }
+
+                    2 -> {
+                        // Send
+                        Button(
+                            onClick = {
+                                // Input Method Service
+                                val inputConnection =
+                                    (context as SellerKeyboard).currentInputConnection
+                                inputConnection?.commitText(result.value, 1)
+                            },
+                            colors = ButtonDefaults.buttonColors(
+                                contentColor = MaterialTheme.colorScheme.onSurface,
+                                containerColor = MaterialTheme.colorScheme.surface
+                            ),
+                            modifier = Modifier
+                        ) {
+                            Text(text = sendResult)
+                        }
+                    }
+                }
             }
         }
 
@@ -111,41 +155,37 @@ fun CalculateContent() {
         val materialColors = MaterialTheme.colorScheme
 
         val colorCalculatorButton = listOf(
-//            listOf(Color.Cyan, Color.DarkGray, Color.DarkGray, Color.DarkGray, Color.Cyan, Color.Magenta),
-//            listOf(Color.Yellow, Color.DarkGray, Color.DarkGray, Color.DarkGray, Color.Yellow, Color.Red),
-//            listOf(Color.Yellow, Color.DarkGray, Color.DarkGray, Color.DarkGray, Color.Yellow, Color.Gray),
-//            listOf(Color.Yellow, Color.Yellow, Color.DarkGray, Color.DarkGray, Color.Yellow, Color.Blue)
             listOf(
-                materialColors.secondary,
+                DefaultAccent1,
                 materialColors.onPrimary,
                 materialColors.onPrimary,
                 materialColors.onPrimary,
-                materialColors.secondary,
+                DefaultAccent1,
                 materialColors.error
             ),
             listOf(
-                materialColors.secondary,
+                DefaultAccent1,
                 materialColors.onPrimary,
                 materialColors.onPrimary,
                 materialColors.onPrimary,
-                materialColors.secondary,
+                DefaultAccent1,
                 materialColors.tertiaryContainer
             ),
             listOf(
-                materialColors.secondary,
+                DefaultAccent1,
                 materialColors.onPrimary,
                 materialColors.onPrimary,
                 materialColors.onPrimary,
-                materialColors.secondary,
-                materialColors.secondary
+                DefaultAccent1,
+                DefaultAccent1,
             ),
             listOf(
-                materialColors.secondary,
+                DefaultAccent1,
                 materialColors.onPrimary,
                 materialColors.onPrimary,
                 materialColors.onPrimary,
-                materialColors.secondary,
-                materialColors.primary
+                DefaultAccent1,
+                DefaultAccent3
             )
         )
 
@@ -157,7 +197,7 @@ fun CalculateContent() {
                 items(row.size) { index ->
                     val buttonText = row[index]
                     //Square button
-                    OutlinedButton(
+                    Button(
                         onClick = {
                             /*TODO*/
                             handleCalculatorButton(buttonText, expression, result)
@@ -185,7 +225,7 @@ fun handleCalculatorButton(
     expression: MutableState<String>,
     result: MutableState<String>
 ) {
-    Log.d("handleCalculatorButton", "buttonText: $buttonText, expression: ${expression.value}")
+//    Log.d("handleCalculatorButton", "buttonText: $buttonText, expression: ${expression.value}")
     when (buttonText) {
         "C" -> {
             // Clear
@@ -232,5 +272,5 @@ fun handleCalculatorButton(
 @Preview()
 @Composable
 fun CalculateContentPreview() {
-    CalculateContent()
+    CalculatorKeyboard()
 }

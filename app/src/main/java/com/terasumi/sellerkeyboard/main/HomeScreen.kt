@@ -1,16 +1,19 @@
-package com.terasumi.sellerkeyboard
+package com.terasumi.sellerkeyboard.main
 
 import SnippetsDao
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Context.INPUT_METHOD_SERVICE
 import android.content.Intent
 import android.graphics.BitmapFactory
 import android.provider.Settings
 import android.util.Log
+import android.view.inputmethod.InputMethodManager
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.Orientation
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -24,6 +27,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Delete
+import androidx.compose.material.icons.filled.Keyboard
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -52,7 +56,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.IntOffset
@@ -60,10 +63,14 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import androidx.wear.compose.material.Button
 import androidx.wear.compose.material.ExperimentalWearMaterialApi
 import androidx.wear.compose.material.FractionalThreshold
 import androidx.wear.compose.material.rememberSwipeableState
 import androidx.wear.compose.material.swipeable
+import com.terasumi.sellerkeyboard.R
+import com.terasumi.sellerkeyboard.database.DatabaseHelper
+import com.terasumi.sellerkeyboard.database.Snippets
 import com.terasumi.sellerkeyboard.ui.theme.SellerKeyboardTheme
 import kotlinx.coroutines.launch
 import java.io.File
@@ -78,10 +85,12 @@ fun HomeScreen(navController: NavController) {
     val listSnippets = remember { mutableStateOf(listOf<Snippets>()) }
 
     //stringResource
-//    val homePage = StringResources.homepage
+    val resources = context.resources
+//    val homePage = resources.getString(R.string.homepage)
     val homePage = remember {
-        StringResources.homepage
+        resources.getString(R.string.homepage)
     }
+
 
     LaunchedEffect(context) {
         listSnippets.value = fetchDataFromSQLite(context)
@@ -107,18 +116,13 @@ fun HomeScreen(navController: NavController) {
                             })
                             DropdownMenuItem(text = { Text("Thay đổi bàn phím") }, onClick = {
                                 try {
-                                    context.startActivity(Intent(Settings.ACTION_INPUT_METHOD_SETTINGS))
+                                    val imeManager: InputMethodManager =
+                                        context.getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+                                    imeManager.showInputMethodPicker();
+
                                 } catch (e: Exception) {
                                     Log.e("HomeScreen", "Error changing keyboard", e)
                                 }
-                                showMenu = false
-                            })
-                            DropdownMenuItem(text = { Text("Voice Assistance") }, onClick = {
-                                context.startActivity(Intent(Settings.ACTION_VOICE_INPUT_SETTINGS))
-                                showMenu = false
-                            })
-                            DropdownMenuItem(text = { Text("Cài đặt ngôn ngữ phụ") }, onClick = {
-                                context.startActivity(Intent(Settings.ACTION_INPUT_METHOD_SUBTYPE_SETTINGS))
                                 showMenu = false
                             })
                         }
@@ -133,6 +137,42 @@ fun HomeScreen(navController: NavController) {
             content = { innerPadding ->
                 Box(modifier = Modifier.padding(innerPadding)) {
                     LazyColumn {
+                        item {
+                            // Alert banner change keyboard
+                            Row(
+                                horizontalArrangement = Arrangement.SpaceAround,
+                                verticalAlignment = Alignment.CenterVertically,
+                                content = {
+                                    Text(
+                                        text = "Switch to Seller Keyboard ->",
+                                        color = MaterialTheme.colorScheme.onSurface
+                                    )
+
+                                    Button(onClick = {
+                                        try {
+                                            val imeManager: InputMethodManager =
+                                                context.getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+                                            imeManager.showInputMethodPicker();
+
+                                        } catch (e: Exception) {
+                                            Log.e("HomeScreen", "Error changing keyboard", e)
+                                        }
+                                    }) {
+                                        Icon(
+                                            imageVector = Icons.Default.Keyboard,
+                                            contentDescription = "Settings"
+                                        )
+                                    }
+
+                                },
+                                modifier = Modifier
+                                    .padding(16.dp)
+                                    .fillMaxWidth()
+                            )
+
+//                            Spacer(modifier = Modifier.height(10.dp))
+                        }
+
                         items(listSnippets.value) { snippet ->
                             ItemCard(
                                 snippetId = snippet.id,
@@ -260,7 +300,7 @@ private fun deleteDataFromSQLite(
         val snippetsDao = SnippetsDao(dbHelper)
         snippetsDao.deleteSnippetById(snippetId)
     }
-    Log.d("HomeScreen", "Deleted snippet with ID $snippetId from SQLite")
+//    Log.d("HomeScreen", "Deleted snippet with ID $snippetId from SQLite")
     listSnippets.value = fetchDataFromSQLite(context)
 }
 
@@ -270,7 +310,7 @@ fun fetchDataFromSQLite(context: Context): List<Snippets> {
     dbHelper.use {
         val snippetsDao = SnippetsDao(dbHelper)
         val snippets = snippetsDao.fetchSnippets()
-        Log.d("HomeScreen", "Fetched ${snippets.size} snippets from SQLite")
+//        Log.d("HomeScreen", "Fetched ${snippets.size} snippets from SQLite")
         return snippets
     }
 }

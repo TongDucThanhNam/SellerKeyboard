@@ -26,12 +26,14 @@
 
     <!-- Keyboard content -->
 
-    <string name="snippet_list">Danh sách Snippets</string>
+    <string name="snippet_list">Snippets</string>
     <string name="calculator">Máy tính</string>
 
     <!-- Calculator  -->
     <string name="enter_expression">Nhập biểu thức</string>
     <string name="send_expression">Gửi cả biểu thức</string>
     <string name="send_result">Gửi kết quả</string>
+
+    <string name="keyboard">Keyboard</string>
 
 </resources>

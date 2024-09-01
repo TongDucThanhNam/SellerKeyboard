@@ -3,9 +3,9 @@ import android.content.ContentValues
 import android.database.Cursor
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import com.terasumi.sellerkeyboard.DatabaseHelper
-import com.terasumi.sellerkeyboard.Snippets
-import com.terasumi.sellerkeyboard.SnippetsTable
+import com.terasumi.sellerkeyboard.database.DatabaseHelper
+import com.terasumi.sellerkeyboard.database.Snippets
+import com.terasumi.sellerkeyboard.database.SnippetsTable
 
 class SnippetsDao(private val dbHelper: DatabaseHelper) {
 

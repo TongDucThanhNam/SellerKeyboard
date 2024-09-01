@@ -8,4 +8,8 @@ plugins {
 
     //KSP
     id("com.google.devtools.ksp") version "1.9.24-1.0.20" apply false
+
+    //replay
+//    id("com.google.relay") version "0.3.12"
+
 }

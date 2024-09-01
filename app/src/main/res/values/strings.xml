@@ -35,5 +35,6 @@
     <string name="enter_expression">Enter Expression</string>
     <string name="send_expression">Send Expression</string>
     <string name="send_result">Send Result</string>
+    <string name="keyboard">Keyboard</string>
 
 </resources>

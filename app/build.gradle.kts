@@ -16,8 +16,8 @@ android {
         applicationId = "com.terasumi.sellerkeyboard"
         minSdk = 25 // Android 7.1
         targetSdk = 34 // Android 14
-        versionCode = 6
-        versionName = "1.0.1"
+        versionCode = 11
+        versionName = "1.2.1"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -124,4 +124,10 @@ dependencies {
 
     //exp4j
     implementation("net.objecthunter:exp4j:0.4.8")
+
+    //relay
+
+    //lottie
+    implementation("com.airbnb.android:lottie-compose:5.2.0")
+
 }

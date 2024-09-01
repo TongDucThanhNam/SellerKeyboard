@@ -1,10 +1,9 @@
-package com.terasumi.sellerkeyboard
+package com.terasumi.sellerkeyboard.main
 
 import SnippetsDao
 import android.content.Context
 import android.graphics.Bitmap
 import android.net.Uri
-import android.util.Log
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.Image
@@ -45,7 +44,6 @@ import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -53,6 +51,10 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.bumptech.glide.Glide
+import com.terasumi.sellerkeyboard.NavigationViewModel
+import com.terasumi.sellerkeyboard.R
+import com.terasumi.sellerkeyboard.database.DatabaseHelper
+import com.terasumi.sellerkeyboard.database.Snippets
 import com.terasumi.sellerkeyboard.ui.theme.SellerKeyboardTheme
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
@@ -80,14 +82,13 @@ fun AddSnippetScreen(
     val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior(rememberTopAppBarState())
 
     //stringResource
-//    val addSnippet = StringResources.add_snippet
-//    val enterLabel = StringResources.enter_label
-//    val enterContent = StringResources.enter_content
-//    val save = StringResources.save
-    val addSnippet = remember { StringResources.add_snippet }
-    val enterLabel = remember { StringResources.enter_label }
-    val enterContent = remember { StringResources.enter_content }
-    val save = remember { StringResources.save }
+    val resources = context.resources
+    // Preload string resources
+    val addSnippet = remember { resources.getString(R.string.add_snippet) }
+    val enterLabel = remember { resources.getString(R.string.enter_label) }
+    val enterContent = remember { resources.getString(R.string.enter_content) }
+    val save = remember { resources.getString(R.string.save) }
+
 
     val imagePickerLauncher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.GetMultipleContents()
@@ -196,7 +197,7 @@ fun AddSnippetScreen(
                 }
                 .align(Alignment.CenterHorizontally)) {
                 if (bitmaps.isNotEmpty()) {
-                    Log.d("AddSnippetScreen", "Number of bitmaps: ${bitmaps.size}")
+//                    Log.d("AddSnippetScreen", "Number of bitmaps: ${bitmaps.size}")
 
                     Row(
                         modifier = Modifier

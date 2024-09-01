@@ -4,10 +4,10 @@
     <selectionStates>
       <SelectionState runConfigName="app">
         <option name="selectionMode" value="DROPDOWN" />
-        <DropdownSelection timestamp="2024-08-29T11:35:27.759305307Z">
+        <DropdownSelection timestamp="2024-08-30T10:29:26.429313019Z">
           <Target type="DEFAULT_BOOT">
             <handle>
-              <DeviceId pluginId="PhysicalDevice" identifier="serial=af339028" />
+              <DeviceId pluginId="PhysicalDevice" identifier="serial=AQIJOZR8ZTDI4SCQ" />
             </handle>
           </Target>
         </DropdownSelection>
@@ -17,6 +17,9 @@
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
       <SelectionState runConfigName="CalculateContentPreview">
+        <option name="selectionMode" value="DROPDOWN" />
+      </SelectionState>
+      <SelectionState runConfigName="KeyboardContentPreview">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
     </selectionStates>

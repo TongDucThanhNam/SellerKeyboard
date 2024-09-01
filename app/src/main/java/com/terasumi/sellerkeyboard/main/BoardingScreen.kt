@@ -1,4 +1,4 @@
-package com.terasumi.sellerkeyboard
+package com.terasumi.sellerkeyboard.main
 
 import android.content.Intent
 import android.provider.Settings
@@ -19,20 +19,27 @@ import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Button
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.airbnb.lottie.compose.LottieAnimation
+import com.airbnb.lottie.compose.LottieCompositionSpec
+import com.airbnb.lottie.compose.LottieConstants
+import com.airbnb.lottie.compose.animateLottieCompositionAsState
+import com.airbnb.lottie.compose.rememberLottieComposition
+import com.terasumi.sellerkeyboard.R
 import com.terasumi.sellerkeyboard.ui.theme.SellerKeyboardTheme
 
 //On Boarding Screen
@@ -50,26 +57,26 @@ fun BoardingScreen() {
             // Our page content
             OnboardingPage(page)
         }
-        Row(
-            Modifier
-                .wrapContentHeight()
-                .fillMaxWidth()
-                .align(Alignment.BottomCenter)
-                .padding(bottom = 8.dp),
-            horizontalArrangement = Arrangement.Center
-        ) {
-            repeat(pagerState.pageCount) { iteration ->
-                val color =
-                    if (pagerState.currentPage == iteration) Color.DarkGray else Color.LightGray
-                Box(
-                    modifier = Modifier
-                        .padding(2.dp)
-                        .clip(CircleShape)
-                        .background(color)
-                        .size(16.dp)
-                )
-            }
-        }
+//        Row(
+//            Modifier
+//                .wrapContentHeight()
+//                .fillMaxWidth()
+//                .align(Alignment.BottomCenter)
+//                .padding(bottom = 8.dp),
+//            horizontalArrangement = Arrangement.Center
+//        ) {
+//            repeat(pagerState.pageCount) { iteration ->
+//                val color =
+//                    if (pagerState.currentPage == iteration) Color.DarkGray else Color.LightGray
+//                Box(
+//                    modifier = Modifier
+//                        .padding(2.dp)
+//                        .clip(CircleShape)
+//                        .background(color)
+//                        .size(16.dp)
+//                )
+//            }
+//        }
     }
 }
 
@@ -97,38 +104,55 @@ fun FirstBoardingPage() {
     val context = LocalContext.current
 
     //stringResource
-//    val enableKeyboard = StringResources.enable_keyboard
-//    val welcomeMessage = StringResources.welcome_message
-//    val enableKeyboardPrompt = StringResources.enable_keyboard_prompt
+    val resources = context.resources
     val enableKeyboard = remember {
-        StringResources.enable_keyboard
+        resources.getString(R.string.enable_keyboard)
     }
+
     val welcomeMessage = remember {
-        StringResources.welcome_message
+        resources.getString(R.string.welcome_message)
     }
+
     val enableKeyboardPrompt = remember {
-        StringResources.enable_keyboard_prompt
+        resources.getString(R.string.enable_keyboard_prompt)
     }
+    val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.seller))
+    val progress by animateLottieCompositionAsState(
+        composition, iterations = LottieConstants.IterateForever,
+    )
 
 
     // Content for the first page
     Box(modifier = Modifier.fillMaxSize()) {
         Column(
-            modifier = Modifier.fillMaxSize(),
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(bottom = 200.dp), // Adjust the value as needed
+
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
+
+            LottieAnimation(
+                composition = composition,
+                progress = progress,
+                modifier = Modifier.size(200.dp),
+            )
+
+
             Text(
                 text = welcomeMessage,
                 fontSize = 24.sp,
                 fontWeight = FontWeight.Bold,
-                textAlign = TextAlign.Center
+                textAlign = TextAlign.Center,
+                color = MaterialTheme.colorScheme.onSurface
             )
             Spacer(modifier = Modifier.height(16.dp))
             Text(
                 text = enableKeyboardPrompt,
                 fontSize = 16.sp,
-                textAlign = TextAlign.Center
+                textAlign = TextAlign.Center,
+                color = MaterialTheme.colorScheme.onSurface
             )
         }
 
@@ -142,7 +166,7 @@ fun FirstBoardingPage() {
 
             },
             modifier = Modifier
-                .padding(16.dp)
+                .padding(bottom = 60.dp)
                 .align(Alignment.BottomCenter)
         ) {
             Text(enableKeyboard)
@@ -191,7 +215,7 @@ fun FirstBoardingPage() {
 
 
 // On Boarding Screen
-@Preview(showBackground = true)
+@Preview(showBackground = true, showSystemUi = true)
 @Composable
 fun BoardingPreview() {
     SellerKeyboardTheme {

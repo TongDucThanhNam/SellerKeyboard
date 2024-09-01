@@ -1,4 +1,4 @@
-package com.terasumi.sellerkeyboard
+package com.terasumi.sellerkeyboard.database
 
 data class Snippets(
     val id: Int,

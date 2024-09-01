@@ -1,4 +1,4 @@
-package com.terasumi.sellerkeyboard
+package com.terasumi.sellerkeyboard.service
 
 import android.content.Intent
 import android.inputmethodservice.InputMethodService

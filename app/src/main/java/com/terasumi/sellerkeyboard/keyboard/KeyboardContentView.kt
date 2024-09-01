@@ -1,4 +1,4 @@
-package com.terasumi.sellerkeyboard
+package com.terasumi.sellerkeyboard.keyboard
 
 import android.content.Context
 import androidx.compose.runtime.Composable
