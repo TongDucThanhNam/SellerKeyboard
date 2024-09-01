@@ -14,7 +14,7 @@ images (if editor support).
 - [x] Manage snippets
 - [x] Keyboard view
 - [x] Support multiple chat apps
-- [ ] Support multiple languages
+- [x] Support multiple languages
 
 ## Screenshots
 
@@ -36,7 +36,8 @@ images (if editor support).
 - [ ] Lazada
 
 References:
-https://www.figma.com/design/kw9CGigo5HLvBg9EERw9cC/Android-Keyboard-%E2%80%93%C2%A0Material-3-UI-Kit-(Community)?node-id=14-10749&node-type=FRAME&t=SSti3FEp9NBVNxpe-0
+
+- [Keyboard Design](https://www.figma.com/design/kw9CGigo5HLvBg9EERw9cC/Android-Keyboard-%E2%80%93%C2%A0Material-3-UI-Kit-(Community)?node-id=14-10749&node-type=FRAME&t=SSti3FEp9NBVNxpe-0)
 - [Create an input method](https://developer.android.com/develop/ui/views/touch-and-input/creating-input-method)
 - [Image keyboard support](https://developer.android.com/develop/ui/views/touch-and-input/image-keyboard)
 - [Google Voice Typing integration](https://github.com/johnjamesmiller/google-voice-typing-integration)
