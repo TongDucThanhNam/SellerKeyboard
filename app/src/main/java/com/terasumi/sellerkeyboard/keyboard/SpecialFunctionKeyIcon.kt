@@ -18,10 +18,15 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.terasumi.sellerkeyboard.R
 import com.terasumi.sellerkeyboard.service.SellerKeyboard
-import com.terasumi.sellerkeyboard.ui.theme.DefaultAccent3
+import com.terasumi.sellerkeyboard.ui.theme.LightCustomColor
 
 @Composable
-fun SpecialFunctionKeyIcon(context: Context, ratio: Float = 1.0f, action: String) {
+fun SpecialFunctionKeyIcon(
+    context: Context,
+    ratio: Float = 1.0f,
+    action: String,
+    myColor: Array<Color>
+) {
     val map = mapOf(
         "ENTER" to R.drawable.enter,
     )
@@ -29,7 +34,7 @@ fun SpecialFunctionKeyIcon(context: Context, ratio: Float = 1.0f, action: String
     Button(
         colors = ButtonDefaults.buttonColors(
             contentColor = Color(0xFF000000),
-            containerColor = DefaultAccent3
+            containerColor = myColor[2]
         ),
         onClick = {
             /*TODO*/
@@ -55,7 +60,8 @@ fun SpecialFunctionKeyIcon(context: Context, ratio: Float = 1.0f, action: String
         Icon(
             imageVector = ImageVector.vectorResource(id = map[action]!!),
             contentDescription = action,
-            modifier = Modifier.size(24.dp)
+            modifier = Modifier.size(24.dp),
+            tint = myColor[5]
         )
     }
 }
@@ -64,5 +70,5 @@ fun SpecialFunctionKeyIcon(context: Context, ratio: Float = 1.0f, action: String
 @Composable
 fun SpecialFunctionKeyIconPreview() {
     val context = LocalContext.current
-    SpecialFunctionKeyIcon(context, 1f, "ENTER")
+    SpecialFunctionKeyIcon(context, 1f, "ENTER", LightCustomColor)
 }

@@ -1,6 +1,7 @@
 package com.terasumi.sellerkeyboard.keyboard
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -23,7 +24,8 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.terasumi.sellerkeyboard.R
-import com.terasumi.sellerkeyboard.ui.theme.DefaultAccent4
+import com.terasumi.sellerkeyboard.ui.theme.DarkCustomColor
+import com.terasumi.sellerkeyboard.ui.theme.LightCustomColor
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -49,33 +51,36 @@ fun KeyboardContent() {
         )
     }
 
+    val myColor = if (isSystemInDarkTheme()) {
+        DarkCustomColor
+    } else {
+        LightCustomColor
+    }
+
     var state by remember { mutableIntStateOf(0) }
     val titles = listOf(keyboard, snippetText, calculatorText)
-
-//    val listSnippets = remember { mutableStateOf(listOf<Snippets>()) }
-
-
-//    //TODO: Move fetch to SNIPPETS Composable
-//    LaunchedEffect(context) {
-//        listSnippets.value = fetchDataFromSQLite(context)
-//    }
 
     //Keyboard Array
     val keyboardArray: Array<Array<String>> = getKeyboardArray(keyboardState.value)
 
     Column(
         modifier = Modifier
-            .background(DefaultAccent4)
+            .background(myColor[3])
 
     ) {
         //TabLayout of Keyboard
-        PrimaryTabRow(selectedTabIndex = state, modifier = Modifier.background(DefaultAccent4)) {
+        PrimaryTabRow(
+            selectedTabIndex = state,
+            modifier = Modifier.background(myColor[3]),
+            contentColor = myColor[5]
+        ) {
             titles.forEachIndexed { index, title ->
                 Tab(
+
                     selected = state == index,
                     onClick = { state = index },
                     text = { Text(text = title, maxLines = 1, overflow = TextOverflow.Ellipsis) },
-                    modifier = Modifier.background(DefaultAccent4),
+                    modifier = Modifier.background(myColor[3]),
                 )
             }
         }
@@ -104,15 +109,16 @@ fun KeyboardContent() {
         // Keyboard
         when (keyboardState.value) {
             KeyboardState.SNIPPETS -> {
-                SnippetsKeyboard()
+                SnippetsKeyboard(myColor = myColor)
             }
 
             KeyboardState.CALCULATOR -> {
-                CalculatorKeyboard()
+                CalculatorKeyboard(myColor = myColor)
             }
 
             else -> {
                 Keyboard(
+                    myColor = myColor,
                     keyboardArray = keyboardArray,
                     keyboardState = keyboardState
                 )
@@ -151,8 +157,15 @@ fun getKeyboardArray(keyboardState: KeyboardState): Array<Array<String>> {
         KeyboardState.NUMBERS -> arrayOf(
             arrayOf("1", "2", "3", "4", "5", "6", "7", "8", "9", "0"),
             arrayOf("@", "#", "$", "_", "&", "-", "+", "(", ")", "/"),
-            arrayOf("=\\<", "*", "\"", "'", ":", ";", "!", "?", "delete"),
-            arrayOf("?ABC", ",", "=", "space", ".", "enter")
+            arrayOf("symbols", "*", "\"", "'", ":", ";", "!", "?", "delete"),
+            arrayOf("?ABC", ",", "numbers", "space", ".", "enter")
+        )
+        //~`|•√π÷×§∆£€$¢^°={}\%©®™✓[]
+        KeyboardState.SYMBOLS -> arrayOf(
+            arrayOf("~", "`", "|", "•", "√", "π", "÷", "×", "§", "∆"),
+            arrayOf("£", "€", "$", "¢", "^", "°", "=", "{", "}", "\\"),
+            arrayOf("123?", "%", "©", "®", "™", "✓", "[", "]", "delete"),
+            arrayOf("?ABC", "<", "numbers", "space", ">", "enter")
         )
 
         else -> arrayOf()

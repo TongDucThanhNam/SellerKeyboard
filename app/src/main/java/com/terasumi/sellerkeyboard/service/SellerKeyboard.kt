@@ -46,7 +46,7 @@ class SellerKeyboard : LifecycleInputMethodService(), ViewModelStoreOwner, Saved
         super.onCreate()
 
         // Initialize VoiceRecognitionTrigger
-        Log.i(TAG, "#onCreate")
+//        Log.i(TAG, "#onCreate")
 
         // Create the voice recognition trigger, and register the listener.
         // The trigger has to unregistered, when the IME is destroyed.
@@ -68,13 +68,35 @@ class SellerKeyboard : LifecycleInputMethodService(), ViewModelStoreOwner, Saved
         get() = InputConnectionCompat.INPUT_CONTENT_GRANT_READ_URI_PERMISSION // or 0
 
     fun doCommitContent(imageUrl: String) {
+//        //Check send image available
+//        val mimeTypes = EditorInfoCompat.getContentMimeTypes(currentInputEditorInfo)
+//        val isMimeSupported: Boolean = mimeTypes.any {
+//            Log.i(TAG, "MIME type: $it")
+//            ClipDescription.compareMimeTypes(
+//                it,
+//                "image/jpg"
+//            )
+//                    || ClipDescription.compareMimeTypes(it, "image/jpeg")
+//                    || ClipDescription.compareMimeTypes(it, "image/*")
+//        }
+//
+//        if (!isMimeSupported) {
+//            Log.i(TAG, "MIME type is not supported")
+//            return
+//        }
+
         Glide.with(this).load(imageUrl).into(object : CustomTarget<Drawable>() {
             override fun onResourceReady(resource: Drawable, transition: Transition<in Drawable>?) {
                 val bitmap = (resource as BitmapDrawable).bitmap
                 try {
-                    val tempFile = File.createTempFile("temp_image", ".jpg", cacheDir)
-                    FileOutputStream(tempFile).use { outputStream ->
-                        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream)
+                    val tempFile = File.createTempFile("temp_image", ".jpg", cacheDir).apply {
+                        FileOutputStream(this).use {
+                            bitmap.compress(
+                                Bitmap.CompressFormat.JPEG,
+                                100,
+                                it
+                            )
+                        }
                     }
                     val uri = FileProvider.getUriForFile(
                         this@SellerKeyboard,
@@ -83,7 +105,7 @@ class SellerKeyboard : LifecycleInputMethodService(), ViewModelStoreOwner, Saved
                     )
                     val inputContentInfo = InputContentInfoCompat(
                         uri,
-                        ClipDescription("imageUrls", arrayOf("image/jpeg")),
+                        ClipDescription("imageUrls", arrayOf("image/jpeg, image/jpg")), // or null
                         null
                     )
                     InputConnectionCompat.commitContent(
@@ -94,12 +116,12 @@ class SellerKeyboard : LifecycleInputMethodService(), ViewModelStoreOwner, Saved
                         null
                     )
                 } catch (e: IOException) {
-                    throw RuntimeException(e)
+                    Log.e(TAG, "Error committing content", e)
                 }
             }
 
             override fun onLoadCleared(placeholder: Drawable?) {
-
+                // Clean up the resources
             }
         })
     }

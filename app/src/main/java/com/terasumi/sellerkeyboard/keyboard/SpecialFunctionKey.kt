@@ -17,17 +17,18 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.terasumi.sellerkeyboard.ui.theme.DefaultAccent2
+import com.terasumi.sellerkeyboard.ui.theme.LightCustomColor
 
 @Composable
 fun SpecialFunctionKey(
-    ratio: Float = 1.0f, action: String, keyboardState: MutableState<KeyboardState>
+    ratio: Float = 1.0f, action: String, keyboardState: MutableState<KeyboardState>,
+    myColor: Array<Color>
 ) {
     //Number
     Button(
         colors = ButtonDefaults.buttonColors(
             contentColor = Color(0xFF000000),
-            containerColor = DefaultAccent2
+            containerColor = myColor[1]
         ),
         onClick = { /*TODO*/
             when (action) {
@@ -56,6 +57,7 @@ fun SpecialFunctionKey(
             fontSize = (16 * ratio).sp,
             fontStyle = FontStyle.Normal,
             fontWeight = FontWeight.Normal,
+            color = myColor[5],
             modifier = Modifier
         )
     }
@@ -65,5 +67,5 @@ fun SpecialFunctionKey(
 @Preview
 @Composable
 fun SpecialFunctionKeyPreview() {
-    SpecialFunctionKey(1.0f, "?123", mutableStateOf(KeyboardState.NOCAPS))
+    SpecialFunctionKey(1.0f, "?123", mutableStateOf(KeyboardState.NOCAPS), LightCustomColor)
 }

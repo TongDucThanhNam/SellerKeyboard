@@ -118,7 +118,7 @@ fun HomeScreen(navController: NavController) {
                                 try {
                                     val imeManager: InputMethodManager =
                                         context.getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
-                                    imeManager.showInputMethodPicker();
+                                    imeManager.showInputMethodPicker()
 
                                 } catch (e: Exception) {
                                     Log.e("HomeScreen", "Error changing keyboard", e)
@@ -152,7 +152,7 @@ fun HomeScreen(navController: NavController) {
                                         try {
                                             val imeManager: InputMethodManager =
                                                 context.getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
-                                            imeManager.showInputMethodPicker();
+                                            imeManager.showInputMethodPicker()
 
                                         } catch (e: Exception) {
                                             Log.e("HomeScreen", "Error changing keyboard", e)

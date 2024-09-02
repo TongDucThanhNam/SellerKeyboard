@@ -16,8 +16,8 @@ android {
         applicationId = "com.terasumi.sellerkeyboard"
         minSdk = 25 // Android 7.1
         targetSdk = 34 // Android 14
-        versionCode = 11
-        versionName = "1.2.1"
+        versionCode = 15
+        versionName = "1.2.5"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {

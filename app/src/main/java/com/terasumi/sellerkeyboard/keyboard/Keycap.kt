@@ -20,9 +20,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.terasumi.sellerkeyboard.service.SellerKeyboard
+import com.terasumi.sellerkeyboard.ui.theme.LightCustomColor
 
 @Composable
-fun Keycap(context: Context, key: String, ratio: Float = 1.0f) {
+fun Keycap(context: Context, key: String, ratio: Float = 1.0f, myColor: Array<Color>) {
     //TODO
     Button(
 //        border = BorderStroke(1.dp, Color.Black),
@@ -36,7 +37,7 @@ fun Keycap(context: Context, key: String, ratio: Float = 1.0f) {
                 Text(
                     text = key,
                     fontSize = (22 * ratio).sp,
-                    color = Color(0xFF1B1B1D),
+                    color = myColor[5],
                     fontFamily = FontFamily.SansSerif, // Sử dụng Roboto mặc định
                     lineHeight = (26 * ratio).sp,
                     textAlign = TextAlign.Center
@@ -53,7 +54,8 @@ fun Keycap(context: Context, key: String, ratio: Float = 1.0f) {
         },
         shape = RoundedCornerShape(6.dp),
         colors = ButtonDefaults.buttonColors(
-            containerColor = Color.White, contentColor = Color.Black
+            contentColor = Color(0xFF000000),
+            containerColor = myColor[4]
         ),
         modifier = Modifier
             .height((42 * ratio).dp)
@@ -61,9 +63,9 @@ fun Keycap(context: Context, key: String, ratio: Float = 1.0f) {
     )
 }
 
-@Preview
+@Preview()
 @Composable
 fun KeycapPreview() {
     val context = LocalContext.current
-    Keycap(context, "A")
+    Keycap(context, "A", myColor = LightCustomColor)
 }

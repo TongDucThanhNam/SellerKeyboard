@@ -16,6 +16,7 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
@@ -28,12 +29,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.terasumi.sellerkeyboard.R
 import com.terasumi.sellerkeyboard.service.SellerKeyboard
-import com.terasumi.sellerkeyboard.ui.theme.DefaultAccent1
-import com.terasumi.sellerkeyboard.ui.theme.DefaultAccent3
+import com.terasumi.sellerkeyboard.ui.theme.LightCustomColor
 import net.objecthunter.exp4j.ExpressionBuilder
 
 @Composable
-fun CalculatorKeyboard() {
+fun CalculatorKeyboard(myColor: Array<Color>) {
     Column(
         modifier = Modifier
     ) {
@@ -55,6 +55,8 @@ fun CalculatorKeyboard() {
             resources.getString(R.string.send_result)
         }
 
+        //get light or dark mode
+
 
         //TextField
         OutlinedTextField(
@@ -64,13 +66,19 @@ fun CalculatorKeyboard() {
                     contentDescription = null
                 )
             },
+            colors = OutlinedTextFieldDefaults.colors(
+                focusedTextColor = myColor[5],
+                unfocusedTextColor = myColor[5],
+            ),
             readOnly = true,
+            textStyle = MaterialTheme.typography.titleMedium,
             value = expression.value,
             onValueChange = { /*TODO*/ },
             label = { Text(text = expressionText) },
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(16.dp)
+
         )
 
         //Button Calculate and Send
@@ -89,8 +97,8 @@ fun CalculatorKeyboard() {
                                 inputConnection?.deleteSurroundingText(1, 0)
                             },
                             colors = ButtonDefaults.buttonColors(
-                                contentColor = MaterialTheme.colorScheme.onSurface,
-                                containerColor = MaterialTheme.colorScheme.surface
+                                contentColor = myColor[5],
+                                containerColor = myColor[4]
                             ),
                             content = {
                                 Icon(imageVector = Icons.Default.Delete, contentDescription = null)
@@ -110,8 +118,8 @@ fun CalculatorKeyboard() {
                                 inputConnection?.commitText(expression.value, 1)
                             },
                             colors = ButtonDefaults.buttonColors(
-                                contentColor = MaterialTheme.colorScheme.onSurface,
-                                containerColor = MaterialTheme.colorScheme.surface
+                                contentColor = myColor[5],
+                                containerColor = myColor[4]
                             ),
                             modifier = Modifier
                         ) {
@@ -129,8 +137,8 @@ fun CalculatorKeyboard() {
                                 inputConnection?.commitText(result.value, 1)
                             },
                             colors = ButtonDefaults.buttonColors(
-                                contentColor = MaterialTheme.colorScheme.onSurface,
-                                containerColor = MaterialTheme.colorScheme.surface
+                                contentColor = myColor[5],
+                                containerColor = myColor[4]
                             ),
                             modifier = Modifier
                         ) {
@@ -156,36 +164,36 @@ fun CalculatorKeyboard() {
 
         val colorCalculatorButton = listOf(
             listOf(
-                DefaultAccent1,
-                materialColors.onPrimary,
-                materialColors.onPrimary,
-                materialColors.onPrimary,
-                DefaultAccent1,
+                myColor[0],
+                myColor[4],
+                myColor[4],
+                myColor[4],
+                myColor[0],
                 materialColors.error
             ),
             listOf(
-                DefaultAccent1,
-                materialColors.onPrimary,
-                materialColors.onPrimary,
-                materialColors.onPrimary,
-                DefaultAccent1,
+                myColor[0],
+                myColor[4],
+                myColor[4],
+                myColor[4],
+                myColor[0],
                 materialColors.tertiaryContainer
             ),
             listOf(
-                DefaultAccent1,
-                materialColors.onPrimary,
-                materialColors.onPrimary,
-                materialColors.onPrimary,
-                DefaultAccent1,
-                DefaultAccent1,
+                myColor[0],
+                myColor[4],
+                myColor[4],
+                myColor[4],
+                myColor[0],
+                myColor[0],
             ),
             listOf(
-                DefaultAccent1,
-                materialColors.onPrimary,
-                materialColors.onPrimary,
-                materialColors.onPrimary,
-                DefaultAccent1,
-                DefaultAccent3
+                myColor[0],
+                myColor[4],
+                myColor[4],
+                myColor[4],
+                myColor[0],
+                myColor[2]
             )
         )
 
@@ -199,7 +207,6 @@ fun CalculatorKeyboard() {
                     //Square button
                     Button(
                         onClick = {
-                            /*TODO*/
                             handleCalculatorButton(buttonText, expression, result)
                         },
                         colors = ButtonDefaults.buttonColors(
@@ -212,7 +219,11 @@ fun CalculatorKeyboard() {
                             .padding(3.dp)
                             .fillMaxWidth()
                     ) {
-                        Text(text = buttonText, style = MaterialTheme.typography.titleMedium)
+                        Text(
+                            text = buttonText,
+                            style = MaterialTheme.typography.titleMedium,
+                            color = myColor[5]
+                        )
                     }
                 }
             }
@@ -272,5 +283,6 @@ fun handleCalculatorButton(
 @Preview()
 @Composable
 fun CalculateContentPreview() {
-    CalculatorKeyboard()
+    val myColor = LightCustomColor
+    CalculatorKeyboard(myColor)
 }

@@ -1,5 +1,8 @@
 package com.terasumi.sellerkeyboard.keyboard
 
+import android.content.ClipDescription
+import android.content.ContentValues.TAG
+import android.util.Log
 import android.view.inputmethod.EditorInfo
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -24,19 +27,21 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.core.view.inputmethod.EditorInfoCompat
 import com.terasumi.sellerkeyboard.main.fetchDataFromSQLite
 import com.terasumi.sellerkeyboard.service.SellerKeyboard
+import com.terasumi.sellerkeyboard.ui.theme.DarkCustomColor
 
 @Composable
-fun SnippetsKeyboard() {
+fun SnippetsKeyboard(myColor: Array<Color>) {
     val context = LocalContext.current
     val listSnippets = fetchDataFromSQLite(context)
-
 
     Box(
         modifier = Modifier
@@ -61,8 +66,8 @@ fun SnippetsKeyboard() {
                         )
                     },
                     colors = ButtonDefaults.buttonColors(
-                        contentColor = MaterialTheme.colorScheme.onSurface,
-                        containerColor = MaterialTheme.colorScheme.surface
+                        contentColor = myColor[5],
+                        containerColor = myColor[4]
                     ),
                     contentPadding = PaddingValues(
                         horizontal = 6.dp,
@@ -76,7 +81,7 @@ fun SnippetsKeyboard() {
                                 Icon(
                                     imageVector = Icons.Default.Mic,
                                     contentDescription = "Voice",
-                                    tint = MaterialTheme.colorScheme.onSurface,
+                                    tint = myColor[5],
                                     modifier = Modifier
                                         .size(18.dp)
                                 )
@@ -111,8 +116,8 @@ fun SnippetsKeyboard() {
                         )
                     },
                     colors = ButtonDefaults.buttonColors(
-                        contentColor = MaterialTheme.colorScheme.onSurface,
-                        containerColor = MaterialTheme.colorScheme.surface
+                        contentColor = myColor[5],
+                        containerColor = myColor[4]
                     ),
                     contentPadding = PaddingValues(
                         horizontal = 6.dp,
@@ -126,7 +131,7 @@ fun SnippetsKeyboard() {
                                 Icon(
                                     imageVector = Icons.Default.Delete,
                                     contentDescription = "Delete",
-                                    tint = MaterialTheme.colorScheme.onSurface,
+                                    tint = myColor[5],
                                     modifier = Modifier
                                         .size(18.dp)
                                 )
@@ -154,8 +159,8 @@ fun SnippetsKeyboard() {
             item {
                 FilledTonalButton(
                     colors = ButtonDefaults.buttonColors(
-                        contentColor = MaterialTheme.colorScheme.onSurface,
-                        containerColor = MaterialTheme.colorScheme.surface
+                        contentColor = myColor[5],
+                        containerColor = myColor[4]
                     ),
                     onClick = {
                         // Sync -> Refetch Snippets
@@ -172,8 +177,7 @@ fun SnippetsKeyboard() {
                                 Icon(
                                     imageVector = Icons.Default.Sync,
                                     contentDescription = "Delete",
-                                    tint = MaterialTheme.colorScheme.onSurface,
-                                    modifier = Modifier
+                                    tint = myColor[5], modifier = Modifier
                                         .size(18.dp)
                                 )
 
@@ -200,48 +204,45 @@ fun SnippetsKeyboard() {
             items(listSnippets.size) { index ->
                 FilledTonalButton(
                     colors = ButtonDefaults.buttonColors(
-                        contentColor = MaterialTheme.colorScheme.onSurface,
-                        containerColor = MaterialTheme.colorScheme.surface
+                        contentColor = myColor[5],
+                        containerColor = myColor[4]
                     ),
                     onClick = {
                         Thread {
                             try {
-                                // Input Method Service
-//                                Log.d("Snippet", "Snippet Clicked ${listSnippets[index].title}")
-//                                Log.d("Snippet", "Snippet Clicked ${listSnippets[index].content}")
-//                                Log.d("Snippet", "Snippet Clicked ${listSnippets[index].imageUrls}")
-
-                                //InputConnection
                                 val inputConnection =
                                     (context as SellerKeyboard).currentInputConnection
-                                inputConnection?.commitText(listSnippets[index].content, 1)
-                                inputConnection?.performEditorAction(EditorInfo.IME_ACTION_SEND)
+                                val currentInputEditorInfo =
+                                    (context as SellerKeyboard).currentInputEditorInfo
 
-                                Thread.sleep(500)
-
-                                //doCommitContent
-//                                listSnippets[index].imageUrls.forEach { imageUrl ->
-//                                    Thread.sleep(1000)
-//                                    context.doCommitContent(imageUrl)
-//                                    //action send
-//                                    inputConnection?.performEditorAction(EditorInfo.IME_ACTION_SEND)
-//                                }
-                                //TODO: Fix send Multiple Images
-
-                                //Current solution 1 image
-                                if (listSnippets[index].imageUrls.isNotEmpty()) {
-                                    context.doCommitContent(listSnippets[index].imageUrls[0])
-                                    //action send
-                                    inputConnection?.performEditorAction(EditorInfo.IME_ACTION_SEND)
-                                    Thread.sleep(1000)
+                                inputConnection?.apply {
+                                    commitText(listSnippets[index].content, 1)
+                                    performEditorAction(EditorInfo.IME_ACTION_SEND)
                                 }
 
-//                                Log.d("Snippet", "Snippet Clicked ${listSnippets[index].title}")
+                                val mimeTypes =
+                                    EditorInfoCompat.getContentMimeTypes(currentInputEditorInfo)
+                                val isMimeSupported = mimeTypes.any {
+                                    ClipDescription.compareMimeTypes(it, "image/jpg")
+                                            || ClipDescription.compareMimeTypes(it, "image/jpeg")
+                                            || ClipDescription.compareMimeTypes(it, "image/*")
+                                }
+
+                                if (isMimeSupported) {
+                                    listSnippets[index].imageUrls.forEach { imageUrl ->
+                                        Thread.sleep(1000)
+                                        inputConnection?.apply {
+                                            context.doCommitContent(imageUrl)
+                                            Thread.sleep(1000)
+                                        }
+                                    }
+                                } else {
+                                    Log.i(TAG, "MIME type is not supported")
+                                }
                             } catch (e: InterruptedException) {
                                 e.printStackTrace()
                             }
                         }.start()
-
                     },
                     shape = MaterialTheme.shapes.small,
 
@@ -272,8 +273,9 @@ fun SnippetsKeyboard() {
 }
 
 //Preview
-@Preview()
+@Preview(showBackground = true)
 @Composable
 fun SnippetKeyboardPreview() {
-    SnippetsKeyboard()
+    val myColor = DarkCustomColor
+    SnippetsKeyboard(myColor)
 }

@@ -14,9 +14,10 @@ private val DarkColorScheme = darkColorScheme(
 //    primary = Purple80,
 //    secondary = PurpleGrey80,
 //    tertiary = Pink80
-    primary = DarkAccent1,
-    secondary = DarkAccent2,
-    tertiary = DarkAccent3
+    primary = DarkAccent4,
+    secondary = DarkAccent3,
+    tertiary = DarkAccent2,
+    background = DarkAccent1,
 )
 
 private val LightColorScheme = lightColorScheme(

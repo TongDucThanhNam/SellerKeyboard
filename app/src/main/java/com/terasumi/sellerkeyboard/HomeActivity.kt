@@ -7,7 +7,6 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavType
@@ -52,7 +51,8 @@ fun MainScreen(
     navigationViewModel: NavigationViewModel = viewModel()
 ) {
     val navController = rememberNavController()
-    val context = LocalContext.current
+//    val context = LocalContext.current
+//    Log.d("SellerKeyboard", "isSellerKeyboardEnabled: $isSellerKeyboardEnabled")
 
     val startDestination = if (isSellerKeyboardEnabled) "main" else "boarding"
 
@@ -94,9 +94,9 @@ fun isSellerKeyboardEnabled(context: Context): Boolean {
         Settings.Secure.getString(context.contentResolver, Settings.Secure.ENABLED_INPUT_METHODS)
 
 //    Log.d("SellerKeyboard", "Enabled input methods: $enabledInputMethods")
-    val sellerKeyboardId = "com.terasumi.sellerkeyboard/.SellerKeyboard"
+//    val sellerKeyboardId = "com.terasumi.sellerkeyboard/.SellerKeyboard"
     val sellerKeyboardId2 = "com.terasumi.sellerkeyboard/.service.SellerKeyboard"
-    return enabledInputMethods?.contains(sellerKeyboardId) == true || enabledInputMethods?.contains(
+    return enabledInputMethods?.contains(
         sellerKeyboardId2
     ) == true
 }
