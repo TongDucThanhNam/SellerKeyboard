@@ -153,6 +153,7 @@ fun AddSnippetScreen(
         ) {
             OutlinedTextField(
                 value = title,
+                maxLines = 1,
                 onValueChange = { title = it },
                 label = { Text(enterLabel) },
                 modifier = Modifier

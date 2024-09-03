@@ -10,6 +10,7 @@ import android.provider.Settings
 import android.util.Log
 import android.view.inputmethod.InputMethodManager
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.fadeIn
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.Orientation
@@ -220,6 +221,7 @@ fun ItemCard(
     Box(modifier = Modifier.fillMaxWidth()) {
         AnimatedVisibility(
             visible = isRevealed,
+            enter = fadeIn(),
             modifier = Modifier
                 .align(Alignment.CenterEnd)
                 .padding(end = 16.dp)

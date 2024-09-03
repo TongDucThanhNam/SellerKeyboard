@@ -1,5 +1,12 @@
 package com.terasumi.sellerkeyboard.keyboard
 
+import androidx.compose.animation.AnimatedContent
+import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.animation.expandVertically
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.shrinkVertically
+import androidx.compose.animation.with
 import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
@@ -27,8 +34,7 @@ import com.terasumi.sellerkeyboard.R
 import com.terasumi.sellerkeyboard.ui.theme.DarkCustomColor
 import com.terasumi.sellerkeyboard.ui.theme.LightCustomColor
 
-
-@OptIn(ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalAnimationApi::class)
 @Composable
 fun KeyboardContent() {
     val context = LocalContext.current
@@ -107,23 +113,53 @@ fun KeyboardContent() {
 
 //        Log.d("KeyboardContent", "KeyboardState: ${keyboardState.value}")
         // Keyboard
-        when (keyboardState.value) {
-            KeyboardState.SNIPPETS -> {
-                SnippetsKeyboard(myColor = myColor)
+        //Using AnimatedContent to animate the keyboard change when the keyboard state changes
+        AnimatedContent(
+            targetState = keyboardState.value,
+            transitionSpec = {
+                // Tùy chỉnh hiệu ứng chuyển tiếp
+                fadeIn() + expandVertically() with fadeOut() + shrinkVertically()
             }
+        ) { page ->
+            when (page) {
+                KeyboardState.SNIPPETS -> {
+                    SnippetsKeyboard(myColor = myColor)
+                }
 
-            KeyboardState.CALCULATOR -> {
-                CalculatorKeyboard(myColor = myColor)
-            }
+                KeyboardState.CALCULATOR -> {
+                    CalculatorKeyboard(myColor = myColor)
+                }
 
-            else -> {
-                Keyboard(
-                    myColor = myColor,
-                    keyboardArray = keyboardArray,
-                    keyboardState = keyboardState
-                )
+                else -> {
+                    Keyboard(
+                        myColor = myColor,
+                        keyboardArray = keyboardArray,
+                        keyboardState = keyboardState
+                    )
+                }
             }
         }
+
+
+//        when (keyboardState.value) {
+//            KeyboardState.SNIPPETS -> {
+//                SnippetsKeyboard(myColor = myColor)
+//            }
+//
+//            KeyboardState.CALCULATOR -> {
+//                CalculatorKeyboard(myColor = myColor)
+//            }
+//
+//            else -> {
+//                Keyboard(
+//                    myColor = myColor,
+//                    keyboardArray = keyboardArray,
+//                    keyboardState = keyboardState
+//                )
+//            }
+//        }
+
+
     }
 }
 

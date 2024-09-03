@@ -25,6 +25,9 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -34,14 +37,20 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.core.view.inputmethod.EditorInfoCompat
+import com.terasumi.sellerkeyboard.database.Snippets
 import com.terasumi.sellerkeyboard.main.fetchDataFromSQLite
 import com.terasumi.sellerkeyboard.service.SellerKeyboard
-import com.terasumi.sellerkeyboard.ui.theme.DarkCustomColor
+import com.terasumi.sellerkeyboard.ui.theme.LightCustomColor
 
 @Composable
 fun SnippetsKeyboard(myColor: Array<Color>) {
     val context = LocalContext.current
-    val listSnippets = fetchDataFromSQLite(context)
+
+    val listSnippets = remember { mutableStateOf(listOf<Snippets>()) }
+
+    LaunchedEffect(context) {
+        listSnippets.value = fetchDataFromSQLite(context)
+    }
 
     Box(
         modifier = Modifier
@@ -201,7 +210,7 @@ fun SnippetsKeyboard(myColor: Array<Color>) {
             }
 
             //Snippets
-            items(listSnippets.size) { index ->
+            items(listSnippets.value.size) { index ->
                 FilledTonalButton(
                     colors = ButtonDefaults.buttonColors(
                         contentColor = myColor[5],
@@ -213,10 +222,10 @@ fun SnippetsKeyboard(myColor: Array<Color>) {
                                 val inputConnection =
                                     (context as SellerKeyboard).currentInputConnection
                                 val currentInputEditorInfo =
-                                    (context as SellerKeyboard).currentInputEditorInfo
+                                    context.currentInputEditorInfo
 
                                 inputConnection?.apply {
-                                    commitText(listSnippets[index].content, 1)
+                                    commitText(listSnippets.value[index].content, 1)
                                     performEditorAction(EditorInfo.IME_ACTION_SEND)
                                 }
 
@@ -229,7 +238,7 @@ fun SnippetsKeyboard(myColor: Array<Color>) {
                                 }
 
                                 if (isMimeSupported) {
-                                    listSnippets[index].imageUrls.forEach { imageUrl ->
+                                    listSnippets.value[index].imageUrls.forEach { imageUrl ->
                                         Thread.sleep(1000)
                                         inputConnection?.apply {
                                             context.doCommitContent(imageUrl)
@@ -253,7 +262,7 @@ fun SnippetsKeyboard(myColor: Array<Color>) {
 
                     content = {
                         Text(
-                            text = listSnippets[index].title,
+                            text = listSnippets.value[index].title,
                             textAlign = TextAlign.Center,
                             maxLines = 1,
                             overflow = TextOverflow.Ellipsis,
@@ -273,9 +282,9 @@ fun SnippetsKeyboard(myColor: Array<Color>) {
 }
 
 //Preview
-@Preview(showBackground = true)
+@Preview
 @Composable
 fun SnippetKeyboardPreview() {
-    val myColor = DarkCustomColor
+    val myColor = LightCustomColor
     SnippetsKeyboard(myColor)
 }

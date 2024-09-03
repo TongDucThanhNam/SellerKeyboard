@@ -205,6 +205,7 @@ fun EditSnippetScreen(navController: NavHostController, snippetId: Int) {
                 .padding(16.dp)
         ) {
             OutlinedTextField(
+                maxLines = 1,
                 value = title,
                 onValueChange = { title = it },
                 label = { Text(enterLabel) },
@@ -229,6 +230,7 @@ fun EditSnippetScreen(navController: NavHostController, snippetId: Int) {
                 value = content,
                 onValueChange = { content = it },
                 label = { Text(enterContent) },
+                maxLines = 5,
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(bottom = 8.dp),

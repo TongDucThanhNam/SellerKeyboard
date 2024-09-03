@@ -35,5 +35,6 @@
     <string name="send_result">Gửi kết quả</string>
 
     <string name="keyboard">Keyboard</string>
+    <string name="title_activity_home">Seller Keyboard</string>
 
 </resources>

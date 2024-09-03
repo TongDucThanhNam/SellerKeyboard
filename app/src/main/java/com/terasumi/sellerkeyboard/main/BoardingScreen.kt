@@ -11,8 +11,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.pager.HorizontalPager
-import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -39,17 +37,18 @@ import com.terasumi.sellerkeyboard.ui.theme.SellerKeyboardTheme
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun BoardingScreen() {
-    Box(modifier = Modifier.fillMaxSize()) {
-        val pagerState = rememberPagerState(pageCount = {
-            1
-        })
-        HorizontalPager(
-            state = pagerState,
-            modifier = Modifier.fillMaxSize()
-        ) { page ->
-            // Our page content
-            OnboardingPage(page)
-        }
+    FirstBoardingPage()
+//    Box(modifier = Modifier.fillMaxSize()) {
+//        val pagerState = rememberPagerState(pageCount = {
+//            1
+//        })
+//        HorizontalPager(
+//            state = pagerState,
+//            modifier = Modifier.fillMaxSize()
+//        ) { page ->
+//            // Our page content
+//            OnboardingPage(page)
+//        }
 //        Row(
 //            Modifier
 //                .wrapContentHeight()
@@ -70,7 +69,7 @@ fun BoardingScreen() {
 //                )
 //            }
 //        }
-    }
+//    }
 }
 
 //
@@ -153,9 +152,13 @@ fun FirstBoardingPage() {
             onClick = {
                 //TODO: Implement logic to enable keyboard
                 // Intent to enable Seller Keyboard
-                val intent = Intent(Settings.ACTION_INPUT_METHOD_SETTINGS)
-                context.startActivity(intent)
-                // Navigate to the next page
+                try {
+                    val intent = Intent(Settings.ACTION_INPUT_METHOD_SETTINGS)
+                    context.startActivity(intent)
+                    // Navigate to the next page
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                }
 
             },
             modifier = Modifier

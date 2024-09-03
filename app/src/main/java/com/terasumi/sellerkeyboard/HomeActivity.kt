@@ -1,8 +1,11 @@
 package com.terasumi.sellerkeyboard
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
 import android.provider.Settings
+import android.util.Log
+import android.view.inputmethod.InputMethodManager
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -26,21 +29,30 @@ class HomeActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContent {
-            SellerKeyboardTheme {
-                MainScreen(isSellerKeyboardEnabled)
+        try {
+            enableEdgeToEdge() // Enable edge-to-edge display
+            setContent {
+                SellerKeyboardTheme {
+                    MainScreen(isSellerKeyboardEnabled)
+                }
             }
+        } catch (e: Exception) {
+            e.printStackTrace()
         }
     }
 
     override fun onResume() {
         super.onResume()
-        isSellerKeyboardEnabled = isSellerKeyboardEnabled(this)
-        setContent {
-            SellerKeyboardTheme {
-                MainScreen(isSellerKeyboardEnabled)
+
+        try {
+            isSellerKeyboardEnabled = isSellerKeyboardEnabled(this)
+            setContent {
+                SellerKeyboardTheme {
+                    MainScreen(isSellerKeyboardEnabled)
+                }
             }
+        } catch (e: Exception) {
+            e.printStackTrace()
         }
     }
 }
@@ -50,7 +62,7 @@ fun MainScreen(
     isSellerKeyboardEnabled: Boolean,
     navigationViewModel: NavigationViewModel = viewModel()
 ) {
-    val navController = rememberNavController()
+    val navController = rememberNavController() // Create a navController
 //    val context = LocalContext.current
 //    Log.d("SellerKeyboard", "isSellerKeyboardEnabled: $isSellerKeyboardEnabled")
 
@@ -87,16 +99,17 @@ fun MainScreenPreview() {
     }
 }
 
+@SuppressLint("ServiceCast")
 fun isSellerKeyboardEnabled(context: Context): Boolean {
-//    val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-//    Log.d("SellerKeyboard", "Enabled input methods: ${imm.enabledInputMethodList}")
-    val enabledInputMethods =
-        Settings.Secure.getString(context.contentResolver, Settings.Secure.ENABLED_INPUT_METHODS)
+    val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+    val enabledInputMethods = imm.enabledInputMethodList
 
-//    Log.d("SellerKeyboard", "Enabled input methods: $enabledInputMethods")
-//    val sellerKeyboardId = "com.terasumi.sellerkeyboard/.SellerKeyboard"
-    val sellerKeyboardId2 = "com.terasumi.sellerkeyboard/.service.SellerKeyboard"
-    return enabledInputMethods?.contains(
-        sellerKeyboardId2
-    ) == true
+    val sellerKeyboardId = "com.terasumi.sellerkeyboard/.service.SellerKeyboard"
+
+    for (inputMethod in enabledInputMethods) {
+        if (inputMethod.id == sellerKeyboardId) {
+            return true
+        }
+    }
+    return false
 }

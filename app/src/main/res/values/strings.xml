@@ -36,5 +36,6 @@
     <string name="send_expression">Send Expression</string>
     <string name="send_result">Send Result</string>
     <string name="keyboard">Keyboard</string>
+    <string name="title_activity_home">Seller Keyboard</string>
 
 </resources>
