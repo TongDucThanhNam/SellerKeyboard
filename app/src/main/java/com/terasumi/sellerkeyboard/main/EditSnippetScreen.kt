@@ -187,14 +187,6 @@ fun EditSnippetScreen(navController: NavHostController, snippetId: Int) {
                         )
                     }
                 },
-                actions = {
-                    IconButton(onClick = { /* do something */ }) {
-                        Icon(
-                            imageVector = Icons.Filled.Menu,
-                            contentDescription = "Localized description"
-                        )
-                    }
-                },
                 scrollBehavior = scrollBehavior,
             )
         }

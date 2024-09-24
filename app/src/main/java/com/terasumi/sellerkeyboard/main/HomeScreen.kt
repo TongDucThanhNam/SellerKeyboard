@@ -91,6 +91,13 @@ fun HomeScreen(navController: NavController) {
     val homePage = remember {
         resources.getString(R.string.homepage)
     }
+    val turnOnKeyboard = remember {
+        resources.getString(R.string.enable_keyboard)
+    }
+
+    val changeKeyboard = remember {
+        resources.getString(R.string.change_keyboard)
+    }
 
 
     LaunchedEffect(context) {
@@ -111,11 +118,11 @@ fun HomeScreen(navController: NavController) {
                             )
                         }
                         DropdownMenu(expanded = showMenu, onDismissRequest = { showMenu = false }) {
-                            DropdownMenuItem(text = { Text("Bật/tắt bàn phím") }, onClick = {
+                            DropdownMenuItem(text = { Text(turnOnKeyboard) }, onClick = {
                                 context.startActivity(Intent(Settings.ACTION_INPUT_METHOD_SETTINGS))
                                 showMenu = false
                             })
-                            DropdownMenuItem(text = { Text("Thay đổi bàn phím") }, onClick = {
+                            DropdownMenuItem(text = { Text(changeKeyboard) }, onClick = {
                                 try {
                                     val imeManager: InputMethodManager =
                                         context.getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager

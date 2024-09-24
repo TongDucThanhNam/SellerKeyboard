@@ -45,4 +45,3 @@ References:
 - [Google Voice Typing integration](https://github.com/johnjamesmiller/google-voice-typing-integration)
 - [Compose Keyboard IME](https://github.com/THEAccess/compose-keyboard-ime)
 - [KeyboardApp](https://github.com/IBRUTALI/KeyboardApp)
-- https://github.com/THEAccess/compose-keyboard-ime/tree/main
