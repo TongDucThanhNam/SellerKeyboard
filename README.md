@@ -93,7 +93,8 @@
 
 [//]: # (* [![JQuery][JQuery.com]][JQuery-url])
 
-* [![Flutter][Flutter]][Flutter-url]
+* [![Kotlin][Kotlin]][Jetpack-url]
+* [![Android][Android]][Android-url]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -132,7 +133,7 @@ git clone https://github.com/TongDucThanhNam/seller_keyboard
 [//]: # (Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.)
 
 _For more examples, please refer to
-the [Documentation](https://github.com/TongDucThanhNam/flutter_dice?tab=readme-ov-file)_
+the [Documentation](https://github.com/TongDucThanhNam/seller_keyboard?tab=readme-ov-file)_
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -216,7 +217,6 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 ## Acknowledgments
 
-* [Flutter & Dart - The Complete Guide [2024 Edition]](https://www.udemy.com/course/learn-flutter-dart-to-build-ios-android-apps)
 * [Keyboard Design](https://www.figma.com/design/kw9CGigo5HLvBg9EERw9cC/Android-Keyboard-%E2%80%93%C2%A0Material-3-UI-Kit-(Community)?node-id=14-10749&node-type=FRAME&t=SSti3FEp9NBVNxpe-0)
 * [Create an input method](https://developer.android.com/develop/ui/views/touch-and-input/creating-input-method)
 * [Image keyboard support](https://developer.android.com/develop/ui/views/touch-and-input/image-keyboard)
@@ -231,25 +231,25 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 
-[contributors-shield]: https://img.shields.io/github/contributors/tongducthanhnam/flutter_dice.svg?style=for-the-badge
+[contributors-shield]: https://img.shields.io/github/contributors/tongducthanhnam/seller_keyboard.svg?style=for-the-badge
 
-[contributors-url]: https://github.com/tongducthanhnam/flutter_dice/graphs/contributors
+[contributors-url]: https://github.com/tongducthanhnam/seller_keyboard/graphs/contributors
 
-[forks-shield]: https://img.shields.io/github/forks/tongducthanhnam/flutter_dice.svg?style=for-the-badge
+[forks-shield]: https://img.shields.io/github/forks/tongducthanhnam/seller_keyboard.svg?style=for-the-badge
 
-[forks-url]: https://github.com/tongducthanhnam/flutter_dice/network/members
+[forks-url]: https://github.com/tongducthanhnam/seller_keyboard/network/members
 
-[stars-shield]: https://img.shields.io/github/stars/tongducthanhnam/flutter_dice.svg?style=for-the-badge
+[stars-shield]: https://img.shields.io/github/stars/tongducthanhnam/seller_keyboard.svg?style=for-the-badge
 
-[stars-url]: https://github.com/tongducthanhnam/flutter_dice/stargazers
+[stars-url]: https://github.com/tongducthanhnam/seller_keyboard/stargazers
 
-[issues-shield]: https://img.shields.io/github/issues/tongducthanhnam/flutter_dice.svg?style=for-the-badge
+[issues-shield]: https://img.shields.io/github/issues/tongducthanhnam/seller_keyboard.svg?style=for-the-badge
 
-[issues-url]: https://github.com/tongducthanhnam/flutter_dice/issues
+[issues-url]: https://github.com/tongducthanhnam/seller_keyboard/issues
 
-[license-shield]: https://img.shields.io/github/license/tongducthanhnam/flutter_dice.svg?style=for-the-badge
+[license-shield]: https://img.shields.io/github/license/tongducthanhnam/seller_keyboard.svg?style=for-the-badge
 
-[license-url]: https://github.com/tongducthanhnam/flutter_dice/blob/master/LICENSE.txt
+[license-url]: https://github.com/tongducthanhnam/seller_keyboard/blob/master/LICENSE.txt
 
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 
@@ -292,3 +292,11 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 [Flutter]: https://img.shields.io/badge/Flutter-%2302569B.svg?style=for-the-badge&logo=Flutter&logoColor=white
 
 [Flutter-url]: https://flutter.dev
+
+[Kotlin]:https://img.shields.io/badge/Kotlin-0095D5?&style=for-the-badge&logo=kotlin&logoColor=white
+
+[Jetpack-url]: https://developer.android.com/compose
+
+[Android]:https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white
+
+[Android-url]: https://developer.android.com
