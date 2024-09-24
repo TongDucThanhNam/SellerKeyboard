@@ -117,7 +117,7 @@ Install Android Studio, Android Device or Virtual Machine.
 - Clone the repository:
 
 ```
-git clone https://github.com/TongDucThanhNam/seller_keyboard
+git clone https://github.com/TongDucThanhNam/SellerKeyboard
 ```
 
 - Run with Android Studio
@@ -133,7 +133,7 @@ git clone https://github.com/TongDucThanhNam/seller_keyboard
 [//]: # (Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.)
 
 _For more examples, please refer to
-the [Documentation](https://github.com/TongDucThanhNam/seller_keyboard?tab=readme-ov-file)_
+the [Documentation](https://github.com/TongDucThanhNam/SellerKeyboard?tab=readme-ov-file)_
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -186,7 +186,7 @@ Don't forget to give the project a star! Thanks again!
 ### Top contributors:
 
 <a href="https://github.com/TongDucThanhNam/flutter_dice/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=tongducthanhnam/seller_keyboard" alt="contrib.rocks image" />
+  <img src="https://contrib.rocks/image?repo=tongducthanhnam/SellerKeyboard" alt="contrib.rocks image" />
 </a>
 
 
@@ -231,25 +231,25 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 
-[contributors-shield]: https://img.shields.io/github/contributors/tongducthanhnam/seller_keyboard.svg?style=for-the-badge
+[contributors-shield]: https://img.shields.io/github/contributors/tongducthanhnam/SellerKeyboard.svg?style=for-the-badge
 
-[contributors-url]: https://github.com/tongducthanhnam/seller_keyboard/graphs/contributors
+[contributors-url]: https://github.com/tongducthanhnam/SellerKeyboard/graphs/contributors
 
-[forks-shield]: https://img.shields.io/github/forks/tongducthanhnam/seller_keyboard.svg?style=for-the-badge
+[forks-shield]: https://img.shields.io/github/forks/tongducthanhnam/SellerKeyboard.svg?style=for-the-badge
 
-[forks-url]: https://github.com/tongducthanhnam/seller_keyboard/network/members
+[forks-url]: https://github.com/tongducthanhnam/SellerKeyboard/network/members
 
-[stars-shield]: https://img.shields.io/github/stars/tongducthanhnam/seller_keyboard.svg?style=for-the-badge
+[stars-shield]: https://img.shields.io/github/stars/tongducthanhnam/SellerKeyboard.svg?style=for-the-badge
 
-[stars-url]: https://github.com/tongducthanhnam/seller_keyboard/stargazers
+[stars-url]: https://github.com/tongducthanhnam/SellerKeyboard/stargazers
 
-[issues-shield]: https://img.shields.io/github/issues/tongducthanhnam/seller_keyboard.svg?style=for-the-badge
+[issues-shield]: https://img.shields.io/github/issues/tongducthanhnam/SellerKeyboard.svg?style=for-the-badge
 
-[issues-url]: https://github.com/tongducthanhnam/seller_keyboard/issues
+[issues-url]: https://github.com/tongducthanhnam/SellerKeyboard/issues
 
-[license-shield]: https://img.shields.io/github/license/tongducthanhnam/seller_keyboard.svg?style=for-the-badge
+[license-shield]: https://img.shields.io/github/license/tongducthanhnam/SellerKeyboard.svg?style=for-the-badge
 
-[license-url]: https://github.com/tongducthanhnam/seller_keyboard/blob/master/LICENSE.txt
+[license-url]: https://github.com/tongducthanhnam/SellerKeyboard/blob/master/LICENSE.txt
 
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 
