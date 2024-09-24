@@ -195,7 +195,7 @@ Don't forget to give the project a star! Thanks again!
 
 ## License
 
-Distributed under the MIT License. See `LICENSE.txt` for more information.
+Distributed under the MIT License. See `LICENSE` for more information.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -249,7 +249,7 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 [license-shield]: https://img.shields.io/github/license/tongducthanhnam/SellerKeyboard.svg?style=for-the-badge
 
-[license-url]: https://github.com/tongducthanhnam/SellerKeyboard/blob/master/LICENSE.txt
+[license-url]: https://github.com/tongducthanhnam/SellerKeyboard/blob/main/LICENSE
 
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 
