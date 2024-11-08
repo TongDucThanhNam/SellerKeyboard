@@ -25,7 +25,13 @@ import com.terasumi.sellerkeyboard.ui.theme.LightCustomColor
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun FunctionKey(context: Context, key: String, ratio: Float = 1.0f, myColor: Array<Color>) {
+fun FunctionKey(
+    context: Context,
+    key: String,
+    ratio: Float = 1.0f,
+    myColor: Array<Color>,
+    isLandscape: Boolean = false,
+) {
     //Map
     val map = mapOf(
         "numbers" to R.drawable.numbers
@@ -56,13 +62,18 @@ fun FunctionKey(context: Context, key: String, ratio: Float = 1.0f, myColor: Arr
         ), // Custom content padding
         onClick = {
             //TODO
+
         },
         shape = RoundedCornerShape(6.dp),
         colors = ButtonDefaults.buttonColors(
             containerColor = myColor[0],
             contentColor = Color(0xFF000000)
         ),
-        modifier = Modifier
+        modifier =
+        if (isLandscape) Modifier
+            .height((35).dp)
+            .width((30).dp)
+        else Modifier
             .height((42 * ratio).dp)
             .width((30 * ratio).dp)
     )

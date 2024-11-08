@@ -30,7 +30,8 @@ fun FunctionKeyIcon(
     ratio: Float = 1.0f,
     action: String,
     keyboardState: MutableState<KeyboardState>,
-    myColor: Array<Color>
+    myColor: Array<Color>,
+    isLandscape: Boolean = false,
 ) {
     //Map
     val map = mapOf(
@@ -49,7 +50,12 @@ fun FunctionKeyIcon(
             Icon(
                 imageVector = ImageVector.vectorResource(id = map[action]!!),
                 contentDescription = action,
-                modifier = Modifier.size((24 * ratio).dp),
+                modifier =
+                if (isLandscape)
+                    Modifier
+                        .size((24).dp)
+                else Modifier
+                    .size((24 * ratio).dp),
                 tint = myColor[5]
             )
         },
@@ -92,9 +98,19 @@ fun FunctionKeyIcon(
                     //TODO
                     keyboardState.value = KeyboardState.NUMBERS
                 }
+
+                "numbers" -> {
+                    //TODO
+                    keyboardState.value = KeyboardState.NOCAPS
+                }
             }
         },
-        modifier = Modifier
+        modifier =
+        if (isLandscape)
+            Modifier
+                .height((35).dp)
+                .width((46 * ratio).dp)
+        else Modifier
             .height((42 * ratio).dp)
             .width((46 * ratio).dp)
     )

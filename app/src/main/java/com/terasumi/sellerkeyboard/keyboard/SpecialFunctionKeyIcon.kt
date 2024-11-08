@@ -5,6 +5,7 @@ import android.view.KeyEvent
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
@@ -25,7 +26,8 @@ fun SpecialFunctionKeyIcon(
     context: Context,
     ratio: Float = 1.0f,
     action: String,
-    myColor: Array<Color>
+    myColor: Array<Color>,
+    isLandscape: Boolean = false,
 ) {
     val map = mapOf(
         "ENTER" to R.drawable.enter,
@@ -54,14 +56,20 @@ fun SpecialFunctionKeyIcon(
             horizontal = 0.dp,
             vertical = 0.dp
         ), // Custom content padding
-        modifier = Modifier
+        modifier =
+        if (isLandscape) Modifier
+            .height((35).dp)
+            .width((46 * ratio).dp)
+        else Modifier
             .height((42 * ratio).dp)
+            .width((46 * ratio).dp)
+
     ) {
         Icon(
             imageVector = ImageVector.vectorResource(id = map[action]!!),
-            contentDescription = action,
-            modifier = Modifier.size(24.dp),
-            tint = myColor[5]
+            contentDescription = null,
+            tint = myColor[0],
+            modifier = Modifier.size(24.dp)
         )
     }
 }

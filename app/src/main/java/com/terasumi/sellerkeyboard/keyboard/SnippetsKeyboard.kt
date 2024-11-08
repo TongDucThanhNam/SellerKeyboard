@@ -2,26 +2,20 @@ package com.terasumi.sellerkeyboard.keyboard
 
 import android.content.ClipDescription
 import android.content.ContentValues.TAG
+import android.content.Context
 import android.util.Log
 import android.view.inputmethod.EditorInfo
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Delete
-import androidx.compose.material.icons.filled.Mic
-import androidx.compose.material.icons.filled.Sync
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.FilledTonalButton
-import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -43,8 +37,11 @@ import com.terasumi.sellerkeyboard.service.SellerKeyboard
 import com.terasumi.sellerkeyboard.ui.theme.LightCustomColor
 
 @Composable
-fun SnippetsKeyboard(myColor: Array<Color>) {
-    val context = LocalContext.current
+fun SnippetsKeyboard(
+    myColor: Array<Color>,
+    context: Context,
+    isLandscape: Boolean,
+) {
 
     val listSnippets = remember { mutableStateOf(listOf<Snippets>()) }
 
@@ -53,9 +50,14 @@ fun SnippetsKeyboard(myColor: Array<Color>) {
     }
 
     Box(
-        modifier = Modifier
+        modifier =
+        if (isLandscape)
+            Modifier
+                .height(164.dp)
+                .padding(6.dp)
+        else Modifier
             .height(300.dp)
-            .padding(4.dp)
+            .padding(6.dp)
     ) {
         //Gridview of Keyboard
         LazyVerticalGrid(
@@ -65,150 +67,6 @@ fun SnippetsKeyboard(myColor: Array<Color>) {
             modifier = Modifier
                 .fillMaxSize()
         ) {
-            //Voice Input Button
-            item {
-                FilledTonalButton(
-                    onClick = {
-                        // Input Method Service
-                        (context as SellerKeyboard).mVoiceRecognitionTrigger!!.startVoiceRecognition(
-                            context.imeLanguage
-                        )
-                    },
-                    colors = ButtonDefaults.buttonColors(
-                        contentColor = myColor[5],
-                        containerColor = myColor[4]
-                    ),
-                    contentPadding = PaddingValues(
-                        horizontal = 6.dp,
-                        vertical = 6.dp
-                    ), // Custom content padding
-                    content = {
-                        Row(
-                            horizontalArrangement = Arrangement.spacedBy(4.dp),
-                            verticalAlignment = Alignment.CenterVertically,
-                            content = {
-                                Icon(
-                                    imageVector = Icons.Default.Mic,
-                                    contentDescription = "Voice",
-                                    tint = myColor[5],
-                                    modifier = Modifier
-                                        .size(18.dp)
-                                )
-
-                                Text(
-                                    text = "Voice",
-                                    maxLines = 1,
-                                    overflow = TextOverflow.Ellipsis,
-                                    fontSize = MaterialTheme.typography.labelSmall.fontSize,
-                                    fontStyle = MaterialTheme.typography.labelSmall.fontStyle,
-                                    fontWeight = MaterialTheme.typography.labelSmall.fontWeight,
-                                    modifier = Modifier
-                                )
-                            }
-                        )
-                    },
-
-                    shape = MaterialTheme.shapes.small,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                )
-            }
-            //Delete Button
-            item {
-                FilledTonalButton(
-
-                    onClick = {
-                        // Input Method Service
-                        (context as SellerKeyboard).currentInputConnection?.deleteSurroundingText(
-                            1,
-                            0
-                        )
-                    },
-                    colors = ButtonDefaults.buttonColors(
-                        contentColor = myColor[5],
-                        containerColor = myColor[4]
-                    ),
-                    contentPadding = PaddingValues(
-                        horizontal = 6.dp,
-                        vertical = 6.dp
-                    ), // Custom content padding
-                    content = {
-                        Row(
-                            horizontalArrangement = Arrangement.spacedBy(4.dp),
-                            verticalAlignment = Alignment.CenterVertically,
-                            content = {
-                                Icon(
-                                    imageVector = Icons.Default.Delete,
-                                    contentDescription = "Delete",
-                                    tint = myColor[5],
-                                    modifier = Modifier
-                                        .size(18.dp)
-                                )
-
-                                Text(
-                                    text = "Delete",
-                                    maxLines = 1,
-                                    overflow = TextOverflow.Ellipsis,
-                                    fontSize = MaterialTheme.typography.labelSmall.fontSize,
-                                    fontStyle = MaterialTheme.typography.labelSmall.fontStyle,
-                                    fontWeight = MaterialTheme.typography.labelSmall.fontWeight,
-                                    modifier = Modifier
-                                )
-                            }
-                        )
-                    },
-
-                    shape = MaterialTheme.shapes.small,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                )
-            }
-
-            //Sync Button
-            item {
-                FilledTonalButton(
-                    colors = ButtonDefaults.buttonColors(
-                        contentColor = myColor[5],
-                        containerColor = myColor[4]
-                    ),
-                    onClick = {
-                        // Sync -> Refetch Snippets
-                    },
-                    contentPadding = PaddingValues(
-                        horizontal = 6.dp,
-                        vertical = 6.dp
-                    ), // Custom content padding
-                    content = {
-                        Row(
-                            horizontalArrangement = Arrangement.spacedBy(4.dp),
-                            verticalAlignment = Alignment.CenterVertically,
-                            content = {
-                                Icon(
-                                    imageVector = Icons.Default.Sync,
-                                    contentDescription = "Delete",
-                                    tint = myColor[5], modifier = Modifier
-                                        .size(18.dp)
-                                )
-
-                                Text(
-                                    text = "Sync",
-                                    maxLines = 1,
-                                    overflow = TextOverflow.Ellipsis,
-                                    fontSize = MaterialTheme.typography.labelSmall.fontSize,
-                                    fontStyle = MaterialTheme.typography.labelSmall.fontStyle,
-                                    fontWeight = MaterialTheme.typography.labelSmall.fontWeight,
-                                    modifier = Modifier
-                                )
-                            }
-                        )
-                    },
-
-                    shape = MaterialTheme.shapes.small,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                )
-            }
-
             //Snippets
             items(listSnippets.value.size) { index ->
                 FilledTonalButton(
@@ -286,5 +144,14 @@ fun SnippetsKeyboard(myColor: Array<Color>) {
 @Composable
 fun SnippetKeyboardPreview() {
     val myColor = LightCustomColor
-    SnippetsKeyboard(myColor)
+    val context = LocalContext.current
+    SnippetsKeyboard(myColor, context, false)
+}
+
+@Preview(showSystemUi = true, device = "spec:width=1280dp,height=800dp,dpi=480")
+@Composable
+fun SnippetKeyboardLandscapePreview() {
+    val myColor = LightCustomColor
+    val context = LocalContext.current
+    SnippetsKeyboard(myColor, context, true)
 }

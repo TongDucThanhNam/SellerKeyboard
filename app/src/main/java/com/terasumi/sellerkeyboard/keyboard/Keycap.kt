@@ -23,7 +23,13 @@ import com.terasumi.sellerkeyboard.service.SellerKeyboard
 import com.terasumi.sellerkeyboard.ui.theme.LightCustomColor
 
 @Composable
-fun Keycap(context: Context, key: String, ratio: Float = 1.0f, myColor: Array<Color>) {
+fun Keycap(
+    context: Context,
+    key: String,
+    ratio: Float = 1.0f,
+    myColor: Array<Color>,
+    isLandscape: Boolean = false
+) {
     //TODO
     Button(
 //        border = BorderStroke(1.dp, Color.Black),
@@ -36,16 +42,25 @@ fun Keycap(context: Context, key: String, ratio: Float = 1.0f, myColor: Array<Co
             ) {
                 Text(
                     text = key,
-                    fontSize = (22 * ratio).sp,
+                    fontSize =
+                    if (isLandscape)
+                        (22).sp
+                    else
+                        (22).sp,
                     color = myColor[5],
                     fontFamily = FontFamily.SansSerif, // Sử dụng Roboto mặc định
-                    lineHeight = (26 * ratio).sp,
+                    lineHeight =
+                    if (isLandscape)
+                        (26).sp
+                    else
+                        (26).sp,
                     textAlign = TextAlign.Center
                 )
             }
         },
         contentPadding = PaddingValues(
-            horizontal = 0.dp, vertical = 0.dp
+            horizontal = 0.dp,
+            vertical = 0.dp
         ), // Custom content padding
         onClick = {
             //IME
@@ -57,7 +72,11 @@ fun Keycap(context: Context, key: String, ratio: Float = 1.0f, myColor: Array<Co
             contentColor = Color(0xFF000000),
             containerColor = myColor[4]
         ),
-        modifier = Modifier
+        modifier =
+        if (isLandscape) Modifier
+            .height((35).dp)
+            .width((30 * ratio).dp)
+        else Modifier
             .height((42 * ratio).dp)
             .width((30 * ratio).dp)
     )

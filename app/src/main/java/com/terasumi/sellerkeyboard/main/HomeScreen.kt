@@ -57,6 +57,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.IntOffset
@@ -152,7 +153,7 @@ fun HomeScreen(navController: NavController) {
                                 verticalAlignment = Alignment.CenterVertically,
                                 content = {
                                     Text(
-                                        text = "Switch to Seller Keyboard ->",
+                                        text = stringResource(R.string.switch_to_seller_keyboard),
                                         color = MaterialTheme.colorScheme.onSurface
                                     )
 
@@ -217,7 +218,11 @@ fun ItemCard(
     var isDeleted by remember { mutableStateOf(false) }
 
     if (isDeleted) {
-        Text(text = "Deleted!", color = Color.Green, modifier = Modifier.padding(16.dp))
+        Text(
+            text = stringResource(R.string.deleted),
+            color = Color.Green,
+            modifier = Modifier.padding(16.dp)
+        )
         scope.launch {
             swipeAble.animateTo(0)
             isDeleted = false

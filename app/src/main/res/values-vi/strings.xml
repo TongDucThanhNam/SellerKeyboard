@@ -36,5 +36,7 @@
 
     <string name="keyboard">Keyboard</string>
     <string name="title_activity_home">Seller Keyboard</string>
+    <string name="switch_to_seller_keyboard">Chuyển sang Seller Keyboard</string>
+    <string name="deleted">Đã xoá</string>
 
 </resources>

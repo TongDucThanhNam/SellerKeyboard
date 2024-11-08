@@ -42,6 +42,10 @@ class SellerKeyboard : LifecycleInputMethodService(), ViewModelStoreOwner, Saved
         return view
     }
 
+    fun getCurrentView(): View {
+        return KeyboardContentView(this)
+    }
+
     override fun onCreate() {
         super.onCreate()
 

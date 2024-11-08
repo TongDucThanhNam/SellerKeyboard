@@ -3,6 +3,7 @@ package com.terasumi.sellerkeyboard.keyboard
 import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Text
@@ -22,7 +23,8 @@ import com.terasumi.sellerkeyboard.ui.theme.LightCustomColor
 @Composable
 fun SpecialFunctionKey(
     ratio: Float = 1.0f, action: String, keyboardState: MutableState<KeyboardState>,
-    myColor: Array<Color>
+    myColor: Array<Color>,
+    isLandscape: Boolean = false,
 ) {
     //Number
     Button(
@@ -47,14 +49,24 @@ fun SpecialFunctionKey(
             horizontal = 6.dp,
             vertical = 6.dp
         ), // Custom content padding
-        modifier = Modifier
+        modifier =
+        if (isLandscape) Modifier
+            .height((35).dp)
+            .width((46 * ratio).dp)
+        else Modifier
             .height((42 * ratio).dp)
+            .width((46 * ratio).dp)
+
     ) {
         Text(
             text = action,
             maxLines = 1,
             overflow = TextOverflow.Ellipsis,
-            fontSize = (16 * ratio).sp,
+            fontSize =
+            if (isLandscape)
+                (16).sp
+            else
+                (16).sp,
             fontStyle = FontStyle.Normal,
             fontWeight = FontWeight.Normal,
             color = myColor[5],

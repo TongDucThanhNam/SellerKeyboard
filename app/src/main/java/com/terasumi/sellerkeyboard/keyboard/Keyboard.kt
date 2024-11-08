@@ -26,7 +26,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -40,25 +39,43 @@ import com.terasumi.sellerkeyboard.ui.theme.LightCustomColor
 fun Keyboard(
     keyboardArray: Array<Array<String>>,
     keyboardState: MutableState<KeyboardState>,
-    myColor: Array<Color>
+    myColor: Array<Color>,
+    context: Context,
+    isLandscape: Boolean,
+    ratio: Float
 ) {
-    val context = LocalContext.current
-    val configuration = LocalConfiguration.current
-    val ratio = remember {
-        val screenWidthDp = configuration.screenWidthDp
-        screenWidthDp / 360f
-    }
-
     Box(
         content = {
-            Column {
-                keyboardArray.forEach {
-                    RowKeycap(context, it, ratio, keyboardState, myColor)
+            if (isLandscape) {
+                //reduce height of keyboard
+                Box(
+                    contentAlignment = Alignment.Center,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                ) {
+                    Column {
+                        //skip 1st row (numbers) if keyboard has 5 rows
+                        if (keyboardArray.size == 5) {
+                            keyboardArray.drop(1).forEach {
+                                RowKeycapLandscape(context, it, ratio, keyboardState, myColor)
+                            }
+                        } else {
+                            keyboardArray.forEach {
+                                RowKeycapLandscape(context, it, ratio, keyboardState, myColor)
+                            }
+                        }
+                    }
+                }
+
+            } else {
+                Column {
+                    keyboardArray.forEach {
+                        RowKeycap(context, it, ratio, keyboardState, myColor)
+                    }
                 }
             }
         },
         modifier = Modifier
-            .fillMaxWidth()
             .padding(6.dp)
             .background(myColor[3])
     )
@@ -119,7 +136,7 @@ fun RowKeycap(
                             action = "123?",
                             keyboardState = keyboardState,
                             ratio = ratio,
-                            myColor = myColor
+                            myColor = myColor,
                         )
                     }
 
@@ -186,6 +203,184 @@ fun RowKeycap(
     Spacer(modifier = Modifier.size(5.5.dp))
 }
 
+
+@Composable
+fun RowKeycapLandscape(
+    context: Context,
+    keyList: Array<String>,
+    ratio: Float,
+    keyboardState: MutableState<KeyboardState>,
+    myColor: Array<Color>
+) {
+    val isLandscape = true
+
+    Box(
+        contentAlignment = Alignment.Center,
+        modifier = Modifier
+            .fillMaxWidth()
+    ) {
+        Row(
+            horizontalArrangement = Arrangement.spacedBy(5.dp),
+            modifier = Modifier
+        ) {
+            keyList.forEach {
+                when (it) {
+                    "shift" -> {
+                        FunctionKeyIcon(
+                            context,
+                            ratio,
+                            "shift",
+                            keyboardState,
+                            myColor,
+                            isLandscape
+                        )
+                    }
+
+                    "Shift" -> {
+                        FunctionKeyIcon(
+                            context,
+                            ratio,
+                            "Shift",
+                            keyboardState,
+                            myColor,
+                            isLandscape
+                        )
+                    }
+
+                    "SHIFT" -> {
+                        FunctionKeyIcon(
+                            context,
+                            ratio,
+                            "SHIFT",
+                            keyboardState,
+                            myColor,
+                            isLandscape
+                        )
+                    }
+
+                    "symbols" -> {
+                        FunctionKeyIcon(
+                            context,
+                            ratio,
+                            "symbols",
+                            keyboardState,
+                            myColor,
+                            isLandscape
+                        )
+                    }
+
+                    "delete" -> {
+                        FunctionKeyIcon(
+                            context,
+                            ratio,
+                            "delete",
+                            keyboardState,
+                            myColor,
+                            isLandscape
+                        )
+                    }
+
+                    "?123" -> {
+                        SpecialFunctionKey(
+                            ratio,
+                            action = "?123",
+                            keyboardState = keyboardState,
+                            myColor,
+                            isLandscape
+                        )
+                    }
+
+                    "123?" -> {
+                        FunctionKeyIcon(
+                            context = context,
+                            action = "123?",
+                            keyboardState = keyboardState,
+                            ratio = ratio,
+                            myColor = myColor,
+                            isLandscape = isLandscape
+                        )
+                    }
+
+                    "?ABC" -> {
+                        SpecialFunctionKey(
+                            ratio,
+                            action = "?ABC",
+                            keyboardState = keyboardState,
+                            myColor,
+                            isLandscape
+                        )
+                    }
+
+                    "enter" -> {
+                        SpecialFunctionKeyIcon(context, ratio, "ENTER", myColor, isLandscape)
+                    }
+
+                    "numbers" -> {
+//                        FunctionKey(
+//                            context = context,
+//                            key = "numbers",
+//                            ratio = ratio,
+//                            myColor = myColor,
+//                            isLandscape = isLandscape
+//                        )
+                        FunctionKeyIcon(
+                            context,
+                            ratio,
+                            "numbers",
+                            keyboardState,
+                            myColor,
+                            isLandscape
+                        )
+                    }
+
+                    "space" -> {
+                        Button(
+                            content = {
+                                Icon(
+                                    imageVector = ImageVector.vectorResource(id = R.drawable.space_bar),
+                                    contentDescription = "Spacer",
+                                    tint = myColor[5],
+                                    modifier =
+                                    if (isLandscape)
+                                        Modifier.size(24.dp)
+                                    else
+                                        Modifier.size((24 * ratio).dp),
+                                )
+                            },
+                            contentPadding = PaddingValues(
+                                horizontal = 0.dp, vertical = 0.dp
+                            ), // Custom content padding
+                            onClick = {
+                                (context as SellerKeyboard).currentInputConnection.commitText(
+                                    " ",
+                                    1
+                                )
+                            },
+                            shape = RoundedCornerShape(4.dp),
+                            colors = ButtonDefaults.buttonColors(
+                                containerColor = myColor[4],
+                                contentColor = myColor[5]
+                            ),
+                            modifier =
+                            if (isLandscape) Modifier
+                                .height((35).dp)
+                                .width((125 * ratio).dp)
+                            else Modifier
+                                .height((42).dp)
+                                .width((125 * ratio).dp)
+                        )
+                    }
+
+                    else -> {
+                        Keycap(context, key = it, ratio = ratio, myColor = myColor, isLandscape)
+                    }
+                }
+            }
+        }
+    }
+    Spacer(modifier = Modifier.size(6.dp))
+}
+
 @Preview
 @Composable
 fun KeyboardPreview() {
@@ -193,13 +388,39 @@ fun KeyboardPreview() {
         arrayOf("~", "`", "|", "•", "√", "π", "÷", "×", "§", "∆"),
         arrayOf("£", "€", "$", "¢", "^", "°", "=", "{", "}", "\\"),
         arrayOf("123?", "%", "©", "®", "™", "✓", "[", "]", "delete"),
-        arrayOf("?ABC", "<", "numbers", "space", ">", "enter")
+        arrayOf("?ABC", "<", "space", ">", "enter")
     )
     val myColor = LightCustomColor
+    val context = LocalContext.current
 
     Keyboard(
         keyboardArray = keyboardArray,
         keyboardState = remember { mutableStateOf(KeyboardState.NOCAPS) },
-        myColor = myColor
+        myColor = myColor,
+        context,
+        false,
+        1.0f
+    )
+}
+
+@Preview(device = "spec:width=1280dp,height=800dp,dpi=480")
+@Composable
+fun KeyboardLandscapePreview() {
+    val keyboardArray = arrayOf(
+        arrayOf("~", "`", "|", "•", "√", "π", "÷", "×", "§", "∆"),
+        arrayOf("£", "€", "$", "¢", "^", "°", "=", "{", "}", "\\"),
+        arrayOf("123?", "%", "©", "®", "™", "✓", "[", "]", "delete"),
+        arrayOf("?ABC", "<", "space", ">", "enter")
+    )
+    val myColor = LightCustomColor
+    val context = LocalContext.current;
+
+    Keyboard(
+        keyboardArray = keyboardArray,
+        keyboardState = remember { mutableStateOf(KeyboardState.NOCAPS) },
+        myColor = myColor,
+        context,
+        true,
+        1280 / 360f
     )
 }

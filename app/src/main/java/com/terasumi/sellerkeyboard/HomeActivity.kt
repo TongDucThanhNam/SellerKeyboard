@@ -3,8 +3,6 @@ package com.terasumi.sellerkeyboard
 import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
-import android.provider.Settings
-import android.util.Log
 import android.view.inputmethod.InputMethodManager
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
