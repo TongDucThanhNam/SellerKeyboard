@@ -39,5 +39,7 @@
     <string name="switch_to_seller_keyboard"><![CDATA[Switch to Seller Keyboard ->]]></string>
     <string name="deleted">Deleted!</string>
 
+    <!-- Convex backend URL - replace with your deployment URL -->
+    <string name="convex_url">https://wandering-eel-278.convex.cloud</string>
 
 </resources>

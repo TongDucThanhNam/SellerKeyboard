@@ -2,8 +2,6 @@ package com.terasumi.sellerkeyboard.keyboard
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Text
@@ -22,55 +20,34 @@ import com.terasumi.sellerkeyboard.ui.theme.LightCustomColor
 
 @Composable
 fun SpecialFunctionKey(
-    ratio: Float = 1.0f, action: String, keyboardState: MutableState<KeyboardState>,
+    action: String,
+    keyboardState: MutableState<KeyboardState>,
     myColor: Array<Color>,
     isLandscape: Boolean = false,
+    modifier: Modifier = Modifier,
 ) {
-    //Number
     Button(
         colors = ButtonDefaults.buttonColors(
             contentColor = Color(0xFF000000),
             containerColor = myColor[1]
         ),
-        onClick = { /*TODO*/
+        onClick = {
             when (action) {
-                "?123" -> {
-                    //TODO
-                    keyboardState.value = KeyboardState.NUMBERS
-                }
-
-                "?ABC" -> {
-                    //TODO
-                    keyboardState.value = KeyboardState.NOCAPS
-                }
+                "?123" -> keyboardState.value = KeyboardState.NUMBERS
+                "?ABC" -> keyboardState.value = KeyboardState.NOCAPS
             }
         },
-        contentPadding = PaddingValues(
-            horizontal = 6.dp,
-            vertical = 6.dp
-        ), // Custom content padding
-        modifier =
-        if (isLandscape) Modifier
-            .height((35).dp)
-            .width((46 * ratio).dp)
-        else Modifier
-            .height((42 * ratio).dp)
-            .width((46 * ratio).dp)
-
+        contentPadding = PaddingValues(horizontal = 12.dp, vertical = 8.dp),
+        modifier = modifier
     ) {
         Text(
             text = action,
             maxLines = 1,
             overflow = TextOverflow.Ellipsis,
-            fontSize =
-            if (isLandscape)
-                (16).sp
-            else
-                (16).sp,
+            fontSize = if (isLandscape) 16.sp else 16.sp,
             fontStyle = FontStyle.Normal,
             fontWeight = FontWeight.Normal,
-            color = myColor[5],
-            modifier = Modifier
+            color = myColor[5]
         )
     }
 }
@@ -79,5 +56,9 @@ fun SpecialFunctionKey(
 @Preview
 @Composable
 fun SpecialFunctionKeyPreview() {
-    SpecialFunctionKey(1.0f, "?123", mutableStateOf(KeyboardState.NOCAPS), LightCustomColor)
+    SpecialFunctionKey(
+        action = "?123",
+        keyboardState = mutableStateOf(KeyboardState.NOCAPS),
+        myColor = LightCustomColor
+    )
 }

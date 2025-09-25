@@ -39,10 +39,13 @@ import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.platform.LocalDensity
 import com.terasumi.sellerkeyboard.R
 import com.terasumi.sellerkeyboard.service.SellerKeyboard
 import com.terasumi.sellerkeyboard.ui.theme.DarkCustomColor
 import com.terasumi.sellerkeyboard.ui.theme.LightCustomColor
+
+// Keycap size: 94x112
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalAnimationApi::class)
 @Composable
@@ -50,8 +53,9 @@ fun KeyboardContent() {
     val context = LocalContext.current
     val resources = context.resources
     val configuration = LocalConfiguration.current
+    val density = LocalDensity.current
     val isLandscape = configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
-    val ratio = configuration.screenWidthDp / 360f
+    val ratio = configuration.screenWidthDp * density.density / 1080f
 
 
     val keyboard = remember { resources.getString(R.string.keyboard) }

@@ -3,9 +3,7 @@ package com.terasumi.sellerkeyboard.keyboard
 import android.annotation.SuppressLint
 import android.content.Context
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -27,11 +25,11 @@ import com.terasumi.sellerkeyboard.ui.theme.LightCustomColor
 @Composable
 fun FunctionKeyIcon(
     context: Context,
-    ratio: Float = 1.0f,
     action: String,
     keyboardState: MutableState<KeyboardState>,
     myColor: Array<Color>,
     isLandscape: Boolean = false,
+    modifier: Modifier = Modifier,
 ) {
     //Map
     val map = mapOf(
@@ -47,19 +45,15 @@ fun FunctionKeyIcon(
 
     Button(
         content = {
+            val iconSize = if (isLandscape) 22.dp else 24.dp
             Icon(
                 imageVector = ImageVector.vectorResource(id = map[action]!!),
                 contentDescription = action,
-                modifier =
-                if (isLandscape)
-                    Modifier
-                        .size((24).dp)
-                else Modifier
-                    .size((24 * ratio).dp),
+                modifier = Modifier.size(iconSize),
                 tint = myColor[5]
             )
         },
-        shape = RoundedCornerShape(6.dp),
+        shape = RoundedCornerShape(12.dp),
         colors = ButtonDefaults.buttonColors(
             containerColor = myColor[0],
             contentColor = Color(0xFF000000)
@@ -105,14 +99,7 @@ fun FunctionKeyIcon(
                 }
             }
         },
-        modifier =
-        if (isLandscape)
-            Modifier
-                .height((35).dp)
-                .width((46 * ratio).dp)
-        else Modifier
-            .height((42 * ratio).dp)
-            .width((46 * ratio).dp)
+        modifier = modifier
     )
 }
 
@@ -121,5 +108,10 @@ fun FunctionKeyIcon(
 @Composable
 fun FunctionKeyIconPreview() {
     val context = LocalContext.current
-    FunctionKeyIcon(context, 1f, "shift", mutableStateOf(KeyboardState.NOCAPS), LightCustomColor)
+    FunctionKeyIcon(
+        context = context,
+        action = "shift",
+        keyboardState = mutableStateOf(KeyboardState.NOCAPS),
+        myColor = LightCustomColor
+    )
 }

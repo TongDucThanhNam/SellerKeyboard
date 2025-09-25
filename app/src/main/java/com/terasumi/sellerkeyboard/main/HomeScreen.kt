@@ -1,43 +1,46 @@
 package com.terasumi.sellerkeyboard.main
 
 import SnippetsDao
-import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Context.INPUT_METHOD_SERVICE
 import android.content.Intent
+import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.provider.Settings
 import android.util.Log
 import android.view.inputmethod.InputMethodManager
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.fadeIn
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.gestures.Orientation
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.offset
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowForwardIos
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Keyboard
 import androidx.compose.material.icons.filled.Settings
-import androidx.compose.material3.Card
+import androidx.compose.material.icons.filled.Star
+import androidx.compose.material3.Button
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
+import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.ListItem
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -49,34 +52,29 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import androidx.wear.compose.material.Button
-import androidx.wear.compose.material.ExperimentalWearMaterialApi
-import androidx.wear.compose.material.FractionalThreshold
-import androidx.wear.compose.material.rememberSwipeableState
-import androidx.wear.compose.material.swipeable
+import androidx.compose.material3.SwipeToDismissBox
+import androidx.compose.material3.SwipeToDismissBoxValue
+import androidx.compose.material3.rememberSwipeToDismissBoxState
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.text.font.FontWeight
 import com.terasumi.sellerkeyboard.R
 import com.terasumi.sellerkeyboard.database.DatabaseHelper
 import com.terasumi.sellerkeyboard.database.Snippets
 import com.terasumi.sellerkeyboard.ui.theme.SellerKeyboardTheme
-import kotlinx.coroutines.launch
 import java.io.File
-import kotlin.math.roundToInt
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -88,7 +86,6 @@ fun HomeScreen(navController: NavController) {
 
     //stringResource
     val resources = context.resources
-//    val homePage = resources.getString(R.string.homepage)
     val homePage = remember {
         resources.getString(R.string.homepage)
     }
@@ -178,8 +175,6 @@ fun HomeScreen(navController: NavController) {
                                     .padding(16.dp)
                                     .fillMaxWidth()
                             )
-
-//                            Spacer(modifier = Modifier.height(10.dp))
                         }
 
                         items(listSnippets.value) { snippet ->
@@ -199,8 +194,7 @@ fun HomeScreen(navController: NavController) {
     }
 }
 
-@SuppressLint("CoroutineCreationDuringComposition")
-@OptIn(ExperimentalWearMaterialApi::class)
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ItemCard(
     snippetId: Int,
@@ -211,120 +205,136 @@ fun ItemCard(
     listSnippets: MutableState<List<Snippets>>
 ) {
     val context = LocalContext.current
-    val swipeAble = rememberSwipeableState(initialValue = 0)
-    val scope = rememberCoroutineScope()
-    val anchors = mapOf(0f to 0, -300f to 1)
-    var isRevealed by remember { mutableStateOf(false) }
-    var isDeleted by remember { mutableStateOf(false) }
 
-    if (isDeleted) {
-        Text(
-            text = stringResource(R.string.deleted),
-            color = Color.Green,
-            modifier = Modifier.padding(16.dp)
-        )
-        scope.launch {
-            swipeAble.animateTo(0)
-            isDeleted = false
-            isRevealed = false
-        }
+    val dismissState = rememberSwipeToDismissBoxState(
+        confirmValueChange = { value ->
+            if (value == SwipeToDismissBoxValue.EndToStart || value == SwipeToDismissBoxValue.StartToEnd) {
+                deleteDataFromSQLite(context, snippetId, listSnippets)
+                true
+            } else false
+        },
+        positionalThreshold = { it * 0.35f }
+    )
+
+    val primaryImagePath = remember(imageUrls) { imageUrls.firstOrNull().orEmpty() }
+    val bitmap = remember(primaryImagePath) {
+        runCatching { BitmapFactory.decodeFile(primaryImagePath) }.getOrNull()
     }
 
-    Box(modifier = Modifier.fillMaxWidth()) {
-        AnimatedVisibility(
-            visible = isRevealed,
-            enter = fadeIn(),
-            modifier = Modifier
-                .align(Alignment.CenterEnd)
-                .padding(end = 16.dp)
-        ) {
-            IconButton(onClick = {
-                isDeleted = true
-                deleteDataFromSQLite(context, snippetId, listSnippets)
-            }) {
-                Icon(
-                    imageVector = Icons.Default.Delete,
-                    contentDescription = "Delete",
-                    tint = Color.Red
-                )
-            }
-        }
-
-        Card(
+    SwipeToDismissBox(
+        state = dismissState,
+        backgroundContent = { SwipeBackground() }
+    ) {
+        ElevatedCard(
+            onClick = { navController.navigate("editSnippet/$snippetId") },
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(16.dp)
-                .offset { IntOffset(swipeAble.offset.value.roundToInt(), 0) }
-                .swipeable(
-                    state = swipeAble,
-                    anchors = anchors,
-                    thresholds = { _, _ -> FractionalThreshold(0.3f) },
-                    orientation = Orientation.Horizontal
-                )
-                .clickable { navController.navigate("editSnippet/$snippetId") },
-            elevation = CardDefaults.cardElevation(4.dp),
-            shape = RoundedCornerShape(8.dp)
+                .padding(12.dp),
+            shape = MaterialTheme.shapes.medium,
+            elevation = CardDefaults.elevatedCardElevation(defaultElevation = 2.dp)
         ) {
-            Box(modifier = Modifier.padding(16.dp)) {
-                Column {
-                    Text(text = title, fontSize = 18.sp, modifier = Modifier.padding(bottom = 8.dp))
-                    Row(modifier = Modifier.fillMaxWidth()) {
-                        val imageFile = File(imageUrls.getOrNull(0) ?: "")
-                        val bitmap = BitmapFactory.decodeFile(imageFile.absolutePath)
-                        if (bitmap != null) {
-                            Image(
-                                bitmap = bitmap.asImageBitmap(),
-                                contentDescription = "Image",
-                                modifier = Modifier.size(64.dp)
-                            )
-                        } else {
-                            Image(
-                                painter = painterResource(id = R.drawable.icon),
-                                contentDescription = "Image",
-                                modifier = Modifier.size(64.dp)
-                            )
-                        }
+            Column {
 
-                        Text(
-                            text = content,
-                            modifier = Modifier
-                                .padding(start = 16.dp)
-                                .align(Alignment.CenterVertically)
-                                .fillMaxWidth(),
-                            maxLines = 4,
-                            overflow = TextOverflow.Ellipsis
-                        )
-                    }
+
+
+                Column(modifier = Modifier.padding(16.dp)) {
+                    Text(
+                        text = title,
+                        style = MaterialTheme.typography.titleMedium,
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis
+                    )
+                    Text(
+                        text = content,
+                        style = MaterialTheme.typography.bodyMedium,
+                        maxLines = 3,
+                        overflow = TextOverflow.Ellipsis,
+                        modifier = Modifier.padding(top = 4.dp)
+                    )
+                }
+
+                // Big blog image (có placeholder)
+                if (bitmap != null) {
+                    Image(
+                        bitmap = bitmap.asImageBitmap(),
+                        contentDescription = "Snippet image",
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(180.dp)
+                            .clip(MaterialTheme.shapes.medium)
+                            .padding(12.dp)
+                        ,
+                        contentScale = ContentScale.Crop
+                    )
+                } else {
+                    Image(
+                        painter = painterResource(R.drawable.icon), // ảnh mặc định trong res/drawable
+                        contentDescription = "Placeholder image",
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(200.dp)
+                            .clip(MaterialTheme.shapes.medium)                            .padding(12.dp)
+                            .padding(12.dp)
+                        ,
+                        contentScale = ContentScale.Crop
+                    )
                 }
             }
         }
     }
-
-    isRevealed = swipeAble.currentValue == 1
 }
+
+@Composable
+private fun SwipeBackground() {
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(12.dp)
+    ) {
+        ElevatedCard(
+            colors = CardDefaults.elevatedCardColors(
+                containerColor = MaterialTheme.colorScheme.errorContainer
+            ),
+            modifier = Modifier.fillMaxWidth(),
+            shape = MaterialTheme.shapes.medium
+        ) {
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp),
+                horizontalArrangement = Arrangement.End,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Icon(
+                    imageVector = Icons.Default.Delete,
+                    contentDescription = "Delete",
+                    tint = MaterialTheme.colorScheme.onErrorContainer
+                )
+            }
+        }
+    }
+}
+
+
 
 private fun deleteDataFromSQLite(
     context: Context,
     snippetId: Int,
     listSnippets: MutableState<List<Snippets>>
 ) {
-//    SnippetsDao(DatabaseHelper(context)).deleteSnippetById(snippetId)
     val dbHelper = DatabaseHelper(context)
     dbHelper.use {
         val snippetsDao = SnippetsDao(dbHelper)
         snippetsDao.deleteSnippetById(snippetId)
     }
-//    Log.d("HomeScreen", "Deleted snippet with ID $snippetId from SQLite")
     listSnippets.value = fetchDataFromSQLite(context)
 }
 
 fun fetchDataFromSQLite(context: Context): List<Snippets> {
-//    val snippets = SnippetsDao(DatabaseHelper(context)).fetchSnippets()
     val dbHelper = DatabaseHelper(context)
     dbHelper.use {
         val snippetsDao = SnippetsDao(dbHelper)
         val snippets = snippetsDao.fetchSnippets()
-//        Log.d("HomeScreen", "Fetched ${snippets.size} snippets from SQLite")
         return snippets
     }
 }

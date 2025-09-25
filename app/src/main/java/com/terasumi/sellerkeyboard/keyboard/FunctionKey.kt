@@ -3,9 +3,8 @@ package com.terasumi.sellerkeyboard.keyboard
 import android.content.Context
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -28,9 +27,9 @@ import com.terasumi.sellerkeyboard.ui.theme.LightCustomColor
 fun FunctionKey(
     context: Context,
     key: String,
-    ratio: Float = 1.0f,
     myColor: Array<Color>,
     isLandscape: Boolean = false,
+    modifier: Modifier = Modifier,
 ) {
     //Map
     val map = mapOf(
@@ -39,44 +38,34 @@ fun FunctionKey(
 
 
     //TODO
+    val iconSize = if (isLandscape) 20.dp else 24.dp
+
     Button(
-//        border = BorderStroke(1.dp, Color.Black),
-        content = {
-            Box(
-                contentAlignment = Alignment.Center,
-                content = {
-                    Icon(
-                        imageVector = ImageVector.vectorResource(id = map[key]!!),
-                        contentDescription = key,
-                        modifier = Modifier.size(24.dp),
-                        tint = myColor[5]
-                    )
-                },
-                modifier = Modifier
-                    .width((30 * ratio).dp)
-                    .height((37 * ratio).dp)
-            )
-        },
-        contentPadding = PaddingValues(
-            horizontal = 0.dp, vertical = 0.dp
-        ), // Custom content padding
         onClick = {
             //TODO
 
         },
-        shape = RoundedCornerShape(6.dp),
+        shape = RoundedCornerShape(12.dp),
         colors = ButtonDefaults.buttonColors(
             containerColor = myColor[0],
             contentColor = Color(0xFF000000)
         ),
-        modifier =
-        if (isLandscape) Modifier
-            .height((35).dp)
-            .width((30).dp)
-        else Modifier
-            .height((42 * ratio).dp)
-            .width((30 * ratio).dp)
+        contentPadding = PaddingValues(0.dp),
+        modifier = modifier
     )
+    {
+        Box(
+            contentAlignment = Alignment.Center,
+            modifier = Modifier.fillMaxSize()
+        ) {
+            Icon(
+                imageVector = ImageVector.vectorResource(id = map[key]!!),
+                contentDescription = key,
+                tint = myColor[5],
+                modifier = Modifier.size(iconSize)
+            )
+        }
+    }
 }
 
 @Preview

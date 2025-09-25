@@ -1,23 +1,28 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+//    id("org.jetbrains.kotlin.plugin.serialization")
 //    id("com.google.gms.google-services")
 
     //KSP
     id("com.google.devtools.ksp")
+
+    // convex
+    // ... existing plugins
+    kotlin("plugin.serialization") version "1.9.24"
 }
 
 
 android {
     namespace = "com.terasumi.sellerkeyboard"
-    compileSdk = 34
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.terasumi.sellerkeyboard"
-        minSdk = 25 // Android 7.1
-        targetSdk = 34 // Android 14
-        versionCode = 19
-        versionName = "1.2.9"
+        minSdk = 26 // Android 8.0
+        targetSdk = 36 // Android 14
+        versionCode = 22
+        versionName = "1.3.2"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -129,4 +134,16 @@ dependencies {
 
     //lottie
     implementation("com.airbnb.android:lottie-compose:5.2.0")
+
+    // Convex mobile client and Kotlinx serialization
+//    implementation("dev.convex:android-convexmobile:0.4.1@aar") {
+//        isTransitive = true
+//    }
+//    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.3")
+
+    implementation("dev.convex:android-convexmobile:0.4.1@aar") {
+        isTransitive = true
+    }
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.3")
+
 }

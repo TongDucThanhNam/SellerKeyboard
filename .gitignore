@@ -19,3 +19,7 @@ local.properties
 /app/build
 /app/release
 /app/release/
+
+.env.local
+
+/node_modules

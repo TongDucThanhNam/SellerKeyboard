@@ -40,4 +40,8 @@
     <string name="switch_to_seller_keyboard"><![CDATA[Switch to Seller Keyboard ->]]></string>
     <string name="deleted">Deleted!</string>
 
+    <!-- convex_url removed from default values; translations live in values-en/ and values-vi/ -->
+    <string name="convex_url">https://wandering-eel-278.convex.cloud</string>
+
+
 </resources>
