@@ -38,6 +38,21 @@
     <string name="title_activity_home">Seller Keyboard</string>
     <string name="switch_to_seller_keyboard">Chuyển sang Seller Keyboard</string>
     <string name="deleted">Đã xoá</string>
+    <string name="settings">Cài đặt</string>
+    <string name="switch_keyboard_hint">Mở danh sách bàn phím để dùng nhanh các snippet đã lưu.</string>
+    <string name="open_keyboard_picker">Mở chọn bàn phím</string>
+    <string name="snippet_total_count">%1$d đoạn</string>
+    <string name="snippet_swipe_hint">Vuốt thẻ để xoá</string>
+    <string name="empty_snippet_title">Chưa có snippet nào</string>
+    <string name="empty_snippet_description">Tạo snippet đầu tiên để phản hồi khách nhanh và nhất quán hơn.</string>
+    <string name="snippet_untitled">Snippet chưa có tiêu đề</string>
+    <string name="snippet_content_empty">Chưa có nội dung.</string>
+    <string name="snippet_images_count">%1$d ảnh</string>
+    <string name="snippet_no_image">Chưa đính kèm ảnh</string>
+    <string name="snippet_image">Ảnh của snippet</string>
+    <string name="swipe_release_delete">Thả tay để xoá</string>
+    <string name="delete_snippet">Xoá snippet</string>
+    <string name="tap_to_edit">Nhấn để sửa</string>
 
     <!-- Convex backend URL - replace with your deployment URL -->
     <string name="convex_url">https://wandering-eel-278.convex.cloud</string>

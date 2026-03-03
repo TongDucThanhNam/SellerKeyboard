@@ -4,17 +4,19 @@ import SnippetsDao
 import android.content.Context
 import android.content.Context.INPUT_METHOD_SERVICE
 import android.content.Intent
-import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.provider.Settings
 import android.util.Log
 import android.view.inputmethod.InputMethodManager
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -22,16 +24,12 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowForwardIos
 import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.filled.Delete
-import androidx.compose.material.icons.filled.Keyboard
+import androidx.compose.material.icons.filled.Image
 import androidx.compose.material.icons.filled.Settings
-import androidx.compose.material.icons.filled.Star
-import androidx.compose.material3.Button
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
@@ -40,40 +38,39 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.ListItem
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.material3.SwipeToDismissBox
+import androidx.compose.material3.SwipeToDismissBoxValue
+import androidx.compose.material3.rememberSwipeToDismissBoxState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.asImageBitmap
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import androidx.compose.material3.SwipeToDismissBox
-import androidx.compose.material3.SwipeToDismissBoxValue
-import androidx.compose.material3.rememberSwipeToDismissBoxState
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.text.font.FontWeight
 import com.terasumi.sellerkeyboard.R
 import com.terasumi.sellerkeyboard.database.DatabaseHelper
 import com.terasumi.sellerkeyboard.database.Snippets
 import com.terasumi.sellerkeyboard.ui.theme.SellerKeyboardTheme
+import com.terasumi.sellerkeyboard.ui.theme.spacing
 import java.io.File
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -81,54 +78,59 @@ import java.io.File
 fun HomeScreen(navController: NavController) {
     var showMenu by remember { mutableStateOf(false) }
     val context = LocalContext.current
+    val snippetsState = remember { mutableStateOf(emptyList<Snippets>()) }
 
-    val listSnippets = remember { mutableStateOf(listOf<Snippets>()) }
+    val homePage = stringResource(R.string.homepage)
+    val enableKeyboard = stringResource(R.string.enable_keyboard)
+    val changeKeyboard = stringResource(R.string.change_keyboard)
 
-    //stringResource
-    val resources = context.resources
-    val homePage = remember {
-        resources.getString(R.string.homepage)
-    }
-    val turnOnKeyboard = remember {
-        resources.getString(R.string.enable_keyboard)
+    fun refreshSnippets() {
+        snippetsState.value = fetchDataFromSQLite(context)
     }
 
-    val changeKeyboard = remember {
-        resources.getString(R.string.change_keyboard)
+    fun openInputMethodPicker() {
+        try {
+            val imeManager = context.getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+            imeManager.showInputMethodPicker()
+        } catch (e: Exception) {
+            Log.e("HomeScreen", "Error changing keyboard", e)
+        }
     }
-
 
     LaunchedEffect(context) {
-        listSnippets.value = fetchDataFromSQLite(context)
+        refreshSnippets()
     }
 
     SellerKeyboardTheme {
         Scaffold(
             topBar = {
                 TopAppBar(
-                    title = { Text(homePage) },
-                    colors = TopAppBarDefaults.topAppBarColors(containerColor = MaterialTheme.colorScheme.primary),
+                    title = {
+                        Text(
+                            text = homePage,
+                            style = MaterialTheme.typography.titleLarge,
+                            fontWeight = FontWeight.SemiBold
+                        )
+                    },
+                    colors = TopAppBarDefaults.topAppBarColors(
+                        containerColor = MaterialTheme.colorScheme.surface,
+                        titleContentColor = MaterialTheme.colorScheme.onSurface,
+                        actionIconContentColor = MaterialTheme.colorScheme.onSurfaceVariant
+                    ),
                     actions = {
                         IconButton(onClick = { showMenu = !showMenu }) {
                             Icon(
                                 imageVector = Icons.Default.Settings,
-                                contentDescription = "Settings"
+                                contentDescription = stringResource(R.string.settings)
                             )
                         }
                         DropdownMenu(expanded = showMenu, onDismissRequest = { showMenu = false }) {
-                            DropdownMenuItem(text = { Text(turnOnKeyboard) }, onClick = {
+                            DropdownMenuItem(text = { Text(enableKeyboard) }, onClick = {
                                 context.startActivity(Intent(Settings.ACTION_INPUT_METHOD_SETTINGS))
                                 showMenu = false
                             })
                             DropdownMenuItem(text = { Text(changeKeyboard) }, onClick = {
-                                try {
-                                    val imeManager: InputMethodManager =
-                                        context.getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
-                                    imeManager.showInputMethodPicker()
-
-                                } catch (e: Exception) {
-                                    Log.e("HomeScreen", "Error changing keyboard", e)
-                                }
+                                openInputMethodPicker()
                                 showMenu = false
                             })
                         }
@@ -136,57 +138,64 @@ fun HomeScreen(navController: NavController) {
                 )
             },
             floatingActionButton = {
-                FloatingActionButton(onClick = { navController.navigate("addSnippet") }) {
-                    Icon(imageVector = Icons.Default.Add, contentDescription = "Add")
+                FloatingActionButton(
+                    onClick = { navController.navigate("addSnippet") },
+                    shape = RoundedCornerShape(18.dp),
+                    containerColor = MaterialTheme.colorScheme.primary,
+                    contentColor = MaterialTheme.colorScheme.onPrimary
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.Add,
+                        contentDescription = stringResource(R.string.add_snippet)
+                    )
                 }
             },
+            containerColor = MaterialTheme.colorScheme.surface,
             content = { innerPadding ->
-                Box(modifier = Modifier.padding(innerPadding)) {
-                    LazyColumn {
+                LazyColumn(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(innerPadding),
+                    contentPadding = PaddingValues(
+                        horizontal = MaterialTheme.spacing.medium,
+                        vertical = MaterialTheme.spacing.medium
+                    ),
+                    verticalArrangement = Arrangement.spacedBy(MaterialTheme.spacing.medium)
+                ) {
+                    item {
+                        KeyboardQuickActionCard(
+                            onOpenKeyboardPicker = { openInputMethodPicker() }
+                        )
+                    }
+
+                    item {
+                        SnippetSectionHeader(snippetCount = snippetsState.value.size)
+                    }
+
+                    if (snippetsState.value.isEmpty()) {
                         item {
-                            // Alert banner change keyboard
-                            Row(
-                                horizontalArrangement = Arrangement.SpaceAround,
-                                verticalAlignment = Alignment.CenterVertically,
-                                content = {
-                                    Text(
-                                        text = stringResource(R.string.switch_to_seller_keyboard),
-                                        color = MaterialTheme.colorScheme.onSurface
-                                    )
-
-                                    Button(onClick = {
-                                        try {
-                                            val imeManager: InputMethodManager =
-                                                context.getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
-                                            imeManager.showInputMethodPicker()
-
-                                        } catch (e: Exception) {
-                                            Log.e("HomeScreen", "Error changing keyboard", e)
-                                        }
-                                    }) {
-                                        Icon(
-                                            imageVector = Icons.Default.Keyboard,
-                                            contentDescription = "Settings"
-                                        )
-                                    }
-
-                                },
-                                modifier = Modifier
-                                    .padding(16.dp)
-                                    .fillMaxWidth()
-                            )
+                            EmptySnippetsState(onAddSnippet = {
+                                navController.navigate("addSnippet")
+                            })
                         }
-
-                        items(listSnippets.value) { snippet ->
+                    } else {
+                        items(snippetsState.value, key = { it.id }) { snippet ->
                             ItemCard(
                                 snippetId = snippet.id,
                                 title = snippet.title,
                                 content = snippet.content,
                                 imageUrls = snippet.imageUrls,
                                 navController = navController,
-                                listSnippets = listSnippets
+                                onDeleteSnippet = { snippetId ->
+                                    deleteDataFromSQLite(context, snippetId)
+                                    refreshSnippets()
+                                }
                             )
                         }
+                    }
+
+                    item {
+                        Spacer(modifier = Modifier.height(84.dp))
                     }
                 }
             }
@@ -202,140 +211,203 @@ fun ItemCard(
     content: String,
     imageUrls: List<String>,
     navController: NavController,
-    listSnippets: MutableState<List<Snippets>>
+    onDeleteSnippet: (Int) -> Unit
 ) {
-    val context = LocalContext.current
-
     val dismissState = rememberSwipeToDismissBoxState(
         confirmValueChange = { value ->
-            if (value == SwipeToDismissBoxValue.EndToStart || value == SwipeToDismissBoxValue.StartToEnd) {
-                deleteDataFromSQLite(context, snippetId, listSnippets)
+            if (value == SwipeToDismissBoxValue.EndToStart) {
+                onDeleteSnippet(snippetId)
                 true
             } else false
         },
-        positionalThreshold = { it * 0.35f }
+        positionalThreshold = { it * 0.25f }
     )
 
     val primaryImagePath = remember(imageUrls) { imageUrls.firstOrNull().orEmpty() }
     val bitmap = remember(primaryImagePath) {
-        runCatching { BitmapFactory.decodeFile(primaryImagePath) }.getOrNull()
+        if (primaryImagePath.isBlank() || !File(primaryImagePath).exists()) {
+            null
+        } else {
+            runCatching { BitmapFactory.decodeFile(primaryImagePath) }.getOrNull()
+        }
     }
+    val imageCount = remember(imageUrls) { imageUrls.count { it.isNotBlank() } }
 
     SwipeToDismissBox(
         state = dismissState,
-        backgroundContent = { SwipeBackground() }
+        backgroundContent = {
+            SwipeBackground(
+                dismissDirection = dismissState.dismissDirection,
+                progress = dismissState.progress
+            )
+        },
+        enableDismissFromStartToEnd = false
     ) {
         ElevatedCard(
             onClick = { navController.navigate("editSnippet/$snippetId") },
             modifier = Modifier
-                .fillMaxWidth()
-                .padding(12.dp),
-            shape = MaterialTheme.shapes.medium,
-            elevation = CardDefaults.elevatedCardElevation(defaultElevation = 2.dp)
-        ) {
-            Column {
-
-
-
-                Column(modifier = Modifier.padding(16.dp)) {
-                    Text(
-                        text = title,
-                        style = MaterialTheme.typography.titleMedium,
-                        maxLines = 1,
-                        overflow = TextOverflow.Ellipsis
-                    )
-                    Text(
-                        text = content,
-                        style = MaterialTheme.typography.bodyMedium,
-                        maxLines = 3,
-                        overflow = TextOverflow.Ellipsis,
-                        modifier = Modifier.padding(top = 4.dp)
-                    )
-                }
-
-                // Big blog image (có placeholder)
-                if (bitmap != null) {
-                    Image(
-                        bitmap = bitmap.asImageBitmap(),
-                        contentDescription = "Snippet image",
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .height(180.dp)
-                            .clip(MaterialTheme.shapes.medium)
-                            .padding(12.dp)
-                        ,
-                        contentScale = ContentScale.Crop
-                    )
-                } else {
-                    Image(
-                        painter = painterResource(R.drawable.icon), // ảnh mặc định trong res/drawable
-                        contentDescription = "Placeholder image",
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .height(200.dp)
-                            .clip(MaterialTheme.shapes.medium)                            .padding(12.dp)
-                            .padding(12.dp)
-                        ,
-                        contentScale = ContentScale.Crop
-                    )
-                }
-            }
-        }
-    }
-}
-
-@Composable
-private fun SwipeBackground() {
-    Box(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(12.dp)
-    ) {
-        ElevatedCard(
+                .fillMaxWidth(),
+            shape = RoundedCornerShape(20.dp),
+            elevation = CardDefaults.elevatedCardElevation(defaultElevation = 3.dp),
             colors = CardDefaults.elevatedCardColors(
-                containerColor = MaterialTheme.colorScheme.errorContainer
-            ),
-            modifier = Modifier.fillMaxWidth(),
-            shape = MaterialTheme.shapes.medium
+                containerColor = MaterialTheme.colorScheme.surface
+            )
         ) {
-            Row(
+            Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(16.dp),
-                horizontalArrangement = Arrangement.End,
-                verticalAlignment = Alignment.CenterVertically
+                    .padding(vertical = MaterialTheme.spacing.small),
+                verticalArrangement = Arrangement.spacedBy(MaterialTheme.spacing.medium)
             ) {
-                Icon(
-                    imageVector = Icons.Default.Delete,
-                    contentDescription = "Delete",
-                    tint = MaterialTheme.colorScheme.onErrorContainer
-                )
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = MaterialTheme.spacing.medium),
+                    verticalArrangement = Arrangement.spacedBy(MaterialTheme.spacing.small)
+                ) {
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        val titleText = title.ifBlank {
+                            stringResource(R.string.snippet_untitled)
+                        }
+                        Text(
+                            text = titleText,
+                            style = MaterialTheme.typography.titleMedium,
+                            fontWeight = FontWeight.SemiBold,
+                            maxLines = 1,
+                            overflow = TextOverflow.Ellipsis
+                        )
+                        Icon(
+                            imageVector = Icons.AutoMirrored.Filled.ArrowForwardIos,
+                            contentDescription = stringResource(R.string.tap_to_edit),
+                            tint = MaterialTheme.colorScheme.onSurfaceVariant,
+                            modifier = Modifier.size(16.dp)
+                        )
+                    }
+
+                    Text(
+                        text = content.ifBlank { stringResource(R.string.snippet_content_empty) },
+                        style = MaterialTheme.typography.bodyMedium,
+                        maxLines = 2,
+                        overflow = TextOverflow.Ellipsis,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(top = MaterialTheme.spacing.xSmall),
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Surface(
+                            shape = RoundedCornerShape(999.dp),
+                            color = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.65f)
+                        ) {
+                            Row(
+                                modifier = Modifier.padding(
+                                    horizontal = MaterialTheme.spacing.small,
+                                    vertical = MaterialTheme.spacing.xSmall
+                                ),
+                                verticalAlignment = Alignment.CenterVertically
+                            ) {
+                                Icon(
+                                    imageVector = Icons.Default.Image,
+                                    contentDescription = null,
+                                    modifier = Modifier.size(14.dp),
+                                    tint = MaterialTheme.colorScheme.onSurfaceVariant
+                                )
+                                Spacer(modifier = Modifier.width(4.dp))
+                                Text(
+                                    text = stringResource(
+                                        R.string.snippet_images_count,
+                                        imageCount
+                                    ),
+                                    style = MaterialTheme.typography.labelSmall,
+                                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                                )
+                            }
+                        }
+                        Text(
+                            text = stringResource(R.string.tap_to_edit),
+                            style = MaterialTheme.typography.labelSmall,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                            maxLines = 1,
+                            overflow = TextOverflow.Ellipsis,
+                            modifier = Modifier.padding(start = MaterialTheme.spacing.small)
+                        )
+                    }
+                }
+
+                if (bitmap != null) {
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(148.dp)
+                            .padding(horizontal = MaterialTheme.spacing.medium)
+                            .clip(RoundedCornerShape(16.dp))
+                            .background(MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.25f)),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Image(
+                            bitmap = bitmap.asImageBitmap(),
+                            contentDescription = stringResource(R.string.snippet_image),
+                            modifier = Modifier.fillMaxSize(),
+                            contentScale = ContentScale.Crop
+                        )
+                    }
+                } else {
+                    Surface(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(horizontal = MaterialTheme.spacing.medium),
+                        shape = RoundedCornerShape(14.dp),
+                        color = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.35f)
+                    ) {
+                        Column(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(vertical = MaterialTheme.spacing.small),
+                            horizontalAlignment = Alignment.CenterHorizontally
+                        ) {
+                            Icon(
+                                imageVector = Icons.Default.Image,
+                                contentDescription = null,
+                                tint = MaterialTheme.colorScheme.onSurfaceVariant,
+                                modifier = Modifier.size(18.dp)
+                            )
+                            Text(
+                                text = stringResource(R.string.snippet_no_image),
+                                style = MaterialTheme.typography.labelSmall,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant
+                            )
+                        }
+                    }
+                }
             }
         }
     }
 }
-
-
 
 private fun deleteDataFromSQLite(
     context: Context,
-    snippetId: Int,
-    listSnippets: MutableState<List<Snippets>>
+    snippetId: Int
 ) {
     val dbHelper = DatabaseHelper(context)
     dbHelper.use {
         val snippetsDao = SnippetsDao(dbHelper)
         snippetsDao.deleteSnippetById(snippetId)
     }
-    listSnippets.value = fetchDataFromSQLite(context)
 }
 
 fun fetchDataFromSQLite(context: Context): List<Snippets> {
     val dbHelper = DatabaseHelper(context)
     dbHelper.use {
         val snippetsDao = SnippetsDao(dbHelper)
-        val snippets = snippetsDao.fetchSnippets()
-        return snippets
+        return snippetsDao.fetchSnippets()
     }
 }
 
@@ -353,10 +425,11 @@ fun ItemCardPreview() {
     SellerKeyboardTheme {
         ItemCard(
             snippetId = 1,
-            title = "Title",
-            content = "Content",
+            title = "Shipping update",
+            content = "Hi there, your order is packed and will be handed over today.",
             imageUrls = listOf(""),
             navController = rememberNavController(),
-            listSnippets = remember { mutableStateOf(listOf()) })
+            onDeleteSnippet = {}
+        )
     }
 }

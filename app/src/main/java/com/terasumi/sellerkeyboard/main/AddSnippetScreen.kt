@@ -11,13 +11,11 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.CircleShape
@@ -31,20 +29,17 @@ import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Article
 import androidx.compose.material.icons.filled.Clear
 import androidx.compose.material.icons.filled.Image
-import androidx.compose.material.icons.filled.Lightbulb
-import androidx.compose.material.icons.filled.Message
-import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.ElevatedButton
-import androidx.compose.material3.ElevatedCard
-import androidx.compose.material3.CenterAlignedTopAppBar
+import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.CenterAlignedTopAppBar
+import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
@@ -53,8 +48,6 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.rememberTopAppBarState
 import androidx.compose.material3.HorizontalDivider
-import androidx.compose.material3.AssistChip
-import androidx.compose.material3.AssistChipDefaults
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -76,6 +69,9 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
+import androidx.compose.foundation.layout.imePadding
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.widthIn
@@ -157,20 +153,6 @@ fun AddSnippetScreen(
     // Some optional strings may not exist in all projects; provide safe defaults
     val tapToAddImages = remember { "Bấm để thêm hình ảnh" }
     val savedSuccessfully = remember { "Saved successfully" }
-    val quickTitleSuggestions = remember {
-        listOf(
-            "Shipping update",
-            "Order ready to ship",
-            "Thank you follow-up"
-        )
-    }
-    val quickBodySuggestions = remember {
-        listOf(
-            "Hi there! Thanks so much for your order. Here's what happens next:",
-            "We're preparing your package right now. Below is the latest status and what to expect:",
-            "Need support? Reply to this message and we'll get back to you within the day."
-        )
-    }
 
     val MAX_IMAGES = 5
 
@@ -209,11 +191,44 @@ fun AddSnippetScreen(
         }
     }
 
+    val canSave = validateFormData(title, content) && !isSaving
+
+    fun saveSnippet() {
+        attemptedSave = true
+        if (validateFormData(title, content) && !isSaving) {
+            isSaving = true
+            scope.launch {
+                try {
+                    val saved = withContext(Dispatchers.IO) {
+                        if (bitmaps.isEmpty()) {
+                            saveDataToSQLite(context, title, content, emptyList())
+                        } else {
+                            val imagePaths = bitmaps.map { bitmap ->
+                                saveImageToInternalStorage(context, bitmap)
+                            }
+                            saveDataToSQLite(context, title, content, imagePaths)
+                        }
+                        true
+                    }
+                    if (saved) {
+                        isSaving = false
+                        snackbarHostState.showSnackbar(savedSuccessfully)
+                        navController.popBackStack("main", inclusive = false)
+                    }
+                } catch (e: Exception) {
+                    isSaving = false
+                    snackbarHostState.showSnackbar(e.message ?: "Error saving snippet")
+                }
+            }
+        } else if (!isSaving) {
+            scope.launch { snackbarHostState.showSnackbar("Please enter a title and content") }
+        }
+    }
+
     Scaffold(
         snackbarHost = {
             SnackbarHost(hostState = snackbarHostState)
         },
-
         topBar = {
             CenterAlignedTopAppBar(
                 title = { Text(text = addSnippet) },
@@ -227,34 +242,87 @@ fun AddSnippetScreen(
                 },
                 scrollBehavior = scrollBehavior,
             )
+        },
+        bottomBar = {
+            Surface(
+                color = colorScheme.surface,
+                tonalElevation = 0.dp,
+                shadowElevation = 2.dp,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .imePadding()
+                    .navigationBarsPadding()
+            ) {
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(
+                            horizontal = MaterialTheme.spacing.medium,
+                            vertical = MaterialTheme.spacing.small
+                        ),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Button(
+                        onClick = { saveSnippet() },
+                        enabled = canSave,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .widthIn(max = 560.dp)
+                            .height(52.dp),
+                        colors = ButtonDefaults.buttonColors(
+                            containerColor = colorScheme.primary,
+                            contentColor = colorScheme.onPrimary,
+                            disabledContainerColor = colorScheme.surfaceVariant.copy(alpha = 0.85f),
+                            disabledContentColor = colorScheme.onSurfaceVariant.copy(alpha = 0.9f)
+                        ),
+                        shape = RoundedCornerShape(14.dp)
+                    ) {
+                        if (isSaving) {
+                            CircularProgressIndicator(
+                                modifier = Modifier.size(20.dp),
+                                color = colorScheme.onPrimary
+                            )
+                        } else {
+                            Text(text = save)
+                        }
+                    }
+                }
+            }
         }
     ) { contentPadding ->
         Box(
             modifier = Modifier
                 .fillMaxSize()
-//                .background(backgroundBrush)
+                .background(colorScheme.background)
         ) {
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(contentPadding)
                     .verticalScroll(scrollState)
-                    .padding(horizontal = MaterialTheme.spacing.large)
+                    .padding(horizontal = MaterialTheme.spacing.medium)
                     .padding(vertical = MaterialTheme.spacing.medium),
                 horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.spacedBy(MaterialTheme.spacing.large)
+                verticalArrangement = Arrangement.spacedBy(MaterialTheme.spacing.medium)
             ) {
                 val fieldShape = RoundedCornerShape(18.dp)
+                val formFieldColors = snippetFormFieldColors()
 
                 // Form card
                 ElevatedCard(
-                    colors = CardDefaults.elevatedCardColors(containerColor = colorScheme.surface),
-                    shape = RoundedCornerShape(24.dp),
+                    colors = CardDefaults.elevatedCardColors(
+                        containerColor = if (isSystemInDarkTheme()) colorScheme.surface else Color.White
+                    ),
+                    shape = RoundedCornerShape(20.dp),
                     modifier = Modifier
                         .fillMaxWidth()
                         .widthIn(max = 560.dp)
-                        .padding(bottom = MaterialTheme.spacing.medium),
-                    elevation = CardDefaults.elevatedCardElevation(defaultElevation = 8.dp)
+                        .border(
+                            width = 1.dp,
+                            color = colorScheme.outline.copy(alpha = 0.12f),
+                            shape = RoundedCornerShape(20.dp)
+                        ),
+                    elevation = CardDefaults.elevatedCardElevation(defaultElevation = 2.dp)
                 ) {
                     Column(
                         modifier = Modifier
@@ -263,8 +331,25 @@ fun AddSnippetScreen(
                                 horizontal = MaterialTheme.spacing.large,
                                 vertical = MaterialTheme.spacing.medium
                             ),
-                        verticalArrangement = Arrangement.spacedBy(MaterialTheme.spacing.large)
+                        verticalArrangement = Arrangement.spacedBy(MaterialTheme.spacing.medium)
                     ) {
+                        Row(
+                            verticalAlignment = Alignment.CenterVertically,
+                            horizontalArrangement = Arrangement.spacedBy(MaterialTheme.spacing.small)
+                        ) {
+                            Icon(
+                                imageVector = Icons.Default.Article,
+                                contentDescription = null,
+                                tint = colorScheme.primary,
+                                modifier = Modifier.size(18.dp)
+                            )
+                            Text(
+                                text = "Thông tin snippet",
+                                style = MaterialTheme.typography.titleSmall,
+                                color = colorScheme.onSurface
+                            )
+                        }
+
                         OutlinedTextField(
                             value = title,
                             maxLines = 1,
@@ -273,7 +358,7 @@ fun AddSnippetScreen(
                             placeholder = { Text("e.g. Order confirmation message") },
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .height(MaterialTheme.sizes.inputHeight),
+                                .heightIn(min = MaterialTheme.sizes.inputHeight),
                             trailingIcon = {
                                 if (title.isNotEmpty()) {
                                     IconButton(onClick = { title = "" }) {
@@ -285,15 +370,7 @@ fun AddSnippetScreen(
                                 }
                             },
                             shape = fieldShape,
-                            colors = OutlinedTextFieldDefaults.colors(
-                                focusedBorderColor = colorScheme.primary,
-                                unfocusedBorderColor = colorScheme.outline.copy(alpha = 0.6f),
-                                errorBorderColor = colorScheme.error,
-                                focusedContainerColor = colorScheme.surface,
-                                unfocusedContainerColor = colorScheme.surface,
-                                disabledContainerColor = colorScheme.surface,
-                                errorContainerColor = colorScheme.surface
-                            ),
+                            colors = formFieldColors,
                             isError = attemptedSave && title.isBlank(),
                             keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next),
                             keyboardActions = KeyboardActions(onNext = {
@@ -351,15 +428,7 @@ fun AddSnippetScreen(
                                 }
                             },
                             shape = fieldShape,
-                            colors = OutlinedTextFieldDefaults.colors(
-                                focusedBorderColor = colorScheme.primary,
-                                unfocusedBorderColor = colorScheme.outline.copy(alpha = 0.6f),
-                                errorBorderColor = colorScheme.error,
-                                focusedContainerColor = colorScheme.surface,
-                                unfocusedContainerColor = colorScheme.surface,
-                                disabledContainerColor = colorScheme.surface,
-                                errorContainerColor = colorScheme.surface
-                            ),
+                            colors = formFieldColors,
                             isError = attemptedSave && content.isBlank(),
                             keyboardOptions = KeyboardOptions(imeAction = ImeAction.Done),
                             keyboardActions = KeyboardActions(onDone = { focusManager.clearFocus() }),
@@ -400,9 +469,15 @@ fun AddSnippetScreen(
 
                         Surface(
                             shape = RoundedCornerShape(18.dp),
-                            color = colorScheme.surfaceVariant.copy(alpha = 0.45f),
+                            color = colorScheme.surfaceVariant.copy(alpha = 0.2f),
                             tonalElevation = 1.dp,
-                            modifier = Modifier.fillMaxWidth()
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .border(
+                                    1.dp,
+                                    colorScheme.outline.copy(alpha = 0.16f),
+                                    RoundedCornerShape(18.dp)
+                                )
                         ) {
                             Column(
                                 modifier = Modifier
@@ -429,9 +504,9 @@ fun AddSnippetScreen(
                                     }
                                     Column(verticalArrangement = Arrangement.spacedBy(MaterialTheme.spacing.xSmall)) {
                                         Text(
-                                            text = "Images",
+                                            text = "Hình ảnh",
                                             style = MaterialTheme.typography.titleSmall,
-                                            color = colorScheme.onSurfaceVariant
+                                            color = colorScheme.onSurface
                                         )
                                         Text(
                                             text = "Thêm hình ảnh để làm cho đoạn trích của bạn nổi bật hơn (tùy chọn)",
@@ -688,65 +763,6 @@ fun AddSnippetScreen(
                                 }
                             }
                         }
-                    }
-                }
-
-                ElevatedButton(
-                    onClick = {
-                        attemptedSave = true
-                        if (validateFormData(title, content) && !isSaving) {
-                            isSaving = true
-                            scope.launch {
-                                try {
-                                    // perform IO on background thread
-                                    val saved = withContext(Dispatchers.IO) {
-                                        if (bitmaps.isEmpty()) {
-                                            saveDataToSQLite(context, title, content, emptyList())
-                                        } else {
-                                            val imagePaths = bitmaps.map { bitmap ->
-                                                saveImageToInternalStorage(context, bitmap)
-                                            }
-                                            saveDataToSQLite(context, title, content, imagePaths)
-                                        }
-                                        true
-                                    }
-
-                                    if (saved) {
-                                        isSaving = false
-                                        snackbarHostState.showSnackbar(savedSuccessfully)
-                                        navController.popBackStack("main", inclusive = false)
-                                    }
-                                } catch (e: Exception) {
-                                    isSaving = false
-                                    snackbarHostState.showSnackbar(
-                                        e.message ?: "Error saving snippet"
-                                    )
-                                }
-                            }
-                        } else if (!isSaving) {
-                            scope.launch { snackbarHostState.showSnackbar("Please enter a title and content") }
-                        }
-                    },
-                    enabled = validateFormData(title, content) && !isSaving,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .widthIn(max = 560.dp)
-                        .padding(horizontal = MaterialTheme.spacing.small)
-                        .height(52.dp),
-                    colors = ButtonDefaults.elevatedButtonColors(containerColor = colorScheme.primary),
-                    elevation = ButtonDefaults.elevatedButtonElevation(
-                        defaultElevation = 6.dp,
-                        pressedElevation = 2.dp
-                    ),
-                    shape = MaterialTheme.shapes.medium
-                ) {
-                    if (isSaving) {
-                        CircularProgressIndicator(
-                            modifier = Modifier.size(20.dp),
-                            color = colorScheme.onPrimary
-                        )
-                    } else {
-                        Text(text = save, color = colorScheme.onPrimary)
                     }
                 }
             }
