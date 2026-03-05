@@ -21,6 +21,8 @@
     <!-- Menu -->
     <string name="enable_keyboard">Bật/tắt bàn phím</string>
     <string name="change_keyboard">Thay đổi bàn phím</string>
+    <string name="enable_key_vibration">Bật rung khi nhấn phím</string>
+    <string name="disable_key_vibration">Tắt rung khi nhấn phím</string>
     <string name="voice">Voice Assistance</string>
     <string name="subtype">Cài đặt ngôn ngữ phụ</string>
 
@@ -33,6 +35,8 @@
     <string name="enter_expression">Nhập biểu thức</string>
     <string name="send_expression">Gửi cả biểu thức</string>
     <string name="send_result">Gửi kết quả</string>
+    <string name="result_label">Kết quả</string>
+    <string name="invalid_expression">Biểu thức không hợp lệ</string>
 
     <string name="keyboard">Keyboard</string>
     <string name="title_activity_home">Seller Keyboard</string>

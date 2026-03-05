@@ -21,6 +21,8 @@
     <!-- Menu -->
     <string name="enable_keyboard">Enable/Disable Keyboard</string>
     <string name="change_keyboard">Change Keyboard</string>
+    <string name="enable_key_vibration">Enable key vibration</string>
+    <string name="disable_key_vibration">Disable key vibration</string>
     <string name="voice">Voice Assistance</string>
     <string name="subtype">Secondary Language Settings</string>
 
@@ -33,6 +35,8 @@
     <string name="enter_expression">Enter Expression</string>
     <string name="send_expression">Send Expression</string>
     <string name="send_result">Send Result</string>
+    <string name="result_label">Result</string>
+    <string name="invalid_expression">Invalid expression</string>
 
     <string name="keyboard">Keyboard</string>
     <string name="title_activity_home">Seller Keyboard</string>

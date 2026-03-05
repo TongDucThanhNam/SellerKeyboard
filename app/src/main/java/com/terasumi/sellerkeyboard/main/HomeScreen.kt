@@ -69,6 +69,7 @@ import androidx.navigation.compose.rememberNavController
 import com.terasumi.sellerkeyboard.R
 import com.terasumi.sellerkeyboard.database.DatabaseHelper
 import com.terasumi.sellerkeyboard.database.Snippets
+import com.terasumi.sellerkeyboard.service.SellerKeyboard
 import com.terasumi.sellerkeyboard.ui.theme.SellerKeyboardTheme
 import com.terasumi.sellerkeyboard.ui.theme.spacing
 import java.io.File
@@ -78,11 +79,14 @@ import java.io.File
 fun HomeScreen(navController: NavController) {
     var showMenu by remember { mutableStateOf(false) }
     val context = LocalContext.current
+    var isKeyHapticEnabled by remember { mutableStateOf(readKeyHapticEnabled(context)) }
     val snippetsState = remember { mutableStateOf(emptyList<Snippets>()) }
 
     val homePage = stringResource(R.string.homepage)
     val enableKeyboard = stringResource(R.string.enable_keyboard)
     val changeKeyboard = stringResource(R.string.change_keyboard)
+    val enableVibration = stringResource(R.string.enable_key_vibration)
+    val disableVibration = stringResource(R.string.disable_key_vibration)
 
     fun refreshSnippets() {
         snippetsState.value = fetchDataFromSQLite(context)
@@ -133,6 +137,30 @@ fun HomeScreen(navController: NavController) {
                                 openInputMethodPicker()
                                 showMenu = false
                             })
+                            DropdownMenuItem(
+                                text = {
+                                    Text(
+                                        text = if (isKeyHapticEnabled) {
+                                            disableVibration
+                                        } else {
+                                            enableVibration
+                                        }
+                                    )
+                                },
+                                onClick = {
+                                    isKeyHapticEnabled = !isKeyHapticEnabled
+                                    context.getSharedPreferences(
+                                        SellerKeyboard.PREFS_NAME,
+                                        Context.MODE_PRIVATE
+                                    ).edit()
+                                        .putBoolean(
+                                            SellerKeyboard.PREF_HAPTIC_ENABLED,
+                                            isKeyHapticEnabled
+                                        )
+                                        .apply()
+                                    showMenu = false
+                                }
+                            )
                         }
                     }
                 )
@@ -401,6 +429,12 @@ private fun deleteDataFromSQLite(
         val snippetsDao = SnippetsDao(dbHelper)
         snippetsDao.deleteSnippetById(snippetId)
     }
+}
+
+private fun readKeyHapticEnabled(context: Context): Boolean {
+    return context
+        .getSharedPreferences(SellerKeyboard.PREFS_NAME, Context.MODE_PRIVATE)
+        .getBoolean(SellerKeyboard.PREF_HAPTIC_ENABLED, true)
 }
 
 fun fetchDataFromSQLite(context: Context): List<Snippets> {

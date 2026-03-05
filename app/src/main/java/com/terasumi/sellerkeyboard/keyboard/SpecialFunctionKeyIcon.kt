@@ -1,7 +1,5 @@
 package com.terasumi.sellerkeyboard.keyboard
 
-import android.content.Context
-import android.view.KeyEvent
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -12,48 +10,43 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.terasumi.sellerkeyboard.R
-import com.terasumi.sellerkeyboard.service.SellerKeyboard
-import com.terasumi.sellerkeyboard.ui.theme.LightCustomColor
+import com.terasumi.sellerkeyboard.keyboard.theme.LightKeyboardColors
+import com.terasumi.sellerkeyboard.keyboard.theme.KeyboardColors
 
 @Composable
 fun SpecialFunctionKeyIcon(
-    context: Context,
     action: String,
-    myColor: Array<Color>,
+    myColor: KeyboardColors,
     isLandscape: Boolean = false,
     modifier: Modifier = Modifier,
+    onAction: (KeyboardAction) -> Unit,
 ) {
     val map = mapOf(
         "ENTER" to R.drawable.enter,
     )
 
-    val iconSize = if (isLandscape) 22.dp else 24.dp
+    val iconSize = if (isLandscape) 20.dp else 22.dp
 
     Button(
         colors = ButtonDefaults.buttonColors(
-            contentColor = Color(0xFF000000),
-            containerColor = myColor[2]
+            containerColor = myColor.keyActionBackground,
+            contentColor = myColor.iconColor
         ),
         onClick = {
-            when (action) {
-                "ENTER" -> (context as SellerKeyboard).currentInputConnection.sendKeyEvent(
-                    KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_ENTER)
-                )
-            }
+            if (action == "ENTER") onAction(KeyboardAction.Enter)
         },
         contentPadding = PaddingValues(0.dp),
-        shape = RoundedCornerShape(12.dp),
+        shape = RoundedCornerShape(if (isLandscape) 12.dp else 15.dp),
         modifier = modifier
     ) {
         Icon(
             imageVector = ImageVector.vectorResource(id = map[action]!!),
             contentDescription = null,
-            tint = myColor[5],
+            tint = myColor.iconColor,
             modifier = Modifier.size(iconSize)
         )
     }
@@ -62,10 +55,9 @@ fun SpecialFunctionKeyIcon(
 @Preview
 @Composable
 fun SpecialFunctionKeyIconPreview() {
-    val context = LocalContext.current
     SpecialFunctionKeyIcon(
-        context = context,
         action = "ENTER",
-        myColor = LightCustomColor
+        myColor = LightKeyboardColors,
+        onAction = {}
     )
 }

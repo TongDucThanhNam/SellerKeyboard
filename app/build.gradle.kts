@@ -1,15 +1,11 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
-//    id("org.jetbrains.kotlin.plugin.serialization")
 //    id("com.google.gms.google-services")
 
     //KSP
     id("com.google.devtools.ksp")
-
-    // convex
-    // ... existing plugins
-    kotlin("plugin.serialization") version "1.9.24"
+    id("org.jetbrains.kotlin.plugin.compose")
 }
 
 
@@ -21,8 +17,8 @@ android {
         applicationId = "com.terasumi.sellerkeyboard"
         minSdk = 26 // Android 8.0
         targetSdk = 36 // Android 14
-        versionCode = 22
-        versionName = "1.3.2"
+        versionCode = 24
+        versionName = "1.3.4"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -38,9 +34,6 @@ android {
                 "proguard-rules.pro"
             )
         }
-    }
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.14" // Use the appropriate version
     }
 
     compileOptions {
@@ -65,12 +58,9 @@ android {
 }
 
 dependencies {
-
     implementation("androidx.appcompat:appcompat:1.7.0")
     implementation("com.google.android.material:material:1.12.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
-    implementation("com.google.ar.sceneform:filament-android:1.17.1")
-    implementation("com.google.ar.sceneform:rendering:1.17.1")
     implementation("androidx.annotation:annotation-jvm:1.8.2")
 //    implementation(platform("com.google.firebase:firebase-bom:33.1.2"))
     implementation("androidx.navigation:navigation-runtime-ktx:2.7.7")
@@ -134,16 +124,5 @@ dependencies {
 
     //lottie
     implementation("com.airbnb.android:lottie-compose:5.2.0")
-
-    // Convex mobile client and Kotlinx serialization
-//    implementation("dev.convex:android-convexmobile:0.4.1@aar") {
-//        isTransitive = true
-//    }
-//    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.3")
-
-    implementation("dev.convex:android-convexmobile:0.4.1@aar") {
-        isTransitive = true
-    }
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.3")
 
 }

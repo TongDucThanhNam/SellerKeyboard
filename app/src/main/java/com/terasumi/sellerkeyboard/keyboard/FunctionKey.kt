@@ -20,14 +20,15 @@ import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.terasumi.sellerkeyboard.R
-import com.terasumi.sellerkeyboard.ui.theme.LightCustomColor
+import com.terasumi.sellerkeyboard.keyboard.theme.LightKeyboardColors
+import com.terasumi.sellerkeyboard.keyboard.theme.KeyboardColors
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun FunctionKey(
     context: Context,
     key: String,
-    myColor: Array<Color>,
+    myColor: KeyboardColors,
     isLandscape: Boolean = false,
     modifier: Modifier = Modifier,
 ) {
@@ -47,7 +48,7 @@ fun FunctionKey(
         },
         shape = RoundedCornerShape(12.dp),
         colors = ButtonDefaults.buttonColors(
-            containerColor = myColor[0],
+            containerColor = myColor.keyBackground,
             contentColor = Color(0xFF000000)
         ),
         contentPadding = PaddingValues(0.dp),
@@ -61,7 +62,7 @@ fun FunctionKey(
             Icon(
                 imageVector = ImageVector.vectorResource(id = map[key]!!),
                 contentDescription = key,
-                tint = myColor[5],
+                tint = myColor.iconColor,
                 modifier = Modifier.size(iconSize)
             )
         }
@@ -72,5 +73,5 @@ fun FunctionKey(
 @Composable
 fun FunctionKeyPreview() {
     val context = LocalContext.current
-    FunctionKey(context, "numbers", myColor = LightCustomColor)
+    FunctionKey(context, "numbers", myColor = LightKeyboardColors)
 }

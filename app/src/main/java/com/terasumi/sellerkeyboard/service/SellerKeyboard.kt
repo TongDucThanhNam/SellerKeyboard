@@ -1,10 +1,15 @@
 package com.terasumi.sellerkeyboard.service
 
+import android.content.Context
 import android.content.ClipDescription
 import android.content.ContentValues.TAG
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
+import android.os.Build
+import android.os.VibrationEffect
+import android.os.Vibrator
+import android.os.VibratorManager
 import android.util.Log
 import android.view.View
 import androidx.core.content.FileProvider
@@ -30,6 +35,15 @@ import java.io.IOException
 
 class SellerKeyboard : LifecycleInputMethodService(), ViewModelStoreOwner, SavedStateRegistryOwner {
     var mVoiceRecognitionTrigger: VoiceRecognitionTrigger? = null
+
+    private val vibrator: Vibrator? by lazy {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            getSystemService(VibratorManager::class.java)?.defaultVibrator
+        } else {
+            @Suppress("DEPRECATION")
+            getSystemService(Context.VIBRATOR_SERVICE) as? Vibrator
+        }
+    }
 
 
     override fun onCreateInputView(): View {
@@ -130,6 +144,43 @@ class SellerKeyboard : LifecycleInputMethodService(), ViewModelStoreOwner, Saved
         })
     }
 
+    fun isKeyHapticEnabled(): Boolean {
+        return getSharedPreferences(PREFS_NAME, MODE_PRIVATE).getBoolean(PREF_HAPTIC_ENABLED, true)
+    }
+
+    fun setKeyHapticEnabled(enabled: Boolean) {
+        getSharedPreferences(PREFS_NAME, MODE_PRIVATE)
+            .edit()
+            .putBoolean(PREF_HAPTIC_ENABLED, enabled)
+            .apply()
+    }
+
+    fun performKeyHapticFeedback() {
+        if (!isKeyHapticEnabled()) {
+            return
+        }
+        val targetVibrator = vibrator ?: return
+        if (!targetVibrator.hasVibrator()) {
+            return
+        }
+
+        try {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                targetVibrator.vibrate(
+                    VibrationEffect.createOneShot(
+                        HAPTIC_DURATION_MS,
+                        VibrationEffect.DEFAULT_AMPLITUDE
+                    )
+                )
+            } else {
+                @Suppress("DEPRECATION")
+                targetVibrator.vibrate(HAPTIC_DURATION_MS)
+            }
+        } catch (_: SecurityException) {
+            // Ignore when device policy blocks haptics for current user/profile.
+        }
+    }
+
     override fun onDestroy() {
         super.onDestroy()
         if (mVoiceRecognitionTrigger != null) {
@@ -154,4 +205,10 @@ class SellerKeyboard : LifecycleInputMethodService(), ViewModelStoreOwner, Saved
     private val savedStateRegistryController = SavedStateRegistryController.create(this)
 
     override val savedStateRegistry: SavedStateRegistry get() = savedStateRegistryController.savedStateRegistry
+
+    companion object {
+        const val PREFS_NAME = "keyboard_prefs"
+        const val PREF_HAPTIC_ENABLED = "pref_haptic_enabled"
+        private const val HAPTIC_DURATION_MS = 12L
+    }
 }

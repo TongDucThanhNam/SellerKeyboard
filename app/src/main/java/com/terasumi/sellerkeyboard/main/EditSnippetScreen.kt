@@ -36,7 +36,6 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.filled.Article
 import androidx.compose.material.icons.filled.Clear
 import androidx.compose.material.icons.filled.Image
 import androidx.compose.material3.Button
@@ -77,6 +76,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -275,8 +275,8 @@ fun EditSnippetScreen(navController: NavHostController, snippetId: Int) {
                         colors = ButtonDefaults.buttonColors(
                             containerColor = MaterialTheme.colorScheme.primary,
                             contentColor = MaterialTheme.colorScheme.onPrimary,
-                            disabledContainerColor = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.85f),
-                            disabledContentColor = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.9f)
+                            disabledContainerColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.28f),
+                            disabledContentColor = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.62f)
                         ),
                         shape = RoundedCornerShape(14.dp)
                     ) {
@@ -314,18 +314,13 @@ fun EditSnippetScreen(navController: NavHostController, snippetId: Int) {
 
                 ElevatedCard(
                     colors = CardDefaults.elevatedCardColors(
-                        containerColor = if (isSystemInDarkTheme()) colorScheme.surface else androidx.compose.ui.graphics.Color.White
+                        containerColor = colorScheme.surface
                     ),
                     shape = RoundedCornerShape(20.dp),
                     modifier = Modifier
                         .fillMaxWidth()
-                        .widthIn(max = 560.dp)
-                        .border(
-                            width = 1.dp,
-                            color = colorScheme.outline.copy(alpha = 0.12f),
-                            shape = RoundedCornerShape(20.dp)
-                        ),
-                    elevation = CardDefaults.elevatedCardElevation(defaultElevation = 2.dp)
+                        .widthIn(max = 560.dp),
+                    elevation = CardDefaults.elevatedCardElevation(defaultElevation = 1.dp)
                 ) {
                     Column(
                         modifier = Modifier
@@ -336,22 +331,17 @@ fun EditSnippetScreen(navController: NavHostController, snippetId: Int) {
                             ),
                         verticalArrangement = Arrangement.spacedBy(MaterialTheme.spacing.medium)
                     ) {
-                        Row(
-                            verticalAlignment = Alignment.CenterVertically,
-                            horizontalArrangement = Arrangement.spacedBy(MaterialTheme.spacing.small)
-                        ) {
-                            Icon(
-                                imageVector = Icons.Default.Article,
-                                contentDescription = null,
-                                tint = colorScheme.primary,
-                                modifier = Modifier.size(18.dp)
-                            )
-                            Text(
-                                text = "Thông tin snippet",
-                                style = MaterialTheme.typography.titleSmall,
-                                color = colorScheme.onSurface
-                            )
-                        }
+                        Text(
+                            text = "Thông tin snippet",
+                            style = MaterialTheme.typography.titleMedium,
+                            color = colorScheme.onSurface,
+                            fontWeight = FontWeight.SemiBold
+                        )
+                        Text(
+                            text = "Điền nhãn và nội dung để dùng nhanh khi trả lời khách",
+                            style = MaterialTheme.typography.bodySmall,
+                            color = colorScheme.onSurfaceVariant
+                        )
 
                         OutlinedTextField(
                             value = title,
@@ -465,18 +455,18 @@ fun EditSnippetScreen(navController: NavHostController, snippetId: Int) {
 
                         HorizontalDivider(
                             modifier = Modifier.padding(vertical = MaterialTheme.spacing.small),
-                            color = colorScheme.outline.copy(alpha = 0.12f)
+                            color = colorScheme.outline.copy(alpha = 0.2f)
                         )
 
                         Surface(
                             shape = RoundedCornerShape(18.dp),
-                            color = colorScheme.surfaceVariant.copy(alpha = 0.2f),
-                            tonalElevation = 1.dp,
+                            color = colorScheme.surface,
+                            tonalElevation = 0.dp,
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .border(
                                     1.dp,
-                                    colorScheme.outline.copy(alpha = 0.16f),
+                                    colorScheme.outline.copy(alpha = 0.14f),
                                     RoundedCornerShape(18.dp)
                                 )
                         ) {
@@ -490,22 +480,15 @@ fun EditSnippetScreen(navController: NavHostController, snippetId: Int) {
                                     verticalAlignment = Alignment.CenterVertically,
                                     horizontalArrangement = Arrangement.spacedBy(MaterialTheme.spacing.small)
                                 ) {
-                                    Box(
-                                        modifier = Modifier
-                                            .size(36.dp)
-                                            .clip(CircleShape)
-                                            .background(colorScheme.secondaryContainer),
-                                        contentAlignment = Alignment.Center
+                                    Column(
+                                        verticalArrangement = Arrangement.spacedBy(MaterialTheme.spacing.xSmall)
                                     ) {
                                         Icon(
                                             imageVector = Icons.Default.Image,
                                             contentDescription = null,
-                                            tint = colorScheme.onSecondaryContainer
+                                            tint = colorScheme.primary,
+                                            modifier = Modifier.size(18.dp)
                                         )
-                                    }
-                                    Column(
-                                        verticalArrangement = Arrangement.spacedBy(MaterialTheme.spacing.xSmall)
-                                    ) {
                                         Text(
                                             text = "Hình ảnh",
                                             style = MaterialTheme.typography.titleSmall,
