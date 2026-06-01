@@ -1,13 +1,22 @@
 package com.terasumi.sellerkeyboard.keyboard
 
-import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.background
+import androidx.compose.foundation.gestures.awaitEachGesture
+import androidx.compose.foundation.gestures.awaitFirstDown
+import androidx.compose.foundation.gestures.waitForUpOrCancellation
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
@@ -25,20 +34,32 @@ fun SpecialFunctionKey(
     isLandscape: Boolean = false,
     modifier: Modifier = Modifier,
 ) {
-    Button(
-        colors = ButtonDefaults.buttonColors(
-            contentColor = Color(0xFF000000),
-            containerColor = myColor.keyAltBackground
-        ),
-        shape = RoundedCornerShape(999.dp),
-        onClick = {
-            onPress()
-        },
-        contentPadding = PaddingValues(
-            horizontal = if (isLandscape) 4.dp else 8.dp,
-            vertical = 0.dp
-        ),
+    var isPressed by remember { mutableStateOf(false) }
+    val backgroundColor = if (isPressed) {
+        myColor.keyActionBackground.copy(alpha = 0.5f)
+    } else {
+        myColor.keyAltBackground
+    }
+
+    Box(
         modifier = modifier
+            .clip(RoundedCornerShape(if (isLandscape) 10.dp else 14.dp))
+            .background(backgroundColor)
+            .pointerInput(action) {
+                awaitEachGesture {
+                    val down = awaitFirstDown()
+                    isPressed = true
+                    onPress()
+                    val up = waitForUpOrCancellation()
+                    isPressed = false
+                    up?.consume()
+                }
+            }
+            .padding(
+                horizontal = if (isLandscape) 4.dp else 8.dp,
+                vertical = 0.dp
+            ),
+        contentAlignment = Alignment.Center
     ) {
         Text(
             text = action,

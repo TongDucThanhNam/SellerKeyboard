@@ -1,7 +1,7 @@
 package com.terasumi.sellerkeyboard.keyboard
 
 import net.objecthunter.exp4j.ExpressionBuilder
-import kotlin.math.abs
+import java.math.BigDecimal
 
 internal enum class CalculatorAction {
     Input,
@@ -93,9 +93,5 @@ internal fun evaluateExpression(expression: String): String? {
         return null
     }
 
-    return if (abs(value - value.toLong()) < 1e-10) {
-        value.toLong().toString()
-    } else {
-        value.toString()
-    }
+    return BigDecimal.valueOf(value).stripTrailingZeros().toPlainString()
 }

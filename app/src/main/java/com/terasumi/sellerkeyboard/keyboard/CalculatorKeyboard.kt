@@ -103,7 +103,8 @@ fun CalculatorKeyboard(
     }
 
     val canSendExpression = expression.isNotBlank()
-    val canSendResult = result.isNotBlank() || evaluateExpression(expression) != null
+    val cachedEvalResult = remember(expression) { evaluateExpression(expression) }
+    val canSendResult = result.isNotBlank() || cachedEvalResult != null
 
     Column(
         modifier = Modifier
@@ -402,30 +403,30 @@ private fun colorForButton(
     }
 }
 
+private val LandscapeMetrics = CalculatorUiMetrics(
+    panelCorner = 14.dp,
+    panelPadding = 12.dp,
+    rowSpacing = 8.dp,
+    cellSpacing = 6.dp,
+    buttonHeight = 64.dp,
+    actionHeight = 56.dp,
+    valueFontSize = 16f,
+    iconSize = 24.dp
+)
+
+private val PortraitMetrics = CalculatorUiMetrics(
+    panelCorner = 16.dp,
+    panelPadding = 14.dp,
+    rowSpacing = 10.dp,
+    cellSpacing = 8.dp,
+    buttonHeight = 70.dp,
+    actionHeight = 58.dp,
+    valueFontSize = 18f,
+    iconSize = 26.dp
+)
+
 private fun calculatorUiMetrics(isLandscape: Boolean): CalculatorUiMetrics {
-    return if (isLandscape) {
-        CalculatorUiMetrics(
-            panelCorner = 14.dp,
-            panelPadding = 12.dp,
-            rowSpacing = 8.dp,
-            cellSpacing = 6.dp,
-            buttonHeight = 64.dp,
-            actionHeight = 56.dp,
-            valueFontSize = 16f,
-            iconSize = 24.dp
-        )
-    } else {
-        CalculatorUiMetrics(
-            panelCorner = 16.dp,
-            panelPadding = 14.dp,
-            rowSpacing = 10.dp,
-            cellSpacing = 8.dp,
-            buttonHeight = 70.dp,
-            actionHeight = 58.dp,
-            valueFontSize = 18f,
-            iconSize = 26.dp
-        )
-    }
+    return if (isLandscape) LandscapeMetrics else PortraitMetrics
 }
 
 private fun input(label: String, kind: CalculatorButtonKind): CalculatorButtonSpec {

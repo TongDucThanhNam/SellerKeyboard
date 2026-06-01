@@ -101,32 +101,43 @@ fun KeyboardContent() {
 
     var currentPage by rememberSaveable { mutableStateOf(KeyboardPage.Keyboard) }
     var keyboardState by rememberSaveable { mutableStateOf(KeyboardState.NOCAPS) }
+    var lastShiftTapTime by remember { mutableStateOf(0L) }
     val keyboardRows = remember(keyboardState) { getKeyboardRows(keyboardState) }
 
     fun handleKeyboardAction(action: KeyboardAction) {
         context.performKeyboardHaptic()
+        val inputConnection = context.currentInputConnectionOrNull()
         when (action) {
             is KeyboardAction.KeyPress -> {
-                context.currentInputConnectionOrNull()?.commitText(action.key, 1)
+                inputConnection?.commitText(action.key, 1)
+                // Single-shift: after typing one character, revert to NOCAPS
+                if (keyboardState == KeyboardState.CAPS) {
+                    keyboardState = KeyboardState.NOCAPS
+                }
             }
             KeyboardAction.Delete -> {
-                context.currentInputConnectionOrNull()?.deleteSurroundingText(1, 0)
+                inputConnection?.deleteSurroundingText(1, 0)
             }
             KeyboardAction.Space -> {
-                context.currentInputConnectionOrNull()?.commitText(" ", 1)
+                inputConnection?.commitText(" ", 1)
+                // Single-shift: space also reverts to NOCAPS
+                if (keyboardState == KeyboardState.CAPS) {
+                    keyboardState = KeyboardState.NOCAPS
+                }
             }
             KeyboardAction.Enter -> {
-                context.currentInputConnectionOrNull()?.sendKeyEvent(
+                inputConnection?.sendKeyEvent(
                     android.view.KeyEvent(android.view.KeyEvent.ACTION_DOWN, android.view.KeyEvent.KEYCODE_ENTER)
                 )
+                // Single-shift: enter also reverts to NOCAPS
+                if (keyboardState == KeyboardState.CAPS) {
+                    keyboardState = KeyboardState.NOCAPS
+                }
             }
             KeyboardAction.Shift -> {
-                keyboardState = when (keyboardState) {
-                    KeyboardState.NOCAPS -> KeyboardState.CAPS
-                    KeyboardState.CAPS -> KeyboardState.DOUBLECAPS
-                    KeyboardState.DOUBLECAPS -> KeyboardState.NOCAPS
-                    else -> keyboardState
-                }
+                val now = System.currentTimeMillis()
+                keyboardState = resolveShiftState(keyboardState, now - lastShiftTapTime)
+                lastShiftTapTime = now
             }
             is KeyboardAction.SwitchState -> {
                 keyboardState = action.newState
@@ -318,6 +329,30 @@ fun getKeyboardRows(keyboardState: KeyboardState): List<List<String>> {
         KeyboardState.DOUBLECAPS -> DOUBLE_CAPS_LAYOUT
         KeyboardState.NUMBERS -> NUMBER_LAYOUT
         KeyboardState.SYMBOLS -> SYMBOL_LAYOUT
+    }
+}
+
+/**
+ * Pure function that resolves the next shift state.
+ * - NOCAPS → CAPS (single shift, next key only)
+ * - CAPS + quick double-tap (< 400ms) → DOUBLECAPS (caps lock)
+ * - DOUBLECAPS → NOCAPS (turn off caps lock)
+ */
+private const val DOUBLE_TAP_THRESHOLD_MS = 400L
+
+internal fun resolveShiftState(current: KeyboardState, timeSinceLastShift: Long = Long.MAX_VALUE): KeyboardState {
+    return when (current) {
+        KeyboardState.NOCAPS -> KeyboardState.CAPS
+        KeyboardState.CAPS -> {
+            if (timeSinceLastShift < DOUBLE_TAP_THRESHOLD_MS) {
+                KeyboardState.DOUBLECAPS
+            } else {
+                // Single tap again while in CAPS → turn off
+                KeyboardState.NOCAPS
+            }
+        }
+        KeyboardState.DOUBLECAPS -> KeyboardState.NOCAPS
+        else -> current
     }
 }
 

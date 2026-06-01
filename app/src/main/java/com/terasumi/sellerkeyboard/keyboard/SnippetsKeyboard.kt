@@ -29,6 +29,8 @@ import com.terasumi.sellerkeyboard.database.Snippets
 import com.terasumi.sellerkeyboard.main.fetchDataFromSQLite
 import com.terasumi.sellerkeyboard.keyboard.theme.LightKeyboardColors
 import com.terasumi.sellerkeyboard.keyboard.theme.KeyboardColors
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 @Composable
 fun SnippetsKeyboard(
@@ -40,7 +42,9 @@ fun SnippetsKeyboard(
     val listSnippets = remember { mutableStateOf(listOf<Snippets>()) }
 
     LaunchedEffect(Unit) {
-        listSnippets.value = fetchDataFromSQLite(context)
+        listSnippets.value = withContext(Dispatchers.IO) {
+            fetchDataFromSQLite(context)
+        }
     }
 
     Box(

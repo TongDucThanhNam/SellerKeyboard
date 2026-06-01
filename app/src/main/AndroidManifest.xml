@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <!-- add necessary permission -->
     <!-- Devices running Android 12L (API level 32) or lower -->
     <uses-permission android:name="android.permission.INTERNET"/>
@@ -63,14 +62,6 @@
         <!--            android:theme="@style/Theme.MyApplication" /> &lt;!&ndash; <uses-library &ndash;&gt;-->
         <!-- android:name="com.google.ar.core" -->
         <!-- android:required="true" /> -->
-        <meta-data
-            android:name="com.google.ar.core.min_apk_version"
-            tools:node="remove" />
-
-        <activity
-            android:name="com.google.ar.core.InstallActivity"
-            tools:remove="android:configChanges" />
-
         <!--        <activity-->
         <!--            android:name=".MainActivity"-->
         <!--            android:exported="true"-->

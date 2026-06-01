@@ -29,12 +29,23 @@ import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
 import com.google.android.voiceime.VoiceRecognitionTrigger
 import com.terasumi.sellerkeyboard.keyboard.KeyboardContentView
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
 
 class SellerKeyboard : LifecycleInputMethodService(), ViewModelStoreOwner, SavedStateRegistryOwner {
     var mVoiceRecognitionTrigger: VoiceRecognitionTrigger? = null
+
+    @Volatile
+    private var hapticEnabledCache: Boolean = true
+
+    private val serviceScope = CoroutineScope(SupervisorJob() + Dispatchers.Main)
 
     private val vibrator: Vibrator? by lazy {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
@@ -48,11 +59,21 @@ class SellerKeyboard : LifecycleInputMethodService(), ViewModelStoreOwner, Saved
 
     override fun onCreateInputView(): View {
         val view = KeyboardContentView(this)
+
+        // Set tree owners on the *window's decor view* so that Compose's
+        // upward ViewTree walk always finds them, even from ancestor
+        // views (e.g. the parentPanel LinearLayout) that InputMethodService
+        // inserts above our input view.
         window?.window?.decorView?.let { decorView ->
             decorView.setViewTreeLifecycleOwner(this)
             decorView.setViewTreeViewModelStoreOwner(this)
             decorView.setViewTreeSavedStateRegistryOwner(this)
         }
+
+        // Also set directly on our view as a fallback.
+        view.setViewTreeLifecycleOwner(this)
+        view.setViewTreeViewModelStoreOwner(this)
+        view.setViewTreeSavedStateRegistryOwner(this)
         return view
     }
 
@@ -72,6 +93,8 @@ class SellerKeyboard : LifecycleInputMethodService(), ViewModelStoreOwner, Saved
         mVoiceRecognitionTrigger!!.register { // The call back is done on the main thread.
             //TODO: updateVoiceImeStatus()
         }
+        hapticEnabledCache = getSharedPreferences(PREFS_NAME, MODE_PRIVATE)
+            .getBoolean(PREF_HAPTIC_ENABLED, true)
         savedStateRegistryController.performRestore(null)
     }
 
@@ -106,35 +129,39 @@ class SellerKeyboard : LifecycleInputMethodService(), ViewModelStoreOwner, Saved
         Glide.with(this).load(imageUrl).into(object : CustomTarget<Drawable>() {
             override fun onResourceReady(resource: Drawable, transition: Transition<in Drawable>?) {
                 val bitmap = (resource as BitmapDrawable).bitmap
-                try {
-                    val tempFile = File.createTempFile("temp_image", ".jpg", cacheDir).apply {
-                        FileOutputStream(this).use {
-                            bitmap.compress(
-                                Bitmap.CompressFormat.JPEG,
-                                100,
-                                it
-                            )
+                serviceScope.launch {
+                    try {
+                        val tempFile = withContext(Dispatchers.IO) {
+                            File.createTempFile("temp_image", ".jpg", cacheDir).apply {
+                                FileOutputStream(this).use {
+                                    bitmap.compress(
+                                        Bitmap.CompressFormat.JPEG,
+                                        100,
+                                        it
+                                    )
+                                }
+                            }
                         }
+                        val uri = FileProvider.getUriForFile(
+                            this@SellerKeyboard,
+                            "com.terasumi.sellerkeyboard.fileprovider",
+                            tempFile
+                        )
+                        val inputContentInfo = InputContentInfoCompat(
+                            uri,
+                            ClipDescription("imageUrls", arrayOf("image/jpeg, image/jpg")),
+                            null
+                        )
+                        InputConnectionCompat.commitContent(
+                            currentInputConnection,
+                            currentInputEditorInfo,
+                            inputContentInfo,
+                            flag,
+                            null
+                        )
+                    } catch (e: IOException) {
+                        Log.e(TAG, "Error committing content", e)
                     }
-                    val uri = FileProvider.getUriForFile(
-                        this@SellerKeyboard,
-                        "com.terasumi.sellerkeyboard.fileprovider",
-                        tempFile
-                    )
-                    val inputContentInfo = InputContentInfoCompat(
-                        uri,
-                        ClipDescription("imageUrls", arrayOf("image/jpeg, image/jpg")), // or null
-                        null
-                    )
-                    InputConnectionCompat.commitContent(
-                        currentInputConnection,
-                        currentInputEditorInfo,
-                        inputContentInfo,
-                        flag,
-                        null
-                    )
-                } catch (e: IOException) {
-                    Log.e(TAG, "Error committing content", e)
                 }
             }
 
@@ -145,10 +172,11 @@ class SellerKeyboard : LifecycleInputMethodService(), ViewModelStoreOwner, Saved
     }
 
     fun isKeyHapticEnabled(): Boolean {
-        return getSharedPreferences(PREFS_NAME, MODE_PRIVATE).getBoolean(PREF_HAPTIC_ENABLED, true)
+        return hapticEnabledCache
     }
 
     fun setKeyHapticEnabled(enabled: Boolean) {
+        hapticEnabledCache = enabled
         getSharedPreferences(PREFS_NAME, MODE_PRIVATE)
             .edit()
             .putBoolean(PREF_HAPTIC_ENABLED, enabled)
@@ -182,10 +210,10 @@ class SellerKeyboard : LifecycleInputMethodService(), ViewModelStoreOwner, Saved
     }
 
     override fun onDestroy() {
+        serviceScope.cancel()
+        mVoiceRecognitionTrigger?.unregister(this)
+        mVoiceRecognitionTrigger = null
         super.onDestroy()
-        if (mVoiceRecognitionTrigger != null) {
-            mVoiceRecognitionTrigger!!.unregister(this)
-        }
     }
 
     //--------------------------//
