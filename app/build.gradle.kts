@@ -28,7 +28,8 @@ android {
 
     buildTypes {
         release {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
+            isShrinkResources = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -106,10 +107,9 @@ dependencies {
     implementation("androidx.navigation:navigation-compose:2.9.7")
     //com.google.accompanist:accompanist-pager
     implementation("com.google.accompanist:accompanist-pager:0.36.0")
-    //SQLite
-    implementation("androidx.room:room-runtime:2.8.4")
-    implementation("androidx.room:room-ktx:2.8.4")
-    ksp("androidx.room:room-compiler:2.8.4")
+    //SQLite — using raw SQLiteOpenHelper (see database/DatabaseHelper.kt).
+    // Room dependencies removed: project does not use Room annotations.
+    // Re-add when migrating to Room: room-runtime, room-ktx, room-compiler (KSP).
     //Gson
     implementation("com.google.code.gson:gson:2.13.2")
     //exp4j

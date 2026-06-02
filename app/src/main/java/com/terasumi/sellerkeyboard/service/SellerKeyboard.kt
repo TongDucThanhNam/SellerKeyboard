@@ -59,6 +59,7 @@ class SellerKeyboard : LifecycleInputMethodService(), ViewModelStoreOwner, Saved
 
     override fun onCreateInputView(): View {
         val view = KeyboardContentView(this)
+        view.setViewCompositionStrategy(androidx.compose.ui.platform.ViewCompositionStrategy.DisposeOnLifecycleDestroyed(this))
 
         // Set tree owners on the *window's decor view* so that Compose's
         // upward ViewTree walk always finds them, even from ancestor
