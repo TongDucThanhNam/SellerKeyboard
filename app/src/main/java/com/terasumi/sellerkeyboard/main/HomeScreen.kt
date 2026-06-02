@@ -70,6 +70,7 @@ import com.terasumi.sellerkeyboard.R
 import com.terasumi.sellerkeyboard.database.DatabaseHelper
 import com.terasumi.sellerkeyboard.database.Snippets
 import com.terasumi.sellerkeyboard.service.SellerKeyboard
+import com.terasumi.sellerkeyboard.settings.KeyboardSettingsRepository
 import com.terasumi.sellerkeyboard.ui.theme.SellerKeyboardTheme
 import com.terasumi.sellerkeyboard.ui.theme.spacing
 import java.io.File
@@ -149,15 +150,8 @@ fun HomeScreen(navController: NavController) {
                                 },
                                 onClick = {
                                     isKeyHapticEnabled = !isKeyHapticEnabled
-                                    context.getSharedPreferences(
-                                        SellerKeyboard.PREFS_NAME,
-                                        Context.MODE_PRIVATE
-                                    ).edit()
-                                        .putBoolean(
-                                            SellerKeyboard.PREF_HAPTIC_ENABLED,
-                                            isKeyHapticEnabled
-                                        )
-                                        .apply()
+                                    val settingsRepo = KeyboardSettingsRepository(context)
+                                    settingsRepo.hapticEnabled = isKeyHapticEnabled
                                     showMenu = false
                                 }
                             )
@@ -432,9 +426,7 @@ private fun deleteDataFromSQLite(
 }
 
 private fun readKeyHapticEnabled(context: Context): Boolean {
-    return context
-        .getSharedPreferences(SellerKeyboard.PREFS_NAME, Context.MODE_PRIVATE)
-        .getBoolean(SellerKeyboard.PREF_HAPTIC_ENABLED, true)
+    return KeyboardSettingsRepository(context).hapticEnabled
 }
 
 fun fetchDataFromSQLite(context: Context): List<Snippets> {

@@ -104,6 +104,15 @@ fun KeyboardContent() {
     var lastShiftTapTime by remember { mutableStateOf(0L) }
     val keyboardRows = remember(keyboardState) { getKeyboardRows(keyboardState) }
 
+    val currentInputType = (context as? SellerKeyboard)?.currentInputTypeState?.value ?: 0
+    val isPasswordField = remember(currentInputType) {
+        isPasswordInputType(currentInputType)
+    }
+
+    androidx.compose.runtime.LaunchedEffect(currentInputType) {
+        keyboardState = resolveKeyboardStateForInputType(currentInputType, keyboardState)
+    }
+
     fun handleKeyboardAction(action: KeyboardAction) {
         context.performKeyboardHaptic()
         val inputConnection = context.currentInputConnectionOrNull()
@@ -157,6 +166,7 @@ fun KeyboardContent() {
             settingsLabel = settingsLabel,
             voiceLabel = voiceLabel,
             isLandscape = isLandscape,
+            isPasswordField = isPasswordField,
             onSelectPage = { selectedPage ->
                 context.performKeyboardHaptic()
                 currentPage = selectedPage
@@ -223,6 +233,7 @@ private fun KeyboardToolbar(
     settingsLabel: String,
     voiceLabel: String,
     isLandscape: Boolean,
+    isPasswordField: Boolean,
     onSelectPage: (KeyboardPage) -> Unit,
     onOpenSettings: () -> Unit,
     onVoiceInput: () -> Unit
@@ -271,6 +282,7 @@ private fun KeyboardToolbar(
             selected = true,
             myColor = myColor,
             emphasize = true,
+            enabled = !isPasswordField,
             onClick = onVoiceInput
         )
     }
@@ -283,14 +295,22 @@ private fun ToolbarIconButton(
     selected: Boolean,
     myColor: KeyboardColors,
     onClick: () -> Unit,
-    emphasize: Boolean = false
+    emphasize: Boolean = false,
+    enabled: Boolean = true
 ) {
     val container = when {
+        !enabled -> Color.Transparent
         emphasize -> myColor.keyBackground.copy(alpha = 0.92f)
         selected -> myColor.keyActionBackground.copy(alpha = 0.36f)
         else -> Color.Transparent
     }
-    val tint = if (selected || emphasize) myColor.iconColor else myColor.iconColor.copy(alpha = 0.72f)
+    val tint = if (!enabled) {
+        myColor.iconColor.copy(alpha = 0.3f)
+    } else if (selected || emphasize) {
+        myColor.iconColor
+    } else {
+        myColor.iconColor.copy(alpha = 0.72f)
+    }
 
     Box(
         modifier = Modifier
@@ -301,6 +321,7 @@ private fun ToolbarIconButton(
     ) {
         IconButton(
             onClick = onClick,
+            enabled = enabled,
             modifier = Modifier.size(if (emphasize) 44.dp else 40.dp)
         ) {
             Icon(
@@ -353,6 +374,30 @@ internal fun resolveShiftState(current: KeyboardState, timeSinceLastShift: Long 
         }
         KeyboardState.DOUBLECAPS -> KeyboardState.NOCAPS
         else -> current
+    }
+}
+
+internal fun isPasswordInputType(inputType: Int): Boolean {
+    val variation = inputType and android.text.InputType.TYPE_MASK_VARIATION
+    return variation == android.text.InputType.TYPE_TEXT_VARIATION_PASSWORD ||
+            variation == android.text.InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD ||
+            variation == android.text.InputType.TYPE_TEXT_VARIATION_WEB_PASSWORD ||
+            variation == android.text.InputType.TYPE_NUMBER_VARIATION_PASSWORD
+}
+
+internal fun resolveKeyboardStateForInputType(inputType: Int, currentState: KeyboardState): KeyboardState {
+    val mask = inputType and android.text.InputType.TYPE_MASK_CLASS
+    return if (mask == android.text.InputType.TYPE_CLASS_NUMBER ||
+        mask == android.text.InputType.TYPE_CLASS_PHONE ||
+        mask == android.text.InputType.TYPE_CLASS_DATETIME
+    ) {
+        KeyboardState.NUMBERS
+    } else {
+        if (currentState == KeyboardState.NUMBERS || currentState == KeyboardState.SYMBOLS) {
+            KeyboardState.NOCAPS
+        } else {
+            currentState
+        }
     }
 }
 

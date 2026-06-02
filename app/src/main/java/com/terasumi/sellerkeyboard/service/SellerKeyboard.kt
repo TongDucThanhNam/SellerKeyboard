@@ -29,6 +29,7 @@ import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
 import com.google.android.voiceime.VoiceRecognitionTrigger
 import com.terasumi.sellerkeyboard.keyboard.KeyboardContentView
+import com.terasumi.sellerkeyboard.settings.KeyboardSettingsRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -45,7 +46,13 @@ class SellerKeyboard : LifecycleInputMethodService(), ViewModelStoreOwner, Saved
     @Volatile
     private var hapticEnabledCache: Boolean = true
 
+    private val settingsRepository: KeyboardSettingsRepository by lazy {
+        KeyboardSettingsRepository(this)
+    }
+
     private val serviceScope = CoroutineScope(SupervisorJob() + Dispatchers.Main)
+
+    val currentInputTypeState = androidx.compose.runtime.mutableStateOf(0)
 
     private val vibrator: Vibrator? by lazy {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
@@ -78,6 +85,16 @@ class SellerKeyboard : LifecycleInputMethodService(), ViewModelStoreOwner, Saved
         return view
     }
 
+    override fun onStartInputView(info: android.view.inputmethod.EditorInfo?, restarting: Boolean) {
+        super.onStartInputView(info, restarting)
+        currentInputTypeState.value = info?.inputType ?: 0
+    }
+
+    override fun onFinishInputView(finishingInput: Boolean) {
+        super.onFinishInputView(finishingInput)
+        currentInputTypeState.value = 0
+    }
+
     fun getCurrentView(): View {
         return KeyboardContentView(this)
     }
@@ -94,8 +111,7 @@ class SellerKeyboard : LifecycleInputMethodService(), ViewModelStoreOwner, Saved
         mVoiceRecognitionTrigger!!.register { // The call back is done on the main thread.
             //TODO: updateVoiceImeStatus()
         }
-        hapticEnabledCache = getSharedPreferences(PREFS_NAME, MODE_PRIVATE)
-            .getBoolean(PREF_HAPTIC_ENABLED, true)
+        hapticEnabledCache = settingsRepository.hapticEnabled
         savedStateRegistryController.performRestore(null)
     }
 
@@ -178,10 +194,7 @@ class SellerKeyboard : LifecycleInputMethodService(), ViewModelStoreOwner, Saved
 
     fun setKeyHapticEnabled(enabled: Boolean) {
         hapticEnabledCache = enabled
-        getSharedPreferences(PREFS_NAME, MODE_PRIVATE)
-            .edit()
-            .putBoolean(PREF_HAPTIC_ENABLED, enabled)
-            .apply()
+        settingsRepository.hapticEnabled = enabled
     }
 
     fun performKeyHapticFeedback() {
@@ -236,8 +249,6 @@ class SellerKeyboard : LifecycleInputMethodService(), ViewModelStoreOwner, Saved
     override val savedStateRegistry: SavedStateRegistry get() = savedStateRegistryController.savedStateRegistry
 
     companion object {
-        const val PREFS_NAME = "keyboard_prefs"
-        const val PREF_HAPTIC_ENABLED = "pref_haptic_enabled"
         private const val HAPTIC_DURATION_MS = 12L
     }
 }
