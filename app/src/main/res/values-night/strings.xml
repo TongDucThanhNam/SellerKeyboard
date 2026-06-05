@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="title_activity_home">Seller Keyboard</string>
-    <string name="switch_to_seller_keyboard">Switch to Seller Keyboard</string>
+    <string name="title_activity_home">Eragear Keyboard Copilot</string>
+    <string name="switch_to_seller_keyboard">Switch to Eragear Keyboard Copilot</string>
     <string name="deleted">Deleted!</string>
 </resources>

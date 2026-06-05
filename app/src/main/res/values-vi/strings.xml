@@ -1,9 +1,9 @@
 <resources>
-    <string name="app_name">Seller Keyboard</string>
+    <string name="app_name">Eragear Keyboard Copilot</string>
     <!--  Boarding  -->
-    <string name="enable_seller_keyboard">Bật Seller Keyboard</string>
-    <string name="welcome_message">"Chào mừng bạn đến với ứng dụng Seller Keyboard !"</string>
-    <string name="enable_keyboard_prompt">"Trước tiên bạn phải bật bàn phím Seller Keyboard để sử dụng ứng dụng."</string>
+    <string name="enable_seller_keyboard">Bật Eragear Keyboard Copilot</string>
+    <string name="welcome_message">"Chào mừng bạn đến với Eragear Keyboard Copilot (trước đây là Seller Keyboard)!"</string>
+    <string name="enable_keyboard_prompt">"Trước tiên bạn phải bật bàn phím Eragear Keyboard Copilot để sử dụng ứng dụng."</string>
     <!--HomePage-->
     <string name="homepage">Trang chủ</string>
 
@@ -39,8 +39,8 @@
     <string name="invalid_expression">Biểu thức không hợp lệ</string>
 
     <string name="keyboard">Keyboard</string>
-    <string name="title_activity_home">Seller Keyboard</string>
-    <string name="switch_to_seller_keyboard">Chuyển sang Seller Keyboard</string>
+    <string name="title_activity_home">Eragear Keyboard Copilot</string>
+    <string name="switch_to_seller_keyboard">Chuyển sang Eragear Keyboard Copilot</string>
     <string name="deleted">Đã xoá</string>
     <string name="settings">Cài đặt</string>
     <string name="switch_keyboard_hint">Mở danh sách bàn phím để dùng nhanh các snippet đã lưu.</string>
@@ -86,9 +86,9 @@
     <string name="max_images_count">Tối đa %1$d</string>
     <string name="preview_image">Xem trước ảnh</string>
     <string name="onboarding_step_enable_title">Bật bàn phím</string>
-    <string name="onboarding_step_enable_description">Bật Seller Keyboard trong phần cài đặt bàn phím của Android.</string>
+    <string name="onboarding_step_enable_description">Bật Eragear Keyboard Copilot trong phần cài đặt bàn phím của Android.</string>
     <string name="onboarding_step_switch_title">Chuyển bàn phím khi trả lời</string>
-    <string name="onboarding_step_switch_description">Chọn Seller Keyboard từ trình chọn bàn phím khi cần dùng snippet.</string>
+    <string name="onboarding_step_switch_description">Chọn Eragear Keyboard Copilot từ trình chọn bàn phím khi cần dùng snippet.</string>
     <string name="onboarding_step_snippets_title">Tạo snippet đầu tiên</string>
     <string name="onboarding_step_snippets_description">Lưu các câu trả lời thường dùng và ảnh đi kèm để phản hồi khách nhanh hơn.</string>
 

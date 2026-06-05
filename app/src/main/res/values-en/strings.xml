@@ -1,9 +1,9 @@
 <resources>
-    <string name="app_name">Seller Keyboard</string>
+    <string name="app_name">Eragear Keyboard Copilot</string>
     <!--  Boarding  -->
-    <string name="enable_seller_keyboard">Enable Seller Keyboard</string>
-    <string name="welcome_message">Welcome to the Seller Keyboard app!</string>
-    <string name="enable_keyboard_prompt">First, you need to enable the Seller Keyboard to use the app.</string>
+    <string name="enable_seller_keyboard">Enable Eragear Keyboard Copilot</string>
+    <string name="welcome_message">Welcome to Eragear Keyboard Copilot (formerly Seller Keyboard)!</string>
+    <string name="enable_keyboard_prompt">First, you need to enable the Eragear Keyboard Copilot to use the app.</string>
     <!-- HomePage -->
     <string name="homepage">Home Page</string>
 
@@ -39,8 +39,8 @@
     <string name="invalid_expression">Invalid expression</string>
 
     <string name="keyboard">Keyboard</string>
-    <string name="title_activity_home">Seller Keyboard</string>
-    <string name="switch_to_seller_keyboard">Switch to Seller Keyboard</string>
+    <string name="title_activity_home">Eragear Keyboard Copilot</string>
+    <string name="switch_to_seller_keyboard">Switch to Eragear Keyboard Copilot</string>
     <string name="deleted">Deleted!</string>
     <string name="settings">Settings</string>
     <string name="switch_keyboard_hint">Open the keyboard picker to quickly use your snippets.</string>
@@ -86,9 +86,9 @@
     <string name="max_images_count">Max %1$d</string>
     <string name="preview_image">Preview image</string>
     <string name="onboarding_step_enable_title">Enable the keyboard</string>
-    <string name="onboarding_step_enable_description">Turn on Seller Keyboard in Android input settings.</string>
+    <string name="onboarding_step_enable_description">Turn on Eragear Keyboard Copilot in Android input settings.</string>
     <string name="onboarding_step_switch_title">Switch when replying</string>
-    <string name="onboarding_step_switch_description">Choose Seller Keyboard from the keyboard picker when you need snippets.</string>
+    <string name="onboarding_step_switch_description">Choose Eragear Keyboard Copilot from the keyboard picker when you need snippets.</string>
     <string name="onboarding_step_snippets_title">Create your first snippet</string>
     <string name="onboarding_step_snippets_description">Save common replies and optional images for faster customer conversations.</string>
 
