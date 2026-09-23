@@ -11,11 +11,17 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.Login
+import androidx.compose.material.icons.automirrored.filled.Logout
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.CloudDownload
+import androidx.compose.material.icons.filled.CloudUpload
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Keyboard
 import androidx.compose.material.icons.filled.Star
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CardDefaults
@@ -24,20 +30,28 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedButton
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Surface
 import androidx.compose.material3.SwipeToDismissBoxValue
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.lerp
 import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.terasumi.sellerkeyboard.R
+import com.terasumi.sellerkeyboard.backend.RestorePlan
 import com.terasumi.sellerkeyboard.ui.theme.SellerKeyboardTheme
 import com.terasumi.sellerkeyboard.ui.theme.spacing
 
@@ -104,6 +118,238 @@ fun KeyboardQuickActionCard(onOpenKeyboardPicker: () -> Unit) {
             }
         }
     }
+}
+
+@Composable
+fun CloudBackupCard(
+    signedInEmail: String,
+    email: String,
+    password: String,
+    isBusy: Boolean,
+    isCloudAvailable: Boolean,
+    onEmailChange: (String) -> Unit,
+    onPasswordChange: (String) -> Unit,
+    onRegister: () -> Unit,
+    onLogin: () -> Unit,
+    onLogout: () -> Unit,
+    onBackupNow: () -> Unit,
+    onRestore: () -> Unit
+) {
+    val isSignedIn = signedInEmail.isNotBlank()
+    val canSubmitAuth = !isBusy && isCloudAvailable && email.isNotBlank() && password.isNotBlank()
+    val canUseBackup = !isBusy && isCloudAvailable && isSignedIn
+
+    ElevatedCard(
+        modifier = Modifier.fillMaxWidth(),
+        shape = RoundedCornerShape(18.dp),
+        colors = CardDefaults.elevatedCardColors(
+            containerColor = MaterialTheme.colorScheme.surface
+        )
+    ) {
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(MaterialTheme.spacing.medium),
+            verticalArrangement = Arrangement.spacedBy(MaterialTheme.spacing.small)
+        ) {
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(MaterialTheme.spacing.small),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Surface(
+                    shape = RoundedCornerShape(12.dp),
+                    color = MaterialTheme.colorScheme.secondaryContainer
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.CloudUpload,
+                        contentDescription = null,
+                        tint = MaterialTheme.colorScheme.onSecondaryContainer,
+                        modifier = Modifier.padding(8.dp)
+                    )
+                }
+                Column(modifier = Modifier.weight(1f)) {
+                    Text(
+                        text = stringResource(R.string.cloud_backup_title),
+                        style = MaterialTheme.typography.titleMedium,
+                        fontWeight = FontWeight.SemiBold
+                    )
+                    Text(
+                        text = if (isSignedIn) {
+                            stringResource(R.string.cloud_backup_signed_in, signedInEmail)
+                        } else {
+                            stringResource(R.string.cloud_backup_signed_out)
+                        },
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                }
+            }
+
+            if (isSignedIn) {
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.spacedBy(MaterialTheme.spacing.small)
+                ) {
+                    Button(
+                        onClick = onBackupNow,
+                        enabled = canUseBackup,
+                        shape = RoundedCornerShape(14.dp),
+                        modifier = Modifier
+                            .weight(1f)
+                            .testTag("cloud_backup_now")
+                    ) {
+                        Icon(
+                            imageVector = Icons.Default.CloudUpload,
+                            contentDescription = null
+                        )
+                        Spacer(modifier = Modifier.width(MaterialTheme.spacing.xSmall))
+                        Text(text = stringResource(R.string.cloud_backup_now))
+                    }
+                    FilledTonalButton(
+                        onClick = onRestore,
+                        enabled = canUseBackup,
+                        shape = RoundedCornerShape(14.dp),
+                        modifier = Modifier
+                            .weight(1f)
+                            .testTag("cloud_restore")
+                    ) {
+                        Icon(
+                            imageVector = Icons.Default.CloudDownload,
+                            contentDescription = null
+                        )
+                        Spacer(modifier = Modifier.width(MaterialTheme.spacing.xSmall))
+                        Text(text = stringResource(R.string.cloud_backup_restore))
+                    }
+                }
+                TextButton(
+                    onClick = onLogout,
+                    enabled = !isBusy && isCloudAvailable,
+                    modifier = Modifier
+                        .align(Alignment.End)
+                        .testTag("cloud_logout")
+                ) {
+                    Icon(
+                        imageVector = Icons.AutoMirrored.Filled.Logout,
+                        contentDescription = null
+                    )
+                    Spacer(modifier = Modifier.width(MaterialTheme.spacing.xSmall))
+                    Text(text = stringResource(R.string.cloud_backup_logout))
+                }
+            } else {
+                OutlinedTextField(
+                    value = email,
+                    onValueChange = onEmailChange,
+                    enabled = !isBusy && isCloudAvailable,
+                    singleLine = true,
+                    label = { Text(text = stringResource(R.string.cloud_backup_email)) },
+                    keyboardOptions = KeyboardOptions(
+                        keyboardType = KeyboardType.Email,
+                        imeAction = ImeAction.Next
+                    ),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .testTag("cloud_email")
+                )
+                OutlinedTextField(
+                    value = password,
+                    onValueChange = onPasswordChange,
+                    enabled = !isBusy && isCloudAvailable,
+                    singleLine = true,
+                    label = { Text(text = stringResource(R.string.cloud_backup_password)) },
+                    visualTransformation = PasswordVisualTransformation(),
+                    keyboardOptions = KeyboardOptions(
+                        keyboardType = KeyboardType.Password,
+                        imeAction = ImeAction.Done
+                    ),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .testTag("cloud_password")
+                )
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.spacedBy(MaterialTheme.spacing.small)
+                ) {
+                    OutlinedButton(
+                        onClick = onRegister,
+                        enabled = canSubmitAuth,
+                        shape = RoundedCornerShape(14.dp),
+                        modifier = Modifier
+                            .weight(1f)
+                            .testTag("cloud_register")
+                    ) {
+                        Icon(
+                            imageVector = Icons.AutoMirrored.Filled.Login,
+                            contentDescription = null
+                        )
+                        Spacer(modifier = Modifier.width(MaterialTheme.spacing.xSmall))
+                        Text(text = stringResource(R.string.cloud_backup_register))
+                    }
+                    Button(
+                        onClick = onLogin,
+                        enabled = canSubmitAuth,
+                        shape = RoundedCornerShape(14.dp),
+                        modifier = Modifier
+                            .weight(1f)
+                            .testTag("cloud_login")
+                    ) {
+                        Icon(
+                            imageVector = Icons.AutoMirrored.Filled.Login,
+                            contentDescription = null
+                        )
+                        Spacer(modifier = Modifier.width(MaterialTheme.spacing.xSmall))
+                        Text(text = stringResource(R.string.cloud_backup_login))
+                    }
+                }
+            }
+        }
+    }
+}
+
+@Composable
+fun RestoreBackupDialog(
+    restorePlan: RestorePlan,
+    isBusy: Boolean,
+    onConfirm: () -> Unit,
+    onDismiss: () -> Unit
+) {
+    AlertDialog(
+        onDismissRequest = {
+            if (!isBusy) {
+                onDismiss()
+            }
+        },
+        title = {
+            Text(text = stringResource(R.string.cloud_restore_title))
+        },
+        text = {
+            Text(
+                text = stringResource(
+                    R.string.cloud_restore_message,
+                    restorePlan.snippetsToInsert.size,
+                    restorePlan.skippedExactMatches
+                )
+            )
+        },
+        confirmButton = {
+            Button(
+                onClick = onConfirm,
+                enabled = !isBusy,
+                shape = RoundedCornerShape(14.dp),
+                modifier = Modifier.testTag("cloud_restore_confirm")
+            ) {
+                Text(text = stringResource(R.string.cloud_restore_confirm))
+            }
+        },
+        dismissButton = {
+            TextButton(
+                onClick = onDismiss,
+                enabled = !isBusy
+            ) {
+                Text(text = stringResource(R.string.cancel))
+            }
+        }
+    )
 }
 
 @Composable

@@ -341,8 +341,7 @@ private fun saveImageWithGlide(bitmap: Bitmap, context: Context): String {
             bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos)
         }
         file.absolutePath
-    } catch (e: IOException) {
-        e.printStackTrace()
+    } catch (_: IOException) {
         ""
     }
 }

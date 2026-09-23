@@ -6,6 +6,7 @@ import com.google.gson.reflect.TypeToken
 import com.terasumi.sellerkeyboard.database.DatabaseHelper
 import com.terasumi.sellerkeyboard.database.Snippets
 import com.terasumi.sellerkeyboard.database.SnippetsTable
+import com.terasumi.sellerkeyboard.database.SellerReplyTemplateDao
 
 class SnippetsDao(private val dbHelper: DatabaseHelper) {
 
@@ -19,7 +20,13 @@ class SnippetsDao(private val dbHelper: DatabaseHelper) {
             put(SnippetsTable.COLUMN_CONTENT, snippet.content)
             put(SnippetsTable.COLUMN_IMAGE_URLS, gson.toJson(snippet.imageUrls))
         }
-        return db.insert(SnippetsTable.TABLE_NAME, null, values)
+        val id = db.insert(SnippetsTable.TABLE_NAME, null, values)
+        if (id >= 0) {
+            SellerReplyTemplateDao(dbHelper).syncLegacy(
+                id.toInt(), snippet.title, snippet.content, snippet.imageUrls
+            )
+        }
+        return id
     }
 
     // Fetch snippet by ID
@@ -110,6 +117,7 @@ class SnippetsDao(private val dbHelper: DatabaseHelper) {
             "${SnippetsTable.COLUMN_ID} = ?",
             arrayOf(snippetId.toString())
         )
+        SellerReplyTemplateDao(dbHelper).syncLegacy(snippetId, title, content, imageUrls)
     }
 
     //Update by ID (no imageUrls)
@@ -125,15 +133,24 @@ class SnippetsDao(private val dbHelper: DatabaseHelper) {
             "${SnippetsTable.COLUMN_ID} = ?",
             arrayOf(snippetId.toString())
         )
+        val existing = fetchSnippetById(snippetId)
+        if (existing != null) {
+            SellerReplyTemplateDao(dbHelper).syncLegacy(
+                snippetId, existing.title, existing.content, existing.imageUrls
+            )
+        }
     }
 
     //Delete by Id
     fun deleteSnippetById(id: Int): Int {
         val db = dbHelper.writableDatabase
-        return db.delete(
+        val deleted = db.delete(
             SnippetsTable.TABLE_NAME,
             "${SnippetsTable.COLUMN_ID} = ?",
             arrayOf(id.toString())
         )
+        SellerReplyTemplateDao(dbHelper).delete("legacy-$id")
+        return deleted
     }
+
 }

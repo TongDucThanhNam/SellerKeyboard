@@ -40,6 +40,8 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
@@ -52,6 +54,8 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -66,28 +70,87 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.terasumi.sellerkeyboard.MyApplication
 import com.terasumi.sellerkeyboard.R
+import com.terasumi.sellerkeyboard.backend.ConvexAuthRepository
+import com.terasumi.sellerkeyboard.backend.RestorePlan
+import com.terasumi.sellerkeyboard.backend.SnippetBackupRepository
+import com.terasumi.sellerkeyboard.backend.planSnippetRestore
 import com.terasumi.sellerkeyboard.database.DatabaseHelper
 import com.terasumi.sellerkeyboard.database.Snippets
 import com.terasumi.sellerkeyboard.service.SellerKeyboard
 import com.terasumi.sellerkeyboard.settings.KeyboardSettingsRepository
+import com.terasumi.sellerkeyboard.suggestion.SharedPreferencesPersonalDictionary
+import com.terasumi.sellerkeyboard.seller.SharedPreferencesProductReplyStore
+import com.terasumi.sellerkeyboard.profile.SharedPreferencesAppProfileStore
 import com.terasumi.sellerkeyboard.ui.theme.SellerKeyboardTheme
 import com.terasumi.sellerkeyboard.ui.theme.spacing
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.io.File
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HomeScreen(navController: NavController) {
+fun HomeScreen(
+    navController: NavController,
+    convexAuthRepository: ConvexAuthRepository? = null,
+    snippetBackupRepository: SnippetBackupRepository? = null,
+    showCloudBackup: Boolean = false
+) {
     var showMenu by remember { mutableStateOf(false) }
     val context = LocalContext.current
-    var isKeyHapticEnabled by remember { mutableStateOf(readKeyHapticEnabled(context)) }
+    val application = context.applicationContext as? MyApplication
+    val authRepository = remember(showCloudBackup, application, convexAuthRepository) {
+        when {
+            !showCloudBackup -> convexAuthRepository
+            convexAuthRepository != null -> convexAuthRepository
+            else -> application?.convexAuthRepository
+        }
+    }
+    val backupRepository = remember(showCloudBackup, application, snippetBackupRepository) {
+        when {
+            !showCloudBackup -> snippetBackupRepository
+            snippetBackupRepository != null -> snippetBackupRepository
+            else -> application?.snippetBackupRepository
+        }
+    }
+    val scope = rememberCoroutineScope()
+    val snackbarHostState = remember { SnackbarHostState() }
+    val keyboardSettingsRepository = remember(context) { KeyboardSettingsRepository(context) }
+    val personalDictionary = remember(context) { SharedPreferencesPersonalDictionary(context) }
+    var personalWords by remember { mutableStateOf(personalDictionary.words()) }
+    val productReplyStore = remember(context) { SharedPreferencesProductReplyStore(context) }
+    var productReplies by remember { mutableStateOf(productReplyStore.list()) }
+    val appProfileStore = remember(context) { SharedPreferencesAppProfileStore(context) }
+    var appProfileBindings by remember { mutableStateOf(appProfileStore.bindings()) }
+    var keyboardPreferences by remember { mutableStateOf(keyboardSettingsRepository.snapshot()) }
+    var isKeyHapticEnabled by remember { mutableStateOf(keyboardPreferences.hapticEnabled) }
     val snippetsState = remember { mutableStateOf(emptyList<Snippets>()) }
+    var signedInEmail by rememberSaveable {
+        mutableStateOf(authRepository?.currentSession()?.email.orEmpty())
+    }
+    var cloudEmail by rememberSaveable {
+        mutableStateOf(authRepository?.currentSession()?.email.orEmpty())
+    }
+    var cloudPassword by rememberSaveable { mutableStateOf("") }
+    var isCloudBusy by remember { mutableStateOf(false) }
+    var restorePlan by remember { mutableStateOf<RestorePlan?>(null) }
 
     val homePage = stringResource(R.string.homepage)
     val enableKeyboard = stringResource(R.string.enable_keyboard)
     val changeKeyboard = stringResource(R.string.change_keyboard)
     val enableVibration = stringResource(R.string.enable_key_vibration)
     val disableVibration = stringResource(R.string.disable_key_vibration)
+    val cloudUnavailable = stringResource(R.string.cloud_backup_unavailable)
+    val cloudRegistered = stringResource(R.string.cloud_backup_registered)
+    val cloudLoggedIn = stringResource(R.string.cloud_backup_logged_in)
+    val cloudLoggedOut = stringResource(R.string.cloud_backup_logged_out)
+    val cloudNoSnippets = stringResource(R.string.cloud_backup_no_snippets)
+    val cloudBackupSavedSuffix = stringResource(R.string.cloud_backup_saved_suffix)
+    val cloudRestoreEmpty = stringResource(R.string.cloud_restore_empty)
+    val cloudRestoreSuccessSuffix = stringResource(R.string.cloud_restore_success_suffix)
+    val cloudGenericError = stringResource(R.string.cloud_error_generic)
 
     fun refreshSnippets() {
         snippetsState.value = fetchDataFromSQLite(context)
@@ -98,7 +161,26 @@ fun HomeScreen(navController: NavController) {
             val imeManager = context.getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
             imeManager.showInputMethodPicker()
         } catch (e: Exception) {
-            Log.e("HomeScreen", "Error changing keyboard", e)
+            Log.e("HomeScreen", "Input method picker failed: ${e.javaClass.simpleName}")
+        }
+    }
+
+    fun runCloudOperation(block: suspend () -> String?) {
+        if (isCloudBusy) {
+            return
+        }
+        isCloudBusy = true
+        scope.launch {
+            val message = try {
+                block()
+            } catch (e: Exception) {
+                e.message ?: cloudGenericError
+            } finally {
+                isCloudBusy = false
+            }
+            if (!message.isNullOrBlank()) {
+                snackbarHostState.showSnackbar(message)
+            }
         }
     }
 
@@ -106,8 +188,19 @@ fun HomeScreen(navController: NavController) {
         refreshSnippets()
     }
 
+    LaunchedEffect(authRepository) {
+        val currentEmail = authRepository?.currentSession()?.email.orEmpty()
+        signedInEmail = currentEmail
+        if (cloudEmail.isBlank()) {
+            cloudEmail = currentEmail
+        }
+    }
+
     SellerKeyboardTheme {
         Scaffold(
+            snackbarHost = {
+                SnackbarHost(hostState = snackbarHostState)
+            },
             topBar = {
                 TopAppBar(
                     title = {
@@ -150,8 +243,10 @@ fun HomeScreen(navController: NavController) {
                                 },
                                 onClick = {
                                     isKeyHapticEnabled = !isKeyHapticEnabled
-                                    val settingsRepo = KeyboardSettingsRepository(context)
-                                    settingsRepo.hapticEnabled = isKeyHapticEnabled
+                                    keyboardSettingsRepository.hapticEnabled = isKeyHapticEnabled
+                                    keyboardPreferences = keyboardPreferences.copy(
+                                        hapticEnabled = isKeyHapticEnabled
+                                    )
                                     showMenu = false
                                 }
                             )
@@ -185,9 +280,151 @@ fun HomeScreen(navController: NavController) {
                     verticalArrangement = Arrangement.spacedBy(MaterialTheme.spacing.medium)
                 ) {
                     item {
-                        KeyboardQuickActionCard(
-                            onOpenKeyboardPicker = { openInputMethodPicker() }
+                        KeyboardSettingsCard(
+                            preferences = keyboardPreferences,
+                            onChange = { updated ->
+                                keyboardPreferences = updated
+                                isKeyHapticEnabled = updated.hapticEnabled
+                                keyboardSettingsRepository.save(updated)
+                            },
+                            onReset = {
+                                keyboardSettingsRepository.resetToDefaults()
+                                keyboardPreferences = keyboardSettingsRepository.snapshot()
+                                isKeyHapticEnabled = keyboardPreferences.hapticEnabled
+                            },
+                            onClearPersonalDictionary = {
+                                personalDictionary.clear()
+                                personalWords = emptySet()
+                            },
+                            personalWords = personalWords,
+                            onAddPersonalWord = { word ->
+                                personalDictionary.add(word)
+                                personalWords = personalDictionary.words()
+                            },
+                            onRemovePersonalWord = { word ->
+                                personalDictionary.remove(word)
+                                personalWords = personalDictionary.words()
+                            }
                         )
+                    }
+
+                    item {
+                        ProductManagementCard(
+                            products = productReplies,
+                            onSave = { product ->
+                                productReplyStore.save(product)
+                                productReplies = productReplyStore.list()
+                            },
+                            onDelete = { id ->
+                                productReplyStore.delete(id)
+                                productReplies = productReplyStore.list()
+                            }
+                        )
+                    }
+
+                    item {
+                        AppProfileManagementCard(
+                            bindings = appProfileBindings,
+                            onSaveAndBind = { profile, packageName ->
+                                appProfileStore.saveProfile(profile)
+                                appProfileStore.bind(packageName, profile.id)
+                                appProfileBindings = appProfileStore.bindings()
+                            }
+                        )
+                    }
+
+                    item {
+                        ReplyTemplateManagementCard()
+                    }
+
+                    item {
+                        ReplyPackManagementCard()
+                    }
+
+                    if (showCloudBackup) {
+                        item {
+                            CloudBackupCard(
+                                signedInEmail = signedInEmail,
+                                email = cloudEmail,
+                                password = cloudPassword,
+                                isBusy = isCloudBusy,
+                                isCloudAvailable = authRepository != null && backupRepository != null,
+                                onEmailChange = { cloudEmail = it },
+                                onPasswordChange = { cloudPassword = it },
+                                onRegister = {
+                                    runCloudOperation {
+                                        val repository = authRepository
+                                            ?: throw IllegalStateException(cloudUnavailable)
+                                        val session = withContext(Dispatchers.IO) {
+                                            repository.register(cloudEmail, cloudPassword)
+                                        }
+                                        signedInEmail = session.email
+                                        cloudEmail = session.email
+                                        cloudPassword = ""
+                                        cloudRegistered
+                                    }
+                                },
+                                onLogin = {
+                                    runCloudOperation {
+                                        val repository = authRepository
+                                            ?: throw IllegalStateException(cloudUnavailable)
+                                        val session = withContext(Dispatchers.IO) {
+                                            repository.login(cloudEmail, cloudPassword)
+                                        }
+                                        signedInEmail = session.email
+                                        cloudEmail = session.email
+                                        cloudPassword = ""
+                                        cloudLoggedIn
+                                    }
+                                },
+                                onLogout = {
+                                    runCloudOperation {
+                                        val repository = authRepository
+                                            ?: throw IllegalStateException(cloudUnavailable)
+                                        withContext(Dispatchers.IO) {
+                                            repository.logout()
+                                        }
+                                        signedInEmail = ""
+                                        cloudPassword = ""
+                                        cloudLoggedOut
+                                    }
+                                },
+                                onBackupNow = {
+                                    runCloudOperation {
+                                        val repository = backupRepository
+                                            ?: throw IllegalStateException(cloudUnavailable)
+                                        val snippets = snippetsState.value
+                                        if (snippets.isEmpty()) {
+                                            cloudNoSnippets
+                                        } else {
+                                            val savedCount = withContext(Dispatchers.IO) {
+                                                repository.backup(snippets)
+                                            }
+                                            "$savedCount $cloudBackupSavedSuffix"
+                                        }
+                                    }
+                                },
+                                onRestore = {
+                                    runCloudOperation {
+                                        val repository = backupRepository
+                                            ?: throw IllegalStateException(cloudUnavailable)
+                                        val remoteSnippets = withContext(Dispatchers.IO) {
+                                            repository.listBackup()
+                                        }
+                                        val plan = planSnippetRestore(
+                                            remoteSnippets = remoteSnippets,
+                                            localSnippets = snippetsState.value
+                                        )
+                                        if (plan.snippetsToInsert.isEmpty()) {
+                                            cloudRestoreEmpty
+                                        } else {
+                                            restorePlan = plan
+                                            null
+                                        }
+                                    }
+                                }
+                            )
+                        }
                     }
 
                     item {
@@ -222,6 +459,25 @@ fun HomeScreen(navController: NavController) {
                 }
             }
         )
+        restorePlan?.let { pendingPlan ->
+            RestoreBackupDialog(
+                restorePlan = pendingPlan,
+                isBusy = isCloudBusy,
+                onConfirm = {
+                    runCloudOperation {
+                        val insertedCount = withContext(Dispatchers.IO) {
+                            insertSnippetsIntoSQLite(context, pendingPlan.snippetsToInsert)
+                        }
+                        restorePlan = null
+                        refreshSnippets()
+                        "$insertedCount $cloudRestoreSuccessSuffix"
+                    }
+                },
+                onDismiss = {
+                    restorePlan = null
+                }
+            )
+        }
     }
 }
 
@@ -423,6 +679,20 @@ private fun deleteDataFromSQLite(
         val snippetsDao = SnippetsDao(dbHelper)
         snippetsDao.deleteSnippetById(snippetId)
     }
+}
+
+private fun insertSnippetsIntoSQLite(
+    context: Context,
+    snippets: List<Snippets>
+): Int {
+    val dbHelper = DatabaseHelper(context)
+    dbHelper.use {
+        val snippetsDao = SnippetsDao(dbHelper)
+        snippets.forEach { snippet ->
+            snippetsDao.insertSnippet(snippet)
+        }
+    }
+    return snippets.size
 }
 
 private fun readKeyHapticEnabled(context: Context): Boolean {

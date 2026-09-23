@@ -26,12 +26,27 @@
     <string name="enable_key_vibration">Enable key vibration</string>
     <string name="disable_key_vibration">Disable key vibration</string>
     <string name="voice">Voice Assistance</string>
+    <string name="voice_status_listening">Listening...</string>
+    <string name="voice_status_processing">Processing speech...</string>
+    <string name="voice_status_permission_required">Grant microphone permission, then tap voice again</string>
+    <string name="voice_status_no_service">No speech recognition service</string>
+    <string name="voice_status_disabled">Voice typing unavailable here</string>
+    <string name="voice_status_no_match">No speech recognized</string>
+    <string name="voice_status_inserted">Voice text inserted</string>
+    <string name="voice_status_error">Voice typing error</string>
+    <string name="voice_cancel">Cancel voice typing</string>
+    <string name="vietnamese_input">Vietnamese input</string>
     <string name="subtype">Secondary Language Settings</string>
+    <string name="subtype_vietnamese">Vietnamese</string>
+    <string name="subtype_english">English (US)</string>
 
     <!-- Keyboard content -->
 
     <string name="snippet_list">Snippet List</string>
     <string name="calculator">Calculator</string>
+    <string name="emoji">Emoji</string>
+    <string name="translate">Translate</string>
+    <string name="products">Products</string>
 
     <!-- Calculator -->
     <string name="enter_expression">Enter Expression</string>
@@ -92,8 +107,31 @@
     <string name="onboarding_step_switch_description">Choose Eragear Keyboard Copilot from the keyboard picker when you need snippets.</string>
     <string name="onboarding_step_snippets_title">Create your first snippet</string>
     <string name="onboarding_step_snippets_description">Save common replies and optional images for faster customer conversations.</string>
+    <string name="cloud_backup_title">Cloud backup</string>
+    <string name="cloud_backup_signed_out">Sign in to backup and restore snippet text.</string>
+    <string name="cloud_backup_signed_in">Signed in: %1$s</string>
+    <string name="cloud_backup_email">Email</string>
+    <string name="cloud_backup_password">Password</string>
+    <string name="cloud_backup_register">Register</string>
+    <string name="cloud_backup_login">Login</string>
+    <string name="cloud_backup_logout">Logout</string>
+    <string name="cloud_backup_now">Backup now</string>
+    <string name="cloud_backup_restore">Restore</string>
+    <string name="cloud_backup_unavailable">Cloud backup is unavailable in this build.</string>
+    <string name="cloud_backup_registered">Registered and signed in.</string>
+    <string name="cloud_backup_logged_in">Signed in.</string>
+    <string name="cloud_backup_logged_out">Signed out.</string>
+    <string name="cloud_backup_no_snippets">No snippets to backup.</string>
+    <string name="cloud_backup_saved_suffix">snippet(s) backed up.</string>
+    <string name="cloud_restore_empty">No new snippets to restore.</string>
+    <string name="cloud_restore_title">Restore backup</string>
+    <string name="cloud_restore_message">Insert %1$d cloud snippet(s). %2$d exact match(es) will be skipped.</string>
+    <string name="cloud_restore_confirm">Restore</string>
+    <string name="cloud_restore_success_suffix">snippet(s) restored.</string>
+    <string name="cloud_error_generic">Cloud backup failed.</string>
+    <string name="cancel">Cancel</string>
 
-    <!-- convex_url removed from default values; translations live in values-en/ and values-vi/ -->
+    <!-- Convex backend URL - replace with your deployment URL -->
     <string name="convex_url">https://wandering-eel-278.convex.cloud</string>
 
 

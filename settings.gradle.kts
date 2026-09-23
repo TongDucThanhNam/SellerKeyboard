@@ -18,4 +18,5 @@ dependencyResolutionManagement {
 
 rootProject.name = "SellerKeyboard"
 include(":app")
- 
+include(":benchmark")
+include(":benchmark-host")

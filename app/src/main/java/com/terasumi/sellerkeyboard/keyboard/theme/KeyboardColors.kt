@@ -39,3 +39,21 @@ val DarkKeyboardColors = KeyboardColors(
     spaceBarBackground = DarkAccent3,
     iconColor = Base
 )
+
+val HighContrastLightKeyboardColors = KeyboardColors(
+    keyBackground = Color.White,
+    keyAltBackground = Color(0xFFE6E6E6),
+    keyActionBackground = Color(0xFFFFD600),
+    keyboardBackground = Color(0xFFF2F2F2),
+    spaceBarBackground = Color.White,
+    iconColor = Color.Black
+)
+
+val HighContrastDarkKeyboardColors = KeyboardColors(
+    keyBackground = Color.Black,
+    keyAltBackground = Color(0xFF202020),
+    keyActionBackground = Color(0xFF005FCC),
+    keyboardBackground = Color.Black,
+    spaceBarBackground = Color(0xFF101010),
+    iconColor = Color.White
+)

@@ -1,11 +1,12 @@
 package com.terasumi.sellerkeyboard.keyboard
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.gestures.awaitEachGesture
-import androidx.compose.foundation.gestures.awaitFirstDown
-import androidx.compose.foundation.gestures.waitForUpOrCancellation
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.offset
+import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
@@ -18,6 +19,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.semantics.onClick
+import androidx.compose.ui.semantics.onLongClick
+import androidx.compose.ui.semantics.role
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -35,9 +42,13 @@ fun Keycap(
     myColor: KeyboardColors,
     modifier: Modifier = Modifier,
     isLandscape: Boolean = false,
-    onAction: (KeyboardAction) -> Unit
+    onPress: () -> Unit,
+    onAlternativePress: (String) -> Unit = {},
+    popupPreviewEnabled: Boolean = true
 ) {
     var isPressed by remember { mutableStateOf(false) }
+    var showAlternatives by remember(key) { mutableStateOf(false) }
+    val alternatives = remember(key) { KeyAlternativeMap.forKey(key) }
     val cornerRadius = if (isLandscape) 6.dp else 8.dp
     val backgroundColor = if (isPressed) {
         myColor.keyActionBackground.copy(alpha = 0.5f)
@@ -49,15 +60,38 @@ fun Keycap(
         modifier = modifier
             .clip(RoundedCornerShape(cornerRadius))
             .background(backgroundColor)
-            .pointerInput(key) {
-                awaitEachGesture {
-                    val down = awaitFirstDown()
-                    isPressed = true
-                    onAction(KeyboardAction.KeyPress(key))
-                    val up = waitForUpOrCancellation()
-                    isPressed = false
-                    up?.consume()
+            .semantics {
+                contentDescription = key
+                role = Role.Button
+                onClick {
+                    onPress()
+                    true
                 }
+                if (alternatives.isNotEmpty()) {
+                    onLongClick {
+                        showAlternatives = true
+                        true
+                    }
+                }
+            }
+            .pointerInput(key) {
+                detectTapGestures(
+                    onPress = {
+                        isPressed = true
+                        try {
+                            tryAwaitRelease()
+                        } finally {
+                            isPressed = false
+                        }
+                    },
+                    onTap = { onPress() },
+                    onLongPress = {
+                        if (alternatives.isNotEmpty()) {
+                            showAlternatives = true
+                        }
+                        isPressed = false
+                    }
+                )
             },
         contentAlignment = Alignment.Center
     ) {
@@ -71,7 +105,7 @@ fun Keycap(
             fontWeight = FontWeight.Normal
         )
 
-        if (isPressed) {
+        if (isPressed && popupPreviewEnabled) {
             Popup(
                 alignment = Alignment.TopCenter,
                 properties = PopupProperties(
@@ -98,11 +132,51 @@ fun Keycap(
                 }
             }
         }
+
+        if (showAlternatives) {
+            Popup(
+                alignment = Alignment.TopCenter,
+                onDismissRequest = { showAlternatives = false },
+                properties = PopupProperties(
+                    focusable = true,
+                    excludeFromSystemGesture = true,
+                    clippingEnabled = false
+                )
+            ) {
+                Row(
+                    modifier = Modifier
+                        .offset(y = if (isLandscape) (-44).dp else (-56).dp)
+                        .clip(RoundedCornerShape(10.dp))
+                        .background(myColor.keyboardBackground)
+                        .padding(4.dp)
+                ) {
+                    alternatives.forEach { alternative ->
+                        Box(
+                            modifier = Modifier
+                                .defaultMinSize(minWidth = 48.dp, minHeight = 48.dp)
+                                .semantics { contentDescription = alternative }
+                                .clickable {
+                                    showAlternatives = false
+                                    onAlternativePress(alternative)
+                                }
+                                .padding(horizontal = 10.dp, vertical = 8.dp),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Text(
+                                text = alternative,
+                                fontSize = if (isLandscape) 20.sp else 24.sp,
+                                color = myColor.iconColor
+                            )
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 
 @Preview
 @Composable
 fun KeycapPreview() {
-    Keycap("A", myColor = LightKeyboardColors, onAction = {})
+    Keycap("A", myColor = LightKeyboardColors, onPress = {})
 }

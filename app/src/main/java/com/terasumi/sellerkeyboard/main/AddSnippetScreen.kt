@@ -298,14 +298,14 @@ fun validateFormData(title: String, content: String): Boolean {
 private fun saveImageToInternalStorage(context: Context, bitmap: Bitmap): String {
     val imageName = "img_" + UUID.randomUUID().toString() + ".jpg"
     val file = File(context.cacheDir, imageName)
-    try {
+    return try {
         FileOutputStream(file).use { fos ->
             bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos)
         }
-    } catch (e: IOException) {
-        e.printStackTrace()
+        file.absolutePath
+    } catch (_: IOException) {
+        ""
     }
-    return file.absolutePath
 }
 
 private fun saveDataToSQLite(

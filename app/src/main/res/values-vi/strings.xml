@@ -24,12 +24,25 @@
     <string name="enable_key_vibration">Bật rung khi nhấn phím</string>
     <string name="disable_key_vibration">Tắt rung khi nhấn phím</string>
     <string name="voice">Voice Assistance</string>
+    <string name="voice_status_listening">Đang nghe...</string>
+    <string name="voice_status_processing">Đang xử lý giọng nói...</string>
+    <string name="voice_status_permission_required">Cấp quyền micro rồi bấm mic lại</string>
+    <string name="voice_status_no_service">Không có dịch vụ nhận dạng giọng nói</string>
+    <string name="voice_status_disabled">Không thể dùng nhập giọng nói ở đây</string>
+    <string name="voice_status_no_match">Không nhận ra giọng nói</string>
+    <string name="voice_status_inserted">Đã chèn văn bản giọng nói</string>
+    <string name="voice_status_error">Lỗi nhập giọng nói</string>
+    <string name="voice_cancel">Hủy nhập giọng nói</string>
+    <string name="vietnamese_input">Gõ tiếng Việt</string>
     <string name="subtype">Cài đặt ngôn ngữ phụ</string>
 
     <!-- Keyboard content -->
 
     <string name="snippet_list">Snippets</string>
     <string name="calculator">Máy tính</string>
+    <string name="emoji">Biểu tượng cảm xúc</string>
+    <string name="translate">Dịch</string>
+    <string name="products">Sản phẩm</string>
 
     <!-- Calculator  -->
     <string name="enter_expression">Nhập biểu thức</string>
@@ -92,7 +105,33 @@
     <string name="onboarding_step_snippets_title">Tạo snippet đầu tiên</string>
     <string name="onboarding_step_snippets_description">Lưu các câu trả lời thường dùng và ảnh đi kèm để phản hồi khách nhanh hơn.</string>
 
+    <string name="cloud_backup_title">Sao l&#432;u cloud</string>
+    <string name="cloud_backup_signed_out">&#272;&#259;ng nh&#7853;p &#273;&#7875; sao l&#432;u v&#224; kh&#244;i ph&#7909;c text snippet.</string>
+    <string name="cloud_backup_signed_in">&#272;&#227; &#273;&#259;ng nh&#7853;p: %1$s</string>
+    <string name="cloud_backup_email">Email</string>
+    <string name="cloud_backup_password">M&#7853;t kh&#7849;u</string>
+    <string name="cloud_backup_register">&#272;&#259;ng k&#253;</string>
+    <string name="cloud_backup_login">&#272;&#259;ng nh&#7853;p</string>
+    <string name="cloud_backup_logout">&#272;&#259;ng xu&#7845;t</string>
+    <string name="cloud_backup_now">Sao l&#432;u ngay</string>
+    <string name="cloud_backup_restore">Kh&#244;i ph&#7909;c</string>
+    <string name="cloud_backup_unavailable">Sao l&#432;u cloud kh&#244;ng kh&#7843; d&#7909;ng trong b&#7843;n build n&#224;y.</string>
+    <string name="cloud_backup_registered">&#272;&#227; &#273;&#259;ng k&#253; v&#224; &#273;&#259;ng nh&#7853;p.</string>
+    <string name="cloud_backup_logged_in">&#272;&#227; &#273;&#259;ng nh&#7853;p.</string>
+    <string name="cloud_backup_logged_out">&#272;&#227; &#273;&#259;ng xu&#7845;t.</string>
+    <string name="cloud_backup_no_snippets">Kh&#244;ng c&#243; snippet &#273;&#7875; sao l&#432;u.</string>
+    <string name="cloud_backup_saved_suffix">snippet &#273;&#227; &#273;&#432;&#7907;c sao l&#432;u.</string>
+    <string name="cloud_restore_empty">Kh&#244;ng c&#243; snippet m&#7899;i &#273;&#7875; kh&#244;i ph&#7909;c.</string>
+    <string name="cloud_restore_title">Kh&#244;i ph&#7909;c backup</string>
+    <string name="cloud_restore_message">Ch&#232;n %1$d snippet t&#7915; cloud. %2$d snippet tr&#249;ng kh&#7899;p s&#7869; &#273;&#432;&#7907;c b&#7887; qua.</string>
+    <string name="cloud_restore_confirm">Kh&#244;i ph&#7909;c</string>
+    <string name="cloud_restore_success_suffix">snippet &#273;&#227; &#273;&#432;&#7907;c kh&#244;i ph&#7909;c.</string>
+    <string name="cloud_error_generic">Sao l&#432;u cloud th&#7845;t b&#7841;i.</string>
+    <string name="cancel">H&#7911;y</string>
+
     <!-- Convex backend URL - replace with your deployment URL -->
     <string name="convex_url">https://wandering-eel-278.convex.cloud</string>
 
+    <string name="subtype_vietnamese">Tiếng Việt</string>
+    <string name="subtype_english">Tiếng Anh (Mỹ)</string>
 </resources>
