@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <application>
+        <activity
+            android:name=".benchmark.ImeBenchmarkActivity"
+            android:exported="true" />
+        <activity
+            android:name=".benchmark.WebViewBenchmarkActivity"
+            android:exported="true" />
+        <provider
+            android:name=".benchmark.TranslationReleaseProbeProvider"
+            android:authorities="com.terasumi.sellerkeyboard.translation-release-probe"
+            android:exported="true" />
+        <provider
+            android:name=".debug.ImeTestBridgeProvider"
+            android:authorities="com.terasumi.sellerkeyboard.ime-test-bridge"
+            android:exported="true" />
+    </application>
+</manifest>

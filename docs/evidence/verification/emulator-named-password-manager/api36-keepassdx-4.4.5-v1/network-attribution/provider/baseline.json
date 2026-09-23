@@ -1,0 +1,18 @@
+{
+  "capturedAt": "2026-07-12T18:30:52.6340304+07:00",
+  "serial": "emulator-5554",
+  "packageName": "com.kunzisoft.keepass.libre",
+  "uid": 10239,
+  "networkExpectation": "Zero",
+  "logcatClearSucceeded": true,
+  "network": {
+    "supported": true,
+    "reason": "",
+    "matchingLines": 1,
+    "rxBytes": 0,
+    "txBytes": 0,
+    "lines": [
+      "    uid=10239 set=1\r"
+    ]
+  }
+}

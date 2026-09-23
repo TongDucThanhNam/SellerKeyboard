@@ -1,0 +1,14 @@
+[
+  {
+    "ResultPath": "docs\\evidence\\verification\\latest\\connected-android-tests-direct.log",
+    "ClassName": "com.terasumi.sellerkeyboard.backend.ConvexBackupConnectedSmokeTest",
+    "TestName": "registerBackupRestoreAndKeyboardSnippetInsert",
+    "Reason": "Optional live backend smoke test requires instrumentation argument convexSmoke=true."
+  },
+  {
+    "ResultPath": "docs\\evidence\\verification\\latest\\connected-android-tests-direct.log",
+    "ClassName": "com.terasumi.sellerkeyboard.backend.ConvexBackupConnectedSmokeTest",
+    "TestName": "repositoryRegisterLoginBackupListAndDeleteWorksOnDevice",
+    "Reason": "Optional live backend smoke test requires instrumentation argument convexSmoke=true."
+  }
+]

@@ -358,7 +358,10 @@ private fun TemplateFillReview(
             OutlinedButton(onClick = onCancel) { Text("Back") }
             Button(
                 enabled = result is TemplateRenderResult.Ready,
-                onClick = { onCommit((result as TemplateRenderResult.Ready).text) }
+                onClick = { onCommit((result as TemplateRenderResult.Ready).text) },
+                modifier = Modifier.semantics {
+                    contentDescription = "Insert reviewed reply"
+                }
             ) {
                 Text("Insert reviewed reply")
             }

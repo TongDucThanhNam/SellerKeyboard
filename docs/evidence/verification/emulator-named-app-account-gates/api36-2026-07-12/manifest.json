@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "capturedAt": "2026-07-12T15:18:24.3908130+07:00",
+  "overall": "BOUNDARY_CONFIRMED",
+  "api": 36,
+  "accountRecordCount": 0,
+  "defaultIme": "com.terasumi.sellerkeyboard/.service.SellerKeyboard",
+  "autofillService": "com.google.android.gms/.autofill.service.AutofillService",
+  "credentialsEntered": false,
+  "contentSubmitted": false,
+  "targets": [
+    {
+      "package": "com.google.android.gm",
+      "versionName": "2025.03.02.732962214.Release",
+      "accountFreeEditorAvailable": false,
+      "boundary": "Please add at least one email address."
+    },
+    {
+      "package": "com.google.android.apps.docs",
+      "versionName": "2.25.100.0.x86_64.alldpi",
+      "accountFreeEditorAvailable": false,
+      "boundary": "Account-discovery Skip opens Google Account sign-in."
+    }
+  ],
+  "artifacts": [
+    {
+      "file": "gmail-add-account.png",
+      "bytes": 599469,
+      "sha256": "BD772166263B05861B0FE779AA8C81791FD83805C28F29DED917FB4123DC9EC0"
+    },
+    {
+      "file": "gmail-account-required.png",
+      "bytes": 493613,
+      "sha256": "A9C0A00140B70A6B1203CEC76BF7719D16280E15676E4B0D70ACB36AEE6BA5BC"
+    },
+    {
+      "file": "docs-account-discovery-skip.png",
+      "bytes": 120405,
+      "sha256": "D5212C69D7164EEB5F1377A73A5287156BCA8A5BACF6E1C4B1E7F0013CAC2D14"
+    },
+    {
+      "file": "docs-sign-in-required.png",
+      "bytes": 93752,
+      "sha256": "0DA7D302ADBD2FD7276416AB6C9F17B3A3D68A35F1771752FDCEC6C002211C22"
+    }
+  ]
+}

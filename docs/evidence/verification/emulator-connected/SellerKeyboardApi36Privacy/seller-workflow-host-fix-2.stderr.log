@@ -1,0 +1,14 @@
+Resolved template did not enable its parent insert action: <node index="0" text="" resource-id="" 
+class="android.view.View" package="com.terasumi.sellerkeyboard" content-desc="Insert reviewed reply" checkable="false" 
+checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" 
+long-clickable="false" password="false" selected="false" bounds="[250,2138][717,2243]" drawing-order="0" hint="" />
+At C:\Users\terasumi\Documents\source_code\SellerKeyboard\scripts\verify-connected-seller-workflow.ps1:200 char:9
++         throw "Resolved template did not enable its parent insert act ...
++         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (Resolved templa...="0" hint="" />:String) [], RuntimeException
+    + FullyQualifiedErrorId : Resolved template did not enable its parent insert action: <node index="0" text="" resou 
+   rce-id="" class="android.view.View" package="com.terasumi.sellerkeyboard" content-desc="Insert reviewed reply" che  
+  ckable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="fals   
+ e" long-clickable="false" password="false" selected="false" bounds="[250,2138][717,2243]" drawing-order="0" hint="    
+" />
+ 

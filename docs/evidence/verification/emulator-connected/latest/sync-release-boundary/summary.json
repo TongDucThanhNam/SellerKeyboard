@@ -1,0 +1,14 @@
+﻿{
+    "generatedAt":  "2026-07-12T00:28:08.2981221+07:00",
+    "overall":  "PASS",
+    "serial":  "emulator-5554",
+    "localSnippetPresent":  true,
+    "cloudControlsAbsent":  true,
+    "clientInitialized":  false,
+    "authInitialized":  false,
+    "backupInitialized":  false,
+    "uidRxDelta":  0,
+    "uidTxDelta":  0,
+    "controlledTextOccurrencesInUidLog":  0,
+    "claimBoundary":  "current release route defers cloud sync; future opt-in sync requires separate approval and credentialed attribution"
+}

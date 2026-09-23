@@ -1,0 +1,21 @@
+{
+  "capturedAt": "2026-07-12T18:23:30.3542847+07:00",
+  "serial": "emulator-5554",
+  "packageName": "com.android.chrome",
+  "uid": 10160,
+  "networkExpectation": "Record",
+  "logcatClearSucceeded": true,
+  "network": {
+    "supported": true,
+    "reason": "",
+    "matchingLines": 4,
+    "rxBytes": 0,
+    "txBytes": 0,
+    "lines": [
+      "  ident=[{type=1, ratType=COMBINED, wifiNetworkKey=\"AndroidWifi\"open, metered=false, defaultNetwork=true, oemManaged=OEM_NONE, subId=-1}] uid=10160 set=DEFAULT tag=0x0\r",
+      "  ident=[{type=1, ratType=COMBINED, wifiNetworkKey=\"AndroidWifi\"open, metered=false, defaultNetwork=true, oemManaged=OEM_NONE, subId=-1}] uid=10160 set=FOREGROUND tag=0x0\r",
+      "  ident=[{type=1, ratType=COMBINED, wifiNetworkKey=\"AndroidWifi\"open, metered=false, defaultNetwork=true, oemManaged=OEM_NONE, subId=-1}] uid=10160 set=FOREGROUND tag=0x4001804\r",
+      "    cookie=10311 tag=0x4001804 uid=10160\r"
+    ]
+  }
+}

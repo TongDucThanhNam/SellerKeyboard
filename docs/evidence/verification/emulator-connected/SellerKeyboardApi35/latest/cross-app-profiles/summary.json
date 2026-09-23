@@ -1,0 +1,15 @@
+﻿{
+    "generatedAt":  "2026-07-12T20:42:51.9681426+07:00",
+    "overall":  "PASS",
+    "serial":  "emulator-5556",
+    "sellerPackage":  "com.terasumi.sellerkeyboard",
+    "hostPackage":  "com.terasumi.sellerkeyboard.benchmarkhost",
+    "distinctPackages":  true,
+    "activeEditorPackageOnly":  true,
+    "globalFallbackVerified":  true,
+    "sellerProfile":  "Result: Bundle[{active_surface=KEYBOARD, translation_idle=true, completion_count=0, voice_idle=true, active=true, contains_disabled_clip=false, clipboard_started=true, language_mode=VIETNAMESE, number_row=true, candidate_source=NONE, contains_password_clip=false, height_preset=TALL, seller_count=0, preferred_reply_pack_id=connected-seller-pack, clipboard_history_enabled=true, contains_marked_sensitive_clip=false, supports_test_jpeg=false, contains_normal_clip=false, candidate_count=0, sensitive=false, active_profile_id=connected_seller_profile, theme_mode=LIGHT, clipboard_item_count=0, inline_count=0, clipboard_observed_changes=10, editor_package=com.terasumi.sellerkeyboard, active_profile_name=Connected Seller, toolbar_order=replies|calculator, session_id=15, supported_mime_count=0}]",
+    "hostProfile":  "Result: Bundle[{active_surface=KEYBOARD, translation_idle=true, completion_count=0, voice_idle=true, active=true, contains_disabled_clip=false, clipboard_started=true, language_mode=ENGLISH, number_row=false, candidate_source=NONE, contains_password_clip=false, height_preset=COMPACT, seller_count=0, preferred_reply_pack_id=connected-host-pack, clipboard_history_enabled=true, contains_marked_sensitive_clip=false, supports_test_jpeg=false, contains_normal_clip=false, candidate_count=0, sensitive=false, active_profile_id=connected_host_profile, theme_mode=DARK, clipboard_item_count=0, inline_count=0, clipboard_observed_changes=10, editor_package=com.terasumi.sellerkeyboard.benchmarkhost, active_profile_name=Connected Host, toolbar_order=products|clipboard, session_id=16, supported_mime_count=0}]",
+    "globalFallback":  "Result: Bundle[{active_surface=KEYBOARD, translation_idle=true, completion_count=0, voice_idle=true, active=true, contains_disabled_clip=false, clipboard_started=true, language_mode=VIETNAMESE_ENGLISH, number_row=true, candidate_source=NONE, contains_password_clip=false, height_preset=STANDARD, seller_count=0, preferred_reply_pack_id=null, clipboard_history_enabled=true, contains_marked_sensitive_clip=false, supports_test_jpeg=false, contains_normal_clip=false, candidate_count=0, sensitive=false, active_profile_id=global, theme_mode=SYSTEM, clipboard_item_count=0, inline_count=0, clipboard_observed_changes=10, editor_package=com.terasumi.sellerkeyboard.benchmarkhost, active_profile_name=Global, toolbar_order=replies|products|clipboard|calculator|translate|voice|emoji|settings, session_id=17, supported_mime_count=0}]",
+    "packageInventoryPermissionUsed":  false,
+    "claimBoundary":  "real cross-app IME sessions on the emulator; named third-party apps remain pending"
+}

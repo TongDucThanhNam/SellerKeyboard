@@ -1,0 +1,35 @@
+[
+  {
+    "id": "s01",
+    "category": "greeting",
+    "mode": "gboard",
+    "interactions": 37,
+    "elapsedMilliseconds": 7163.285,
+    "expectedSha256": "7a1352fa2069248af3837eaa15dc734c70f30d8fcba2d68f73b4834a6f0d6b93",
+    "actualSha256": "7a1352fa2069248af3837eaa15dc734c70f30d8fcba2d68f73b4834a6f0d6b93",
+    "textLength": 37,
+    "completed": true
+  },
+  {
+    "id": "s01",
+    "category": "greeting",
+    "mode": "seller-default",
+    "interactions": 37,
+    "elapsedMilliseconds": 7642.711,
+    "expectedSha256": "7a1352fa2069248af3837eaa15dc734c70f30d8fcba2d68f73b4834a6f0d6b93",
+    "actualSha256": "7a1352fa2069248af3837eaa15dc734c70f30d8fcba2d68f73b4834a6f0d6b93",
+    "textLength": 37,
+    "completed": true
+  },
+  {
+    "id": "s01",
+    "category": "greeting",
+    "mode": "seller-customized",
+    "interactions": 8,
+    "elapsedMilliseconds": 5322.755,
+    "expectedSha256": "7a1352fa2069248af3837eaa15dc734c70f30d8fcba2d68f73b4834a6f0d6b93",
+    "actualSha256": "7a1352fa2069248af3837eaa15dc734c70f30d8fcba2d68f73b4834a6f0d6b93",
+    "textLength": 37,
+    "completed": true
+  }
+]

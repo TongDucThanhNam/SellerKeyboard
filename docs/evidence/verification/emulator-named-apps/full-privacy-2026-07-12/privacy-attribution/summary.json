@@ -1,0 +1,30 @@
+﻿{
+    "capturedAt":  "2026-07-12T05:43:23.1473748+07:00",
+    "serial":  "emulator-5554",
+    "packageName":  "com.terasumi.sellerkeyboard",
+    "uid":  10216,
+    "networkExpectation":  "Zero",
+    "networkAccountingSupported":  true,
+    "networkAccountingReason":  "",
+    "beforeRxBytes":  0,
+    "afterRxBytes":  0,
+    "beforeTxBytes":  0,
+    "afterTxBytes":  0,
+    "rxDelta":  0,
+    "txDelta":  0,
+    "canaries":  [
+                     {
+                         "value":  "skqvz",
+                         "occurrences":  0
+                     },
+                     {
+                         "value":  "Skqvz",
+                         "occurrences":  0
+                     },
+                     {
+                         "value":  "5550100",
+                         "occurrences":  0
+                     }
+                 ],
+    "canaryOccurrencesInUidLog":  0
+}

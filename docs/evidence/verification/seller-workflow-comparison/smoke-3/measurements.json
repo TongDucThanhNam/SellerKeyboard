@@ -1,0 +1,101 @@
+[
+  {
+    "id": "s01",
+    "category": "greeting",
+    "mode": "gboard",
+    "interactions": 37,
+    "elapsedMilliseconds": 7101.765,
+    "expectedSha256": "7a1352fa2069248af3837eaa15dc734c70f30d8fcba2d68f73b4834a6f0d6b93",
+    "actualSha256": "7a1352fa2069248af3837eaa15dc734c70f30d8fcba2d68f73b4834a6f0d6b93",
+    "textLength": 37,
+    "completed": true
+  },
+  {
+    "id": "s02",
+    "category": "closing",
+    "mode": "gboard",
+    "interactions": 36,
+    "elapsedMilliseconds": 6936.064,
+    "expectedSha256": "ebab2cf5f82f8d09ef0ede6687f8b961f711bd2f670b6f5223bb6242cf62629d",
+    "actualSha256": "ebab2cf5f82f8d09ef0ede6687f8b961f711bd2f670b6f5223bb6242cf62629d",
+    "textLength": 36,
+    "completed": true
+  },
+  {
+    "id": "s03",
+    "category": "price",
+    "mode": "gboard",
+    "interactions": 38,
+    "elapsedMilliseconds": 7233.44,
+    "expectedSha256": "f8ef0e589e3a5dcb0531a7f0fb942d2041d24fe66dce01ea89520cdbec30f55c",
+    "actualSha256": "f8ef0e589e3a5dcb0531a7f0fb942d2041d24fe66dce01ea89520cdbec30f55c",
+    "textLength": 38,
+    "completed": true
+  },
+  {
+    "id": "s01",
+    "category": "greeting",
+    "mode": "seller-default",
+    "interactions": 37,
+    "elapsedMilliseconds": 7606.834,
+    "expectedSha256": "7a1352fa2069248af3837eaa15dc734c70f30d8fcba2d68f73b4834a6f0d6b93",
+    "actualSha256": "7a1352fa2069248af3837eaa15dc734c70f30d8fcba2d68f73b4834a6f0d6b93",
+    "textLength": 37,
+    "completed": true
+  },
+  {
+    "id": "s02",
+    "category": "closing",
+    "mode": "seller-default",
+    "interactions": 36,
+    "elapsedMilliseconds": 6688.686,
+    "expectedSha256": "ebab2cf5f82f8d09ef0ede6687f8b961f711bd2f670b6f5223bb6242cf62629d",
+    "actualSha256": "ebab2cf5f82f8d09ef0ede6687f8b961f711bd2f670b6f5223bb6242cf62629d",
+    "textLength": 36,
+    "completed": true
+  },
+  {
+    "id": "s03",
+    "category": "price",
+    "mode": "seller-default",
+    "interactions": 38,
+    "elapsedMilliseconds": 7274.881,
+    "expectedSha256": "f8ef0e589e3a5dcb0531a7f0fb942d2041d24fe66dce01ea89520cdbec30f55c",
+    "actualSha256": "f8ef0e589e3a5dcb0531a7f0fb942d2041d24fe66dce01ea89520cdbec30f55c",
+    "textLength": 38,
+    "completed": true
+  },
+  {
+    "id": "s01",
+    "category": "greeting",
+    "mode": "seller-customized",
+    "interactions": 8,
+    "elapsedMilliseconds": 5360.128,
+    "expectedSha256": "7a1352fa2069248af3837eaa15dc734c70f30d8fcba2d68f73b4834a6f0d6b93",
+    "actualSha256": "7a1352fa2069248af3837eaa15dc734c70f30d8fcba2d68f73b4834a6f0d6b93",
+    "textLength": 37,
+    "completed": true
+  },
+  {
+    "id": "s02",
+    "category": "closing",
+    "mode": "seller-customized",
+    "interactions": 8,
+    "elapsedMilliseconds": 5210.821,
+    "expectedSha256": "ebab2cf5f82f8d09ef0ede6687f8b961f711bd2f670b6f5223bb6242cf62629d",
+    "actualSha256": "ebab2cf5f82f8d09ef0ede6687f8b961f711bd2f670b6f5223bb6242cf62629d",
+    "textLength": 36,
+    "completed": true
+  },
+  {
+    "id": "s03",
+    "category": "price",
+    "mode": "seller-customized",
+    "interactions": 8,
+    "elapsedMilliseconds": 5254.868,
+    "expectedSha256": "f8ef0e589e3a5dcb0531a7f0fb942d2041d24fe66dce01ea89520cdbec30f55c",
+    "actualSha256": "f8ef0e589e3a5dcb0531a7f0fb942d2041d24fe66dce01ea89520cdbec30f55c",
+    "textLength": 38,
+    "completed": true
+  }
+]

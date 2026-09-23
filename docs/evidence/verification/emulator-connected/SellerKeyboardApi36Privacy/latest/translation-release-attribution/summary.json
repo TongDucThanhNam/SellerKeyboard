@@ -1,0 +1,56 @@
+﻿{
+    "generatedAt":  "2026-07-12T21:56:32.9534699+07:00",
+    "overall":  "PASS",
+    "serial":  "emulator-5554",
+    "buildType":  "benchmark",
+    "debuggable":  false,
+    "minified":  true,
+    "modelDeleted":  true,
+    "previewVerified":  true,
+    "originalMatchedCanary":  true,
+    "imeAttribution":  {
+                           "capturedAt":  "2026-07-12T21:56:32.3342816+07:00",
+                           "serial":  "emulator-5554",
+                           "packageName":  "com.terasumi.sellerkeyboard",
+                           "uid":  10232,
+                           "networkExpectation":  "Record",
+                           "networkAccountingSupported":  true,
+                           "networkAccountingReason":  "",
+                           "beforeRxBytes":  0,
+                           "afterRxBytes":  0,
+                           "beforeTxBytes":  0,
+                           "afterTxBytes":  0,
+                           "rxDelta":  0,
+                           "txDelta":  0,
+                           "canaries":  [
+                                            {
+                                                "value":  "Don hang attribution rieng tu",
+                                                "occurrences":  0
+                                            }
+                                        ],
+                           "canaryOccurrencesInUidLog":  0
+                       },
+    "providerAttribution":  {
+                                "capturedAt":  "2026-07-12T21:56:32.9479176+07:00",
+                                "serial":  "emulator-5554",
+                                "packageName":  "com.google.android.gms",
+                                "uid":  10146,
+                                "networkExpectation":  "Record",
+                                "networkAccountingSupported":  true,
+                                "networkAccountingReason":  "",
+                                "beforeRxBytes":  0,
+                                "afterRxBytes":  0,
+                                "beforeTxBytes":  0,
+                                "afterTxBytes":  0,
+                                "rxDelta":  0,
+                                "txDelta":  0,
+                                "canaries":  [
+                                                 {
+                                                     "value":  "Don hang attribution rieng tu",
+                                                     "occurrences":  0
+                                                 }
+                                             ],
+                                "canaryOccurrencesInUidLog":  0
+                            },
+    "claimBoundary":  "non-debuggable minified release-like APK; benchmark-only shell probe"
+}

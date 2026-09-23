@@ -24,3 +24,5 @@ local.properties
 .env.local
 
 /node_modules
+*/build
+*.txt

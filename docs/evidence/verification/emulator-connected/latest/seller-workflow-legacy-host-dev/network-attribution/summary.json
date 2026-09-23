@@ -1,0 +1,34 @@
+﻿{
+    "capturedAt":  "2026-07-11T23:42:29.9696752+07:00",
+    "serial":  "emulator-5554",
+    "packageName":  "com.terasumi.sellerkeyboard",
+    "uid":  10216,
+    "networkExpectation":  "Zero",
+    "networkAccountingSupported":  false,
+    "networkAccountingReason":  "Android netstats poll unavailable or timed out. Android netstats poll unavailable or timed out.",
+    "beforeRxBytes":  null,
+    "afterRxBytes":  null,
+    "beforeTxBytes":  null,
+    "afterTxBytes":  null,
+    "rxDelta":  null,
+    "txDelta":  null,
+    "canaries":  [
+                     {
+                         "value":  "Your order ships today.",
+                         "occurrences":  0
+                     },
+                     {
+                         "value":  "Tracking code: trk123",
+                         "occurrences":  0
+                     },
+                     {
+                         "value":  "Your warranty remains active.",
+                         "occurrences":  0
+                     },
+                     {
+                         "value":  "80.000₫",
+                         "occurrences":  0
+                     }
+                 ],
+    "canaryOccurrencesInUidLog":  0
+}

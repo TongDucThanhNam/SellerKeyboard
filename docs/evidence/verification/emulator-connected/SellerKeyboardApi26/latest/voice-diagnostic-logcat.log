@@ -1,0 +1,303 @@
+--------- beginning of main
+07-12 18:47:18.508  2246  2822 I Icing   : Usage reports ok 0, Failed Usage reports 0, indexed 0, rejected 0
+07-12 18:47:18.512  2246  2822 I Icing   : Indexing done com.google.android.gms-apps
+07-12 18:47:18.513  2246  2822 I Icing   : Indexing com.google.android.gms-apps from com.google.android.gms
+07-12 18:47:18.513  2246  2822 I Icing   : Indexing done com.google.android.gms-apps
+07-12 18:47:18.513  2246  2941 I Icing   : IndexChimeraService.getServiceInterface callingPackage=com.google.android.gms componentName=null serviceId=36
+07-12 18:47:18.531  2246  2864 I Icing   : Usage reports ok 0, Failed Usage reports 0, indexed 0, rejected 0
+07-12 18:47:18.701  3906  3906 I dex2oat : dex2oat took 598.250ms (972.037ms cpu) (threads: 4) arena alloc=6KB (6480B) java alloc=1303KB (1335224B) native alloc=3MB (4016568B) free=2MB (2274888B)
+07-12 18:47:18.789  1662  1689 I zygote64: Explicit concurrent copying GC freed 70744(3MB) AllocSpace objects, 25(564KB) LOS objects, 40% free, 8MB/14MB, paused 586us total 23.236ms
+07-12 18:47:18.797  1513  1719 E         : Couldn't opendir /data/app/vmdl239467186.tmp: No such file or directory
+07-12 18:47:18.797  1513  1719 E installd: Failed to delete /data/app/vmdl239467186.tmp: No such file or directory
+07-12 18:47:18.809  1662  1727 I InputReader: Reconfiguring input devices.  changes=0x00000010
+07-12 18:47:18.833  1662  1727 I chatty  : uid=1000(system) InputReader identical 1 line
+07-12 18:47:18.833  1662  1727 I InputReader: Reconfiguring input devices.  changes=0x00000010
+07-12 18:47:18.880  2058  3879 I Fitness : FitCleanupIntentOperation received Intent android.intent.action.PACKAGE_REMOVED [CONTEXT service_id=17 ]
+07-12 18:47:18.906  2246  3896 I Auth    : [SupervisedAccountIntentOperation] onHandleIntent(): android.intent.action.PACKAGE_ADDED
+07-12 18:47:18.906  2246  3891 I ChromeSync: [Sync,SyncIntentOperation] Handling the intent: Intent { act=android.intent.action.PACKAGE_ADDED dat=package:com.terasumi.sellerkeyboard.test flg=0x4000010 cmp=com.google.android.gms/.chimera.GmsIntentOperationService (has extras) }.
+07-12 18:47:18.930  2246  3904 I FontLog : Package com.terasumi.sellerkeyboard.test has no metadata [CONTEXT service_id=132 ]
+07-12 18:47:18.940  1908  1908 D CarrierSvcBindHelper: No carrier app for: 0
+07-12 18:47:18.942  1908  1908 D CarrierSvcBindHelper: No carrier app for: 0
+07-12 18:47:18.946  1908  1908 D ImsResolver: maybeAddedImsService, packageName: com.terasumi.sellerkeyboard.test
+07-12 18:47:18.947  1908  1908 D CarrierConfigLoader: mHandler: 9 phoneId: 0
+07-12 18:47:18.999  2246  3891 I ChromeSync: [Persistence,AffiliationManager] One of affiliation or grouping data for android://Ha0knQegXETCZWqAN49v0_Ee0HH9CDSW1jrsl-UgU8hY97mNaO4yc6Mgg3qSG6lwbWSNQgG6whSR2uRm6LfCpw==@com.terasumi.sellerkeyboard.test/ was not found. Marking affiliation data as stale...
+07-12 18:47:19.004  2246  3902 I Icing   : Indexing com.google.android.gms-apps from com.google.android.gms
+07-12 18:47:19.010  2246  3902 I Icing   : Indexing done com.google.android.gms-apps
+07-12 18:47:19.020  2246  3902 I Icing   : Indexing com.google.android.gms-apps from com.google.android.gms
+07-12 18:47:19.021  2246  3902 I Icing   : Indexing done com.google.android.gms-apps
+07-12 18:47:19.071  2246  2257 I zygote64: Background concurrent copying GC freed 38532(2MB) AllocSpace objects, 12(240KB) LOS objects, 44% free, 7MB/13MB, paused 2.238ms total 135.315ms
+07-12 18:47:20.596  1519  1611 I Netd    : Destroyed 2 sockets for netId 100 permission=1 in 0.7 ms
+07-12 18:47:20.596  2058  2842 V NativeCrypto: Read error: ssl=0x7d49026b0608: I/O error during system call, Software caused connection abort
+07-12 18:47:20.602  2058  3775 V NativeCrypto: Write error: ssl=0x7d49026b0608: I/O error during system call, Broken pipe
+07-12 18:47:20.602  2058  3775 V NativeCrypto: SSL shutdown failed: ssl=0x7d49026b0608: I/O error during system call, Success
+07-12 18:47:20.648  1662  1676 E memtrack: Couldn't load memtrack module
+07-12 18:47:20.648  1662  1676 W android.os.Debug: failed to get memory consumption info: -1
+07-12 18:47:21.004  2435  2435 I MicroDetectionWorker: #updateMicroDetector [detectionMode: [mDetectionMode: [1]]]
+07-12 18:47:21.004  2435  2435 I MicroDetectionWorker: #startMicroDetector [speakerMode: 0]
+07-12 18:47:21.004  2435  2435 I AudioController: Using mInputStreamFactoryBuilder
+07-12 18:47:21.006  2435  2435 I MicroDetectionWorker: onReady
+07-12 18:47:21.007  2435  2514 I MicroRecognitionRunner: Starting detection.
+07-12 18:47:21.007  2435  2588 I MicrophoneInputStream: mic_starting com.google.android.apps.gsa.staticplugins.aa.c@6312c7
+07-12 18:47:21.012  1510  3924 I AudioFlinger: AudioFlinger's thread 0xe40031c0 tid=3924 ready to run
+07-12 18:47:21.016  2435  2588 I MicrophoneInputStream: mic_started com.google.android.apps.gsa.staticplugins.aa.c@6312c7
+07-12 18:47:21.017  2435  2435 I MicroDetectionWorker: onReady
+07-12 18:47:21.018  2435  2588 I MicrophoneInputStream: mic_close com.google.android.apps.gsa.staticplugins.aa.c@6312c7
+07-12 18:47:21.019  2435  2514 I MicroRecognitionRunner: Detection finished
+07-12 18:47:21.019  2435  2514 W ErrorReporter: reportError [type: 211, code: 524300]: Error reading from input stream
+07-12 18:47:21.020  2435  2677 I MicroRecognitionRunner: Stopping hotword detection.
+07-12 18:47:21.020  2435  2514 W ErrorProcessor: onFatalError, processing error from engine(4)
+07-12 18:47:21.020  2435  2514 W ErrorProcessor: com.google.android.apps.gsa.shared.speech.b.g: Error reading from input stream
+07-12 18:47:21.020  2435  2514 W ErrorProcessor: 	at com.google.android.apps.gsa.staticplugins.recognizer.j.a.a(SourceFile:28)
+07-12 18:47:21.020  2435  2514 W ErrorProcessor: 	at com.google.android.apps.gsa.staticplugins.recognizer.j.b.run(SourceFile:15)
+07-12 18:47:21.020  2435  2514 W ErrorProcessor: 	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:457)
+07-12 18:47:21.020  2435  2514 W ErrorProcessor: 	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+07-12 18:47:21.020  2435  2514 W ErrorProcessor: 	at com.google.android.apps.gsa.shared.util.concurrent.a.ax.run(SourceFile:14)
+07-12 18:47:21.020  2435  2514 W ErrorProcessor: 	at com.google.android.apps.gsa.shared.util.concurrent.a.bl.run(SourceFile:4)
+07-12 18:47:21.020  2435  2514 W ErrorProcessor: 	at com.google.android.apps.gsa.shared.util.concurrent.a.bl.run(SourceFile:4)
+07-12 18:47:21.020  2435  2514 W ErrorProcessor: 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1162)
+07-12 18:47:21.020  2435  2514 W ErrorProcessor: 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:636)
+07-12 18:47:21.020  2435  2514 W ErrorProcessor: 	at java.lang.Thread.run(Thread.java:764)
+07-12 18:47:21.020  2435  2514 W ErrorProcessor: 	at com.google.android.apps.gsa.shared.util.concurrent.a.ai.run(SourceFile:6)
+07-12 18:47:21.020  2435  2514 W ErrorProcessor: Caused by: com.google.android.apps.gsa.shared.exception.GsaIOException: Error code: 393238 | Buffer overflow, no available space.
+07-12 18:47:21.020  2435  2514 W ErrorProcessor: 	at com.google.android.apps.gsa.speech.audio.Tee.f(SourceFile:103)
+07-12 18:47:21.020  2435  2514 W ErrorProcessor: 	at com.google.android.apps.gsa.speech.audio.au.read(SourceFile:2)
+07-12 18:47:21.020  2435  2514 W ErrorProcessor: 	at java.io.InputStream.read(InputStream.java:101)
+07-12 18:47:21.020  2435  2514 W ErrorProcessor: 	at com.google.android.apps.gsa.speech.audio.ao.run(SourceFile:18)
+07-12 18:47:21.020  2435  2514 W ErrorProcessor: 	at com.google.android.apps.gsa.speech.audio.an.run(SourceFile:2)
+07-12 18:47:21.020  2435  2514 W ErrorProcessor: 	... 9 more
+07-12 18:47:21.020  2435  2514 I AudioController: internalShutdown
+07-12 18:47:21.021  2435  2501 I DeviceStateChecker: DeviceStateChecker cancelled
+07-12 18:47:21.021  2435  2435 I MicroDetector: Keeping mic open: false
+07-12 18:47:21.021  2435  2435 I MicroDetectionWorker: #onError(false)
+07-12 18:47:21.429  1662  1676 E memtrack: Couldn't load memtrack module
+07-12 18:47:21.429  1662  1676 W android.os.Debug: failed to get memory consumption info: -1
+07-12 18:47:22.127  1662  1676 E memtrack: Couldn't load memtrack module
+07-12 18:47:22.127  1662  1676 W android.os.Debug: failed to get memory consumption info: -1
+07-12 18:47:22.201  2058  3775 E GmsTaskScheduler: sendWakeUpEvent called on SchedulerClientBroadcastStrategy
+07-12 18:47:22.207  3185  3275 E FirebaseInstanceId: Token retrieval failed: INVALID_SENDER
+07-12 18:47:22.651  1662  1676 E memtrack: Couldn't load memtrack module
+07-12 18:47:22.651  1662  1676 W android.os.Debug: failed to get memory consumption info: -1
+07-12 18:47:22.656  1662  1676 E memtrack: Couldn't load memtrack module
+07-12 18:47:22.656  1662  1676 W android.os.Debug: failed to get memory consumption info: -1
+--------- beginning of system
+07-12 18:47:22.695  1662  1677 W BroadcastQueue: Background execution not allowed: receiving Intent { act=android.intent.action.DROPBOX_ENTRY_ADDED flg=0x10 (has extras) } to com.google.android.gms/.stats.service.DropBoxEntryAddedReceiver
+07-12 18:47:22.695  1662  1677 W BroadcastQueue: Background execution not allowed: receiving Intent { act=android.intent.action.DROPBOX_ENTRY_ADDED flg=0x10 (has extras) } to com.google.android.gms/.chimera.GmsIntentOperationService$PersistentTrustedReceiver
+07-12 18:47:22.912  1662  1676 E memtrack: Couldn't load memtrack module
+07-12 18:47:22.912  1662  1676 W android.os.Debug: failed to get memory consumption info: -1
+07-12 18:47:23.644  2246  3891 I Vision  : Requesting optional module download of ocr.
+07-12 18:47:23.645  2246  3891 I Vision  : Checking for download completion for 62294 -- ocr
+07-12 18:47:24.656  1662  1676 E memtrack: Couldn't load memtrack module
+07-12 18:47:24.656  1662  1676 W android.os.Debug: failed to get memory consumption info: -1
+07-12 18:47:25.201  3932  3932 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+07-12 18:47:25.282  3932  3932 W app_process: Unexpected CPU variant for X86 using defaults: x86_64
+07-12 18:47:25.317  3932  3932 D AndroidRuntime: Calling main entry com.android.commands.am.Am
+07-12 18:47:25.322  1662  3725 I ActivityManager: Force stopping com.terasumi.sellerkeyboard appid=10077 user=0: start instr
+07-12 18:47:25.332  3942  3942 I zygote64: Late-enabling -Xcheck:jni
+07-12 18:47:25.341  1662  3725 I ActivityManager: Start proc 3942:com.terasumi.sellerkeyboard/u0a77 for added application com.terasumi.sellerkeyboard
+07-12 18:47:25.341  3942  3942 W zygote64: Unexpected CPU variant for X86 using defaults: x86_64
+07-12 18:47:25.364  3942  3942 W zygote64: Found duplicate classes, falling back to extracting from APK : /data/app/com.terasumi.sellerkeyboard-K36ff6_S83yR-7i1Rdo4Lg==/base.apk
+07-12 18:47:25.364  3942  3942 W zygote64: NOTE: This wastes RAM and hurts startup performance.
+07-12 18:47:25.364  3942  3942 W zygote64: Found duplicated class when checking oat files: 'Lcom/android/tools/r8/annotations/LambdaMethod;' in /data/app/com.terasumi.sellerkeyboard-K36ff6_S83yR-7i1Rdo4Lg==/base.apk:classes14.dex and /data/app/com.terasumi.sellerkeyboard.test-ZhFi1d_ED35D_QFQJc9_wQ==/base.apk:classes6.dex
+07-12 18:47:25.364  3942  3942 W zygote64: 
+07-12 18:47:25.874  1662  1883 I ActivityManager: Killing 2849:com.google.android.apps.photos/u0a65 (adj 906): empty #17
+07-12 18:47:26.028  2435  2435 I MicroDetectionWorker: #updateMicroDetector [detectionMode: [mDetectionMode: [1]]]
+07-12 18:47:26.028  2435  2435 I MicroDetectionWorker: #startMicroDetector [speakerMode: 0]
+07-12 18:47:26.029  2435  2435 I AudioController: Using mInputStreamFactoryBuilder
+07-12 18:47:26.031  2435  2435 I MicroDetectionWorker: onReady
+07-12 18:47:26.033  2435  2514 I MicroRecognitionRunner: Starting detection.
+07-12 18:47:26.034  2435  2588 I MicrophoneInputStream: mic_starting com.google.android.apps.gsa.staticplugins.aa.c@d8895d5
+07-12 18:47:26.043  1510  3960 I AudioFlinger: AudioFlinger's thread 0xe3e83ac0 tid=3960 ready to run
+07-12 18:47:26.045  2435  2588 I MicrophoneInputStream: mic_started com.google.android.apps.gsa.staticplugins.aa.c@d8895d5
+07-12 18:47:26.046  2435  2588 E ActivityThread: Failed to find provider info for com.google.android.apps.gsa.testing.ui.audio.recorded
+07-12 18:47:26.046  2435  2435 I MicroDetectionWorker: onReady
+07-12 18:47:26.051  2435  2588 I MicrophoneInputStream: mic_close com.google.android.apps.gsa.staticplugins.aa.c@d8895d5
+07-12 18:47:26.051  2435  2514 I MicroRecognitionRunner: Detection finished
+07-12 18:47:26.051  2435  2514 W ErrorReporter: reportError [type: 211, code: 524300]: Error reading from input stream
+07-12 18:47:26.052  2435  2677 I MicroRecognitionRunner: Stopping hotword detection.
+07-12 18:47:26.052  2435  2514 W ErrorProcessor: onFatalError, processing error from engine(4)
+07-12 18:47:26.052  2435  2514 W ErrorProcessor: com.google.android.apps.gsa.shared.speech.b.g: Error reading from input stream
+07-12 18:47:26.052  2435  2514 W ErrorProcessor: 	at com.google.android.apps.gsa.staticplugins.recognizer.j.a.a(SourceFile:28)
+07-12 18:47:26.052  2435  2514 W ErrorProcessor: 	at com.google.android.apps.gsa.staticplugins.recognizer.j.b.run(SourceFile:15)
+07-12 18:47:26.052  2435  2514 W ErrorProcessor: 	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:457)
+07-12 18:47:26.052  2435  2514 W ErrorProcessor: 	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+07-12 18:47:26.052  2435  2514 W ErrorProcessor: 	at com.google.android.apps.gsa.shared.util.concurrent.a.ax.run(SourceFile:14)
+07-12 18:47:26.052  2435  2514 W ErrorProcessor: 	at com.google.android.apps.gsa.shared.util.concurrent.a.bl.run(SourceFile:4)
+07-12 18:47:26.052  2435  2514 W ErrorProcessor: 	at com.google.android.apps.gsa.shared.util.concurrent.a.bl.run(SourceFile:4)
+07-12 18:47:26.052  2435  2514 W ErrorProcessor: 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1162)
+07-12 18:47:26.052  2435  2514 W ErrorProcessor: 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:636)
+07-12 18:47:26.052  2435  2514 W ErrorProcessor: 	at java.lang.Thread.run(Thread.java:764)
+07-12 18:47:26.052  2435  2514 W ErrorProcessor: 	at com.google.android.apps.gsa.shared.util.concurrent.a.ai.run(SourceFile:6)
+07-12 18:47:26.052  2435  2514 W ErrorProcessor: Caused by: com.google.android.apps.gsa.shared.exception.GsaIOException: Error code: 393238 | Buffer overflow, no available space.
+07-12 18:47:26.052  2435  2514 W ErrorProcessor: 	at com.google.android.apps.gsa.speech.audio.Tee.f(SourceFile:103)
+07-12 18:47:26.052  2435  2514 W ErrorProcessor: 	at com.google.android.apps.gsa.speech.audio.au.read(SourceFile:2)
+07-12 18:47:26.052  2435  2514 W ErrorProcessor: 	at java.io.InputStream.read(InputStream.java:101)
+07-12 18:47:26.052  2435  2514 W ErrorProcessor: 	at com.google.android.apps.gsa.speech.audio.ao.run(SourceFile:18)
+07-12 18:47:26.052  2435  2514 W ErrorProcessor: 	at com.google.android.apps.gsa.speech.audio.an.run(SourceFile:2)
+07-12 18:47:26.052  2435  2514 W ErrorProcessor: 	... 9 more
+07-12 18:47:26.052  2435  2514 I AudioController: internalShutdown
+07-12 18:47:26.053  2435  2435 I MicroDetector: Keeping mic open: false
+07-12 18:47:26.053  2435  2435 I MicroDetectionWorker: #onError(false)
+07-12 18:47:26.054  2435  2501 I DeviceStateChecker: DeviceStateChecker cancelled
+07-12 18:47:26.077  2435  2439 I zygote  : Do full code cache collection, code=239KB, data=191KB
+07-12 18:47:26.077  2435  2439 I zygote  : After code cache collection, code=183KB, data=136KB
+07-12 18:47:26.497  3942  3942 W System  : ClassLoader referenced unknown path: 
+07-12 18:47:26.505  3942  3942 I AndroidJUnitRunner: newApplication com.terasumi.sellerkeyboard.MyApplication
+07-12 18:47:26.553  3942  3942 I AndroidJUnitRunner: onCreate Bundle[mParcelledData.dataSize=196]
+07-12 18:47:26.553  3942  3942 D AndroidJUnitRunner: Use the raw file system for managing file I/O.
+07-12 18:47:26.559  3942  3942 V TestEventClient: No service name argument was given (testDiscoveryService, testRunEventService or orchestratorService)
+07-12 18:47:26.560  3942  3963 D AndroidJUnitRunner: onStart is called.
+07-12 18:47:26.577  3942  3963 I TestRunner: run started: 3 tests
+07-12 18:47:26.578  3942  3963 I TestRunner: started: a_explicitService_deliversPartialProcessingAndReviewableFinalResult(com.terasumi.sellerkeyboard.voice.AndroidSpeechRecognizerRepositoryInstrumentedTest)
+07-12 18:47:26.602  3942  3963 I GrantPermissionCallable: Permission: android.permission.RECORD_AUDIO is already granted!
+07-12 18:47:26.630  1662  1673 W ActivityManager: Permission Denial: Accessing service ComponentInfo{com.terasumi.sellerkeyboard.test/com.terasumi.sellerkeyboard.voice.fixture.DeterministicRecognitionService} from pid=3942, uid=10077 requires android.permission.BIND_SPEECH_RECOGNITION_SERVICE
+07-12 18:47:26.639  2058  3775 E GmsTaskScheduler: sendWakeUpEvent called on SchedulerClientBroadcastStrategy
+07-12 18:47:26.731  1662  1673 D WificondControl: Scan result ready event
+07-12 18:47:28.062  1662  3156 I ActivityManager: Killing 2259:android.process.media/u0a9 (adj 906): empty #17
+07-12 18:47:30.638  1662  1673 W ActivityManager: Unbind failed: could not find connection for android.os.BinderProxy@dea7e0b
+07-12 18:47:30.840  3942  3963 E TestRunner: failed: a_explicitService_deliversPartialProcessingAndReviewableFinalResult(com.terasumi.sellerkeyboard.voice.AndroidSpeechRecognizerRepositoryInstrumentedTest)
+07-12 18:47:30.841  3942  3963 E TestRunner: ----- begin exception -----
+07-12 18:47:30.841  3942  3963 E TestRunner: java.lang.AssertionError: Timed out waiting for voice state; last=Error(error=Client)
+07-12 18:47:30.841  3942  3963 E TestRunner: 	at com.terasumi.sellerkeyboard.voice.AndroidSpeechRecognizerRepositoryInstrumentedTest.awaitState(AndroidSpeechRecognizerRepositoryInstrumentedTest.kt:155)
+07-12 18:47:30.841  3942  3963 E TestRunner: 	at com.terasumi.sellerkeyboard.voice.AndroidSpeechRecognizerRepositoryInstrumentedTest.awaitState$default(AndroidSpeechRecognizerRepositoryInstrumentedTest.kt:144)
+07-12 18:47:30.841  3942  3963 E TestRunner: 	at com.terasumi.sellerkeyboard.voice.AndroidSpeechRecognizerRepositoryInstrumentedTest.a_explicitService_deliversPartialProcessingAndReviewableFinalResult(AndroidSpeechRecognizerRepositoryInstrumentedTest.kt:45)
+07-12 18:47:30.841  3942  3963 E TestRunner: 	at java.lang.reflect.Method.invoke(Native Method)
+07-12 18:47:30.841  3942  3963 E TestRunner: 	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:59)
+07-12 18:47:30.841  3942  3963 E TestRunner: 	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+07-12 18:47:30.841  3942  3963 E TestRunner: 	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:56)
+07-12 18:47:30.841  3942  3963 E TestRunner: 	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+07-12 18:47:30.841  3942  3963 E TestRunner: 	at androidx.test.rule.GrantPermissionRule$RequestPermissionStatement.evaluate(GrantPermissionRule.java:150)
+07-12 18:47:30.841  3942  3963 E TestRunner: 	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
+07-12 18:47:30.841  3942  3963 E TestRunner: 	at org.junit.runners.BlockJUnit4ClassRunner$1.evaluate(BlockJUnit4ClassRunner.java:100)
+07-12 18:47:30.841  3942  3963 E TestRunner: 	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:366)
+07-12 18:47:30.841  3942  3963 E TestRunner: 	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:103)
+07-12 18:47:30.841  3942  3963 E TestRunner: 	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:63)
+07-12 18:47:30.841  3942  3963 E TestRunner: 	at org.junit.runners.ParentRunner$4.run(ParentRunner.java:331)
+07-12 18:47:30.841  3942  3963 E TestRunner: 	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:79)
+07-12 18:47:30.841  3942  3963 E TestRunner: 	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:329)
+07-12 18:47:30.841  3942  3963 E TestRunner: 	at org.junit.runners.ParentRunner.access$100(ParentRunner.java:66)
+07-12 18:47:30.841  3942  3963 E TestRunner: 	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:293)
+07-12 18:47:30.841  3942  3963 E TestRunner: 	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
+07-12 18:47:30.841  3942  3963 E TestRunner: 	at org.junit.runners.ParentRunner.run(ParentRunner.java:413)
+07-12 18:47:30.841  3942  3963 E TestRunner: 	at androidx.test.ext.junit.runners.AndroidJUnit4.run(AndroidJUnit4.java:162)
+07-12 18:47:30.841  3942  3963 E TestRunner: 	at org.junit.runners.Suite.runChild(Suite.java:128)
+07-12 18:47:30.841  3942  3963 E TestRunner: 	at org.junit.runners.Suite.runChild(Suite.java:27)
+07-12 18:47:30.841  3942  3963 E TestRunner: 	at org.junit.runners.ParentRunner$4.run(ParentRunner.java:331)
+07-12 18:47:30.841  3942  3963 E TestRunner: 	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:79)
+07-12 18:47:30.841  3942  3963 E TestRunner: 	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:329)
+07-12 18:47:30.841  3942  3963 E TestRunner: 	at org.junit.runners.ParentRunner.access$100(ParentRunner.java:66)
+07-12 18:47:30.841  3942  3963 E TestRunner: 	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:293)
+07-12 18:47:30.841  3942  3963 E TestRunner: 	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
+07-12 18:47:30.841  3942  3963 E TestRunner: 	at org.junit.runners.ParentRunner.run(ParentRunner.java:413)
+07-12 18:47:30.841  3942  3963 E TestRunner: 	at org.junit.runner.JUnitCore.run(JUnitCore.java:137)
+07-12 18:47:30.841  3942  3963 E TestRunner: 	at org.junit.runner.JUnitCore.run(JUnitCore.java:115)
+07-12 18:47:30.841  3942  3963 E TestRunner: 	at androidx.test.internal.runner.TestExecutor.execute(TestExecutor.java:68)
+07-12 18:47:30.841  3942  3963 E TestRunner: 	at androidx.test.internal.runner.TestExecutor.execute(TestExecutor.java:59)
+07-12 18:47:30.841  3942  3963 E TestRunner: 	at androidx.test.runner.AndroidJUnitRunner.onStart(AndroidJUnitRunner.java:463)
+07-12 18:47:30.841  3942  3963 E TestRunner: 	at android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:2074)
+07-12 18:47:30.841  3942  3963 E TestRunner: ----- end exception -----
+07-12 18:47:30.843  3942  3963 I TestRunner: finished: a_explicitService_deliversPartialProcessingAndReviewableFinalResult(com.terasumi.sellerkeyboard.voice.AndroidSpeechRecognizerRepositoryInstrumentedTest)
+07-12 18:47:30.846  3942  3963 I TestRunner: started: b_explicitService_mapsNetworkAndNoMatchErrors(com.terasumi.sellerkeyboard.voice.AndroidSpeechRecognizerRepositoryInstrumentedTest)
+07-12 18:47:30.850  3942  3963 I GrantPermissionCallable: Permission: android.permission.RECORD_AUDIO is already granted!
+07-12 18:47:30.852  1662  2337 W ActivityManager: Permission Denial: Accessing service ComponentInfo{com.terasumi.sellerkeyboard.test/com.terasumi.sellerkeyboard.voice.fixture.DeterministicNetworkRecognitionService} from pid=3942, uid=10077 requires android.permission.BIND_SPEECH_RECOGNITION_SERVICE
+07-12 18:47:30.872  1662  2337 W ActivityManager: Unbind failed: could not find connection for android.os.BinderProxy@6c134e8
+07-12 18:47:31.074  3942  3963 E TestRunner: failed: b_explicitService_mapsNetworkAndNoMatchErrors(com.terasumi.sellerkeyboard.voice.AndroidSpeechRecognizerRepositoryInstrumentedTest)
+07-12 18:47:31.075  3942  3963 E TestRunner: ----- begin exception -----
+07-12 18:47:31.075  3942  3963 E TestRunner: java.lang.AssertionError: expected:<Error(error=Network)> but was:<Error(error=Client)>
+07-12 18:47:31.075  3942  3963 E TestRunner: 	at org.junit.Assert.fail(Assert.java:89)
+07-12 18:47:31.075  3942  3963 E TestRunner: 	at org.junit.Assert.failNotEquals(Assert.java:835)
+07-12 18:47:31.075  3942  3963 E TestRunner: 	at org.junit.Assert.assertEquals(Assert.java:120)
+07-12 18:47:31.075  3942  3963 E TestRunner: 	at org.junit.Assert.assertEquals(Assert.java:146)
+07-12 18:47:31.075  3942  3963 E TestRunner: 	at com.terasumi.sellerkeyboard.voice.AndroidSpeechRecognizerRepositoryInstrumentedTest.b_explicitService_mapsNetworkAndNoMatchErrors(AndroidSpeechRecognizerRepositoryInstrumentedTest.kt:64)
+07-12 18:47:31.075  3942  3963 E TestRunner: 	at java.lang.reflect.Method.invoke(Native Method)
+07-12 18:47:31.075  3942  3963 E TestRunner: 	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:59)
+07-12 18:47:31.075  3942  3963 E TestRunner: 	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+07-12 18:47:31.075  3942  3963 E TestRunner: 	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:56)
+07-12 18:47:31.075  3942  3963 E TestRunner: 	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+07-12 18:47:31.075  3942  3963 E TestRunner: 	at androidx.test.rule.GrantPermissionRule$RequestPermissionStatement.evaluate(GrantPermissionRule.java:150)
+07-12 18:47:31.075  3942  3963 E TestRunner: 	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
+07-12 18:47:31.075  3942  3963 E TestRunner: 	at org.junit.runners.BlockJUnit4ClassRunner$1.evaluate(BlockJUnit4ClassRunner.java:100)
+07-12 18:47:31.075  3942  3963 E TestRunner: 	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:366)
+07-12 18:47:31.075  3942  3963 E TestRunner: 	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:103)
+07-12 18:47:31.075  3942  3963 E TestRunner: 	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:63)
+07-12 18:47:31.075  3942  3963 E TestRunner: 	at org.junit.runners.ParentRunner$4.run(ParentRunner.java:331)
+07-12 18:47:31.075  3942  3963 E TestRunner: 	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:79)
+07-12 18:47:31.075  3942  3963 E TestRunner: 	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:329)
+07-12 18:47:31.075  3942  3963 E TestRunner: 	at org.junit.runners.ParentRunner.access$100(ParentRunner.java:66)
+07-12 18:47:31.075  3942  3963 E TestRunner: 	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:293)
+07-12 18:47:31.075  3942  3963 E TestRunner: 	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
+07-12 18:47:31.075  3942  3963 E TestRunner: 	at org.junit.runners.ParentRunner.run(ParentRunner.java:413)
+07-12 18:47:31.075  3942  3963 E TestRunner: 	at androidx.test.ext.junit.runners.AndroidJUnit4.run(AndroidJUnit4.java:162)
+07-12 18:47:31.075  3942  3963 E TestRunner: 	at org.junit.runners.Suite.runChild(Suite.java:128)
+07-12 18:47:31.075  3942  3963 E TestRunner: 	at org.junit.runners.Suite.runChild(Suite.java:27)
+07-12 18:47:31.075  3942  3963 E TestRunner: 	at org.junit.runners.ParentRunner$4.run(ParentRunner.java:331)
+07-12 18:47:31.075  3942  3963 E TestRunner: 	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:79)
+07-12 18:47:31.075  3942  3963 E TestRunner: 	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:329)
+07-12 18:47:31.075  3942  3963 E TestRunner: 	at org.junit.runners.ParentRunner.access$100(ParentRunner.java:66)
+07-12 18:47:31.075  3942  3963 E TestRunner: 	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:293)
+07-12 18:47:31.075  3942  3963 E TestRunner: 	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
+07-12 18:47:31.075  3942  3963 E TestRunner: 	at org.junit.runners.ParentRunner.run(ParentRunner.java:413)
+07-12 18:47:31.075  3942  3963 E TestRunner: 	at org.junit.runner.JUnitCore.run(JUnitCore.java:137)
+07-12 18:47:31.075  3942  3963 E TestRunner: 	at org.junit.runner.JUnitCore.run(JUnitCore.java:115)
+07-12 18:47:31.075  3942  3963 E TestRunner: 	at androidx.test.internal.runner.TestExecutor.execute(TestExecutor.java:68)
+07-12 18:47:31.075  3942  3963 E TestRunner: 	at androidx.test.internal.runner.TestExecutor.execute(TestExecutor.java:59)
+07-12 18:47:31.075  3942  3963 E TestRunner: 	at androidx.test.runner.AndroidJUnitRunner.onStart(AndroidJUnitRunner.java:463)
+07-12 18:47:31.075  3942  3963 E TestRunner: 	at android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:2074)
+07-12 18:47:31.075  3942  3963 E TestRunner: ----- end exception -----
+07-12 18:47:31.076  2435  2435 I MicroDetectionWorker: #updateMicroDetector [detectionMode: [mDetectionMode: [1]]]
+07-12 18:47:31.076  2435  2435 I MicroDetectionWorker: #startMicroDetector [speakerMode: 0]
+07-12 18:47:31.077  2435  2435 I AudioController: Using mInputStreamFactoryBuilder
+07-12 18:47:31.078  2435  2435 I MicroDetectionWorker: onReady
+07-12 18:47:31.080  2435  2514 I MicroRecognitionRunner: Starting detection.
+07-12 18:47:31.080  2435  2588 I MicrophoneInputStream: mic_starting com.google.android.apps.gsa.staticplugins.aa.c@442dc53
+07-12 18:47:31.082  1510  3969 I AudioFlinger: AudioFlinger's thread 0xe3d037c0 tid=3969 ready to run
+07-12 18:47:31.083  3942  3963 I TestRunner: finished: b_explicitService_mapsNetworkAndNoMatchErrors(com.terasumi.sellerkeyboard.voice.AndroidSpeechRecognizerRepositoryInstrumentedTest)
+07-12 18:47:31.086  2435  2588 I MicrophoneInputStream: mic_started com.google.android.apps.gsa.staticplugins.aa.c@442dc53
+07-12 18:47:31.087  3942  3963 I TestRunner: started: z_cancel_preventsDelayedProviderResultFromRepopulatingState(com.terasumi.sellerkeyboard.voice.AndroidSpeechRecognizerRepositoryInstrumentedTest)
+07-12 18:47:31.088  2435  2588 E ActivityThread: Failed to find provider info for com.google.android.apps.gsa.testing.ui.audio.recorded
+07-12 18:47:31.088  2435  2435 I MicroDetectionWorker: onReady
+07-12 18:47:31.091  3942  3963 I GrantPermissionCallable: Permission: android.permission.RECORD_AUDIO is already granted!
+07-12 18:47:31.094  1662  2337 W ActivityManager: Permission Denial: Accessing service ComponentInfo{com.terasumi.sellerkeyboard.test/com.terasumi.sellerkeyboard.voice.fixture.DeterministicCancelRecognitionService} from pid=3942, uid=10077 requires android.permission.BIND_SPEECH_RECOGNITION_SERVICE
+07-12 18:47:31.095  2435  2588 I MicrophoneInputStream: mic_close com.google.android.apps.gsa.staticplugins.aa.c@442dc53
+07-12 18:47:31.095  2435  2514 I MicroRecognitionRunner: Detection finished
+07-12 18:47:31.095  2435  2514 W ErrorReporter: reportError [type: 211, code: 524300]: Error reading from input stream
+07-12 18:47:31.097  2435  2677 I MicroRecognitionRunner: Stopping hotword detection.
+07-12 18:47:31.097  2435  2514 W ErrorProcessor: onFatalError, processing error from engine(4)
+07-12 18:47:31.097  2435  2514 W ErrorProcessor: com.google.android.apps.gsa.shared.speech.b.g: Error reading from input stream
+07-12 18:47:31.097  2435  2514 W ErrorProcessor: 	at com.google.android.apps.gsa.staticplugins.recognizer.j.a.a(SourceFile:28)
+07-12 18:47:31.097  2435  2514 W ErrorProcessor: 	at com.google.android.apps.gsa.staticplugins.recognizer.j.b.run(SourceFile:15)
+07-12 18:47:31.097  2435  2514 W ErrorProcessor: 	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:457)
+07-12 18:47:31.097  2435  2514 W ErrorProcessor: 	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+07-12 18:47:31.097  2435  2514 W ErrorProcessor: 	at com.google.android.apps.gsa.shared.util.concurrent.a.ax.run(SourceFile:14)
+07-12 18:47:31.097  2435  2514 W ErrorProcessor: 	at com.google.android.apps.gsa.shared.util.concurrent.a.bl.run(SourceFile:4)
+07-12 18:47:31.097  2435  2514 W ErrorProcessor: 	at com.google.android.apps.gsa.shared.util.concurrent.a.bl.run(SourceFile:4)
+07-12 18:47:31.097  2435  2514 W ErrorProcessor: 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1162)
+07-12 18:47:31.097  2435  2514 W ErrorProcessor: 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:636)
+07-12 18:47:31.097  2435  2514 W ErrorProcessor: 	at java.lang.Thread.run(Thread.java:764)
+07-12 18:47:31.097  2435  2514 W ErrorProcessor: 	at com.google.android.apps.gsa.shared.util.concurrent.a.ai.run(SourceFile:6)
+07-12 18:47:31.097  2435  2514 W ErrorProcessor: Caused by: com.google.android.apps.gsa.shared.exception.GsaIOException: Error code: 393238 | Buffer overflow, no available space.
+07-12 18:47:31.097  2435  2514 W ErrorProcessor: 	at com.google.android.apps.gsa.speech.audio.Tee.f(SourceFile:103)
+07-12 18:47:31.097  2435  2514 W ErrorProcessor: 	at com.google.android.apps.gsa.speech.audio.au.read(SourceFile:2)
+07-12 18:47:31.097  2435  2514 W ErrorProcessor: 	at java.io.InputStream.read(InputStream.java:101)
+07-12 18:47:31.097  2435  2514 W ErrorProcessor: 	at com.google.android.apps.gsa.speech.audio.ao.run(SourceFile:18)
+07-12 18:47:31.097  2435  2514 W ErrorProcessor: 	at com.google.android.apps.gsa.speech.audio.an.run(SourceFile:2)
+07-12 18:47:31.097  2435  2514 W ErrorProcessor: 	... 9 more
+07-12 18:47:31.097  2435  2514 I AudioController: internalShutdown
+07-12 18:47:31.098  2435  2435 I MicroDetector: Keeping mic open: false
+07-12 18:47:31.098  2435  2501 I DeviceStateChecker: DeviceStateChecker cancelled
+07-12 18:47:31.098  2435  2435 I MicroDetectionWorker: #onError(false)
+07-12 18:47:32.202  1662  2337 W ActivityManager: Unbind failed: could not find connection for android.os.BinderProxy@1d26701
+07-12 18:47:32.404  3942  3963 I TestRunner: finished: z_cancel_preventsDelayedProviderResultFromRepopulatingState(com.terasumi.sellerkeyboard.voice.AndroidSpeechRecognizerRepositoryInstrumentedTest)
+07-12 18:47:32.408  3942  3963 I TestRunner: run finished: 3 tests, 2 failed, 0 ignored
+07-12 18:47:32.417  3942  3971 D ProfileInstaller: Installing profile for com.terasumi.sellerkeyboard
+07-12 18:47:32.419  1662  2337 W WindowManager: removeWindowToken: Attempted to remove non-existing token: android.os.Binder@ba279da
+07-12 18:47:32.430  1662  1673 I ActivityManager: Force stopping com.terasumi.sellerkeyboard appid=10077 user=0: finished inst
+07-12 18:47:32.431  1662  1673 I ActivityManager: Killing 3942:com.terasumi.sellerkeyboard/u0a77 (adj 0): stop com.terasumi.sellerkeyboard
+07-12 18:47:32.434  1662  3972 W Binder  : Outgoing transactions from this process must be FLAG_ONEWAY
+07-12 18:47:32.434  1662  3972 W Binder  : java.lang.Throwable
+07-12 18:47:32.434  1662  3972 W Binder  : 	at android.os.BinderProxy.transact(Binder.java:736)
+07-12 18:47:32.434  1662  3972 W Binder  : 	at android.app.IInstrumentationWatcher$Stub$Proxy.instrumentationFinished(IInstrumentationWatcher.java:160)
+07-12 18:47:32.434  1662  3972 W Binder  : 	at com.android.server.am.InstrumentationReporter$MyThread.run(InstrumentationReporter.java:86)
+07-12 18:47:32.434  3932  3932 D AndroidRuntime: Shutting down VM
+07-12 18:47:32.441  2344  2350 I zygote64: Do partial code cache collection, code=61KB, data=49KB
+07-12 18:47:32.442  2344  2350 I zygote64: After code cache collection, code=61KB, data=49KB
+07-12 18:47:32.442  2344  2350 I zygote64: Increasing code cache capacity to 256KB

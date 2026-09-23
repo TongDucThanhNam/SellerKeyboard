@@ -1,0 +1,18 @@
+﻿{
+    "capturedAt":  "2026-07-11T23:57:09.4481356+07:00",
+    "serial":  "emulator-5554",
+    "packageName":  "com.google.android.tts",
+    "uid":  10150,
+    "networkExpectation":  "Record",
+    "logcatClearSucceeded":  true,
+    "network":  {
+                    "supported":  true,
+                    "reason":  "",
+                    "matchingLines":  1,
+                    "rxBytes":  0,
+                    "txBytes":  0,
+                    "lines":  [
+                                  "  ident=[{type=1, ratType=COMBINED, wifiNetworkKey=\"AndroidWifi\"open, metered=false, defaultNetwork=true, oemManaged=OEM_NONE, subId=-1}] uid=10150 set=DEFAULT tag=0x0\r"
+                              ]
+                }
+}

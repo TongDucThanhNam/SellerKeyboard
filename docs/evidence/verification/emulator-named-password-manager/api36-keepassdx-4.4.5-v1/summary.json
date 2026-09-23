@@ -1,0 +1,238 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-07-12T18:31:25.3382944+07:00",
+  "overall": "PASS",
+  "serial": "emulator-5554",
+  "flow": {
+    "api": 36,
+    "provider": {
+      "name": "KeePassDX",
+      "package": "com.kunzisoft.keepass.libre",
+      "component": "com.kunzisoft.keepass.libre/com.kunzisoft.keepass.credentialprovider.autofill.KeeAutofillService",
+      "version": "4.4.5",
+      "versionCode": 44500,
+      "officialReleaseUrl": "https://github.com/Kunzisoft/KeePassDX/releases/download/4.4.5/KeePassDX-4.4.5-libre.apk",
+      "apkSha256": "EFCCBC7722AEB93616AF541A5A5137418D7EAC42A36DD16391948BCFAADDCF79",
+      "signingCertificateSha256": "7d55b8af210381aabf960f07e17cf7857b6d2a642ca2da6bf0bdf1b200362f04",
+      "localVault": true,
+      "cloudAccountUsed": false
+    },
+    "packages": {
+      "ime": "com.terasumi.sellerkeyboard",
+      "imeUid": 10232,
+      "provider": "com.kunzisoft.keepass.libre",
+      "providerUid": 10239,
+      "host": "com.terasumi.sellerkeyboard.benchmarkhost",
+      "hostUid": 10234,
+      "browser": "com.android.chrome",
+      "browserUid": 0,
+      "distinctUids": true
+    },
+    "initial": {
+      "candidateSource": "INLINE_AUTOFILL",
+      "inlineCount": 1,
+      "signInTap": {
+        "X": 270,
+        "Y": 1489,
+        "NumberRowTop": 1569
+      }
+    },
+    "entrySelection": {
+      "providerOwnedPickerOpened": true,
+      "inlineCountAfterSelection": 2,
+      "credentialTap": {
+        "x": 270,
+        "y": 1489,
+        "numberRowTop": 1569,
+        "horizontalFraction": 0.25
+      }
+    },
+    "fill": {
+      "usernameLength": 30,
+      "usernameSha256": "a54ec0a94200561a53e315a4ab6a1ea9bf927ccb88f6fcdf3f7880640c606c9c",
+      "passwordLength": 27,
+      "passwordSha256": "13a6eb02a82bc1143a4204f91391d82030ee8811a0a758cb37b986ad6e2b3ce5",
+      "inlineCountAfterFill": 0
+    },
+    "browser": {
+      "package": "com.android.chrome",
+      "version": null,
+      "fixtureUrl": "http://127.0.0.1:18081/autofill-login.html",
+      "fixtureTransport": "adb-reversed host loopback HTTP",
+      "localOnly": true,
+      "virtualViewFlag": "Enabled",
+      "virtualViewFlagSource": "chrome://flags/#enable-autofill-virtual-view-structure",
+      "autofillMode": "Autofill using another service",
+      "originalVirtualViewFlag": null,
+      "originalAutofillMode": null,
+      "platformPresentation": "PLATFORM_ANCHORED_AUTOFILL",
+      "inlinePresentationExpected": false,
+      "providerOwnedPickerOpened": null,
+      "candidateSource": null,
+      "initialInlineCount": 0,
+      "credentialTap": null,
+      "usernameLength": 30,
+      "usernameSha256": "a54ec0a94200561a53e315a4ab6a1ea9bf927ccb88f6fcdf3f7880640c606c9c",
+      "passwordLength": 27,
+      "passwordSha256": "13a6eb02a82bc1143a4204f91391d82030ee8811a0a758cb37b986ad6e2b3ce5",
+      "hashOnlyDomAssertion": null,
+      "inlineCountAfterFill": 0,
+      "requestCount": 0,
+      "fixtureRequestCount": 0,
+      "unsafeRequestCount": 0,
+      "noSubmission": true
+    },
+    "privacy": {
+      "ime": {
+        "capturedAt": "2026-07-12T18:31:22.295962+07:00",
+        "serial": "emulator-5554",
+        "packageName": "com.terasumi.sellerkeyboard",
+        "uid": 10232,
+        "networkExpectation": "Zero",
+        "networkAccountingSupported": true,
+        "networkAccountingReason": "",
+        "beforeRxBytes": 0,
+        "afterRxBytes": 0,
+        "beforeTxBytes": 0,
+        "afterTxBytes": 0,
+        "rxDelta": 0,
+        "txDelta": 0,
+        "canaries": [
+          {
+            "value": "Seller Keyboard Host",
+            "occurrences": 0
+          },
+          {
+            "value": "Seller Keyboard Browser",
+            "occurrences": 0
+          },
+          {
+            "value": "named-provider@example.invalid",
+            "occurrences": 0
+          },
+          {
+            "value": "Named-Provider-Autofill-42!",
+            "occurrences": 0
+          }
+        ],
+        "canaryOccurrencesInUidLog": 0
+      },
+      "provider": {
+        "capturedAt": "2026-07-12T18:31:22.7821405+07:00",
+        "serial": "emulator-5554",
+        "packageName": "com.kunzisoft.keepass.libre",
+        "uid": 10239,
+        "networkExpectation": "Zero",
+        "networkAccountingSupported": true,
+        "networkAccountingReason": "",
+        "beforeRxBytes": 0,
+        "afterRxBytes": 0,
+        "beforeTxBytes": 0,
+        "afterTxBytes": 0,
+        "rxDelta": 0,
+        "txDelta": 0,
+        "canaries": [
+          {
+            "value": "Seller Keyboard Host",
+            "occurrences": 0
+          },
+          {
+            "value": "Seller Keyboard Browser",
+            "occurrences": 0
+          },
+          {
+            "value": "named-provider@example.invalid",
+            "occurrences": 0
+          },
+          {
+            "value": "Named-Provider-Autofill-42!",
+            "occurrences": 0
+          }
+        ],
+        "canaryOccurrencesInUidLog": 0
+      },
+      "host": {
+        "capturedAt": "2026-07-12T18:31:23.226072+07:00",
+        "serial": "emulator-5554",
+        "packageName": "com.terasumi.sellerkeyboard.benchmarkhost",
+        "uid": 10234,
+        "networkExpectation": "Zero",
+        "networkAccountingSupported": true,
+        "networkAccountingReason": "",
+        "beforeRxBytes": 0,
+        "afterRxBytes": 0,
+        "beforeTxBytes": 0,
+        "afterTxBytes": 0,
+        "rxDelta": 0,
+        "txDelta": 0,
+        "canaries": [
+          {
+            "value": "Seller Keyboard Host",
+            "occurrences": 0
+          },
+          {
+            "value": "Seller Keyboard Browser",
+            "occurrences": 0
+          },
+          {
+            "value": "named-provider@example.invalid",
+            "occurrences": 0
+          },
+          {
+            "value": "Named-Provider-Autofill-42!",
+            "occurrences": 0
+          }
+        ],
+        "canaryOccurrencesInUidLog": 0
+      },
+      "browser": null
+    },
+    "artifacts": [
+      {
+        "file": "after-selection-window.xml",
+        "bytes": 64936,
+        "sha256": "886768A8BAD77DBDECFDEDAFBDEB874C2D4645DB628B12C02CEDF68F0E258F2E"
+      },
+      {
+        "file": "after-selection.png",
+        "bytes": 112754,
+        "sha256": "A6274FB39E33047F3F1518D741E16A2CB2AF43636FE595CA0C453FE67DCFB50B"
+      },
+      {
+        "file": "initial-sign-in-window.xml",
+        "bytes": 58390,
+        "sha256": "F873D6581A023CEC02DC83BA7281B83553FDD19720590A5D36C0F2DBA6897DC1"
+      },
+      {
+        "file": "initial-sign-in.png",
+        "bytes": 119867,
+        "sha256": "712366C001193279CE22DE75260F513044820A85BDB6186094A56EDC49B5BA77"
+      },
+      {
+        "file": "selected-entry-datasets-window.xml",
+        "bytes": 59506,
+        "sha256": "737509EB9A9C866E752FEE3212ED204CE74E71C6A93F91697B82C01085C4A9B5"
+      },
+      {
+        "file": "selected-entry-datasets.png",
+        "bytes": 124954,
+        "sha256": "ED0A38EF7C55322095AF34E6924DD5288681FD7F420FF1E6CCF01973181B801F"
+      }
+    ]
+  },
+  "restoration": {
+    "autofillServiceExact": true,
+    "defaultImeExact": true,
+    "showImeWithHardKeyboardExact": true,
+    "providerPresenceExact": true,
+    "hostPresenceExact": true,
+    "imePresenceExact": true,
+    "fixtureVaultPresenceExact": true,
+    "browserPresenceExact": true,
+    "browserReverseExact": true,
+    "browserServerStopped": true,
+    "browserAutofillModeExact": true,
+    "browserAutofillFlagExact": true
+  },
+  "error": null
+}

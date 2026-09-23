@@ -1,0 +1,91 @@
+INSTRUMENTATION_STATUS: numtests=3
+INSTRUMENTATION_STATUS: stream=
+com.terasumi.sellerkeyboard.voice.AndroidSpeechRecognizerRepositoryInstrumentedTest:
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: test=a_explicitService_deliversPartialProcessingAndReviewableFinalResult
+INSTRUMENTATION_STATUS: class=com.terasumi.sellerkeyboard.voice.AndroidSpeechRecognizerRepositoryInstrumentedTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: numtests=3
+INSTRUMENTATION_STATUS: stream=
+Error in a_explicitService_deliversPartialProcessingAndReviewableFinalResult(com.terasumi.sellerkeyboard.voice.AndroidSpeechRecognizerRepositoryInstrumentedTest):
+java.lang.AssertionError: Timed out waiting for voice state; last=Error(error=Client)
+	at com.terasumi.sellerkeyboard.voice.AndroidSpeechRecognizerRepositoryInstrumentedTest.awaitState(AndroidSpeechRecognizerRepositoryInstrumentedTest.kt:155)
+	at com.terasumi.sellerkeyboard.voice.AndroidSpeechRecognizerRepositoryInstrumentedTest.awaitState$default(AndroidSpeechRecognizerRepositoryInstrumentedTest.kt:144)
+	at com.terasumi.sellerkeyboard.voice.AndroidSpeechRecognizerRepositoryInstrumentedTest.a_explicitService_deliversPartialProcessingAndReviewableFinalResult(AndroidSpeechRecognizerRepositoryInstrumentedTest.kt:45)
+
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: test=a_explicitService_deliversPartialProcessingAndReviewableFinalResult
+INSTRUMENTATION_STATUS: class=com.terasumi.sellerkeyboard.voice.AndroidSpeechRecognizerRepositoryInstrumentedTest
+INSTRUMENTATION_STATUS: stack=java.lang.AssertionError: Timed out waiting for voice state; last=Error(error=Client)
+	at com.terasumi.sellerkeyboard.voice.AndroidSpeechRecognizerRepositoryInstrumentedTest.awaitState(AndroidSpeechRecognizerRepositoryInstrumentedTest.kt:155)
+	at com.terasumi.sellerkeyboard.voice.AndroidSpeechRecognizerRepositoryInstrumentedTest.awaitState$default(AndroidSpeechRecognizerRepositoryInstrumentedTest.kt:144)
+	at com.terasumi.sellerkeyboard.voice.AndroidSpeechRecognizerRepositoryInstrumentedTest.a_explicitService_deliversPartialProcessingAndReviewableFinalResult(AndroidSpeechRecognizerRepositoryInstrumentedTest.kt:45)
+
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS_CODE: -2
+INSTRUMENTATION_STATUS: numtests=3
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: test=b_explicitService_mapsNetworkAndNoMatchErrors
+INSTRUMENTATION_STATUS: class=com.terasumi.sellerkeyboard.voice.AndroidSpeechRecognizerRepositoryInstrumentedTest
+INSTRUMENTATION_STATUS: current=2
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: numtests=3
+INSTRUMENTATION_STATUS: stream=
+Error in b_explicitService_mapsNetworkAndNoMatchErrors(com.terasumi.sellerkeyboard.voice.AndroidSpeechRecognizerRepositoryInstrumentedTest):
+java.lang.AssertionError: expected:<Error(error=Network)> but was:<Error(error=Client)>
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.failNotEquals(Assert.java:835)
+	at org.junit.Assert.assertEquals(Assert.java:120)
+	at org.junit.Assert.assertEquals(Assert.java:146)
+	at com.terasumi.sellerkeyboard.voice.AndroidSpeechRecognizerRepositoryInstrumentedTest.b_explicitService_mapsNetworkAndNoMatchErrors(AndroidSpeechRecognizerRepositoryInstrumentedTest.kt:64)
+
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: test=b_explicitService_mapsNetworkAndNoMatchErrors
+INSTRUMENTATION_STATUS: class=com.terasumi.sellerkeyboard.voice.AndroidSpeechRecognizerRepositoryInstrumentedTest
+INSTRUMENTATION_STATUS: stack=java.lang.AssertionError: expected:<Error(error=Network)> but was:<Error(error=Client)>
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.failNotEquals(Assert.java:835)
+	at org.junit.Assert.assertEquals(Assert.java:120)
+	at org.junit.Assert.assertEquals(Assert.java:146)
+	at com.terasumi.sellerkeyboard.voice.AndroidSpeechRecognizerRepositoryInstrumentedTest.b_explicitService_mapsNetworkAndNoMatchErrors(AndroidSpeechRecognizerRepositoryInstrumentedTest.kt:64)
+
+INSTRUMENTATION_STATUS: current=2
+INSTRUMENTATION_STATUS_CODE: -2
+INSTRUMENTATION_STATUS: numtests=3
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: test=z_cancel_preventsDelayedProviderResultFromRepopulatingState
+INSTRUMENTATION_STATUS: class=com.terasumi.sellerkeyboard.voice.AndroidSpeechRecognizerRepositoryInstrumentedTest
+INSTRUMENTATION_STATUS: current=3
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: numtests=3
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: test=z_cancel_preventsDelayedProviderResultFromRepopulatingState
+INSTRUMENTATION_STATUS: class=com.terasumi.sellerkeyboard.voice.AndroidSpeechRecognizerRepositoryInstrumentedTest
+INSTRUMENTATION_STATUS: current=3
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_RESULT: stream=
+
+Time: 5.83
+There were 2 failures:
+1) a_explicitService_deliversPartialProcessingAndReviewableFinalResult(com.terasumi.sellerkeyboard.voice.AndroidSpeechRecognizerRepositoryInstrumentedTest)
+java.lang.AssertionError: Timed out waiting for voice state; last=Error(error=Client)
+	at com.terasumi.sellerkeyboard.voice.AndroidSpeechRecognizerRepositoryInstrumentedTest.awaitState(AndroidSpeechRecognizerRepositoryInstrumentedTest.kt:155)
+	at com.terasumi.sellerkeyboard.voice.AndroidSpeechRecognizerRepositoryInstrumentedTest.awaitState$default(AndroidSpeechRecognizerRepositoryInstrumentedTest.kt:144)
+	at com.terasumi.sellerkeyboard.voice.AndroidSpeechRecognizerRepositoryInstrumentedTest.a_explicitService_deliversPartialProcessingAndReviewableFinalResult(AndroidSpeechRecognizerRepositoryInstrumentedTest.kt:45)
+2) b_explicitService_mapsNetworkAndNoMatchErrors(com.terasumi.sellerkeyboard.voice.AndroidSpeechRecognizerRepositoryInstrumentedTest)
+java.lang.AssertionError: expected:<Error(error=Network)> but was:<Error(error=Client)>
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.failNotEquals(Assert.java:835)
+	at org.junit.Assert.assertEquals(Assert.java:120)
+	at org.junit.Assert.assertEquals(Assert.java:146)
+	at com.terasumi.sellerkeyboard.voice.AndroidSpeechRecognizerRepositoryInstrumentedTest.b_explicitService_mapsNetworkAndNoMatchErrors(AndroidSpeechRecognizerRepositoryInstrumentedTest.kt:64)
+
+FAILURES!!!
+Tests run: 3,  Failures: 2
+
+
+INSTRUMENTATION_CODE: -1

@@ -9,6 +9,7 @@ import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
 import android.media.AudioManager
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.VibrationEffect
@@ -78,6 +79,7 @@ import com.terasumi.sellerkeyboard.profile.SharedPreferencesAppProfileStore
 import com.terasumi.sellerkeyboard.profile.applyTo
 import com.terasumi.sellerkeyboard.performance.AndroidPerformanceTracer
 import com.terasumi.sellerkeyboard.seller.SellerShortcutController
+import com.terasumi.sellerkeyboard.seller.ProductImageSourcePolicy
 import com.terasumi.sellerkeyboard.database.SellerReplyTemplateDao
 import com.terasumi.sellerkeyboard.voice.AndroidSpeechRecognizerRepository
 import com.terasumi.sellerkeyboard.voice.VoiceTypingController
@@ -411,12 +413,28 @@ class SellerKeyboard : LifecycleInputMethodService(), ViewModelStoreOwner, Saved
         get() = InputConnectionCompat.INPUT_CONTENT_GRANT_READ_URI_PERMISSION // or 0
 
     fun doCommitContent(imageUrl: String, fallbackText: String = imageUrl) {
+        doCommitContentInternal(imageUrl, fallbackText, allowTestSource = false)
+    }
+
+    internal fun doCommitTestContent(imageUrl: String, fallbackText: String = imageUrl) {
+        doCommitContentInternal(imageUrl, fallbackText, allowTestSource = true)
+    }
+
+    private fun doCommitContentInternal(
+        imageUrl: String,
+        fallbackText: String,
+        allowTestSource: Boolean
+    ) {
         val session = currentEditorSessionState.value
         val sessionId = session.id
         fun commitFallbackIfCurrent() {
             if (currentEditorSessionState.value.id == sessionId) {
                 createInputConnectionOps().commitText(fallbackText)
             }
+        }
+        if (!isAllowedProductImageLoadSource(imageUrl, allowTestSource)) {
+            commitFallbackIfCurrent()
+            return
         }
         val decision = RichContentPolicy.decide(
             privacy = session.privacy,
@@ -493,6 +511,28 @@ class SellerKeyboard : LifecycleInputMethodService(), ViewModelStoreOwner, Saved
                 // Clean up the resources
             }
         })
+    }
+
+    private fun isAllowedProductImageLoadSource(
+        imageUrl: String,
+        allowTestSource: Boolean
+    ): Boolean {
+        if (ProductImageSourcePolicy.evaluate(imageUrl, sellerAuthorized = true).canShare) {
+            return true
+        }
+        if (!allowTestSource) return false
+
+        val uri = Uri.parse(imageUrl)
+        if (uri.scheme.equals("http", ignoreCase = true) &&
+            uri.host == "127.0.0.1" && uri.port == DEBUG_REMOTE_IMAGE_TEST_PORT) {
+            return true
+        }
+        if (!uri.scheme.equals("file", ignoreCase = true) || uri.path.isNullOrBlank()) {
+            return false
+        }
+        return runCatching {
+            File(uri.path!!).canonicalFile.toPath().startsWith(cacheDir.canonicalFile.toPath())
+        }.getOrDefault(false)
     }
 
     fun isKeyHapticEnabled(): Boolean {
@@ -776,6 +816,7 @@ class SellerKeyboard : LifecycleInputMethodService(), ViewModelStoreOwner, Saved
         private const val HAPTIC_DURATION_MS = 12L
         private const val INITIAL_CONTEXT_UTF16 = 128
         private const val MAX_SHARED_PRODUCT_CACHE_FILES = 5
+        private const val DEBUG_REMOTE_IMAGE_TEST_PORT = 18080
         private const val IMAGE_MIME_TYPE = "image/jpeg"
     }
 }

@@ -1,0 +1,11 @@
+Timed out waiting for 'Reply Connected Tracking Reply' above 'Reply Connected Warranty Reply' in C:\Users\terasumi\Docu
+ments\source_code\SellerKeyboard\docs\evidence\verification\emulator-connected\SellerKeyboardApi36Privacy\latest\seller
+-workflow\category-order-window.xml
+At C:\Users\terasumi\Documents\source_code\SellerKeyboard\scripts\verify-connected-seller-workflow.ps1:126 char:5
++     throw "Timed out waiting for '$($FirstValues -join "' or '")' abo ...
++     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (Timed out waiti...rder-window.xml:String) [], RuntimeException
+    + FullyQualifiedErrorId : Timed out waiting for 'Reply Connected Tracking Reply' above 'Reply Connected Warranty R 
+   eply' in C:\Users\terasumi\Documents\source_code\SellerKeyboard\docs\evidence\verification\emulator-connected\Sell  
+  erKeyboardApi36Privacy\latest\seller-workflow\category-order-window.xml
+ 

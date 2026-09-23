@@ -1,0 +1,319 @@
+Calculating task graph as configuration cache cannot be reused because file 'app\build.gradle.kts' has changed.
+
+> Configure project :app
+WARNING: The option setting 'android.usesSdkInManifest.disallowed=false' is deprecated.
+The current default is 'true'.
+It will be removed in version 10.0 of the Android Gradle plugin.
+WARNING: The option setting 'android.sdk.defaultTargetSdkToCompileSdkIfUnset=false' is deprecated.
+The current default is 'true'.
+It will be removed in version 10.0 of the Android Gradle plugin.
+WARNING: The option setting 'android.enableAppCompileTimeRClass=false' is deprecated.
+The current default is 'true'.
+It will be removed in version 10.0 of the Android Gradle plugin.
+WARNING: The option setting 'android.builtInKotlin=false' is deprecated.
+The current default is 'true'.
+It will be removed in version 10.0 of the Android Gradle plugin.
+WARNING: The option setting 'android.newDsl=false' is deprecated.
+The current default is 'true'.
+It will be removed in version 10.0 of the Android Gradle plugin.
+WARNING: The option setting 'android.r8.optimizedResourceShrinking=false' is deprecated.
+The current default is 'true'.
+It will be removed in version 10.0 of the Android Gradle plugin.
+WARNING: The option setting 'android.defaults.buildfeatures.resvalues=true' is deprecated.
+The current default is 'false'.
+It will be removed in version 10.0 of the Android Gradle plugin.
+WARNING: The property android.dependency.excludeLibraryComponentsFromConstraints improves project import performance for very large projects. It should be enabled to improve performance.
+To suppress this warning, add android.generateSyncIssueWhenLibraryConstraintsAreEnabled=false to gradle.properties
+WARNING: The property android.dependency.excludeLibraryComponentsFromConstraints improves project import performance for very large projects. It should be enabled to improve performance.
+To suppress this warning, add android.generateSyncIssueWhenLibraryConstraintsAreEnabled=false to gradle.properties
+WARNING: The property android.dependency.excludeLibraryComponentsFromConstraints improves project import performance for very large projects. It should be enabled to improve performance.
+To suppress this warning, add android.generateSyncIssueWhenLibraryConstraintsAreEnabled=false to gradle.properties
+WARNING: The property android.dependency.excludeLibraryComponentsFromConstraints improves project import performance for very large projects. It should be enabled to improve performance.
+To suppress this warning, add android.generateSyncIssueWhenLibraryConstraintsAreEnabled=false to gradle.properties
+WARNING: The property android.dependency.excludeLibraryComponentsFromConstraints improves project import performance for very large projects. It should be enabled to improve performance.
+To suppress this warning, add android.generateSyncIssueWhenLibraryConstraintsAreEnabled=false to gradle.properties
+WARNING: The property android.dependency.excludeLibraryComponentsFromConstraints improves project import performance for very large projects. It should be enabled to improve performance.
+To suppress this warning, add android.generateSyncIssueWhenLibraryConstraintsAreEnabled=false to gradle.properties
+
+> Configure project :benchmark
+WARNING: The property android.dependency.excludeLibraryComponentsFromConstraints improves project import performance for very large projects. It should be enabled to improve performance.
+To suppress this warning, add android.generateSyncIssueWhenLibraryConstraintsAreEnabled=false to gradle.properties
+
+> Configure project :benchmark-host
+WARNING: The property android.dependency.excludeLibraryComponentsFromConstraints improves project import performance for very large projects. It should be enabled to improve performance.
+To suppress this warning, add android.generateSyncIssueWhenLibraryConstraintsAreEnabled=false to gradle.properties
+
+> Task :benchmark-host:preBuild UP-TO-DATE
+> Task :benchmark:preBuild UP-TO-DATE
+> Task :benchmark:generateBenchmarkAssets UP-TO-DATE
+> Task :benchmark-host:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :benchmark-host:generateBenchmarkAssets UP-TO-DATE
+> Task :benchmark:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :benchmark-host:preBenchmarkBuild UP-TO-DATE
+> Task :benchmark-host:extractProguardFiles UP-TO-DATE
+> Task :benchmark-host:generateBenchmarkResValues UP-TO-DATE
+> Task :benchmark-host:buildKotlinToolingMetadata UP-TO-DATE
+> Task :benchmark-host:createBenchmarkCompatibleScreenManifests UP-TO-DATE
+> Task :benchmark-host:checkBenchmarkAarMetadata UP-TO-DATE
+> Task :benchmark-host:mapBenchmarkSourceSetPaths UP-TO-DATE
+> Task :benchmark:preBenchmarkBuild UP-TO-DATE
+> Task :benchmark-host:processBenchmarkNavigationResources UP-TO-DATE
+> Task :benchmark-host:desugarBenchmarkFileDependencies UP-TO-DATE
+> Task :benchmark-host:mergeBenchmarkStartupProfile UP-TO-DATE
+> Task :benchmark:checkTestedAppObfuscationBenchmark UP-TO-DATE
+> Task :benchmark-host:extractBenchmarkVersionControlInfo UP-TO-DATE
+> Task :benchmark-host:extractDeepLinksBenchmark UP-TO-DATE
+> Task :benchmark-host:generateBenchmarkResources UP-TO-DATE
+> Task :benchmark-host:javaPreCompileBenchmark UP-TO-DATE
+> Task :benchmark:javaPreCompileBenchmark UP-TO-DATE
+> Task :benchmark-host:mergeBenchmarkArtProfile UP-TO-DATE
+> Task :benchmark:checkBenchmarkAarMetadata UP-TO-DATE
+> Task :benchmark:mergeBenchmarkAssets UP-TO-DATE
+> Task :benchmark:mergeBenchmarkJniLibFolders UP-TO-DATE
+> Task :benchmark:desugarBenchmarkFileDependencies UP-TO-DATE
+> Task :benchmark:validateSigningBenchmark UP-TO-DATE
+> Task :benchmark:writeBenchmarkSigningConfigVersions UP-TO-DATE
+> Task :benchmark-host:compileBenchmarkNavigationResources UP-TO-DATE
+> Task :benchmark:generateBenchmarkResValues UP-TO-DATE
+> Task :benchmark-host:checkBenchmarkDuplicateClasses UP-TO-DATE
+> Task :benchmark-host:mergeBenchmarkAssets UP-TO-DATE
+> Task :benchmark:generateBenchmarkResources UP-TO-DATE
+> Task :benchmark-host:collectBenchmarkDependencies UP-TO-DATE
+> Task :benchmark-host:packageBenchmarkResources UP-TO-DATE
+> Task :benchmark:mapBenchmarkSourceSetPaths UP-TO-DATE
+> Task :benchmark:processBenchmarkNavigationResources UP-TO-DATE
+> Task :benchmark-host:compressBenchmarkAssets UP-TO-DATE
+> Task :benchmark-host:processBenchmarkMainManifest UP-TO-DATE
+> Task :benchmark-host:mergeBenchmarkResources UP-TO-DATE
+> Task :benchmark-host:mergeBenchmarkJniLibFolders UP-TO-DATE
+> Task :benchmark-host:parseBenchmarkLocalResources UP-TO-DATE
+> Task :benchmark-host:sdkBenchmarkDependencyData UP-TO-DATE
+> Task :benchmark-host:mergeExtDexBenchmark UP-TO-DATE
+> Task :benchmark-host:validateSigningBenchmark UP-TO-DATE
+> Task :benchmark-host:writeBenchmarkAppMetadata UP-TO-DATE
+> Task :benchmark-host:processBenchmarkManifest UP-TO-DATE
+> Task :benchmark-host:writeBenchmarkSigningConfigVersions UP-TO-DATE
+> Task :benchmark:mergeBenchmarkResources UP-TO-DATE
+> Task :benchmark:compressBenchmarkAssets UP-TO-DATE
+> Task :benchmark-host:mergeBenchmarkNativeLibs NO-SOURCE
+> Task :benchmark:compileBenchmarkNavigationResources UP-TO-DATE
+> Task :benchmark-host:processBenchmarkManifestForPackage UP-TO-DATE
+> Task :benchmark-host:stripBenchmarkDebugSymbols NO-SOURCE
+> Task :benchmark:checkBenchmarkDuplicateClasses UP-TO-DATE
+> Task :benchmark:processBenchmarkManifest UP-TO-DATE
+> Task :benchmark:mergeBenchmarkNativeLibs UP-TO-DATE
+> Task :benchmark:stripBenchmarkDebugSymbols UP-TO-DATE
+> Task :benchmark:mergeLibDexBenchmark UP-TO-DATE
+> Task :benchmark:mergeExtDexBenchmark UP-TO-DATE
+> Task :benchmark:processBenchmarkResources UP-TO-DATE
+> Task :benchmark-host:processBenchmarkResources UP-TO-DATE
+> Task :benchmark-host:optimizeBenchmarkResources UP-TO-DATE
+> Task :benchmark:compileBenchmarkKotlin UP-TO-DATE
+> Task :benchmark-host:compileBenchmarkKotlin UP-TO-DATE
+> Task :benchmark:compileBenchmarkJavaWithJavac NO-SOURCE
+> Task :benchmark-host:compileBenchmarkJavaWithJavac NO-SOURCE
+> Task :benchmark-host:processBenchmarkJavaRes UP-TO-DATE
+> Task :benchmark:processBenchmarkJavaRes UP-TO-DATE
+> Task :benchmark-host:mergeBenchmarkJavaResource UP-TO-DATE
+> Task :benchmark:mergeBenchmarkJavaResource UP-TO-DATE
+> Task :benchmark-host:dexBuilderBenchmark UP-TO-DATE
+> Task :benchmark-host:generateBenchmarkLintVitalReportModel UP-TO-DATE
+> Task :benchmark:dexBuilderBenchmark UP-TO-DATE
+> Task :benchmark-host:mergeDexBenchmark UP-TO-DATE
+> Task :benchmark-host:lintVitalAnalyzeBenchmark UP-TO-DATE
+> Task :benchmark-host:mergeBenchmarkGlobalSynthetics UP-TO-DATE
+> Task :benchmark:mergeProjectDexBenchmark UP-TO-DATE
+> Task :benchmark:mergeBenchmarkGlobalSynthetics UP-TO-DATE
+> Task :benchmark-host:compileBenchmarkArtProfile UP-TO-DATE
+> Task :benchmark-host:lintVitalReportBenchmark UP-TO-DATE
+> Task :benchmark:packageBenchmark UP-TO-DATE
+> Task :benchmark-host:lintVitalBenchmark
+> Task :benchmark:createBenchmarkApkListingFileRedirect UP-TO-DATE
+> Task :benchmark-host:packageBenchmark UP-TO-DATE
+> Task :benchmark-host:createBenchmarkApkListingFileRedirect UP-TO-DATE
+Starting 3 tests on SellerKeyboardApi36Privacy(AVD) - 16
+
+com.terasumi.sellerkeyboard.benchmark.ImeShowBenchmark > coldEditorLaunchAndSellerKeyboardImeShow[SellerKeyboardApi36Privacy(AVD) - 16] [31mFAILED [0m
+	java.lang.AssertionError: ERRORS (not suppressed): EMULATOR
+	WARNINGS (suppressed):
+
+com.terasumi.sellerkeyboard.benchmark.ImeShowBenchmark > coldEditorLaunchAndGboardImeShowReference[SellerKeyboardApi36Privacy(AVD) - 16] [31mFAILED [0m
+	java.lang.AssertionError: ERRORS (not suppressed): EMULATOR
+	WARNINGS (suppressed):
+
+com.terasumi.sellerkeyboard.benchmark.ImeShowBenchmark > oneHundredImeShowHideCyclesTrackFramesAndMemory[SellerKeyboardApi36Privacy(AVD) - 16] [31mFAILED [0m
+	java.lang.AssertionError: ERRORS (not suppressed): EMULATOR
+	WARNINGS (suppressed):
+Tests on SellerKeyboardApi36Privacy(AVD) - 16 failed: There was 3 failure(s).
+Finished 3 tests on SellerKeyboardApi36Privacy(AVD) - 16
+Execute com.terasumi.sellerkeyboard.benchmark.ImeShowBenchmark.coldEditorLaunchAndSellerKeyboardImeShow: FAILED
+java.lang.AssertionError: java.lang.AssertionError: ERRORS (not suppressed): EMULATOR
+WARNINGS (suppressed):
+
+ERROR: Running on Emulator
+Benchmark is running on an emulator, which is not representative of
+real user devices. Use a physical device to benchmark. Emulator
+benchmark improvements might not carry over to a real user's
+experience (or even regress real device performance).
+
+While you can suppress these errors (turning them into warnings)
+PLEASE NOTE THAT EACH SUPPRESSED ERROR COMPROMISES ACCURACY
+
+// Sample suppression, in a benchmark module's build.gradle:
+android {
+defaultConfig {
+testInstrumentationRunnerArguments["androidx.benchmark.suppressErrors"] = "EMULATOR"
+}
+}
+at androidx.benchmark.ConfigurationErrorKt.checkAndGetSuppressionState(ConfigurationError.kt:102)
+at androidx.benchmark.macro.MacrobenchmarkKt.checkErrors(Macrobenchmark.kt:192)
+at androidx.benchmark.macro.MacrobenchmarkKt.macrobenchmark(Macrobenchmark.kt:231)
+at androidx.benchmark.macro.MacrobenchmarkKt.macrobenchmarkWithStartupMode(Macrobenchmark.kt:400)
+at androidx.benchmark.macro.junit4.MacrobenchmarkRule.measureRepeated(MacrobenchmarkRule.kt:87)
+at com.terasumi.sellerkeyboard.benchmark.ImeShowBenchmark.measureImeShow(ImeShowBenchmark.kt:45)
+at com.terasumi.sellerkeyboard.benchmark.ImeShowBenchmark.coldEditorLaunchAndSellerKeyboardImeShow(ImeShowBenchmark.kt:39)
+
+java.lang.AssertionError: ERRORS (not suppressed): EMULATOR
+WARNINGS (suppressed):
+
+ERROR: Running on Emulator
+Benchmark is running on an emulator, which is not representative of
+real user devices. Use a physical device to benchmark. Emulator
+benchmark improvements might not carry over to a real user's
+experience (or even regress real device performance).
+
+While you can suppress these errors (turning them into warnings)
+PLEASE NOTE THAT EACH SUPPRESSED ERROR COMPROMISES ACCURACY
+
+// Sample suppression, in a benchmark module's build.gradle:
+android {
+defaultConfig {
+testInstrumentationRunnerArguments["androidx.benchmark.suppressErrors"] = "EMULATOR"
+}
+}
+at androidx.benchmark.ConfigurationErrorKt.checkAndGetSuppressionState(ConfigurationError.kt:102)
+at androidx.benchmark.macro.MacrobenchmarkKt.checkErrors(Macrobenchmark.kt:192)
+at androidx.benchmark.macro.MacrobenchmarkKt.macrobenchmark(Macrobenchmark.kt:231)
+at androidx.benchmark.macro.MacrobenchmarkKt.macrobenchmarkWithStartupMode(Macrobenchmark.kt:400)
+at androidx.benchmark.macro.junit4.MacrobenchmarkRule.measureRepeated(MacrobenchmarkRule.kt:87)
+at com.terasumi.sellerkeyboard.benchmark.ImeShowBenchmark.measureImeShow(ImeShowBenchmark.kt:45)
+at com.terasumi.sellerkeyboard.benchmark.ImeShowBenchmark.coldEditorLaunchAndSellerKeyboardImeShow(ImeShowBenchmark.kt:39)
+Execute com.terasumi.sellerkeyboard.benchmark.ImeShowBenchmark.coldEditorLaunchAndGboardImeShowReference: FAILED
+java.lang.AssertionError: java.lang.AssertionError: ERRORS (not suppressed): EMULATOR
+WARNINGS (suppressed):
+
+ERROR: Running on Emulator
+Benchmark is running on an emulator, which is not representative of
+real user devices. Use a physical device to benchmark. Emulator
+benchmark improvements might not carry over to a real user's
+experience (or even regress real device performance).
+
+While you can suppress these errors (turning them into warnings)
+PLEASE NOTE THAT EACH SUPPRESSED ERROR COMPROMISES ACCURACY
+
+// Sample suppression, in a benchmark module's build.gradle:
+android {
+defaultConfig {
+testInstrumentationRunnerArguments["androidx.benchmark.suppressErrors"] = "EMULATOR"
+}
+}
+at androidx.benchmark.ConfigurationErrorKt.checkAndGetSuppressionState(ConfigurationError.kt:102)
+at androidx.benchmark.macro.MacrobenchmarkKt.checkErrors(Macrobenchmark.kt:192)
+at androidx.benchmark.macro.MacrobenchmarkKt.macrobenchmark(Macrobenchmark.kt:231)
+at androidx.benchmark.macro.MacrobenchmarkKt.macrobenchmarkWithStartupMode(Macrobenchmark.kt:400)
+at androidx.benchmark.macro.junit4.MacrobenchmarkRule.measureRepeated(MacrobenchmarkRule.kt:87)
+at com.terasumi.sellerkeyboard.benchmark.ImeShowBenchmark.measureImeShow(ImeShowBenchmark.kt:45)
+at com.terasumi.sellerkeyboard.benchmark.ImeShowBenchmark.coldEditorLaunchAndGboardImeShowReference(ImeShowBenchmark.kt:42)
+
+java.lang.AssertionError: ERRORS (not suppressed): EMULATOR
+WARNINGS (suppressed):
+
+ERROR: Running on Emulator
+Benchmark is running on an emulator, which is not representative of
+real user devices. Use a physical device to benchmark. Emulator
+benchmark improvements might not carry over to a real user's
+experience (or even regress real device performance).
+
+While you can suppress these errors (turning them into warnings)
+PLEASE NOTE THAT EACH SUPPRESSED ERROR COMPROMISES ACCURACY
+
+// Sample suppression, in a benchmark module's build.gradle:
+android {
+defaultConfig {
+testInstrumentationRunnerArguments["androidx.benchmark.suppressErrors"] = "EMULATOR"
+}
+}
+at androidx.benchmark.ConfigurationErrorKt.checkAndGetSuppressionState(ConfigurationError.kt:102)
+at androidx.benchmark.macro.MacrobenchmarkKt.checkErrors(Macrobenchmark.kt:192)
+at androidx.benchmark.macro.MacrobenchmarkKt.macrobenchmark(Macrobenchmark.kt:231)
+at androidx.benchmark.macro.MacrobenchmarkKt.macrobenchmarkWithStartupMode(Macrobenchmark.kt:400)
+at androidx.benchmark.macro.junit4.MacrobenchmarkRule.measureRepeated(MacrobenchmarkRule.kt:87)
+at com.terasumi.sellerkeyboard.benchmark.ImeShowBenchmark.measureImeShow(ImeShowBenchmark.kt:45)
+at com.terasumi.sellerkeyboard.benchmark.ImeShowBenchmark.coldEditorLaunchAndGboardImeShowReference(ImeShowBenchmark.kt:42)
+Execute com.terasumi.sellerkeyboard.benchmark.ImeShowBenchmark.oneHundredImeShowHideCyclesTrackFramesAndMemory: FAILED
+java.lang.AssertionError: java.lang.AssertionError: ERRORS (not suppressed): EMULATOR
+WARNINGS (suppressed):
+
+ERROR: Running on Emulator
+Benchmark is running on an emulator, which is not representative of
+real user devices. Use a physical device to benchmark. Emulator
+benchmark improvements might not carry over to a real user's
+experience (or even regress real device performance).
+
+While you can suppress these errors (turning them into warnings)
+PLEASE NOTE THAT EACH SUPPRESSED ERROR COMPROMISES ACCURACY
+
+// Sample suppression, in a benchmark module's build.gradle:
+android {
+defaultConfig {
+testInstrumentationRunnerArguments["androidx.benchmark.suppressErrors"] = "EMULATOR"
+}
+}
+at androidx.benchmark.ConfigurationErrorKt.checkAndGetSuppressionState(ConfigurationError.kt:102)
+at androidx.benchmark.macro.MacrobenchmarkKt.checkErrors(Macrobenchmark.kt:192)
+at androidx.benchmark.macro.MacrobenchmarkKt.macrobenchmark(Macrobenchmark.kt:231)
+at androidx.benchmark.macro.MacrobenchmarkKt.macrobenchmarkWithStartupMode(Macrobenchmark.kt:400)
+at androidx.benchmark.macro.junit4.MacrobenchmarkRule.measureRepeated(MacrobenchmarkRule.kt:87)
+at com.terasumi.sellerkeyboard.benchmark.ImeShowBenchmark.oneHundredImeShowHideCyclesTrackFramesAndMemory(ImeShowBenchmark.kt:82)
+
+java.lang.AssertionError: ERRORS (not suppressed): EMULATOR
+WARNINGS (suppressed):
+
+ERROR: Running on Emulator
+Benchmark is running on an emulator, which is not representative of
+real user devices. Use a physical device to benchmark. Emulator
+benchmark improvements might not carry over to a real user's
+experience (or even regress real device performance).
+
+While you can suppress these errors (turning them into warnings)
+PLEASE NOTE THAT EACH SUPPRESSED ERROR COMPROMISES ACCURACY
+
+// Sample suppression, in a benchmark module's build.gradle:
+android {
+defaultConfig {
+testInstrumentationRunnerArguments["androidx.benchmark.suppressErrors"] = "EMULATOR"
+}
+}
+at androidx.benchmark.ConfigurationErrorKt.checkAndGetSuppressionState(ConfigurationError.kt:102)
+at androidx.benchmark.macro.MacrobenchmarkKt.checkErrors(Macrobenchmark.kt:192)
+at androidx.benchmark.macro.MacrobenchmarkKt.macrobenchmark(Macrobenchmark.kt:231)
+at androidx.benchmark.macro.MacrobenchmarkKt.macrobenchmarkWithStartupMode(Macrobenchmark.kt:400)
+at androidx.benchmark.macro.junit4.MacrobenchmarkRule.measureRepeated(MacrobenchmarkRule.kt:87)
+at com.terasumi.sellerkeyboard.benchmark.ImeShowBenchmark.oneHundredImeShowHideCyclesTrackFramesAndMemory(ImeShowBenchmark.kt:82)
+> Task :benchmark:connectedBenchmarkAndroidTest FAILED
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':benchmark:connectedBenchmarkAndroidTest'.
+> There were failing tests. See the report at: file:///C:/Users/terasumi/Documents/source_code/SellerKeyboard/benchmark/build/reports/androidTests/connected/benchmark/index.html
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights from a Build Scan (powered by Develocity).
+> Get more help at https://help.gradle.org.
+
+BUILD FAILED in 28s
+77 actionable tasks: 2 executed, 75 up-to-date
+Configuration cache entry stored.

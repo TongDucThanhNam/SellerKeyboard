@@ -1,0 +1,118 @@
+﻿{
+    "generatedAt":  "2026-07-12T06:12:37.9117902+07:00",
+    "overall":  "PASS_SCOPED",
+    "serial":  "emulator-5556",
+    "api":  36,
+    "avd":  "SellerKeyboardApi36Fold",
+    "avdHardwareProfile":  "pixel_fold",
+    "coldBootWithoutSnapshotLoadOrSave":  true,
+    "hingeSensorDeclared":  true,
+    "supportedDeviceStates":  [
+                                  "CLOSED",
+                                  "HALF_OPENED",
+                                  "OPENED",
+                                  "REAR_DISPLAY_MODE"
+                              ],
+    "densityDpi":  420,
+    "opened":  {
+                   "hingeAngle":  180,
+                   "deviceState":  2,
+                   "physicalWidthPx":  2208,
+                   "physicalHeightPx":  1840,
+                   "widthDp":  841.14,
+                   "heightDp":  700.95,
+                   "hostRelaunchRequired":  false,
+                   "imeSession":  {
+                                      "selectedIme":  "com.terasumi.sellerkeyboard/.service.SellerKeyboard",
+                                      "inputShown":  true,
+                                      "targetPackage":  "com.terasumi.sellerkeyboard.benchmarkhost"
+                                  },
+                   "exactEditorText":  "qvbn",
+                   "exactEditorTextVerified":  true,
+                   "snapshot":  "Result: Bundle[{matches_original=false, selection_start=4, active=true, text_length=4, text_sha256=0d350f6d380856fbf139733adfbc89f8def42ffa06491f93f427fac973fd24e3, selection_end=4}]",
+                   "clickableSemanticNodeCount":  46,
+                   "labeledClickableNodeCount":  37,
+                   "minimumLabeledControlHeightPx":  126,
+                   "minimumLabeledControlHeightDp":  48,
+                   "screenshot":  "opened-180.png",
+                   "hierarchy":  "opened-180-window.xml"
+               },
+    "halfOpened":  {
+                       "hingeAngle":  90,
+                       "deviceState":  1,
+                       "physicalWidthPx":  2208,
+                       "physicalHeightPx":  1840,
+                       "widthDp":  841.14,
+                       "heightDp":  700.95,
+                       "hostRelaunchRequired":  false,
+                       "imeSession":  {
+                                          "selectedIme":  "com.terasumi.sellerkeyboard/.service.SellerKeyboard",
+                                          "inputShown":  true,
+                                          "targetPackage":  "com.terasumi.sellerkeyboard.benchmarkhost"
+                                      },
+                       "exactEditorText":  "klmn",
+                       "exactEditorTextVerified":  true,
+                       "snapshot":  "Result: Bundle[{matches_original=false, selection_start=4, active=true, text_length=4, text_sha256=7978e446e2beb4901aa02ce2aa0c235d1c745d9a3235e8a0a60661962736769c, selection_end=4}]",
+                       "clickableSemanticNodeCount":  46,
+                       "labeledClickableNodeCount":  37,
+                       "minimumLabeledControlHeightPx":  126,
+                       "minimumLabeledControlHeightDp":  48,
+                       "screenshot":  "half-opened-90.png",
+                       "hierarchy":  "half-opened-90-window.xml"
+                   },
+    "closedOuterDisplay":  {
+                               "hingeAngle":  0,
+                               "deviceState":  0,
+                               "physicalWidthPx":  1080,
+                               "physicalHeightPx":  2092,
+                               "widthDp":  411.43,
+                               "heightDp":  796.95,
+                               "hostRelaunchRequired":  false,
+                               "imeSession":  {
+                                                  "selectedIme":  "com.terasumi.sellerkeyboard/.service.SellerKeyboard",
+                                                  "inputShown":  true,
+                                                  "targetPackage":  "com.terasumi.sellerkeyboard.benchmarkhost"
+                                              },
+                               "exactEditorText":  "bnmp",
+                               "exactEditorTextVerified":  true,
+                               "snapshot":  "Result: Bundle[{matches_original=false, selection_start=4, active=true, text_length=4, text_sha256=a22afe0a6c9bca795f8ec81a88846b6a58bee5c544e5687ec5f97206b4fffe33, selection_end=4}]",
+                               "clickableSemanticNodeCount":  55,
+                               "labeledClickableNodeCount":  47,
+                               "minimumLabeledControlHeightPx":  126,
+                               "minimumLabeledControlHeightDp":  48,
+                               "screenshot":  "closed-0.png",
+                               "hierarchy":  "closed-0-window.xml"
+                           },
+    "reopened":  {
+                     "hingeAngle":  180,
+                     "deviceState":  2,
+                     "physicalWidthPx":  2208,
+                     "physicalHeightPx":  1840,
+                     "widthDp":  841.14,
+                     "heightDp":  700.95,
+                     "hostRelaunchRequired":  false,
+                     "imeSession":  {
+                                        "selectedIme":  "com.terasumi.sellerkeyboard/.service.SellerKeyboard",
+                                        "inputShown":  true,
+                                        "targetPackage":  "com.terasumi.sellerkeyboard.benchmarkhost"
+                                    },
+                     "exactEditorText":  "ptgv",
+                     "exactEditorTextVerified":  true,
+                     "snapshot":  "Result: Bundle[{matches_original=false, selection_start=4, active=true, text_length=4, text_sha256=25b5a7b5b742d5a243ff4eaa0677fddbd86efd294d45d460b031492da6f3f3c1, selection_end=4}]",
+                     "clickableSemanticNodeCount":  46,
+                     "labeledClickableNodeCount":  37,
+                     "minimumLabeledControlHeightPx":  126,
+                     "minimumLabeledControlHeightDp":  48,
+                     "screenshot":  "reopened-180.png",
+                     "hierarchy":  "reopened-180-window.xml"
+                 },
+    "sellerOrHostFatalLogCount":  0,
+    "realPhysicalFoldPostureVerified":  false,
+    "artifacts":  {
+                      "avdConfig":  "avd-config.ini",
+                      "supportedStates":  "supported-device-states.txt",
+                      "finalDeviceStateDump":  "final-device-state-dump.txt",
+                      "fatalLogMatches":  "fatal-log-matches.txt"
+                  },
+    "claimBoundary":  "API 36 Pixel Fold AVD with a declared hinge sensor and Android device-state transitions. SellerKeyboard is verified at 180-degree OPENED, 90-degree HALF_OPENED, 0-degree CLOSED outer display, and 180-degree reopened states with exact visible-key editor results. This is real emulator hinge/posture behavior, not physical foldable-device evidence."
+}

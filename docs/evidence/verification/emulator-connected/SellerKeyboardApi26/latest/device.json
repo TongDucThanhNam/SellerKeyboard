@@ -1,0 +1,9 @@
+﻿{
+    "serial":  "emulator-5556",
+    "manufacturer":  "unknown",
+    "model":  "Android SDK built for x86_64",
+    "api":  26,
+    "android":  "8.0.0",
+    "build":  "Android/sdk_gphone_x86_64/generic_x86_64:8.0.0/OSR1.180418.026/6741039:userdebug/dev-keys",
+    "evidenceClass":  "emulator-only; not physical-device or Gboard-performance evidence"
+}

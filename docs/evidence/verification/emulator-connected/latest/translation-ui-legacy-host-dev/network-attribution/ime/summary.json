@@ -1,0 +1,26 @@
+﻿{
+    "capturedAt":  "2026-07-11T23:44:02.3292821+07:00",
+    "serial":  "emulator-5554",
+    "packageName":  "com.terasumi.sellerkeyboard",
+    "uid":  10216,
+    "networkExpectation":  "Record",
+    "networkAccountingSupported":  false,
+    "networkAccountingReason":  "Android netstats poll unavailable or timed out. Android netstats poll unavailable or timed out.",
+    "beforeRxBytes":  null,
+    "afterRxBytes":  null,
+    "beforeTxBytes":  null,
+    "afterTxBytes":  null,
+    "rxDelta":  null,
+    "txDelta":  null,
+    "canaries":  [
+                     {
+                         "value":  "Thank you for your order",
+                         "occurrences":  0
+                     },
+                     {
+                         "value":  "Cảm ơn bạn đã đặt hàng",
+                         "occurrences":  0
+                     }
+                 ],
+    "canaryOccurrencesInUidLog":  0
+}

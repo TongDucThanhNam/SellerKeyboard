@@ -1,0 +1,28 @@
+Performing Streamed Install
+Success
+Performing Streamed Install
+Success
+Performing Streamed Install
+Success
+Sensitive IME transition passed: C:\Users\terasumi\Documents\source_code\SellerKeyboard\docs\evidence\verification\emulator-connected\SellerKeyboardApi26\latest\ime-sensitive-transition
+UID attribution baseline captured for com.terasumi.sellerkeyboard (10077)
+UID attribution passed for com.terasumi.sellerkeyboard (10077)
+Clipboard lifecycle passed: C:\Users\terasumi\Documents\source_code\SellerKeyboard\docs\evidence\verification\emulator-connected\SellerKeyboardApi26\latest\clipboard-lifecycle
+UID attribution baseline captured for com.terasumi.sellerkeyboard (10077)
+UID attribution passed for com.terasumi.sellerkeyboard (10077)
+Rich-content target matrix passed: C:\Users\terasumi\Documents\source_code\SellerKeyboard\docs\evidence\verification\emulator-connected\SellerKeyboardApi26\latest\rich-content-targets
+Cross-app profile switching passed: C:\Users\terasumi\Documents\source_code\SellerKeyboard\docs\evidence\verification\emulator-connected\SellerKeyboardApi26\latest\cross-app-profiles
+Privacy probe UID resolved: 10077
+Privacy probe: reading baseline network accounting
+Privacy probe: baseline accounting supported=True
+Privacy probe: exercising plain editor
+Privacy probe: verified plain editor
+Privacy probe: exercising password editor
+Privacy probe: verified password editor
+Privacy probe: exercising otp-authentication editor
+Privacy probe: verified otp-authentication editor
+Privacy probe: reading final network accounting
+Privacy probe: collecting UID-scoped logcat
+Privacy probe: UID-scoped logcat collected
+Privacy/network evidence captured under C:\Users\terasumi\Documents\source_code\SellerKeyboard\docs\evidence\verification\emulator-connected\SellerKeyboardApi26\latest\privacy-network-probe
+Emulator connected gates passed: C:\Users\terasumi\Documents\source_code\SellerKeyboard\docs\evidence\verification\emulator-connected\SellerKeyboardApi26\latest

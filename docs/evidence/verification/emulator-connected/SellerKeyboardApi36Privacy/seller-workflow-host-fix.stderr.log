@@ -1,0 +1,14 @@
+Unresolved template insert did not have a disabled parent action: <node index="0" text="" resource-id="" 
+class="android.view.View" package="com.terasumi.sellerkeyboard" content-desc="Insert reviewed reply" checkable="false" 
+checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" 
+long-clickable="false" password="false" selected="false" bounds="[250,2138][717,2243]" drawing-order="0" hint="" />
+At C:\Users\terasumi\Documents\source_code\SellerKeyboard\scripts\verify-connected-seller-workflow.ps1:184 char:9
++         throw "Unresolved template insert did not have a disabled par ...
++         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (Unresolved temp...="0" hint="" />:String) [], RuntimeException
+    + FullyQualifiedErrorId : Unresolved template insert did not have a disabled parent action: <node index="0" text=" 
+   " resource-id="" class="android.view.View" package="com.terasumi.sellerkeyboard" content-desc="Insert reviewed rep  
+  ly" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollabl   
+ e="false" long-clickable="false" password="false" selected="false" bounds="[250,2138][717,2243]" drawing-order="0"    
+ hint="" />
+ 

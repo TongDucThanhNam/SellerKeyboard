@@ -1,0 +1,22 @@
+﻿{
+    "capturedAt":  "2026-07-12T21:39:03.4661742+07:00",
+    "serial":  "emulator-5554",
+    "packageName":  "com.terasumi.sellerkeyboard",
+    "uid":  10232,
+    "networkExpectation":  "Zero",
+    "networkAccountingSupported":  true,
+    "networkAccountingReason":  "",
+    "beforeRxBytes":  0,
+    "afterRxBytes":  0,
+    "beforeTxBytes":  0,
+    "afterTxBytes":  0,
+    "rxDelta":  0,
+    "txDelta":  0,
+    "canaries":  [
+                     {
+                         "value":  "hello world hello world",
+                         "occurrences":  0
+                     }
+                 ],
+    "canaryOccurrencesInUidLog":  0
+}

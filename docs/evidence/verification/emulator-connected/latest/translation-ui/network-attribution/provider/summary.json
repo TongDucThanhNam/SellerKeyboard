@@ -1,0 +1,26 @@
+﻿{
+    "capturedAt":  "2026-07-12T00:27:35.6461975+07:00",
+    "serial":  "emulator-5554",
+    "packageName":  "com.google.android.gms",
+    "uid":  10145,
+    "networkExpectation":  "Record",
+    "networkAccountingSupported":  true,
+    "networkAccountingReason":  "",
+    "beforeRxBytes":  0,
+    "afterRxBytes":  0,
+    "beforeTxBytes":  0,
+    "afterTxBytes":  0,
+    "rxDelta":  0,
+    "txDelta":  0,
+    "canaries":  [
+                     {
+                         "value":  "Thank you for your order",
+                         "occurrences":  0
+                     },
+                     {
+                         "value":  "Cảm ơn bạn đã đặt hàng",
+                         "occurrences":  0
+                     }
+                 ],
+    "canaryOccurrencesInUidLog":  0
+}

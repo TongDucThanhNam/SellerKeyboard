@@ -1,0 +1,32 @@
+[
+  {
+    "id": "second-physical-device",
+    "detail": "Lower-midrange and current-mainstream physical-device pair is incomplete.",
+    "approvedException": false
+  },
+  {
+    "id": "api-device-app-editor-matrix",
+    "detail": "Fresh current-suite API 26/30/31/34/35/36 emulator compatibility, core connected tests, declared contracts, local contenteditable/incomplete connections, API 36 device/navigation profiles, Chrome URL/search, Google Messages search/unsent SMS compose, deterministic and official KeePassDX 4.4.5 cross-UID AutofillService-to-SellerKeyboard inline selections with exact two-field fills, native tablet portrait/landscape visuals, 600 dp foldable-width resize/recovery, Pixel Fold OPENED/HALF_OPENED/CLOSED/reopened hinge transitions, verified low-memory background-process death/recreation, and clean-emulator proof that installed Gmail/Docs expose no account-free editor while Google Autofill has no approved credential fixture are recorded; physical foldable acceptance plus product-confirmed multiline messaging, commerce, account-backed email, alternate production password-manager, and rich-content target apps remain incomplete.",
+    "approvedException": false
+  },
+  {
+    "id": "accessibility-matrix",
+    "detail": "API 33 font/reduced-animation evidence plus API 36 TalkBack host-gesture and two-switch USB-uinput traversal/actions with exact key activation are recorded; the emulator reports the switch as external, but a real physical external keyboard/peripheral and remaining physical accessibility matrix are incomplete.",
+    "approvedException": false
+  },
+  {
+    "id": "privacy-network-log-matrix",
+    "detail": "API 33 physical normal typing plus API 36 plain/password/OTP, personal-dictionary add/persist/suggest/sensitive/remove/clear, emoji search/variant/recents/clear/sensitive, clipboard, seller, local/remote-image, deterministic voice result/error/cancel binder paths, voice disclosure dismiss/retry/system-grant, byte-exact configured-provider controlled-audio review, translation-provider, deferred-sync cold-boundary, named Chrome/Messages attribution, and official KeePassDX local-vault Autofill attribution are recorded with zero controlled-text leakage; physical-OEM permission/provider acceptance, real physical-microphone/acoustic quality, production-host, and independent capture remain incomplete.",
+    "approvedException": false
+  },
+  {
+    "id": "physical-upgrade-backup",
+    "detail": "Representative physical version-code upgrade preservation of a legacy reply/body/image, pinned clipboard item, keyboard settings, versioned export, and exact rollback is incomplete or stale for the current prepared APK hashes.",
+    "approvedException": false
+  },
+  {
+    "id": "product-decisions",
+    "detail": "The strict sellerkeyboard-product-decisions-v1 approval contract is absent or invalid; reference targets, thresholds, dictionary, voice-network, cache/sync, compact layout, language switching, stale-product policy, and test-account policy remain unapproved.",
+    "approvedException": false
+  }
+]

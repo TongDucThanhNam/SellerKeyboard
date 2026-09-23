@@ -1,0 +1,109 @@
+﻿{
+    "generatedAt":  "2026-07-12T05:43:23.4677209+07:00",
+    "overall":  "PASS",
+    "serial":  "emulator-5554",
+    "api":  36,
+    "canary":  "skqvz",
+    "submitted":  false,
+    "accountUsed":  false,
+    "chrome":  {
+                   "requiredByGoal":  true,
+                   "package":  "com.android.chrome",
+                   "version":  {
+                                   "versionName":  "133.0.6943.137",
+                                   "versionCode":  "694313738"
+                               },
+                   "editorClass":  "URL/search",
+                   "exactDraftVerified":  true,
+                   "imeKeyTapCount":  5,
+                   "sellerSemanticNodeCount":  68,
+                   "imeSession":  {
+                                      "selectedIme":  "com.terasumi.sellerkeyboard/.service.SellerKeyboard",
+                                      "inputShown":  true,
+                                      "targetPackage":  "com.android.chrome"
+                                  }
+               },
+    "messages":  {
+                     "productConfirmationPending":  true,
+                     "package":  "com.google.android.apps.messaging",
+                     "version":  {
+                                     "versionName":  "messages.android_20250311_04_RC01.phone_dynamic",
+                                     "versionCode":  "273168063"
+                                 },
+                     "editorClass":  "search + SMS compose",
+                     "exactDraftVerified":  true,
+                     "imeKeyTapCount":  17,
+                     "sellerSemanticNodeCount":  67,
+                     "imeSession":  {
+                                        "selectedIme":  "com.terasumi.sellerkeyboard/.service.SellerKeyboard",
+                                        "inputShown":  true,
+                                        "targetPackage":  "com.google.android.apps.messaging"
+                                    },
+                     "search":  {
+                                    "expectedDraft":  "skqvz",
+                                    "exactDraftVerified":  true,
+                                    "imeKeyTapCount":  5,
+                                    "imeSession":  {
+                                                       "selectedIme":  "com.terasumi.sellerkeyboard/.service.SellerKeyboard",
+                                                       "inputShown":  true,
+                                                       "targetPackage":  "com.google.android.apps.messaging"
+                                                   }
+                                },
+                     "compose":  {
+                                     "fictionalRecipient":  "5550100",
+                                     "formattedRecipient":  "555-0100",
+                                     "expectedDraft":  "Skqvz",
+                                     "exactDraftVerified":  true,
+                                     "submitted":  false,
+                                     "recipientImeKeyTapCount":  7,
+                                     "draftImeKeyTapCount":  5,
+                                     "recipientSemanticNodeCount":  59,
+                                     "composerSemanticNodeCount":  66,
+                                     "recipientImeSession":  {
+                                                                 "selectedIme":  "com.terasumi.sellerkeyboard/.service.SellerKeyboard",
+                                                                 "inputShown":  true,
+                                                                 "targetPackage":  "com.google.android.apps.messaging"
+                                                             },
+                                     "composerImeSession":  {
+                                                                "selectedIme":  "com.terasumi.sellerkeyboard/.service.SellerKeyboard",
+                                                                "inputShown":  true,
+                                                                "targetPackage":  "com.google.android.apps.messaging"
+                                                            },
+                                     "sendControlPresent":  true,
+                                     "imeActionLabel":  "Send"
+                                 }
+                 },
+    "privacy":  {
+                    "namedTargetsVerified":  true,
+                    "targetPackages":  [
+                                           "com.android.chrome",
+                                           "com.google.android.apps.messaging"
+                                       ],
+                    "attributionPackage":  "com.terasumi.sellerkeyboard",
+                    "attributionUid":  10216,
+                    "networkExpectation":  "Zero",
+                    "networkAccountingSupported":  true,
+                    "rxDelta":  0,
+                    "txDelta":  0,
+                    "canaries":  [
+                                     {
+                                         "value":  "skqvz",
+                                         "occurrences":  0
+                                     },
+                                     {
+                                         "value":  "Skqvz",
+                                         "occurrences":  0
+                                     },
+                                     {
+                                         "value":  "5550100",
+                                         "occurrences":  0
+                                     }
+                                 ],
+                    "canaryOccurrencesInUidLog":  0,
+                    "attributionSummary":  "privacy-attribution/summary.json",
+                    "uidLog":  "privacy-attribution/uid-logcat.txt",
+                    "uidNetstats":  "privacy-attribution/uid-netstats-lines.txt"
+                },
+    "sellerFatalLogCount":  0,
+    "claimBoundary":  "Account-free Chrome URL/search plus Google Messages search and an unsent SMS compose draft to Android-reserved fictional number 555-0100. Exact SellerKeyboard-UID attribution records zero RX/TX delta and zero controlled-text log occurrences across both named targets. No query or message was submitted. Product-confirmed commerce/messaging selection remains pending."
+}

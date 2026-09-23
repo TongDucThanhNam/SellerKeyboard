@@ -1,0 +1,133 @@
+{
+  "schemaVersion": 1,
+  "contract": "sellerkeyboard-product-decisions-v1",
+  "status": "PROPOSED",
+  "approval": {
+    "approvedBy": "",
+    "approvedAt": ""
+  },
+  "decisions": [
+    {
+      "id": "reference-target-matrix",
+      "status": "PROPOSED",
+      "selection": {
+        "physicalDevices": [
+          {
+            "model": "Xiaomi Redmi Note 11 (2201117TG)",
+            "androidApi": 33,
+            "role": "lower-midrange"
+          },
+          {
+            "model": "REPLACE_WITH_SECOND_PHYSICAL_DEVICE",
+            "androidApi": "REPLACE_WITH_API_LEVEL",
+            "role": "current-mainstream"
+          }
+        ],
+        "apps": {
+          "browser": "Google Chrome",
+          "multilineMessaging": "Google Messages",
+          "sellerMessaging": "REPLACE_WITH_SELLER_MESSAGING_APP",
+          "commerce": "REPLACE_WITH_COMMERCE_APP",
+          "email": "Gmail",
+          "autofillBrowser": "Google Chrome",
+          "richContentAccepting": "REPLACE_WITH_RICH_CONTENT_ACCEPTING_APP",
+          "richContentRejecting": "REPLACE_WITH_RICH_CONTENT_REJECTING_APP"
+        }
+      }
+    },
+    {
+      "id": "candidate-workflow-thresholds",
+      "status": "PROPOSED",
+      "selection": {
+        "minimumIndependentTop3Recall": 0.85,
+        "maximumProtectedTokenMutationRate": 0.0,
+        "requiredAutocorrectionUndoCorrectness": 1.0,
+        "minimumSellerInteractionReduction": 0.5
+      }
+    },
+    {
+      "id": "voice-provider-network",
+      "status": "PROPOSED",
+      "selection": {
+        "onDevicePreferred": true,
+        "allowProviderNetworkFallback": true,
+        "requiresExplicitVoiceTap": true,
+        "requiresPrePermissionDisclosure": true,
+        "disabledInSensitiveOrPrivateEditors": true,
+        "autoInsertOrSend": false
+      }
+    },
+    {
+      "id": "dictionary-licensing",
+      "status": "PROPOSED",
+      "selection": {
+        "bundledSource": "project-authored-seller-lexicon",
+        "license": "MIT",
+        "includeUserPersonalDictionary": true,
+        "allowUnreviewedThirdPartyCorpus": false
+      }
+    },
+    {
+      "id": "product-image-cache-sync",
+      "status": "PROPOSED",
+      "selection": {
+        "allowedSource": "seller-owned-or-authorized-https",
+        "maximumSharedCacheFiles": 5,
+        "eviction": "oldest-first",
+        "retention": "until-displaced-or-cache-cleared",
+        "syncImagesInCurrentRelease": false,
+        "preserveReviewedTextLinkFallback": true
+      }
+    },
+    {
+      "id": "optional-template-sync",
+      "status": "PROPOSED",
+      "selection": {
+        "shipInCurrentRelease": false,
+        "futureEnablementRequiresSeparateApproval": true
+      }
+    },
+    {
+      "id": "compact-one-handed-geometry",
+      "status": "PROPOSED",
+      "selection": {
+        "standardMinimumRowDp": 48,
+        "compactPortraitRowDp": 44,
+        "compactLandscapeRowDp": 40,
+        "oneHandedWidthFraction": 0.78,
+        "compactRequiresExplicitUserSelection": true,
+        "physicalAccessibilityAcceptanceStillRequired": true
+      }
+    },
+    {
+      "id": "language-switching",
+      "status": "PROPOSED",
+      "selection": {
+        "androidSubtypeOrPlatformSwitch": true,
+        "bilingualLongPressSpaceToggle": true,
+        "dedicatedGlobeKey": false
+      }
+    },
+    {
+      "id": "stale-product-policy",
+      "status": "PROPOSED",
+      "selection": {
+        "staleAfterDays": 30,
+        "showReviewWarning": true,
+        "allowExplicitInsertionAfterReview": true,
+        "autoRefreshOrFabricate": false,
+        "autoSend": false
+      }
+    },
+    {
+      "id": "seller-app-test-accounts",
+      "status": "PROPOSED",
+      "selection": {
+        "dedicatedNonProductionAccountsOnly": true,
+        "fictionalCustomerAndOrderDataOnly": true,
+        "productionCustomerDataAllowed": false,
+        "missingAccountKeepsNamedAppGateBlocked": true
+      }
+    }
+  ]
+}

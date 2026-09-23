@@ -1,0 +1,27 @@
+﻿{
+    "generatedAt":  "2026-07-12T09:14:08.2314582+07:00",
+    "overall":  "PASS",
+    "serial":  "emulator-5554",
+    "api":  36,
+    "model":  "sdk_gphone64_x86_64",
+    "disclosure":  {
+                       "requestingPermissionState":  "RequestingPermission",
+                       "titlePresent":  true,
+                       "providerNetworkDisclosurePresent":  true,
+                       "reviewAndNoAutoSendDisclosurePresent":  true,
+                       "fieldChangeFailsClosedToIdle":  true,
+                       "dismissLeavesPermissionDenied":  true,
+                       "dismissScreenshot":  "C:\\Users\\terasumi\\Documents\\source_code\\SellerKeyboard\\docs\\evidence\\verification\\emulator-voice\\permission-disclosure-api36-v3-2026-07-12\\dismiss-disclosure-final.png",
+                       "grantScreenshot":  "C:\\Users\\terasumi\\Documents\\source_code\\SellerKeyboard\\docs\\evidence\\verification\\emulator-voice\\permission-disclosure-api36-v3-2026-07-12\\grant-disclosure-final.png"
+                   },
+    "systemPermission":  {
+                             "promptScreenshot":  "C:\\Users\\terasumi\\Documents\\source_code\\SellerKeyboard\\docs\\evidence\\verification\\emulator-voice\\permission-disclosure-api36-v3-2026-07-12\\system-permission-final.png",
+                             "grantedAfterExplicitSystemAction":  true
+                         },
+    "providerAfterGrant":  {
+                               "state":  "Listening",
+                               "error":  "",
+                               "restoredIdleAfterCancel":  true
+                           },
+    "claimBoundary":  "unattended API 36 emulator disclosure dismiss/retry/grant and real-provider start/cancel; physical OEM presentation and real acoustic result remain open"
+}

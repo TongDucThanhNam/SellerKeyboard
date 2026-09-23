@@ -1,0 +1,10 @@
+{
+  "generatedAt": "2026-07-11T14:43:12.2913689+07:00",
+  "overall": "PASS",
+  "serial": "emulator-5554",
+  "api": 36,
+  "results": 18,
+  "optionalCredentialSkips": 2,
+  "durationSeconds": 41.392,
+  "claimBoundary": "emulator-only; not physical-device or Gboard-performance evidence"
+}

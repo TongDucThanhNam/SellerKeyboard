@@ -1,0 +1,16 @@
+{
+  "capturedAt": "2026-07-12T18:30:53.4410892+07:00",
+  "serial": "emulator-5554",
+  "packageName": "com.terasumi.sellerkeyboard.benchmarkhost",
+  "uid": 10234,
+  "networkExpectation": "Zero",
+  "logcatClearSucceeded": true,
+  "network": {
+    "supported": true,
+    "reason": "",
+    "matchingLines": 0,
+    "rxBytes": 0,
+    "txBytes": 0,
+    "lines": []
+  }
+}

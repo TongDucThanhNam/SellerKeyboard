@@ -1,0 +1,33 @@
+﻿{
+    "generatedAt":  "2026-07-12T03:42:43.8966551+07:00",
+    "overall":  "PARTIAL_PASS",
+    "serial":  "emulator-5554",
+    "api":  36,
+    "headlessEmulator":  true,
+    "talkBack":  {
+                     "servicePackage":  "com.google.android.marvin.talkback",
+                     "serviceComponent":  "com.google.android.marvin.talkback/.TalkBackService",
+                     "serviceEnabledAndBound":  true,
+                     "touchExplorationSettingActive":  true,
+                     "sellerImeVisible":  true,
+                     "sellerClickableSemanticNodeCount":  46,
+                     "shellVirtualKeyboardSourceCoexistence":  true,
+                     "shellCanary":  "vxz"
+                 },
+    "switchAccess":  {
+                         "servicePackage":  "com.google.android.accessibility.switchaccess",
+                         "serviceComponent":  "com.google.android.accessibility.switchaccess/com.android.switchaccess.SwitchAccessService",
+                         "serviceEnabledAndBound":  true,
+                         "touchExplorationSettingActive":  false,
+                         "sellerImeVisible":  true,
+                         "sellerClickableSemanticNodeCount":  46,
+                         "shellVirtualKeyboardSourceCoexistence":  false,
+                         "shellCanary":  "vxz"
+                     },
+    "avdKeyboardDetected":  true,
+    "avdKeyboardReportedExternal":  false,
+    "talkBackTraversalAndActionVerified":  false,
+    "switchAccessScanningAndActionVerified":  false,
+    "physicalExternalKeyboardVerified":  false,
+    "claimBoundary":  "Automated API 36 emulator evidence covers enabled/bound TalkBack and Switch Access coexistence in a distinct-UID neutral editor plus exposed SellerKeyboard semantics. TalkBack permits an ADB shell virtual keyboard source; Switch Access intercepts it. The headless emulator cannot prove assistive traversal/action or a physical external keyboard."
+}

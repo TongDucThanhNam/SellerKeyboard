@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SellerKeyboard local Autofill fixture</title>
+  <style>
+    :root {
+      color-scheme: light dark;
+      font-family: system-ui, sans-serif;
+    }
+    body {
+      margin: 0;
+      padding: 32px 20px;
+    }
+    main {
+      margin: 0 auto;
+      max-width: 480px;
+    }
+    label {
+      display: block;
+      margin-top: 20px;
+    }
+    input {
+      box-sizing: border-box;
+      display: block;
+      font: inherit;
+      margin-top: 8px;
+      min-height: 48px;
+      padding: 10px 12px;
+      width: 100%;
+    }
+    button {
+      font: inherit;
+      margin-top: 24px;
+      min-height: 48px;
+      width: 100%;
+    }
+    output {
+      display: block;
+      font-family: ui-monospace, monospace;
+      margin-top: 12px;
+      overflow-wrap: anywhere;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Local Autofill fixture</h1>
+    <p id="boundary">Fictional local data only. This page never submits or stores values.</p>
+    <form autocomplete="on" action="javascript:void(0)">
+      <label for="fixture-username">
+        Username
+        <input
+          id="fixture-username"
+          name="username"
+          type="email"
+          autocomplete="username"
+          aria-describedby="boundary"
+        >
+      </label>
+      <label for="fixture-password">
+        Password
+        <input
+          id="fixture-password"
+          name="password"
+          type="password"
+          autocomplete="current-password"
+          aria-describedby="boundary"
+        >
+      </label>
+      <button type="button" disabled>No submission in this fixture</button>
+      <output id="fixture-status" aria-live="polite">
+        username-length=0 username-sha256=empty password-length=0 password-sha256=empty
+      </output>
+    </form>
+  </main>
+  <script>
+    const username = document.querySelector('#fixture-username');
+    const password = document.querySelector('#fixture-password');
+    const status = document.querySelector('#fixture-status');
+
+    async function sha256(value) {
+      if (!value) return 'empty';
+      const bytes = new TextEncoder().encode(value);
+      const digest = await crypto.subtle.digest('SHA-256', bytes);
+      return Array.from(new Uint8Array(digest), byte =>
+        byte.toString(16).padStart(2, '0')
+      ).join('');
+    }
+
+    let updateSequence = 0;
+    async function updateStatus() {
+      const sequence = ++updateSequence;
+      const usernameValue = username.value;
+      const passwordValue = password.value;
+      const [usernameHash, passwordHash] = await Promise.all([
+        sha256(usernameValue),
+        sha256(passwordValue),
+      ]);
+      if (sequence !== updateSequence) return;
+      status.textContent =
+        `username-length=${usernameValue.length} username-sha256=${usernameHash} ` +
+        `password-length=${passwordValue.length} password-sha256=${passwordHash}`;
+    }
+
+    username.addEventListener('input', updateStatus);
+    password.addEventListener('input', updateStatus);
+  </script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+{
+  "generatedAt": "2026-07-13T19:27:04.4321977+07:00",
+  "repositoryRoot": "C:\\Users\\terasumi\\Documents\\source_code\\SellerKeyboard",
+  "approvalCount": 5,
+  "artifacts": [
+    {
+      "approval": 1,
+      "name": "SellerKeyboard v24 upgrade fixture target",
+      "package": "com.terasumi.sellerkeyboard",
+      "path": "app\\build\\outputs\\apk\\upgradeFixture\\app-upgradeFixture.apk",
+      "bytes": 109957233,
+      "sha256": "E205F3AFF9682AD0F0419A6EB255255CC8BAD0FB149C97A6250367F7D377C20C"
+    },
+    {
+      "approval": 2,
+      "name": "SellerKeyboard connected tests",
+      "package": "com.terasumi.sellerkeyboard.test",
+      "path": "app\\build\\outputs\\apk\\androidTest\\debug\\app-debug-androidTest.apk",
+      "bytes": 1947881,
+      "sha256": "514454A1E809145A12B6CC67073389C8CD5CDB377E9127520D06E62D2C498490"
+    },
+    {
+      "approval": 3,
+      "name": "Neutral benchmark editor host",
+      "package": "com.terasumi.sellerkeyboard.benchmarkhost",
+      "path": "benchmark-host\\build\\outputs\\apk\\benchmark\\benchmark-host-benchmark.apk",
+      "bytes": 1755986,
+      "sha256": "D41D76723E1F27DCFFAC5B6B1940C934722FC0331CBAE6A04B89B092B379BF12"
+    },
+    {
+      "approval": 4,
+      "name": "SellerKeyboard optimized benchmark target",
+      "package": "com.terasumi.sellerkeyboard",
+      "path": "app\\build\\outputs\\apk\\benchmark\\app-benchmark.apk",
+      "bytes": 87464111,
+      "sha256": "C96F9E2A9DC384C492F5EA3C8FC4BA1F1EFE4C0A2361055F09011CE03B99478E"
+    },
+    {
+      "approval": 5,
+      "name": "Macrobenchmark runner",
+      "package": "com.terasumi.sellerkeyboard.benchmark",
+      "path": "benchmark\\build\\outputs\\apk\\benchmark\\benchmark-benchmark.apk",
+      "bytes": 39994476,
+      "sha256": "4A81126E6D37BCB1C1EB8F824A137A72FFE95CD83D7FBF096BB5AC087EAC8199"
+    }
+  ],
+  "securityBoundary": {
+    "benchmarkHasShellGuardedBridge": true,
+    "benchmarkDebuggable": false,
+    "releaseHasTestBridge": false,
+    "releaseDebuggable": false,
+    "releaseApk": "C:\\Users\\terasumi\\Documents\\source_code\\SellerKeyboard\\app\\build\\outputs\\apk\\release\\app-release-unsigned.apk",
+    "upgradeFixtureVersionCode": 24,
+    "benchmarkVersionCode": 25,
+    "versionCodeUpgradePrepared": true
+  },
+  "nextCommand": ".\\scripts\\run-xiaomi-attended-batch.ps1 -Serial <adb-serial>"
+}

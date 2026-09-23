@@ -1,0 +1,10 @@
+﻿{
+    "defaultIme":  "com.terasumi.sellerkeyboard/.service.SellerKeyboard",
+    "showImeWithHardKeyboard":  "1",
+    "accessibilityEnabled":  "0",
+    "accessibilityServices":  "null",
+    "touchExplorationEnabled":  "0",
+    "talkBackNotificationPermission":  "denied",
+    "talkBackStopped":  true,
+    "switchAccessStopped":  true
+}

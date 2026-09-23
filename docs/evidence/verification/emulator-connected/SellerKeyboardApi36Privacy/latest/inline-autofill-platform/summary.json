@@ -1,0 +1,139 @@
+﻿{
+    "schemaVersion":  1,
+    "capturedAt":  "2026-07-12T21:44:49.3002845+07:00",
+    "overall":  "PASS",
+    "serial":  "emulator-5554",
+    "api":  36,
+    "imePackage":  "com.terasumi.sellerkeyboard",
+    "hostPackage":  "com.terasumi.sellerkeyboard.benchmarkhost",
+    "providerPackage":  "com.terasumi.sellerkeyboard.autofilltest",
+    "providerRequestCount":  1,
+    "inlineRequestPresent":  true,
+    "maxSuggestionCount":  3,
+    "datasetReturned":  true,
+    "imeInlineCountBefore":  1,
+    "imeCandidateSourceBefore":  "INLINE_AUTOFILL",
+    "imeSensitiveBefore":  true,
+    "imeInlineCountAfter":  0,
+    "usernameLength":  31,
+    "usernameSha256":  "f1a3067d8e9f339a197d04d0dc692b2d637edf90789fa07cbfdfa611645f7739",
+    "passwordLength":  26,
+    "passwordSha256":  "8a3b6a35c545d61c6fd15844c5429f195e0ae2a738ad44162ede0fe54baae6a6",
+    "tap":  {
+                "x":  270,
+                "y":  1489,
+                "numberRowTop":  1569
+            },
+    "privacy":  {
+                    "ime":  {
+                                "capturedAt":  "2026-07-12T21:44:48.4080016+07:00",
+                                "serial":  "emulator-5554",
+                                "packageName":  "com.terasumi.sellerkeyboard",
+                                "uid":  10232,
+                                "networkExpectation":  "Zero",
+                                "networkAccountingSupported":  true,
+                                "networkAccountingReason":  "",
+                                "beforeRxBytes":  0,
+                                "afterRxBytes":  0,
+                                "beforeTxBytes":  0,
+                                "afterTxBytes":  0,
+                                "rxDelta":  0,
+                                "txDelta":  0,
+                                "canaries":  [
+                                                 {
+                                                     "value":  "seller-autofill@example.invalid",
+                                                     "occurrences":  0
+                                                 },
+                                                 {
+                                                     "value":  "Deterministic-Autofill-42!",
+                                                     "occurrences":  0
+                                                 },
+                                                 {
+                                                     "value":  "Seller test credential",
+                                                     "occurrences":  0
+                                                 }
+                                             ],
+                                "canaryOccurrencesInUidLog":  0
+                            },
+                    "provider":  {
+                                     "capturedAt":  "2026-07-12T21:44:48.8516643+07:00",
+                                     "serial":  "emulator-5554",
+                                     "packageName":  "com.terasumi.sellerkeyboard.autofilltest",
+                                     "uid":  10222,
+                                     "networkExpectation":  "Zero",
+                                     "networkAccountingSupported":  true,
+                                     "networkAccountingReason":  "",
+                                     "beforeRxBytes":  0,
+                                     "afterRxBytes":  0,
+                                     "beforeTxBytes":  0,
+                                     "afterTxBytes":  0,
+                                     "rxDelta":  0,
+                                     "txDelta":  0,
+                                     "canaries":  [
+                                                      {
+                                                          "value":  "seller-autofill@example.invalid",
+                                                          "occurrences":  0
+                                                      },
+                                                      {
+                                                          "value":  "Deterministic-Autofill-42!",
+                                                          "occurrences":  0
+                                                      },
+                                                      {
+                                                          "value":  "Seller test credential",
+                                                          "occurrences":  0
+                                                      }
+                                                  ],
+                                     "canaryOccurrencesInUidLog":  0
+                                 },
+                    "host":  {
+                                 "capturedAt":  "2026-07-12T21:44:49.2962166+07:00",
+                                 "serial":  "emulator-5554",
+                                 "packageName":  "com.terasumi.sellerkeyboard.benchmarkhost",
+                                 "uid":  10234,
+                                 "networkExpectation":  "Zero",
+                                 "networkAccountingSupported":  true,
+                                 "networkAccountingReason":  "",
+                                 "beforeRxBytes":  0,
+                                 "afterRxBytes":  0,
+                                 "beforeTxBytes":  0,
+                                 "afterTxBytes":  0,
+                                 "rxDelta":  0,
+                                 "txDelta":  0,
+                                 "canaries":  [
+                                                  {
+                                                      "value":  "seller-autofill@example.invalid",
+                                                      "occurrences":  0
+                                                  },
+                                                  {
+                                                      "value":  "Deterministic-Autofill-42!",
+                                                      "occurrences":  0
+                                                  },
+                                                  {
+                                                      "value":  "Seller test credential",
+                                                      "occurrences":  0
+                                                  }
+                                              ],
+                                 "canaryOccurrencesInUidLog":  0
+                             }
+                },
+    "artifacts":  [
+                      {
+                          "file":  "before-selection.png",
+                          "bytes":  120396,
+                          "sha256":  "66E3E665C670DD124FBC08258039CE29D35DF908B0D5C7A1C7F1FB7D91E63A3C"
+                      },
+                      {
+                          "file":  "after-selection.png",
+                          "bytes":  115872,
+                          "sha256":  "11B311021FEE08F5C298C802EB9C7EB0C875E13A6267E8097B451250BED77B1B"
+                      }
+                  ],
+    "restoration":  {
+                        "autofillServiceExact":  true,
+                        "defaultImeExact":  true,
+                        "showImeWithHardKeyboardExact":  true,
+                        "providerPresenceExact":  true,
+                        "hostPresenceExact":  true,
+                        "imePresenceExact":  true
+                    }
+}

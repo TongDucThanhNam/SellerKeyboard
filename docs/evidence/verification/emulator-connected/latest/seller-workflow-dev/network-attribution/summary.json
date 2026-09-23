@@ -1,0 +1,34 @@
+{
+  "capturedAt": "2026-07-11T21:59:40.2722926+07:00",
+  "serial": "emulator-5554",
+  "packageName": "com.terasumi.sellerkeyboard",
+  "uid": 10216,
+  "networkExpectation": "Zero",
+  "networkAccountingSupported": true,
+  "networkAccountingReason": "",
+  "beforeRxBytes": 0,
+  "afterRxBytes": 0,
+  "beforeTxBytes": 0,
+  "afterTxBytes": 0,
+  "rxDelta": 0,
+  "txDelta": 0,
+  "canaries": [
+    {
+      "value": "Your order ships today.",
+      "occurrences": 0
+    },
+    {
+      "value": "Tracking code: trk123",
+      "occurrences": 0
+    },
+    {
+      "value": "Your warranty remains active.",
+      "occurrences": 0
+    },
+    {
+      "value": "80.000₫",
+      "occurrences": 0
+    }
+  ],
+  "canaryOccurrencesInUidLog": 0
+}

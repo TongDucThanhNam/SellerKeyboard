@@ -1,0 +1,47 @@
+{
+  "generatedAt": "2026-07-12T01:38:54.4282507+07:00",
+  "overall": "PARTIAL",
+  "evidenceClass": "same-emulator real-touch comparison; not human or physical-device timing",
+  "serial": "emulator-5554",
+  "manufacturer": "Google",
+  "model": "sdk_gphone64_x86_64",
+  "api": 36,
+  "android": "16",
+  "buildFingerprint": "google/sdk_gphone64_x86_64/emu64xa:16/BE2A.250530.026.F3/13894323:userdebug/dev-keys",
+  "locale": "en-US",
+  "gboardPackage": "com.google.android.inputmethod.latin",
+  "gboardVersionName": "15.1.08.726012951-preload-x86_64",
+  "gboardVersionCode": 163542536,
+  "gboardSelectedSubtype": "1594443099",
+  "gboardSettingsBoundary": "Private Gboard preferences are not shell-readable; public package version, selected subtype, surface, and input-method dump are captured.",
+  "sellerPackage": "com.terasumi.sellerkeyboard",
+  "scenarioFixture": "benchmark-fixtures/seller-workflow-scenarios.json",
+  "scenarioCount": 3,
+  "touchPacingMillis": 80,
+  "touchMethod": "real accessibility-resolved key coordinates injected with input tap",
+  "draftVerification": "distinct-package editor SHA-256 after every scenario",
+  "gboardMedianInteractions": 38.0,
+  "sellerDefaultMedianInteractions": 38.0,
+  "sellerCustomizedMedianInteractions": 8.0,
+  "interactionReduction": 0.7894736842105263,
+  "interactionGateMinimum": 0.5,
+  "gboardMedianMilliseconds": 7233.44,
+  "sellerDefaultMedianMilliseconds": 7606.834,
+  "sellerCustomizedMedianMilliseconds": 5360.128,
+  "customizedTimeReductionVsGboard": 0.2589794067552921,
+  "completedDrafts": 9,
+  "expectedDrafts": 9,
+  "autoSentMessages": 0,
+  "unresolvedVariablesCommitted": 0,
+  "videos": {
+    "gboard": [
+      "C:\\Users\\terasumi\\Documents\\source_code\\SellerKeyboard\\docs\\evidence\\verification\\seller-workflow-comparison\\smoke-3\\gboard-part1.mp4"
+    ],
+    "sellerDefault": [
+      "C:\\Users\\terasumi\\Documents\\source_code\\SellerKeyboard\\docs\\evidence\\verification\\seller-workflow-comparison\\smoke-3\\seller-default-part1.mp4"
+    ],
+    "sellerCustomized": [
+      "C:\\Users\\terasumi\\Documents\\source_code\\SellerKeyboard\\docs\\evidence\\verification\\seller-workflow-comparison\\smoke-3\\seller-customized-part1.mp4"
+    ]
+  }
+}

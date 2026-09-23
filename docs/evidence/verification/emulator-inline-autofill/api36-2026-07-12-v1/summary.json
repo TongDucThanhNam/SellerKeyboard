@@ -1,0 +1,139 @@
+{
+  "schemaVersion": 1,
+  "capturedAt": "2026-07-12T15:53:03.2276315+07:00",
+  "overall": "PASS",
+  "serial": "emulator-5554",
+  "api": 36,
+  "imePackage": "com.terasumi.sellerkeyboard",
+  "hostPackage": "com.terasumi.sellerkeyboard.benchmarkhost",
+  "providerPackage": "com.terasumi.sellerkeyboard.autofilltest",
+  "providerRequestCount": 1,
+  "inlineRequestPresent": true,
+  "maxSuggestionCount": 3,
+  "datasetReturned": true,
+  "imeInlineCountBefore": 1,
+  "imeCandidateSourceBefore": "INLINE_AUTOFILL",
+  "imeSensitiveBefore": true,
+  "imeInlineCountAfter": 0,
+  "usernameLength": 31,
+  "usernameSha256": "f1a3067d8e9f339a197d04d0dc692b2d637edf90789fa07cbfdfa611645f7739",
+  "passwordLength": 26,
+  "passwordSha256": "8a3b6a35c545d61c6fd15844c5429f195e0ae2a738ad44162ede0fe54baae6a6",
+  "tap": {
+    "x": 270,
+    "y": 1489,
+    "numberRowTop": 1569
+  },
+  "privacy": {
+    "ime": {
+      "capturedAt": "2026-07-12T15:53:01.9787783+07:00",
+      "serial": "emulator-5554",
+      "packageName": "com.terasumi.sellerkeyboard",
+      "uid": 10232,
+      "networkExpectation": "Zero",
+      "networkAccountingSupported": true,
+      "networkAccountingReason": "",
+      "beforeRxBytes": 0,
+      "afterRxBytes": 0,
+      "beforeTxBytes": 0,
+      "afterTxBytes": 0,
+      "rxDelta": 0,
+      "txDelta": 0,
+      "canaries": [
+        {
+          "value": "seller-autofill@example.invalid",
+          "occurrences": 0
+        },
+        {
+          "value": "Deterministic-Autofill-42!",
+          "occurrences": 0
+        },
+        {
+          "value": "Seller test credential",
+          "occurrences": 0
+        }
+      ],
+      "canaryOccurrencesInUidLog": 0
+    },
+    "provider": {
+      "capturedAt": "2026-07-12T15:53:02.6815598+07:00",
+      "serial": "emulator-5554",
+      "packageName": "com.terasumi.sellerkeyboard.autofilltest",
+      "uid": 10217,
+      "networkExpectation": "Zero",
+      "networkAccountingSupported": true,
+      "networkAccountingReason": "",
+      "beforeRxBytes": 0,
+      "afterRxBytes": 0,
+      "beforeTxBytes": 0,
+      "afterTxBytes": 0,
+      "rxDelta": 0,
+      "txDelta": 0,
+      "canaries": [
+        {
+          "value": "seller-autofill@example.invalid",
+          "occurrences": 0
+        },
+        {
+          "value": "Deterministic-Autofill-42!",
+          "occurrences": 0
+        },
+        {
+          "value": "Seller test credential",
+          "occurrences": 0
+        }
+      ],
+      "canaryOccurrencesInUidLog": 0
+    },
+    "host": {
+      "capturedAt": "2026-07-12T15:53:03.2206417+07:00",
+      "serial": "emulator-5554",
+      "packageName": "com.terasumi.sellerkeyboard.benchmarkhost",
+      "uid": 10234,
+      "networkExpectation": "Zero",
+      "networkAccountingSupported": true,
+      "networkAccountingReason": "",
+      "beforeRxBytes": 0,
+      "afterRxBytes": 0,
+      "beforeTxBytes": 0,
+      "afterTxBytes": 0,
+      "rxDelta": 0,
+      "txDelta": 0,
+      "canaries": [
+        {
+          "value": "seller-autofill@example.invalid",
+          "occurrences": 0
+        },
+        {
+          "value": "Deterministic-Autofill-42!",
+          "occurrences": 0
+        },
+        {
+          "value": "Seller test credential",
+          "occurrences": 0
+        }
+      ],
+      "canaryOccurrencesInUidLog": 0
+    }
+  },
+  "artifacts": [
+    {
+      "file": "before-selection.png",
+      "bytes": 118884,
+      "sha256": "C8196F5162B5115E1B39B5445D36C9396C3A6F3019CF936D109F99CB456E9375"
+    },
+    {
+      "file": "after-selection.png",
+      "bytes": 113867,
+      "sha256": "1C93AA9A7CFF433CA52BCDEB3178D3BE9A8AA29283814FF8958B580B40556295"
+    }
+  ],
+  "restoration": {
+    "autofillServiceExact": true,
+    "defaultImeExact": true,
+    "showImeWithHardKeyboardExact": true,
+    "providerPresenceExact": true,
+    "hostPresenceExact": true,
+    "imePresenceExact": true
+  }
+}

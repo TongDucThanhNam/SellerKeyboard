@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <application android:usesCleartextTraffic="true">
+        <service
+            android:name=".service.SellerKeyboard"
+            android:process=":ime" />
+        <activity
+            android:name=".benchmark.ImeBenchmarkActivity"
+            android:exported="true" />
+        <activity
+            android:name=".benchmark.WebViewBenchmarkActivity"
+            android:exported="true" />
+        <provider
+            android:name=".debug.ImeTestBridgeProvider"
+            android:authorities="com.terasumi.sellerkeyboard.ime-test-bridge"
+            android:exported="true"
+            android:process=":ime" />
+        <provider
+            android:name=".debug.CloudSyncTestBridgeProvider"
+            android:authorities="com.terasumi.sellerkeyboard.cloud-sync-test-bridge"
+            android:exported="true" />
+        <!-- The debug IME is isolated for process/UID evidence, so ML Kit must be
+             initialized in that same process before the translation controller runs. -->
+        <provider
+            android:name="com.google.mlkit.common.internal.MlKitInitProvider"
+            android:process=":ime" />
+    </application>
+</manifest>

@@ -1,0 +1,10 @@
+{
+  "generatedAt": "2026-07-11T17:08:35.3853728+07:00",
+  "overall": "PASS",
+  "serial": "emulator-5554",
+  "normalSession": "Result: Bundle[{active_surface=KEYBOARD, translation_idle=true, completion_count=0, voice_idle=true, active=true, clipboard_started=true, candidate_source=NONE, seller_count=0, candidate_count=0, sensitive=false, inline_count=0, session_id=4}]",
+  "populatedSession": "Result: Bundle[{active_surface=KEYBOARD, translation_idle=true, completion_count=1, voice_idle=true, active=true, clipboard_started=true, candidate_source=INLINE_AUTOFILL, seller_count=0, candidate_count=1, sensitive=false, inline_count=1, session_id=4}]",
+  "sensitiveSession": "Result: Bundle[{active_surface=KEYBOARD, translation_idle=true, completion_count=0, voice_idle=true, active=true, clipboard_started=false, candidate_source=NONE, seller_count=0, candidate_count=0, sensitive=true, inline_count=0, session_id=6}]",
+  "lateResultSession": "Result: Bundle[{active_surface=KEYBOARD, translation_idle=true, completion_count=0, voice_idle=true, active=true, inline_append_accepted=false, clipboard_started=false, candidate_source=NONE, seller_count=0, candidate_count=0, sensitive=true, inline_count=0, session_id=6}]",
+  "claimBoundary": "debug-build connected IME state; not physical-device evidence"
+}

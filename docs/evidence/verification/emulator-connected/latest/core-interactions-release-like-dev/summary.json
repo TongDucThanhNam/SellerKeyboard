@@ -1,0 +1,20 @@
+﻿{
+    "overall":  "PASS",
+    "serial":  "emulator-5554",
+    "api":  36,
+    "targetPackage":  "com.terasumi.sellerkeyboard.benchmarkhost",
+    "targetIsDistinctPackage":  true,
+    "initialAutoCapsVerified":  true,
+    "oneShotShiftVerified":  true,
+    "capsLockDoubleTapVerified":  true,
+    "capsLockPersistenceAndExitVerified":  true,
+    "punctuationAutoCapsVerified":  true,
+    "spaceCursorMoveVerified":  true,
+    "spacePointerExitRestoreVerified":  true,
+    "swipeDeleteVerified":  true,
+    "swipeDeletePointerExitRestoreVerified":  true,
+    "holdDeleteRepeatVerified":  true,
+    "holdDeleteStopsOnReleaseVerified":  true,
+    "multiTouchCancellationVerified":  false,
+    "hashOnlyHostBridge":  true
+}

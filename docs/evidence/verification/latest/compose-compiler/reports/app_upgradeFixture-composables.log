@@ -1,0 +1,3 @@
+applier inference AddSnippetScreen.kt:222:13: Type disagreement [Binding(1426), [Binding(token = androidx.compose.ui.UiComposable)], [Binding(token = androidx.compose.ui.UiComposable)], [Binding(1427)]] <=> [Binding(1426), [Binding(1426)], [Binding(1426)]]
+applier inference EditSnippetScreen.kt:247:13: Type disagreement [Binding(1904), [Binding(token = androidx.compose.ui.UiComposable)], [Binding(token = androidx.compose.ui.UiComposable)], [Binding(1905)]] <=> [Binding(1904), [Binding(1904)], [Binding(1904)]]
+applier inference HomeScreen.kt:205:17: Type disagreement [Binding(2022), [Binding(token = androidx.compose.ui.UiComposable)], [Binding(2088)], [Binding(token = androidx.compose.ui.UiComposable)]] <=> [Binding(2022), [Binding(2022)], [Binding(2022)]]

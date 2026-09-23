@@ -1,0 +1,54 @@
+﻿{
+    "generatedAt":  "2026-07-12T05:55:53.5345574+07:00",
+    "overall":  "PASS",
+    "serial":  "emulator-5554",
+    "api":  36,
+    "device":  "sdk_gphone64_x86_64",
+    "hostPackage":  "com.terasumi.sellerkeyboard.benchmarkhost",
+    "hostVersion":  "1.0",
+    "simulation":  {
+                       "trimMemoryLevel":  "COMPLETE",
+                       "backgroundKillCommand":  "am kill --user current com.terasumi.sellerkeyboard.benchmarkhost",
+                       "androidCommandSemantics":  "Kill all background processes associated with the application.",
+                       "processActuallyDied":  true,
+                       "pidBefore":  28934,
+                       "pidAfter":  29199,
+                       "pidChanged":  true
+                   },
+    "beforeProcessDeath":  {
+                               "exactEditorText":  "skqvz",
+                               "exactEditorTextVerified":  true,
+                               "snapshot":  "Result: Bundle[{matches_original=false, selection_start=5, active=true, text_length=5, text_sha256=4039ea2178cac971397a165c914db274b65f1d65f24a45304b8174aec96cd617, selection_end=5}]",
+                               "imeSession":  {
+                                                  "selectedIme":  "com.terasumi.sellerkeyboard/.service.SellerKeyboard",
+                                                  "inputShown":  true,
+                                                  "targetPackage":  "com.terasumi.sellerkeyboard.benchmarkhost"
+                                              }
+                           },
+    "afterProcessRecreation":  {
+                                   "emptyEditorVerified":  true,
+                                   "staleTextAbsent":  true,
+                                   "exactRecoveryText":  "mnbvc",
+                                   "exactRecoveryTextVerified":  true,
+                                   "snapshotAfterReset":  "Result: Bundle[{matches_original=false, selection_start=0, active=true, text_length=0, text_sha256=e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855, selection_end=0}]",
+                                   "snapshotAfterTyping":  "Result: Bundle[{matches_original=false, selection_start=5, active=true, text_length=5, text_sha256=e2bf78cd0e91483b8dc38581b3f14c486e1d2041d08bbac27b49a2eb16a09a05, selection_end=5}]",
+                                   "imeReattachedAndShown":  true,
+                                   "imeSession":  {
+                                                      "selectedIme":  "com.terasumi.sellerkeyboard/.service.SellerKeyboard",
+                                                      "inputShown":  true,
+                                                      "targetPackage":  "com.terasumi.sellerkeyboard.benchmarkhost"
+                                                  }
+                               },
+    "sellerOrHostFatalLogCount":  0,
+    "artifacts":  {
+                      "beforeScreenshot":  "before-process-death.png",
+                      "beforeHierarchy":  "before-process-death-window.xml",
+                      "recreatedEmptyScreenshot":  "after-recreation-empty.png",
+                      "recreatedEmptyHierarchy":  "after-recreation-empty-window.xml",
+                      "recreatedTypedScreenshot":  "after-recreation-typed.png",
+                      "recreatedTypedHierarchy":  "after-recreation-typed-window.xml",
+                      "processExitInfo":  "host-process-exit-info.txt",
+                      "fatalLogMatches":  "fatal-log-matches.txt"
+                  },
+    "claimBoundary":  "Android API 36 emulator low-memory simulation: TRIM_MEMORY_COMPLETE followed by the documented am kill background-process command. The neutral host PID disappears and changes after relaunch; SellerKeyboard reattaches and accepts exact fresh visible-key typing. The host editor owns its own transient draft state, so its empty post-recreation editor is not claimed as IME data loss or preservation."
+}

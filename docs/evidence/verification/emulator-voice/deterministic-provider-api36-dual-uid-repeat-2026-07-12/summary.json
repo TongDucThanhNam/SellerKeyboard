@@ -1,0 +1,35 @@
+﻿{
+    "generatedAt":  "2026-07-12T08:50:02.5765993+07:00",
+    "overall":  "PASS",
+    "serial":  "emulator-5554",
+    "api":  36,
+    "model":  "sdk_gphone64_x86_64",
+    "provider":  "debug-only explicit RecognitionService through Android SpeechRecognizer binder",
+    "productionProviderUntouched":  true,
+    "testCount":  3,
+    "cases":  [
+                  "a_explicitService_deliversPartialProcessingAndReviewableFinalResult",
+                  "b_explicitService_mapsNetworkAndNoMatchErrors",
+                  "z_cancel_preventsDelayedProviderResultFromRepopulatingState"
+              ],
+    "lifecycle":  [
+                      "Listening(partial)",
+                      "Processing",
+                      "Result(review required)"
+                  ],
+    "mappedErrors":  [
+                         "Network",
+                         "NoMatch"
+                     ],
+    "lateResultAfterCancel":  false,
+    "networkAccountingSupported":  true,
+    "appUidRxDelta":  0,
+    "appUidTxDelta":  0,
+    "providerUidRxDelta":  0,
+    "providerUidTxDelta":  0,
+    "controlledTranscriptOccurrencesInUidLog":  0,
+    "instrumentationLog":  "C:\\Users\\terasumi\\Documents\\source_code\\SellerKeyboard\\docs\\evidence\\verification\\emulator-voice\\deterministic-provider-api36-dual-uid-repeat-2026-07-12\\instrumentation.txt",
+    "appAttributionSummary":  "C:\\Users\\terasumi\\Documents\\source_code\\SellerKeyboard\\docs\\evidence\\verification\\emulator-voice\\deterministic-provider-api36-dual-uid-repeat-2026-07-12\\app-uid-attribution\\summary.json",
+    "providerAttributionSummary":  "C:\\Users\\terasumi\\Documents\\source_code\\SellerKeyboard\\docs\\evidence\\verification\\emulator-voice\\deterministic-provider-api36-dual-uid-repeat-2026-07-12\\provider-uid-attribution\\summary.json",
+    "claimBoundary":  "deterministic app-side provider integration; real speech/audio quality and provider policy still require physical acceptance"
+}

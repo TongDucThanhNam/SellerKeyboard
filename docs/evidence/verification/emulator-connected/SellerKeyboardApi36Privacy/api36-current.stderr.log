@@ -1,0 +1,7 @@
+Emulator runner did not produce 22 passing/identified results.
+At C:\Users\terasumi\Documents\source_code\SellerKeyboard\scripts\verify-emulator-connected.ps1:130 char:9
++         throw "Emulator runner did not produce 22 passing/identified  ...
++         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (Emulator runner...tified results.:String) [], RuntimeException
+    + FullyQualifiedErrorId : Emulator runner did not produce 22 passing/identified results.
+ 

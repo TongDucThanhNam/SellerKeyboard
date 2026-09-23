@@ -1,0 +1,21 @@
+﻿{
+    "capturedAt":  "2026-07-12T21:51:41.1771685+07:00",
+    "serial":  "emulator-5554",
+    "packageName":  "com.terasumi.sellerkeyboard",
+    "uid":  10232,
+    "networkExpectation":  "Record",
+    "logcatClearSucceeded":  true,
+    "network":  {
+                    "supported":  true,
+                    "reason":  "",
+                    "matchingLines":  4,
+                    "rxBytes":  0,
+                    "txBytes":  0,
+                    "lines":  [
+                                  "  ident=[{type=1, ratType=COMBINED, wifiNetworkKey=\"AndroidWifi\"open, metered=false, defaultNetwork=true, oemManaged=OEM_NONE, subId=-1}] uid=10232 set=DEFAULT tag=0x0\r",
+                                  "  ident=[{type=1, ratType=COMBINED, wifiNetworkKey=\"AndroidWifi\"open, metered=false, defaultNetwork=true, oemManaged=OEM_NONE, subId=-1}] uid=10232 set=FOREGROUND tag=0x0\r",
+                                  "  ident=[{type=1, ratType=COMBINED, wifiNetworkKey=\"AndroidWifi\"open, metered=false, defaultNetwork=true, oemManaged=OEM_NONE, subId=-1}] uid=10232 set=FOREGROUND tag=0xffffff01\r",
+                                  "    uid=10232 set=1\r"
+                              ]
+                }
+}

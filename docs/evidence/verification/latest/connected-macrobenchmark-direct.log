@@ -1,0 +1,399 @@
+OEM package-session fallback for serial=emulator-5554
+Performing Streamed Install
+Success
+Performing Streamed Install
+Success
+INSTRUMENTATION_STATUS: class=com.terasumi.sellerkeyboard.benchmark.ImeShowBenchmark
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=4
+INSTRUMENTATION_STATUS: stream=
+com.terasumi.sellerkeyboard.benchmark.ImeShowBenchmark:
+INSTRUMENTATION_STATUS: test=coldEditorLaunchAndSellerKeyboardImeShow
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: additionalTestOutputFile_ImeShowBenchmark_coldEditorLaunchAndSellerKeyboardImeShow_iter000_2026-07-12-07-38-29.perfetto-trace=/storage/emulated/0/Android/media/com.terasumi.sellerkeyboard.benchmark/ImeShowBenchmark_coldEditorLaunchAndSellerKeyboardImeShow_iter000_2026-07-12-07-38-29.perfetto-trace
+INSTRUMENTATION_STATUS_CODE: 2
+INSTRUMENTATION_STATUS: additionalTestOutputFile_ImeShowBenchmark_coldEditorLaunchAndSellerKeyboardImeShow_iter001_2026-07-12-07-38-42.perfetto-trace=/storage/emulated/0/Android/media/com.terasumi.sellerkeyboard.benchmark/ImeShowBenchmark_coldEditorLaunchAndSellerKeyboardImeShow_iter001_2026-07-12-07-38-42.perfetto-trace
+INSTRUMENTATION_STATUS_CODE: 2
+INSTRUMENTATION_STATUS: additionalTestOutputFile_ImeShowBenchmark_coldEditorLaunchAndSellerKeyboardImeShow_iter002_2026-07-12-07-38-54.perfetto-trace=/storage/emulated/0/Android/media/com.terasumi.sellerkeyboard.benchmark/ImeShowBenchmark_coldEditorLaunchAndSellerKeyboardImeShow_iter002_2026-07-12-07-38-54.perfetto-trace
+INSTRUMENTATION_STATUS_CODE: 2
+INSTRUMENTATION_STATUS: additionalTestOutputFile_ImeShowBenchmark_coldEditorLaunchAndSellerKeyboardImeShow_iter003_2026-07-12-07-39-06.perfetto-trace=/storage/emulated/0/Android/media/com.terasumi.sellerkeyboard.benchmark/ImeShowBenchmark_coldEditorLaunchAndSellerKeyboardImeShow_iter003_2026-07-12-07-39-06.perfetto-trace
+INSTRUMENTATION_STATUS_CODE: 2
+INSTRUMENTATION_STATUS: additionalTestOutputFile_ImeShowBenchmark_coldEditorLaunchAndSellerKeyboardImeShow_iter004_2026-07-12-07-39-21.perfetto-trace=/storage/emulated/0/Android/media/com.terasumi.sellerkeyboard.benchmark/ImeShowBenchmark_coldEditorLaunchAndSellerKeyboardImeShow_iter004_2026-07-12-07-39-21.perfetto-trace
+INSTRUMENTATION_STATUS_CODE: 2
+INSTRUMENTATION_STATUS: additionalTestOutputFile_ImeShowBenchmark_coldEditorLaunchAndSellerKeyboardImeShow_iter005_2026-07-12-07-39-35.perfetto-trace=/storage/emulated/0/Android/media/com.terasumi.sellerkeyboard.benchmark/ImeShowBenchmark_coldEditorLaunchAndSellerKeyboardImeShow_iter005_2026-07-12-07-39-35.perfetto-trace
+INSTRUMENTATION_STATUS_CODE: 2
+INSTRUMENTATION_STATUS: additionalTestOutputFile_ImeShowBenchmark_coldEditorLaunchAndSellerKeyboardImeShow_iter006_2026-07-12-07-39-48.perfetto-trace=/storage/emulated/0/Android/media/com.terasumi.sellerkeyboard.benchmark/ImeShowBenchmark_coldEditorLaunchAndSellerKeyboardImeShow_iter006_2026-07-12-07-39-48.perfetto-trace
+INSTRUMENTATION_STATUS_CODE: 2
+INSTRUMENTATION_STATUS: additionalTestOutputFile_ImeShowBenchmark_coldEditorLaunchAndSellerKeyboardImeShow_iter007_2026-07-12-07-40-03.perfetto-trace=/storage/emulated/0/Android/media/com.terasumi.sellerkeyboard.benchmark/ImeShowBenchmark_coldEditorLaunchAndSellerKeyboardImeShow_iter007_2026-07-12-07-40-03.perfetto-trace
+INSTRUMENTATION_STATUS_CODE: 2
+INSTRUMENTATION_STATUS: additionalTestOutputFile_ImeShowBenchmark_coldEditorLaunchAndSellerKeyboardImeShow_iter008_2026-07-12-07-40-16.perfetto-trace=/storage/emulated/0/Android/media/com.terasumi.sellerkeyboard.benchmark/ImeShowBenchmark_coldEditorLaunchAndSellerKeyboardImeShow_iter008_2026-07-12-07-40-16.perfetto-trace
+INSTRUMENTATION_STATUS_CODE: 2
+INSTRUMENTATION_STATUS: additionalTestOutputFile_ImeShowBenchmark_coldEditorLaunchAndSellerKeyboardImeShow_iter009_2026-07-12-07-40-30.perfetto-trace=/storage/emulated/0/Android/media/com.terasumi.sellerkeyboard.benchmark/ImeShowBenchmark_coldEditorLaunchAndSellerKeyboardImeShow_iter009_2026-07-12-07-40-30.perfetto-trace
+INSTRUMENTATION_STATUS_CODE: 2
+INSTRUMENTATION_STATUS: EMULATOR_frame_count_median=7.0
+INSTRUMENTATION_STATUS: EMULATOR_frame_count_min=4.0
+INSTRUMENTATION_STATUS: EMULATOR_frame_count_stddev=1.286683937707919
+INSTRUMENTATION_STATUS: EMULATOR_frame_duration_cpu_millis_p50=48.6131
+INSTRUMENTATION_STATUS: EMULATOR_frame_duration_cpu_millis_p90=563.52506
+INSTRUMENTATION_STATUS: EMULATOR_frame_duration_cpu_millis_p95=589.43052
+INSTRUMENTATION_STATUS: EMULATOR_frame_duration_cpu_millis_p99=700.6836599999995
+INSTRUMENTATION_STATUS: EMULATOR_frame_overrun_millis_p50=55.506916
+INSTRUMENTATION_STATUS: EMULATOR_frame_overrun_millis_p90=607.0954952
+INSTRUMENTATION_STATUS: EMULATOR_frame_overrun_millis_p95=643.4248739999999
+INSTRUMENTATION_STATUS: EMULATOR_frame_overrun_millis_p99=753.4889667999994
+INSTRUMENTATION_STATUS: EMULATOR_seller_keyboard.Ime_show_to_interactive_first_millis_median=244.3945
+INSTRUMENTATION_STATUS: EMULATOR_seller_keyboard.Ime_show_to_interactive_first_millis_min=171.0279
+INSTRUMENTATION_STATUS: EMULATOR_seller_keyboard.Ime_show_to_interactive_first_millis_stddev=62.73073433313035
+INSTRUMENTATION_STATUS: EMULATOR_time_to_initial_display_millis_median=2991.4507
+INSTRUMENTATION_STATUS: EMULATOR_time_to_initial_display_millis_min=2428.2336
+INSTRUMENTATION_STATUS: EMULATOR_time_to_initial_display_millis_stddev=513.5043840488121
+INSTRUMENTATION_STATUS: android.studio.display.benchmark=WARNING: Running on Emulator
+    Benchmark is running on an emulator, which is not representative of
+    real user devices. Use a physical device to benchmark. Emulator
+    benchmark improvements might not carry over to a real user's
+    experience (or even regress real device performance).
+
+ImeShowBenchmark_coldEditorLaunchAndSellerKeyboardImeShow
+  SellerKeyboard.ImeShowToInteractiveFirstMs   [min   171.0](file://ImeShowBenchmark_coldEditorLaunchAndSellerKeyboardImeShow_iter001_2026-07-12-07-38-42.perfetto-trace),   [median   244.4](file://ImeShowBenchmark_coldEditorLaunchAndSellerKeyboardImeShow_iter005_2026-07-12-07-39-35.perfetto-trace),   [max   371.5](file://ImeShowBenchmark_coldEditorLaunchAndSellerKeyboardImeShow_iter003_2026-07-12-07-39-06.perfetto-trace)
+  frameCount                                   [min     4.0](file://ImeShowBenchmark_coldEditorLaunchAndSellerKeyboardImeShow_iter003_2026-07-12-07-39-06.perfetto-trace),   [median     7.0](file://ImeShowBenchmark_coldEditorLaunchAndSellerKeyboardImeShow_iter005_2026-07-12-07-39-35.perfetto-trace),   [max     8.0](file://ImeShowBenchmark_coldEditorLaunchAndSellerKeyboardImeShow_iter005_2026-07-12-07-39-35.perfetto-trace)
+  timeToInitialDisplayMs                       [min 2,428.2](file://ImeShowBenchmark_coldEditorLaunchAndSellerKeyboardImeShow_iter002_2026-07-12-07-38-54.perfetto-trace),   [median 2,991.5](file://ImeShowBenchmark_coldEditorLaunchAndSellerKeyboardImeShow_iter005_2026-07-12-07-39-35.perfetto-trace),   [max 3,942.7](file://ImeShowBenchmark_coldEditorLaunchAndSellerKeyboardImeShow_iter004_2026-07-12-07-39-21.perfetto-trace)
+  frameDurationCpuMs                           P50     48.6,   P90    563.5,   P95    589.4,   P99    700.7
+  frameOverrunMs                               P50     55.5,   P90    607.1,   P95    643.4,   P99    753.5
+    Traces: Iteration [0](file://ImeShowBenchmark_coldEditorLaunchAndSellerKeyboardImeShow_iter000_2026-07-12-07-38-29.perfetto-trace) [1](file://ImeShowBenchmark_coldEditorLaunchAndSellerKeyboardImeShow_iter001_2026-07-12-07-38-42.perfetto-trace) [2](file://ImeShowBenchmark_coldEditorLaunchAndSellerKeyboardImeShow_iter002_2026-07-12-07-38-54.perfetto-trace) [3](file://ImeShowBenchmark_coldEditorLaunchAndSellerKeyboardImeShow_iter003_2026-07-12-07-39-06.perfetto-trace) [4](file://ImeShowBenchmark_coldEditorLaunchAndSellerKeyboardImeShow_iter004_2026-07-12-07-39-21.perfetto-trace) [5](file://ImeShowBenchmark_coldEditorLaunchAndSellerKeyboardImeShow_iter005_2026-07-12-07-39-35.perfetto-trace) [6](file://ImeShowBenchmark_coldEditorLaunchAndSellerKeyboardImeShow_iter006_2026-07-12-07-39-48.perfetto-trace) [7](file://ImeShowBenchmark_coldEditorLaunchAndSellerKeyboardImeShow_iter007_2026-07-12-07-40-03.perfetto-trace) [8](file://ImeShowBenchmark_coldEditorLaunchAndSellerKeyboardImeShow_iter008_2026-07-12-07-40-16.perfetto-trace) [9](file://ImeShowBenchmark_coldEditorLaunchAndSellerKeyboardImeShow_iter009_2026-07-12-07-40-30.perfetto-trace)
+
+INSTRUMENTATION_STATUS: android.studio.v2display.benchmark=WARNING: Running on Emulator
+    Benchmark is running on an emulator, which is not representative of
+    real user devices. Use a physical device to benchmark. Emulator
+    benchmark improvements might not carry over to a real user's
+    experience (or even regress real device performance).
+
+ImeShowBenchmark_coldEditorLaunchAndSellerKeyboardImeShow
+  SellerKeyboard.ImeShowToInteractiveFirstMs   [min   171.0](file://ImeShowBenchmark_coldEditorLaunchAndSellerKeyboardImeShow_iter001_2026-07-12-07-38-42.perfetto-trace),   [median   244.4](file://ImeShowBenchmark_coldEditorLaunchAndSellerKeyboardImeShow_iter005_2026-07-12-07-39-35.perfetto-trace),   [max   371.5](file://ImeShowBenchmark_coldEditorLaunchAndSellerKeyboardImeShow_iter003_2026-07-12-07-39-06.perfetto-trace)
+  frameCount                                   [min     4.0](file://ImeShowBenchmark_coldEditorLaunchAndSellerKeyboardImeShow_iter003_2026-07-12-07-39-06.perfetto-trace),   [median     7.0](file://ImeShowBenchmark_coldEditorLaunchAndSellerKeyboardImeShow_iter005_2026-07-12-07-39-35.perfetto-trace),   [max     8.0](file://ImeShowBenchmark_coldEditorLaunchAndSellerKeyboardImeShow_iter005_2026-07-12-07-39-35.perfetto-trace)
+  timeToInitialDisplayMs                       [min 2,428.2](file://ImeShowBenchmark_coldEditorLaunchAndSellerKeyboardImeShow_iter002_2026-07-12-07-38-54.perfetto-trace),   [median 2,991.5](file://ImeShowBenchmark_coldEditorLaunchAndSellerKeyboardImeShow_iter005_2026-07-12-07-39-35.perfetto-trace),   [max 3,942.7](file://ImeShowBenchmark_coldEditorLaunchAndSellerKeyboardImeShow_iter004_2026-07-12-07-39-21.perfetto-trace)
+  frameDurationCpuMs                           P50     48.6,   P90    563.5,   P95    589.4,   P99    700.7
+  frameOverrunMs                               P50     55.5,   P90    607.1,   P95    643.4,   P99    753.5
+    Traces: Iteration [0](file://ImeShowBenchmark_coldEditorLaunchAndSellerKeyboardImeShow_iter000_2026-07-12-07-38-29.perfetto-trace) [1](file://ImeShowBenchmark_coldEditorLaunchAndSellerKeyboardImeShow_iter001_2026-07-12-07-38-42.perfetto-trace) [2](file://ImeShowBenchmark_coldEditorLaunchAndSellerKeyboardImeShow_iter002_2026-07-12-07-38-54.perfetto-trace) [3](file://ImeShowBenchmark_coldEditorLaunchAndSellerKeyboardImeShow_iter003_2026-07-12-07-39-06.perfetto-trace) [4](file://ImeShowBenchmark_coldEditorLaunchAndSellerKeyboardImeShow_iter004_2026-07-12-07-39-21.perfetto-trace) [5](file://ImeShowBenchmark_coldEditorLaunchAndSellerKeyboardImeShow_iter005_2026-07-12-07-39-35.perfetto-trace) [6](file://ImeShowBenchmark_coldEditorLaunchAndSellerKeyboardImeShow_iter006_2026-07-12-07-39-48.perfetto-trace) [7](file://ImeShowBenchmark_coldEditorLaunchAndSellerKeyboardImeShow_iter007_2026-07-12-07-40-03.perfetto-trace) [8](file://ImeShowBenchmark_coldEditorLaunchAndSellerKeyboardImeShow_iter008_2026-07-12-07-40-16.perfetto-trace) [9](file://ImeShowBenchmark_coldEditorLaunchAndSellerKeyboardImeShow_iter009_2026-07-12-07-40-30.perfetto-trace)
+
+INSTRUMENTATION_STATUS: android.studio.v2display.benchmark.outputDirPath=/storage/emulated/0/Android/media/com.terasumi.sellerkeyboard.benchmark
+INSTRUMENTATION_STATUS: android.studio.v3display.benchmark=WARNING: Running on Emulator
+    Benchmark is running on an emulator, which is not representative of
+    real user devices. Use a physical device to benchmark. Emulator
+    benchmark improvements might not carry over to a real user's
+    experience (or even regress real device performance).
+
+ImeShowBenchmark_coldEditorLaunchAndSellerKeyboardImeShow
+  SellerKeyboard.ImeShowToInteractiveFirstMs   [min   171.0](file://ImeShowBenchmark_coldEditorLaunchAndSellerKeyboardImeShow_iter001_2026-07-12-07-38-42.perfetto-trace),   [median   244.4](file://ImeShowBenchmark_coldEditorLaunchAndSellerKeyboardImeShow_iter005_2026-07-12-07-39-35.perfetto-trace),   [max   371.5](file://ImeShowBenchmark_coldEditorLaunchAndSellerKeyboardImeShow_iter003_2026-07-12-07-39-06.perfetto-trace)
+  frameCount                                   [min     4.0](file://ImeShowBenchmark_coldEditorLaunchAndSellerKeyboardImeShow_iter003_2026-07-12-07-39-06.perfetto-trace),   [median     7.0](file://ImeShowBenchmark_coldEditorLaunchAndSellerKeyboardImeShow_iter005_2026-07-12-07-39-35.perfetto-trace),   [max     8.0](file://ImeShowBenchmark_coldEditorLaunchAndSellerKeyboardImeShow_iter005_2026-07-12-07-39-35.perfetto-trace)
+  timeToInitialDisplayMs                       [min 2,428.2](file://ImeShowBenchmark_coldEditorLaunchAndSellerKeyboardImeShow_iter002_2026-07-12-07-38-54.perfetto-trace),   [median 2,991.5](file://ImeShowBenchmark_coldEditorLaunchAndSellerKeyboardImeShow_iter005_2026-07-12-07-39-35.perfetto-trace),   [max 3,942.7](file://ImeShowBenchmark_coldEditorLaunchAndSellerKeyboardImeShow_iter004_2026-07-12-07-39-21.perfetto-trace)
+  frameDurationCpuMs                           P50     48.6,   P90    563.5,   P95    589.4,   P99    700.7
+  frameOverrunMs                               P50     55.5,   P90    607.1,   P95    643.4,   P99    753.5
+    Traces: Iteration [0](file://ImeShowBenchmark_coldEditorLaunchAndSellerKeyboardImeShow_iter000_2026-07-12-07-38-29.perfetto-trace) [1](file://ImeShowBenchmark_coldEditorLaunchAndSellerKeyboardImeShow_iter001_2026-07-12-07-38-42.perfetto-trace) [2](file://ImeShowBenchmark_coldEditorLaunchAndSellerKeyboardImeShow_iter002_2026-07-12-07-38-54.perfetto-trace) [3](file://ImeShowBenchmark_coldEditorLaunchAndSellerKeyboardImeShow_iter003_2026-07-12-07-39-06.perfetto-trace) [4](file://ImeShowBenchmark_coldEditorLaunchAndSellerKeyboardImeShow_iter004_2026-07-12-07-39-21.perfetto-trace) [5](file://ImeShowBenchmark_coldEditorLaunchAndSellerKeyboardImeShow_iter005_2026-07-12-07-39-35.perfetto-trace) [6](file://ImeShowBenchmark_coldEditorLaunchAndSellerKeyboardImeShow_iter006_2026-07-12-07-39-48.perfetto-trace) [7](file://ImeShowBenchmark_coldEditorLaunchAndSellerKeyboardImeShow_iter007_2026-07-12-07-40-03.perfetto-trace) [8](file://ImeShowBenchmark_coldEditorLaunchAndSellerKeyboardImeShow_iter008_2026-07-12-07-40-16.perfetto-trace) [9](file://ImeShowBenchmark_coldEditorLaunchAndSellerKeyboardImeShow_iter009_2026-07-12-07-40-30.perfetto-trace)
+
+INSTRUMENTATION_STATUS: android.studio.v3display.benchmark.outputDirPath=/storage/emulated/0/Android/media/com.terasumi.sellerkeyboard.benchmark
+INSTRUMENTATION_STATUS_CODE: 2
+INSTRUMENTATION_STATUS: class=com.terasumi.sellerkeyboard.benchmark.ImeShowBenchmark
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=4
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=coldEditorLaunchAndSellerKeyboardImeShow
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.terasumi.sellerkeyboard.benchmark.ImeShowBenchmark
+INSTRUMENTATION_STATUS: current=2
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=4
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=productionKeyCandidateSurfaceAndTemplateFlowsHavePerfettoSections
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: additionalTestOutputFile_ImeShowBenchmark_productionKeyCandidateSurfaceAndTemplateFlowsHavePerfettoSections_iter000_2026-07-12-07-41-54.perfetto-trace=/storage/emulated/0/Android/media/com.terasumi.sellerkeyboard.benchmark/ImeShowBenchmark_productionKeyCandidateSurfaceAndTemplateFlowsHavePerfettoSections_iter000_2026-07-12-07-41-54.perfetto-trace
+INSTRUMENTATION_STATUS_CODE: 2
+INSTRUMENTATION_STATUS: additionalTestOutputFile_ImeShowBenchmark_productionKeyCandidateSurfaceAndTemplateFlowsHavePerfettoSections_iter001_2026-07-12-07-42-31.perfetto-trace=/storage/emulated/0/Android/media/com.terasumi.sellerkeyboard.benchmark/ImeShowBenchmark_productionKeyCandidateSurfaceAndTemplateFlowsHavePerfettoSections_iter001_2026-07-12-07-42-31.perfetto-trace
+INSTRUMENTATION_STATUS_CODE: 2
+INSTRUMENTATION_STATUS: additionalTestOutputFile_ImeShowBenchmark_productionKeyCandidateSurfaceAndTemplateFlowsHavePerfettoSections_iter002_2026-07-12-07-43-08.perfetto-trace=/storage/emulated/0/Android/media/com.terasumi.sellerkeyboard.benchmark/ImeShowBenchmark_productionKeyCandidateSurfaceAndTemplateFlowsHavePerfettoSections_iter002_2026-07-12-07-43-08.perfetto-trace
+INSTRUMENTATION_STATUS_CODE: 2
+INSTRUMENTATION_STATUS: EMULATOR_seller_keyboard.candidate_display_max_millis_median=107.0954
+INSTRUMENTATION_STATUS: EMULATOR_seller_keyboard.candidate_display_max_millis_min=97.7967
+INSTRUMENTATION_STATUS: EMULATOR_seller_keyboard.candidate_display_max_millis_stddev=73.55397231980972
+INSTRUMENTATION_STATUS: EMULATOR_seller_keyboard.candidate_query_max_millis_median=117.5024
+INSTRUMENTATION_STATUS: EMULATOR_seller_keyboard.candidate_query_max_millis_min=82.6106
+INSTRUMENTATION_STATUS: EMULATOR_seller_keyboard.candidate_query_max_millis_stddev=130.07338633253664
+INSTRUMENTATION_STATUS: EMULATOR_seller_keyboard.key_dispatch_max_millis_median=143.5495
+INSTRUMENTATION_STATUS: EMULATOR_seller_keyboard.key_dispatch_max_millis_min=120.9947
+INSTRUMENTATION_STATUS: EMULATOR_seller_keyboard.key_dispatch_max_millis_stddev=14.012517265763973
+INSTRUMENTATION_STATUS: EMULATOR_seller_keyboard.surface_switch_max_millis_median=8.3477
+INSTRUMENTATION_STATUS: EMULATOR_seller_keyboard.surface_switch_max_millis_min=4.7128
+INSTRUMENTATION_STATUS: EMULATOR_seller_keyboard.surface_switch_max_millis_stddev=8.667638709783267
+INSTRUMENTATION_STATUS: EMULATOR_seller_keyboard.template_insertion_max_millis_median=18.1582
+INSTRUMENTATION_STATUS: EMULATOR_seller_keyboard.template_insertion_max_millis_min=11.6639
+INSTRUMENTATION_STATUS: EMULATOR_seller_keyboard.template_insertion_max_millis_stddev=4.139824047388165
+INSTRUMENTATION_STATUS: android.studio.display.benchmark=WARNING: Running on Emulator
+    Benchmark is running on an emulator, which is not representative of
+    real user devices. Use a physical device to benchmark. Emulator
+    benchmark improvements might not carry over to a real user's
+    experience (or even regress real device performance).
+
+ImeShowBenchmark_productionKeyCandidateSurfaceAndTemplateFlowsHavePerfettoSections
+  SellerKeyboard.candidateDisplayMaxMs    [min  97.8](file://ImeShowBenchmark_productionKeyCandidateSurfaceAndTemplateFlowsHavePerfettoSections_iter001_2026-07-12-07-42-31.perfetto-trace),   [median 107.1](file://ImeShowBenchmark_productionKeyCandidateSurfaceAndTemplateFlowsHavePerfettoSections_iter001_2026-07-12-07-42-31.perfetto-trace),   [max 229.6](file://ImeShowBenchmark_productionKeyCandidateSurfaceAndTemplateFlowsHavePerfettoSections_iter002_2026-07-12-07-43-08.perfetto-trace)
+  SellerKeyboard.candidateQueryMaxMs      [min  82.6](file://ImeShowBenchmark_productionKeyCandidateSurfaceAndTemplateFlowsHavePerfettoSections_iter000_2026-07-12-07-41-54.perfetto-trace),   [median 117.5](file://ImeShowBenchmark_productionKeyCandidateSurfaceAndTemplateFlowsHavePerfettoSections_iter001_2026-07-12-07-42-31.perfetto-trace),   [max 323.3](file://ImeShowBenchmark_productionKeyCandidateSurfaceAndTemplateFlowsHavePerfettoSections_iter002_2026-07-12-07-43-08.perfetto-trace)
+  SellerKeyboard.keyDispatchMaxMs         [min 121.0](file://ImeShowBenchmark_productionKeyCandidateSurfaceAndTemplateFlowsHavePerfettoSections_iter000_2026-07-12-07-41-54.perfetto-trace),   [median 143.5](file://ImeShowBenchmark_productionKeyCandidateSurfaceAndTemplateFlowsHavePerfettoSections_iter001_2026-07-12-07-42-31.perfetto-trace),   [max 146.7](file://ImeShowBenchmark_productionKeyCandidateSurfaceAndTemplateFlowsHavePerfettoSections_iter001_2026-07-12-07-42-31.perfetto-trace)
+  SellerKeyboard.surfaceSwitchMaxMs       [min   4.7](file://ImeShowBenchmark_productionKeyCandidateSurfaceAndTemplateFlowsHavePerfettoSections_iter000_2026-07-12-07-41-54.perfetto-trace),   [median   8.3](file://ImeShowBenchmark_productionKeyCandidateSurfaceAndTemplateFlowsHavePerfettoSections_iter001_2026-07-12-07-42-31.perfetto-trace),   [max  21.2](file://ImeShowBenchmark_productionKeyCandidateSurfaceAndTemplateFlowsHavePerfettoSections_iter001_2026-07-12-07-42-31.perfetto-trace)
+  SellerKeyboard.templateInsertionMaxMs   [min  11.7](file://ImeShowBenchmark_productionKeyCandidateSurfaceAndTemplateFlowsHavePerfettoSections_iter001_2026-07-12-07-42-31.perfetto-trace),   [median  18.2](file://ImeShowBenchmark_productionKeyCandidateSurfaceAndTemplateFlowsHavePerfettoSections_iter001_2026-07-12-07-42-31.perfetto-trace),   [max  19.4](file://ImeShowBenchmark_productionKeyCandidateSurfaceAndTemplateFlowsHavePerfettoSections_iter002_2026-07-12-07-43-08.perfetto-trace)
+    Traces: Iteration [0](file://ImeShowBenchmark_productionKeyCandidateSurfaceAndTemplateFlowsHavePerfettoSections_iter000_2026-07-12-07-41-54.perfetto-trace) [1](file://ImeShowBenchmark_productionKeyCandidateSurfaceAndTemplateFlowsHavePerfettoSections_iter001_2026-07-12-07-42-31.perfetto-trace) [2](file://ImeShowBenchmark_productionKeyCandidateSurfaceAndTemplateFlowsHavePerfettoSections_iter002_2026-07-12-07-43-08.perfetto-trace)
+
+INSTRUMENTATION_STATUS: android.studio.v2display.benchmark=WARNING: Running on Emulator
+    Benchmark is running on an emulator, which is not representative of
+    real user devices. Use a physical device to benchmark. Emulator
+    benchmark improvements might not carry over to a real user's
+    experience (or even regress real device performance).
+
+ImeShowBenchmark_productionKeyCandidateSurfaceAndTemplateFlowsHavePerfettoSections
+  SellerKeyboard.candidateDisplayMaxMs    [min  97.8](file://ImeShowBenchmark_productionKeyCandidateSurfaceAndTemplateFlowsHavePerfettoSections_iter001_2026-07-12-07-42-31.perfetto-trace),   [median 107.1](file://ImeShowBenchmark_productionKeyCandidateSurfaceAndTemplateFlowsHavePerfettoSections_iter001_2026-07-12-07-42-31.perfetto-trace),   [max 229.6](file://ImeShowBenchmark_productionKeyCandidateSurfaceAndTemplateFlowsHavePerfettoSections_iter002_2026-07-12-07-43-08.perfetto-trace)
+  SellerKeyboard.candidateQueryMaxMs      [min  82.6](file://ImeShowBenchmark_productionKeyCandidateSurfaceAndTemplateFlowsHavePerfettoSections_iter000_2026-07-12-07-41-54.perfetto-trace),   [median 117.5](file://ImeShowBenchmark_productionKeyCandidateSurfaceAndTemplateFlowsHavePerfettoSections_iter001_2026-07-12-07-42-31.perfetto-trace),   [max 323.3](file://ImeShowBenchmark_productionKeyCandidateSurfaceAndTemplateFlowsHavePerfettoSections_iter002_2026-07-12-07-43-08.perfetto-trace)
+  SellerKeyboard.keyDispatchMaxMs         [min 121.0](file://ImeShowBenchmark_productionKeyCandidateSurfaceAndTemplateFlowsHavePerfettoSections_iter000_2026-07-12-07-41-54.perfetto-trace),   [median 143.5](file://ImeShowBenchmark_productionKeyCandidateSurfaceAndTemplateFlowsHavePerfettoSections_iter001_2026-07-12-07-42-31.perfetto-trace),   [max 146.7](file://ImeShowBenchmark_productionKeyCandidateSurfaceAndTemplateFlowsHavePerfettoSections_iter001_2026-07-12-07-42-31.perfetto-trace)
+  SellerKeyboard.surfaceSwitchMaxMs       [min   4.7](file://ImeShowBenchmark_productionKeyCandidateSurfaceAndTemplateFlowsHavePerfettoSections_iter000_2026-07-12-07-41-54.perfetto-trace),   [median   8.3](file://ImeShowBenchmark_productionKeyCandidateSurfaceAndTemplateFlowsHavePerfettoSections_iter001_2026-07-12-07-42-31.perfetto-trace),   [max  21.2](file://ImeShowBenchmark_productionKeyCandidateSurfaceAndTemplateFlowsHavePerfettoSections_iter001_2026-07-12-07-42-31.perfetto-trace)
+  SellerKeyboard.templateInsertionMaxMs   [min  11.7](file://ImeShowBenchmark_productionKeyCandidateSurfaceAndTemplateFlowsHavePerfettoSections_iter001_2026-07-12-07-42-31.perfetto-trace),   [median  18.2](file://ImeShowBenchmark_productionKeyCandidateSurfaceAndTemplateFlowsHavePerfettoSections_iter001_2026-07-12-07-42-31.perfetto-trace),   [max  19.4](file://ImeShowBenchmark_productionKeyCandidateSurfaceAndTemplateFlowsHavePerfettoSections_iter002_2026-07-12-07-43-08.perfetto-trace)
+    Traces: Iteration [0](file://ImeShowBenchmark_productionKeyCandidateSurfaceAndTemplateFlowsHavePerfettoSections_iter000_2026-07-12-07-41-54.perfetto-trace) [1](file://ImeShowBenchmark_productionKeyCandidateSurfaceAndTemplateFlowsHavePerfettoSections_iter001_2026-07-12-07-42-31.perfetto-trace) [2](file://ImeShowBenchmark_productionKeyCandidateSurfaceAndTemplateFlowsHavePerfettoSections_iter002_2026-07-12-07-43-08.perfetto-trace)
+
+INSTRUMENTATION_STATUS: android.studio.v2display.benchmark.outputDirPath=/storage/emulated/0/Android/media/com.terasumi.sellerkeyboard.benchmark
+INSTRUMENTATION_STATUS: android.studio.v3display.benchmark=WARNING: Running on Emulator
+    Benchmark is running on an emulator, which is not representative of
+    real user devices. Use a physical device to benchmark. Emulator
+    benchmark improvements might not carry over to a real user's
+    experience (or even regress real device performance).
+
+ImeShowBenchmark_productionKeyCandidateSurfaceAndTemplateFlowsHavePerfettoSections
+  SellerKeyboard.candidateDisplayMaxMs    [min  97.8](file://ImeShowBenchmark_productionKeyCandidateSurfaceAndTemplateFlowsHavePerfettoSections_iter001_2026-07-12-07-42-31.perfetto-trace),   [median 107.1](file://ImeShowBenchmark_productionKeyCandidateSurfaceAndTemplateFlowsHavePerfettoSections_iter001_2026-07-12-07-42-31.perfetto-trace),   [max 229.6](file://ImeShowBenchmark_productionKeyCandidateSurfaceAndTemplateFlowsHavePerfettoSections_iter002_2026-07-12-07-43-08.perfetto-trace)
+  SellerKeyboard.candidateQueryMaxMs      [min  82.6](file://ImeShowBenchmark_productionKeyCandidateSurfaceAndTemplateFlowsHavePerfettoSections_iter000_2026-07-12-07-41-54.perfetto-trace),   [median 117.5](file://ImeShowBenchmark_productionKeyCandidateSurfaceAndTemplateFlowsHavePerfettoSections_iter001_2026-07-12-07-42-31.perfetto-trace),   [max 323.3](file://ImeShowBenchmark_productionKeyCandidateSurfaceAndTemplateFlowsHavePerfettoSections_iter002_2026-07-12-07-43-08.perfetto-trace)
+  SellerKeyboard.keyDispatchMaxMs         [min 121.0](file://ImeShowBenchmark_productionKeyCandidateSurfaceAndTemplateFlowsHavePerfettoSections_iter000_2026-07-12-07-41-54.perfetto-trace),   [median 143.5](file://ImeShowBenchmark_productionKeyCandidateSurfaceAndTemplateFlowsHavePerfettoSections_iter001_2026-07-12-07-42-31.perfetto-trace),   [max 146.7](file://ImeShowBenchmark_productionKeyCandidateSurfaceAndTemplateFlowsHavePerfettoSections_iter001_2026-07-12-07-42-31.perfetto-trace)
+  SellerKeyboard.surfaceSwitchMaxMs       [min   4.7](file://ImeShowBenchmark_productionKeyCandidateSurfaceAndTemplateFlowsHavePerfettoSections_iter000_2026-07-12-07-41-54.perfetto-trace),   [median   8.3](file://ImeShowBenchmark_productionKeyCandidateSurfaceAndTemplateFlowsHavePerfettoSections_iter001_2026-07-12-07-42-31.perfetto-trace),   [max  21.2](file://ImeShowBenchmark_productionKeyCandidateSurfaceAndTemplateFlowsHavePerfettoSections_iter001_2026-07-12-07-42-31.perfetto-trace)
+  SellerKeyboard.templateInsertionMaxMs   [min  11.7](file://ImeShowBenchmark_productionKeyCandidateSurfaceAndTemplateFlowsHavePerfettoSections_iter001_2026-07-12-07-42-31.perfetto-trace),   [median  18.2](file://ImeShowBenchmark_productionKeyCandidateSurfaceAndTemplateFlowsHavePerfettoSections_iter001_2026-07-12-07-42-31.perfetto-trace),   [max  19.4](file://ImeShowBenchmark_productionKeyCandidateSurfaceAndTemplateFlowsHavePerfettoSections_iter002_2026-07-12-07-43-08.perfetto-trace)
+    Traces: Iteration [0](file://ImeShowBenchmark_productionKeyCandidateSurfaceAndTemplateFlowsHavePerfettoSections_iter000_2026-07-12-07-41-54.perfetto-trace) [1](file://ImeShowBenchmark_productionKeyCandidateSurfaceAndTemplateFlowsHavePerfettoSections_iter001_2026-07-12-07-42-31.perfetto-trace) [2](file://ImeShowBenchmark_productionKeyCandidateSurfaceAndTemplateFlowsHavePerfettoSections_iter002_2026-07-12-07-43-08.perfetto-trace)
+
+INSTRUMENTATION_STATUS: android.studio.v3display.benchmark.outputDirPath=/storage/emulated/0/Android/media/com.terasumi.sellerkeyboard.benchmark
+INSTRUMENTATION_STATUS_CODE: 2
+INSTRUMENTATION_STATUS: class=com.terasumi.sellerkeyboard.benchmark.ImeShowBenchmark
+INSTRUMENTATION_STATUS: current=2
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=4
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=productionKeyCandidateSurfaceAndTemplateFlowsHavePerfettoSections
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.terasumi.sellerkeyboard.benchmark.ImeShowBenchmark
+INSTRUMENTATION_STATUS: current=3
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=4
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=coldEditorLaunchAndGboardImeShowReference
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: additionalTestOutputFile_ImeShowBenchmark_coldEditorLaunchAndGboardImeShowReference_iter000_2026-07-12-07-43-29.perfetto-trace=/storage/emulated/0/Android/media/com.terasumi.sellerkeyboard.benchmark/ImeShowBenchmark_coldEditorLaunchAndGboardImeShowReference_iter000_2026-07-12-07-43-29.perfetto-trace
+INSTRUMENTATION_STATUS_CODE: 2
+INSTRUMENTATION_STATUS: additionalTestOutputFile_ImeShowBenchmark_coldEditorLaunchAndGboardImeShowReference_iter001_2026-07-12-07-43-46.perfetto-trace=/storage/emulated/0/Android/media/com.terasumi.sellerkeyboard.benchmark/ImeShowBenchmark_coldEditorLaunchAndGboardImeShowReference_iter001_2026-07-12-07-43-46.perfetto-trace
+INSTRUMENTATION_STATUS_CODE: 2
+INSTRUMENTATION_STATUS: additionalTestOutputFile_ImeShowBenchmark_coldEditorLaunchAndGboardImeShowReference_iter002_2026-07-12-07-44-01.perfetto-trace=/storage/emulated/0/Android/media/com.terasumi.sellerkeyboard.benchmark/ImeShowBenchmark_coldEditorLaunchAndGboardImeShowReference_iter002_2026-07-12-07-44-01.perfetto-trace
+INSTRUMENTATION_STATUS_CODE: 2
+INSTRUMENTATION_STATUS: additionalTestOutputFile_ImeShowBenchmark_coldEditorLaunchAndGboardImeShowReference_iter003_2026-07-12-07-44-14.perfetto-trace=/storage/emulated/0/Android/media/com.terasumi.sellerkeyboard.benchmark/ImeShowBenchmark_coldEditorLaunchAndGboardImeShowReference_iter003_2026-07-12-07-44-14.perfetto-trace
+INSTRUMENTATION_STATUS_CODE: 2
+INSTRUMENTATION_STATUS: additionalTestOutputFile_ImeShowBenchmark_coldEditorLaunchAndGboardImeShowReference_iter004_2026-07-12-07-44-26.perfetto-trace=/storage/emulated/0/Android/media/com.terasumi.sellerkeyboard.benchmark/ImeShowBenchmark_coldEditorLaunchAndGboardImeShowReference_iter004_2026-07-12-07-44-26.perfetto-trace
+INSTRUMENTATION_STATUS_CODE: 2
+INSTRUMENTATION_STATUS: additionalTestOutputFile_ImeShowBenchmark_coldEditorLaunchAndGboardImeShowReference_iter005_2026-07-12-07-44-39.perfetto-trace=/storage/emulated/0/Android/media/com.terasumi.sellerkeyboard.benchmark/ImeShowBenchmark_coldEditorLaunchAndGboardImeShowReference_iter005_2026-07-12-07-44-39.perfetto-trace
+INSTRUMENTATION_STATUS_CODE: 2
+INSTRUMENTATION_STATUS: additionalTestOutputFile_ImeShowBenchmark_coldEditorLaunchAndGboardImeShowReference_iter006_2026-07-12-07-44-51.perfetto-trace=/storage/emulated/0/Android/media/com.terasumi.sellerkeyboard.benchmark/ImeShowBenchmark_coldEditorLaunchAndGboardImeShowReference_iter006_2026-07-12-07-44-51.perfetto-trace
+INSTRUMENTATION_STATUS_CODE: 2
+INSTRUMENTATION_STATUS: additionalTestOutputFile_ImeShowBenchmark_coldEditorLaunchAndGboardImeShowReference_iter007_2026-07-12-07-45-04.perfetto-trace=/storage/emulated/0/Android/media/com.terasumi.sellerkeyboard.benchmark/ImeShowBenchmark_coldEditorLaunchAndGboardImeShowReference_iter007_2026-07-12-07-45-04.perfetto-trace
+INSTRUMENTATION_STATUS_CODE: 2
+INSTRUMENTATION_STATUS: additionalTestOutputFile_ImeShowBenchmark_coldEditorLaunchAndGboardImeShowReference_iter008_2026-07-12-07-45-17.perfetto-trace=/storage/emulated/0/Android/media/com.terasumi.sellerkeyboard.benchmark/ImeShowBenchmark_coldEditorLaunchAndGboardImeShowReference_iter008_2026-07-12-07-45-17.perfetto-trace
+INSTRUMENTATION_STATUS_CODE: 2
+INSTRUMENTATION_STATUS: additionalTestOutputFile_ImeShowBenchmark_coldEditorLaunchAndGboardImeShowReference_iter009_2026-07-12-07-45-29.perfetto-trace=/storage/emulated/0/Android/media/com.terasumi.sellerkeyboard.benchmark/ImeShowBenchmark_coldEditorLaunchAndGboardImeShowReference_iter009_2026-07-12-07-45-29.perfetto-trace
+INSTRUMENTATION_STATUS_CODE: 2
+INSTRUMENTATION_STATUS: EMULATOR_frame_count_median=7.0
+INSTRUMENTATION_STATUS: EMULATOR_frame_count_min=6.0
+INSTRUMENTATION_STATUS: EMULATOR_frame_count_stddev=0.816496580927726
+INSTRUMENTATION_STATUS: EMULATOR_frame_duration_cpu_millis_p50=66.54079999999999
+INSTRUMENTATION_STATUS: EMULATOR_frame_duration_cpu_millis_p90=573.2408800000001
+INSTRUMENTATION_STATUS: EMULATOR_frame_duration_cpu_millis_p95=600.446275
+INSTRUMENTATION_STATUS: EMULATOR_frame_duration_cpu_millis_p99=675.1683370000001
+INSTRUMENTATION_STATUS: EMULATOR_frame_overrun_millis_p50=59.371993
+INSTRUMENTATION_STATUS: EMULATOR_frame_overrun_millis_p90=600.6143604
+INSTRUMENTATION_STATUS: EMULATOR_frame_overrun_millis_p95=634.120947
+INSTRUMENTATION_STATUS: EMULATOR_frame_overrun_millis_p99=718.0826793000001
+INSTRUMENTATION_STATUS: EMULATOR_seller_keyboard.Ime_show_to_interactive_first_millis_median=199.9814
+INSTRUMENTATION_STATUS: EMULATOR_seller_keyboard.Ime_show_to_interactive_first_millis_min=171.1744
+INSTRUMENTATION_STATUS: EMULATOR_seller_keyboard.Ime_show_to_interactive_first_millis_stddev=37.68790520723237
+INSTRUMENTATION_STATUS: EMULATOR_time_to_initial_display_millis_median=2766.25435
+INSTRUMENTATION_STATUS: EMULATOR_time_to_initial_display_millis_min=2526.511
+INSTRUMENTATION_STATUS: EMULATOR_time_to_initial_display_millis_stddev=272.8107558868644
+INSTRUMENTATION_STATUS: android.studio.display.benchmark=WARNING: Running on Emulator
+    Benchmark is running on an emulator, which is not representative of
+    real user devices. Use a physical device to benchmark. Emulator
+    benchmark improvements might not carry over to a real user's
+    experience (or even regress real device performance).
+
+ImeShowBenchmark_coldEditorLaunchAndGboardImeShowReference
+  SellerKeyboard.ImeShowToInteractiveFirstMs   [min   171.2](file://ImeShowBenchmark_coldEditorLaunchAndGboardImeShowReference_iter005_2026-07-12-07-44-39.perfetto-trace),   [median   200.0](file://ImeShowBenchmark_coldEditorLaunchAndGboardImeShowReference_iter005_2026-07-12-07-44-39.perfetto-trace),   [max   286.4](file://ImeShowBenchmark_coldEditorLaunchAndGboardImeShowReference_iter003_2026-07-12-07-44-14.perfetto-trace)
+  frameCount                                   [min     6.0](file://ImeShowBenchmark_coldEditorLaunchAndGboardImeShowReference_iter005_2026-07-12-07-44-39.perfetto-trace),   [median     7.0](file://ImeShowBenchmark_coldEditorLaunchAndGboardImeShowReference_iter005_2026-07-12-07-44-39.perfetto-trace),   [max     8.0](file://ImeShowBenchmark_coldEditorLaunchAndGboardImeShowReference_iter001_2026-07-12-07-43-46.perfetto-trace)
+  timeToInitialDisplayMs                       [min 2,526.5](file://ImeShowBenchmark_coldEditorLaunchAndGboardImeShowReference_iter006_2026-07-12-07-44-51.perfetto-trace),   [median 2,766.3](file://ImeShowBenchmark_coldEditorLaunchAndGboardImeShowReference_iter005_2026-07-12-07-44-39.perfetto-trace),   [max 3,427.9](file://ImeShowBenchmark_coldEditorLaunchAndGboardImeShowReference_iter001_2026-07-12-07-43-46.perfetto-trace)
+  frameDurationCpuMs                           P50     66.5,   P90    573.2,   P95    600.4,   P99    675.2
+  frameOverrunMs                               P50     59.4,   P90    600.6,   P95    634.1,   P99    718.1
+    Traces: Iteration [0](file://ImeShowBenchmark_coldEditorLaunchAndGboardImeShowReference_iter000_2026-07-12-07-43-29.perfetto-trace) [1](file://ImeShowBenchmark_coldEditorLaunchAndGboardImeShowReference_iter001_2026-07-12-07-43-46.perfetto-trace) [2](file://ImeShowBenchmark_coldEditorLaunchAndGboardImeShowReference_iter002_2026-07-12-07-44-01.perfetto-trace) [3](file://ImeShowBenchmark_coldEditorLaunchAndGboardImeShowReference_iter003_2026-07-12-07-44-14.perfetto-trace) [4](file://ImeShowBenchmark_coldEditorLaunchAndGboardImeShowReference_iter004_2026-07-12-07-44-26.perfetto-trace) [5](file://ImeShowBenchmark_coldEditorLaunchAndGboardImeShowReference_iter005_2026-07-12-07-44-39.perfetto-trace) [6](file://ImeShowBenchmark_coldEditorLaunchAndGboardImeShowReference_iter006_2026-07-12-07-44-51.perfetto-trace) [7](file://ImeShowBenchmark_coldEditorLaunchAndGboardImeShowReference_iter007_2026-07-12-07-45-04.perfetto-trace) [8](file://ImeShowBenchmark_coldEditorLaunchAndGboardImeShowReference_iter008_2026-07-12-07-45-17.perfetto-trace) [9](file://ImeShowBenchmark_coldEditorLaunchAndGboardImeShowReference_iter009_2026-07-12-07-45-29.perfetto-trace)
+
+INSTRUMENTATION_STATUS: android.studio.v2display.benchmark=WARNING: Running on Emulator
+    Benchmark is running on an emulator, which is not representative of
+    real user devices. Use a physical device to benchmark. Emulator
+    benchmark improvements might not carry over to a real user's
+    experience (or even regress real device performance).
+
+ImeShowBenchmark_coldEditorLaunchAndGboardImeShowReference
+  SellerKeyboard.ImeShowToInteractiveFirstMs   [min   171.2](file://ImeShowBenchmark_coldEditorLaunchAndGboardImeShowReference_iter005_2026-07-12-07-44-39.perfetto-trace),   [median   200.0](file://ImeShowBenchmark_coldEditorLaunchAndGboardImeShowReference_iter005_2026-07-12-07-44-39.perfetto-trace),   [max   286.4](file://ImeShowBenchmark_coldEditorLaunchAndGboardImeShowReference_iter003_2026-07-12-07-44-14.perfetto-trace)
+  frameCount                                   [min     6.0](file://ImeShowBenchmark_coldEditorLaunchAndGboardImeShowReference_iter005_2026-07-12-07-44-39.perfetto-trace),   [median     7.0](file://ImeShowBenchmark_coldEditorLaunchAndGboardImeShowReference_iter005_2026-07-12-07-44-39.perfetto-trace),   [max     8.0](file://ImeShowBenchmark_coldEditorLaunchAndGboardImeShowReference_iter001_2026-07-12-07-43-46.perfetto-trace)
+  timeToInitialDisplayMs                       [min 2,526.5](file://ImeShowBenchmark_coldEditorLaunchAndGboardImeShowReference_iter006_2026-07-12-07-44-51.perfetto-trace),   [median 2,766.3](file://ImeShowBenchmark_coldEditorLaunchAndGboardImeShowReference_iter005_2026-07-12-07-44-39.perfetto-trace),   [max 3,427.9](file://ImeShowBenchmark_coldEditorLaunchAndGboardImeShowReference_iter001_2026-07-12-07-43-46.perfetto-trace)
+  frameDurationCpuMs                           P50     66.5,   P90    573.2,   P95    600.4,   P99    675.2
+  frameOverrunMs                               P50     59.4,   P90    600.6,   P95    634.1,   P99    718.1
+    Traces: Iteration [0](file://ImeShowBenchmark_coldEditorLaunchAndGboardImeShowReference_iter000_2026-07-12-07-43-29.perfetto-trace) [1](file://ImeShowBenchmark_coldEditorLaunchAndGboardImeShowReference_iter001_2026-07-12-07-43-46.perfetto-trace) [2](file://ImeShowBenchmark_coldEditorLaunchAndGboardImeShowReference_iter002_2026-07-12-07-44-01.perfetto-trace) [3](file://ImeShowBenchmark_coldEditorLaunchAndGboardImeShowReference_iter003_2026-07-12-07-44-14.perfetto-trace) [4](file://ImeShowBenchmark_coldEditorLaunchAndGboardImeShowReference_iter004_2026-07-12-07-44-26.perfetto-trace) [5](file://ImeShowBenchmark_coldEditorLaunchAndGboardImeShowReference_iter005_2026-07-12-07-44-39.perfetto-trace) [6](file://ImeShowBenchmark_coldEditorLaunchAndGboardImeShowReference_iter006_2026-07-12-07-44-51.perfetto-trace) [7](file://ImeShowBenchmark_coldEditorLaunchAndGboardImeShowReference_iter007_2026-07-12-07-45-04.perfetto-trace) [8](file://ImeShowBenchmark_coldEditorLaunchAndGboardImeShowReference_iter008_2026-07-12-07-45-17.perfetto-trace) [9](file://ImeShowBenchmark_coldEditorLaunchAndGboardImeShowReference_iter009_2026-07-12-07-45-29.perfetto-trace)
+
+INSTRUMENTATION_STATUS: android.studio.v2display.benchmark.outputDirPath=/storage/emulated/0/Android/media/com.terasumi.sellerkeyboard.benchmark
+INSTRUMENTATION_STATUS: android.studio.v3display.benchmark=WARNING: Running on Emulator
+    Benchmark is running on an emulator, which is not representative of
+    real user devices. Use a physical device to benchmark. Emulator
+    benchmark improvements might not carry over to a real user's
+    experience (or even regress real device performance).
+
+ImeShowBenchmark_coldEditorLaunchAndGboardImeShowReference
+  SellerKeyboard.ImeShowToInteractiveFirstMs   [min   171.2](file://ImeShowBenchmark_coldEditorLaunchAndGboardImeShowReference_iter005_2026-07-12-07-44-39.perfetto-trace),   [median   200.0](file://ImeShowBenchmark_coldEditorLaunchAndGboardImeShowReference_iter005_2026-07-12-07-44-39.perfetto-trace),   [max   286.4](file://ImeShowBenchmark_coldEditorLaunchAndGboardImeShowReference_iter003_2026-07-12-07-44-14.perfetto-trace)
+  frameCount                                   [min     6.0](file://ImeShowBenchmark_coldEditorLaunchAndGboardImeShowReference_iter005_2026-07-12-07-44-39.perfetto-trace),   [median     7.0](file://ImeShowBenchmark_coldEditorLaunchAndGboardImeShowReference_iter005_2026-07-12-07-44-39.perfetto-trace),   [max     8.0](file://ImeShowBenchmark_coldEditorLaunchAndGboardImeShowReference_iter001_2026-07-12-07-43-46.perfetto-trace)
+  timeToInitialDisplayMs                       [min 2,526.5](file://ImeShowBenchmark_coldEditorLaunchAndGboardImeShowReference_iter006_2026-07-12-07-44-51.perfetto-trace),   [median 2,766.3](file://ImeShowBenchmark_coldEditorLaunchAndGboardImeShowReference_iter005_2026-07-12-07-44-39.perfetto-trace),   [max 3,427.9](file://ImeShowBenchmark_coldEditorLaunchAndGboardImeShowReference_iter001_2026-07-12-07-43-46.perfetto-trace)
+  frameDurationCpuMs                           P50     66.5,   P90    573.2,   P95    600.4,   P99    675.2
+  frameOverrunMs                               P50     59.4,   P90    600.6,   P95    634.1,   P99    718.1
+    Traces: Iteration [0](file://ImeShowBenchmark_coldEditorLaunchAndGboardImeShowReference_iter000_2026-07-12-07-43-29.perfetto-trace) [1](file://ImeShowBenchmark_coldEditorLaunchAndGboardImeShowReference_iter001_2026-07-12-07-43-46.perfetto-trace) [2](file://ImeShowBenchmark_coldEditorLaunchAndGboardImeShowReference_iter002_2026-07-12-07-44-01.perfetto-trace) [3](file://ImeShowBenchmark_coldEditorLaunchAndGboardImeShowReference_iter003_2026-07-12-07-44-14.perfetto-trace) [4](file://ImeShowBenchmark_coldEditorLaunchAndGboardImeShowReference_iter004_2026-07-12-07-44-26.perfetto-trace) [5](file://ImeShowBenchmark_coldEditorLaunchAndGboardImeShowReference_iter005_2026-07-12-07-44-39.perfetto-trace) [6](file://ImeShowBenchmark_coldEditorLaunchAndGboardImeShowReference_iter006_2026-07-12-07-44-51.perfetto-trace) [7](file://ImeShowBenchmark_coldEditorLaunchAndGboardImeShowReference_iter007_2026-07-12-07-45-04.perfetto-trace) [8](file://ImeShowBenchmark_coldEditorLaunchAndGboardImeShowReference_iter008_2026-07-12-07-45-17.perfetto-trace) [9](file://ImeShowBenchmark_coldEditorLaunchAndGboardImeShowReference_iter009_2026-07-12-07-45-29.perfetto-trace)
+
+INSTRUMENTATION_STATUS: android.studio.v3display.benchmark.outputDirPath=/storage/emulated/0/Android/media/com.terasumi.sellerkeyboard.benchmark
+INSTRUMENTATION_STATUS_CODE: 2
+INSTRUMENTATION_STATUS: class=com.terasumi.sellerkeyboard.benchmark.ImeShowBenchmark
+INSTRUMENTATION_STATUS: current=3
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=4
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=coldEditorLaunchAndGboardImeShowReference
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.terasumi.sellerkeyboard.benchmark.ImeShowBenchmark
+INSTRUMENTATION_STATUS: current=4
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=4
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=oneHundredImeShowHideCyclesTrackFramesAndMemory
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: additionalTestOutputFile_ImeShowBenchmark_oneHundredImeShowHideCyclesTrackFramesAndMemory_iter000_2026-07-12-07-47-16.perfetto-trace=/storage/emulated/0/Android/media/com.terasumi.sellerkeyboard.benchmark/ImeShowBenchmark_oneHundredImeShowHideCyclesTrackFramesAndMemory_iter000_2026-07-12-07-47-16.perfetto-trace
+INSTRUMENTATION_STATUS_CODE: 2
+INSTRUMENTATION_STATUS: additionalTestOutputFile_ImeShowBenchmark_oneHundredImeShowHideCyclesTrackFramesAndMemory_iter001_2026-07-12-07-48-14.perfetto-trace=/storage/emulated/0/Android/media/com.terasumi.sellerkeyboard.benchmark/ImeShowBenchmark_oneHundredImeShowHideCyclesTrackFramesAndMemory_iter001_2026-07-12-07-48-14.perfetto-trace
+INSTRUMENTATION_STATUS_CODE: 2
+INSTRUMENTATION_STATUS: additionalTestOutputFile_ImeShowBenchmark_oneHundredImeShowHideCyclesTrackFramesAndMemory_iter002_2026-07-12-07-49-11.perfetto-trace=/storage/emulated/0/Android/media/com.terasumi.sellerkeyboard.benchmark/ImeShowBenchmark_oneHundredImeShowHideCyclesTrackFramesAndMemory_iter002_2026-07-12-07-49-11.perfetto-trace
+INSTRUMENTATION_STATUS_CODE: 2
+INSTRUMENTATION_STATUS: additionalTestOutputFile_ImeShowBenchmark_oneHundredImeShowHideCyclesTrackFramesAndMemory_iter003_2026-07-12-07-50-09.perfetto-trace=/storage/emulated/0/Android/media/com.terasumi.sellerkeyboard.benchmark/ImeShowBenchmark_oneHundredImeShowHideCyclesTrackFramesAndMemory_iter003_2026-07-12-07-50-09.perfetto-trace
+INSTRUMENTATION_STATUS_CODE: 2
+INSTRUMENTATION_STATUS: additionalTestOutputFile_ImeShowBenchmark_oneHundredImeShowHideCyclesTrackFramesAndMemory_iter004_2026-07-12-07-51-09.perfetto-trace=/storage/emulated/0/Android/media/com.terasumi.sellerkeyboard.benchmark/ImeShowBenchmark_oneHundredImeShowHideCyclesTrackFramesAndMemory_iter004_2026-07-12-07-51-09.perfetto-trace
+INSTRUMENTATION_STATUS_CODE: 2
+INSTRUMENTATION_STATUS: EMULATOR_frame_count_median=130.0
+INSTRUMENTATION_STATUS: EMULATOR_frame_count_min=128.0
+INSTRUMENTATION_STATUS: EMULATOR_frame_count_stddev=1.9235384061671346
+INSTRUMENTATION_STATUS: EMULATOR_frame_duration_cpu_millis_p50=17.1244
+INSTRUMENTATION_STATUS: EMULATOR_frame_duration_cpu_millis_p90=32.9887
+INSTRUMENTATION_STATUS: EMULATOR_frame_duration_cpu_millis_p95=40.3689
+INSTRUMENTATION_STATUS: EMULATOR_frame_duration_cpu_millis_p99=53.68335
+INSTRUMENTATION_STATUS: EMULATOR_frame_overrun_millis_p50=5.29831
+INSTRUMENTATION_STATUS: EMULATOR_frame_overrun_millis_p90=24.72357
+INSTRUMENTATION_STATUS: EMULATOR_frame_overrun_millis_p95=30.815692
+INSTRUMENTATION_STATUS: EMULATOR_frame_overrun_millis_p99=45.555894
+INSTRUMENTATION_STATUS: EMULATOR_memory_heap_size_max_kb_median=3881.0
+INSTRUMENTATION_STATUS: EMULATOR_memory_heap_size_max_kb_min=3817.0
+INSTRUMENTATION_STATUS: EMULATOR_memory_heap_size_max_kb_stddev=42.00952272997159
+INSTRUMENTATION_STATUS: EMULATOR_memory_rss_anon_max_kb_median=36800.0
+INSTRUMENTATION_STATUS: EMULATOR_memory_rss_anon_max_kb_min=36480.0
+INSTRUMENTATION_STATUS: EMULATOR_memory_rss_anon_max_kb_stddev=162.71201553665296
+INSTRUMENTATION_STATUS: android.studio.display.benchmark=WARNING: Running on Emulator
+    Benchmark is running on an emulator, which is not representative of
+    real user devices. Use a physical device to benchmark. Emulator
+    benchmark improvements might not carry over to a real user's
+    experience (or even regress real device performance).
+
+ImeShowBenchmark_oneHundredImeShowHideCyclesTrackFramesAndMemory
+  frameCount            [min    128.0](file://ImeShowBenchmark_oneHundredImeShowHideCyclesTrackFramesAndMemory_iter001_2026-07-12-07-48-14.perfetto-trace),   [median    130.0](file://ImeShowBenchmark_oneHundredImeShowHideCyclesTrackFramesAndMemory_iter002_2026-07-12-07-49-11.perfetto-trace),   [max    133.0](file://ImeShowBenchmark_oneHundredImeShowHideCyclesTrackFramesAndMemory_iter003_2026-07-12-07-50-09.perfetto-trace)
+  memoryHeapSizeMaxKb   [min  3,817.0](file://ImeShowBenchmark_oneHundredImeShowHideCyclesTrackFramesAndMemory_iter002_2026-07-12-07-49-11.perfetto-trace),   [median  3,881.0](file://ImeShowBenchmark_oneHundredImeShowHideCyclesTrackFramesAndMemory_iter002_2026-07-12-07-49-11.perfetto-trace),   [max  3,917.0](file://ImeShowBenchmark_oneHundredImeShowHideCyclesTrackFramesAndMemory_iter000_2026-07-12-07-47-16.perfetto-trace)
+  memoryRssAnonMaxKb    [min 36,480.0](file://ImeShowBenchmark_oneHundredImeShowHideCyclesTrackFramesAndMemory_iter000_2026-07-12-07-47-16.perfetto-trace),   [median 36,800.0](file://ImeShowBenchmark_oneHundredImeShowHideCyclesTrackFramesAndMemory_iter002_2026-07-12-07-49-11.perfetto-trace),   [max 36,908.0](file://ImeShowBenchmark_oneHundredImeShowHideCyclesTrackFramesAndMemory_iter003_2026-07-12-07-50-09.perfetto-trace)
+  frameDurationCpuMs    P50      17.1,   P90      33.0,   P95      40.4,   P99      53.7
+  frameOverrunMs        P50       5.3,   P90      24.7,   P95      30.8,   P99      45.6
+    Traces: Iteration [0](file://ImeShowBenchmark_oneHundredImeShowHideCyclesTrackFramesAndMemory_iter000_2026-07-12-07-47-16.perfetto-trace) [1](file://ImeShowBenchmark_oneHundredImeShowHideCyclesTrackFramesAndMemory_iter001_2026-07-12-07-48-14.perfetto-trace) [2](file://ImeShowBenchmark_oneHundredImeShowHideCyclesTrackFramesAndMemory_iter002_2026-07-12-07-49-11.perfetto-trace) [3](file://ImeShowBenchmark_oneHundredImeShowHideCyclesTrackFramesAndMemory_iter003_2026-07-12-07-50-09.perfetto-trace) [4](file://ImeShowBenchmark_oneHundredImeShowHideCyclesTrackFramesAndMemory_iter004_2026-07-12-07-51-09.perfetto-trace)
+
+INSTRUMENTATION_STATUS: android.studio.v2display.benchmark=WARNING: Running on Emulator
+    Benchmark is running on an emulator, which is not representative of
+    real user devices. Use a physical device to benchmark. Emulator
+    benchmark improvements might not carry over to a real user's
+    experience (or even regress real device performance).
+
+ImeShowBenchmark_oneHundredImeShowHideCyclesTrackFramesAndMemory
+  frameCount            [min    128.0](file://ImeShowBenchmark_oneHundredImeShowHideCyclesTrackFramesAndMemory_iter001_2026-07-12-07-48-14.perfetto-trace),   [median    130.0](file://ImeShowBenchmark_oneHundredImeShowHideCyclesTrackFramesAndMemory_iter002_2026-07-12-07-49-11.perfetto-trace),   [max    133.0](file://ImeShowBenchmark_oneHundredImeShowHideCyclesTrackFramesAndMemory_iter003_2026-07-12-07-50-09.perfetto-trace)
+  memoryHeapSizeMaxKb   [min  3,817.0](file://ImeShowBenchmark_oneHundredImeShowHideCyclesTrackFramesAndMemory_iter002_2026-07-12-07-49-11.perfetto-trace),   [median  3,881.0](file://ImeShowBenchmark_oneHundredImeShowHideCyclesTrackFramesAndMemory_iter002_2026-07-12-07-49-11.perfetto-trace),   [max  3,917.0](file://ImeShowBenchmark_oneHundredImeShowHideCyclesTrackFramesAndMemory_iter000_2026-07-12-07-47-16.perfetto-trace)
+  memoryRssAnonMaxKb    [min 36,480.0](file://ImeShowBenchmark_oneHundredImeShowHideCyclesTrackFramesAndMemory_iter000_2026-07-12-07-47-16.perfetto-trace),   [median 36,800.0](file://ImeShowBenchmark_oneHundredImeShowHideCyclesTrackFramesAndMemory_iter002_2026-07-12-07-49-11.perfetto-trace),   [max 36,908.0](file://ImeShowBenchmark_oneHundredImeShowHideCyclesTrackFramesAndMemory_iter003_2026-07-12-07-50-09.perfetto-trace)
+  frameDurationCpuMs    P50      17.1,   P90      33.0,   P95      40.4,   P99      53.7
+  frameOverrunMs        P50       5.3,   P90      24.7,   P95      30.8,   P99      45.6
+    Traces: Iteration [0](file://ImeShowBenchmark_oneHundredImeShowHideCyclesTrackFramesAndMemory_iter000_2026-07-12-07-47-16.perfetto-trace) [1](file://ImeShowBenchmark_oneHundredImeShowHideCyclesTrackFramesAndMemory_iter001_2026-07-12-07-48-14.perfetto-trace) [2](file://ImeShowBenchmark_oneHundredImeShowHideCyclesTrackFramesAndMemory_iter002_2026-07-12-07-49-11.perfetto-trace) [3](file://ImeShowBenchmark_oneHundredImeShowHideCyclesTrackFramesAndMemory_iter003_2026-07-12-07-50-09.perfetto-trace) [4](file://ImeShowBenchmark_oneHundredImeShowHideCyclesTrackFramesAndMemory_iter004_2026-07-12-07-51-09.perfetto-trace)
+
+INSTRUMENTATION_STATUS: android.studio.v2display.benchmark.outputDirPath=/storage/emulated/0/Android/media/com.terasumi.sellerkeyboard.benchmark
+INSTRUMENTATION_STATUS: android.studio.v3display.benchmark=WARNING: Running on Emulator
+    Benchmark is running on an emulator, which is not representative of
+    real user devices. Use a physical device to benchmark. Emulator
+    benchmark improvements might not carry over to a real user's
+    experience (or even regress real device performance).
+
+ImeShowBenchmark_oneHundredImeShowHideCyclesTrackFramesAndMemory
+  frameCount            [min    128.0](file://ImeShowBenchmark_oneHundredImeShowHideCyclesTrackFramesAndMemory_iter001_2026-07-12-07-48-14.perfetto-trace),   [median    130.0](file://ImeShowBenchmark_oneHundredImeShowHideCyclesTrackFramesAndMemory_iter002_2026-07-12-07-49-11.perfetto-trace),   [max    133.0](file://ImeShowBenchmark_oneHundredImeShowHideCyclesTrackFramesAndMemory_iter003_2026-07-12-07-50-09.perfetto-trace)
+  memoryHeapSizeMaxKb   [min  3,817.0](file://ImeShowBenchmark_oneHundredImeShowHideCyclesTrackFramesAndMemory_iter002_2026-07-12-07-49-11.perfetto-trace),   [median  3,881.0](file://ImeShowBenchmark_oneHundredImeShowHideCyclesTrackFramesAndMemory_iter002_2026-07-12-07-49-11.perfetto-trace),   [max  3,917.0](file://ImeShowBenchmark_oneHundredImeShowHideCyclesTrackFramesAndMemory_iter000_2026-07-12-07-47-16.perfetto-trace)
+  memoryRssAnonMaxKb    [min 36,480.0](file://ImeShowBenchmark_oneHundredImeShowHideCyclesTrackFramesAndMemory_iter000_2026-07-12-07-47-16.perfetto-trace),   [median 36,800.0](file://ImeShowBenchmark_oneHundredImeShowHideCyclesTrackFramesAndMemory_iter002_2026-07-12-07-49-11.perfetto-trace),   [max 36,908.0](file://ImeShowBenchmark_oneHundredImeShowHideCyclesTrackFramesAndMemory_iter003_2026-07-12-07-50-09.perfetto-trace)
+  frameDurationCpuMs    P50      17.1,   P90      33.0,   P95      40.4,   P99      53.7
+  frameOverrunMs        P50       5.3,   P90      24.7,   P95      30.8,   P99      45.6
+    Traces: Iteration [0](file://ImeShowBenchmark_oneHundredImeShowHideCyclesTrackFramesAndMemory_iter000_2026-07-12-07-47-16.perfetto-trace) [1](file://ImeShowBenchmark_oneHundredImeShowHideCyclesTrackFramesAndMemory_iter001_2026-07-12-07-48-14.perfetto-trace) [2](file://ImeShowBenchmark_oneHundredImeShowHideCyclesTrackFramesAndMemory_iter002_2026-07-12-07-49-11.perfetto-trace) [3](file://ImeShowBenchmark_oneHundredImeShowHideCyclesTrackFramesAndMemory_iter003_2026-07-12-07-50-09.perfetto-trace) [4](file://ImeShowBenchmark_oneHundredImeShowHideCyclesTrackFramesAndMemory_iter004_2026-07-12-07-51-09.perfetto-trace)
+
+INSTRUMENTATION_STATUS: android.studio.v3display.benchmark.outputDirPath=/storage/emulated/0/Android/media/com.terasumi.sellerkeyboard.benchmark
+INSTRUMENTATION_STATUS_CODE: 2
+INSTRUMENTATION_STATUS: class=com.terasumi.sellerkeyboard.benchmark.ImeShowBenchmark
+INSTRUMENTATION_STATUS: current=4
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=4
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=oneHundredImeShowHideCyclesTrackFramesAndMemory
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_RESULT: stream=
+
+Time: 796.447
+
+OK (4 tests)
+
+
+INSTRUMENTATION_CODE: -1
+nativeAdbExitCode=0
+/storage/emulated/0/Android/media/com.terasumi.sellerkeyboard.benchmark/com.terasumi.sellerkeyboard.benchmark-benchmarkData.json: 1 file pulled, 0 skipped. 2.6 MB/s (81312 bytes in 0.030s)
+/storage/emulated/0/Android/media/com.terasumi.sellerkeyboard.benchmark/com.terasumi.sellerkeyboard.benchmark-benchmarkData.json: 1 file pulled, 0 skipped. 1.7 MB/s (81312 bytes in 0.046s)
+/storage/emulated/0/Android/media/com.terasumi.sellerkeyboard.benchmark/com.terasumi.sellerkeyboard.benchmark-benchmarkData.json: 1 file pulled, 0 skipped. 8.1 MB/s (81312 bytes in 0.010s)
+/storage/emulated/0/Android/media/com.terasumi.sellerkeyboard.benchmark/ImeShowBenchmark_productionKeyCandidateSurfaceAndTemplateFlowsHavePerfettoSections_iter002_2026-07-12-07-43-08.perfetto-trace: 1 file pulled, 0 skipped. 53.3 MB/s (12838109 bytes in 0.230s)
+/storage/emulated/0/Android/media/com.terasumi.sellerkeyboard.benchmark/ImeShowBenchmark_productionKeyCandidateSurfaceAndTemplateFlowsHavePerfettoSections_iter001_2026-07-12-07-42-31.perfetto-trace: 1 file pulled, 0 skipped. 62.2 MB/s (12310992 bytes in 0.189s)
+/storage/emulated/0/Android/media/com.terasumi.sellerkeyboard.benchmark/ImeShowBenchmark_productionKeyCandidateSurfaceAndTemplateFlowsHavePerfettoSections_iter000_2026-07-12-07-41-54.perfetto-trace: 1 file pulled, 0 skipped. 63.1 MB/s (12919444 bytes in 0.195s)
+/storage/emulated/0/Android/media/com.terasumi.sellerkeyboard.benchmark/com.terasumi.sellerkeyboard.benchmark-benchmarkData.json: 1 file pulled, 0 skipped. 1.0 MB/s (81312 bytes in 0.075s)
+/storage/emulated/0/Android/media/com.terasumi.sellerkeyboard.benchmark/ImeShowBenchmark_productionKeyCandidateSurfaceAndTemplateFlowsHavePerfettoSections_iter002_2026-07-12-07-43-08.perfetto-trace: 1 file pulled, 0 skipped. 13.7 MB/s (12838109 bytes in 0.891s)
+/storage/emulated/0/Android/media/com.terasumi.sellerkeyboard.benchmark/ImeShowBenchmark_productionKeyCandidateSurfaceAndTemplateFlowsHavePerfettoSections_iter001_2026-07-12-07-42-31.perfetto-trace: 1 file pulled, 0 skipped. 18.4 MB/s (12310992 bytes in 0.638s)
+/storage/emulated/0/Android/media/com.terasumi.sellerkeyboard.benchmark/ImeShowBenchmark_productionKeyCandidateSurfaceAndTemplateFlowsHavePerfettoSections_iter000_2026-07-12-07-41-54.perfetto-trace: 1 file pulled, 0 skipped. 21.8 MB/s (12919444 bytes in 0.566s)
+/storage/emulated/0/Android/media/com.terasumi.sellerkeyboard.benchmark/com.terasumi.sellerkeyboard.benchmark-benchmarkData.json: 1 file pulled, 0 skipped. 2.4 MB/s (81312 bytes in 0.032s)
+/storage/emulated/0/Android/media/com.terasumi.sellerkeyboard.benchmark/ImeShowBenchmark_productionKeyCandidateSurfaceAndTemplateFlowsHavePerfettoSections_iter002_2026-07-12-07-43-08.perfetto-trace: 1 file pulled, 0 skipped. 14.4 MB/s (12838109 bytes in 0.853s)
+/storage/emulated/0/Android/media/com.terasumi.sellerkeyboard.benchmark/ImeShowBenchmark_productionKeyCandidateSurfaceAndTemplateFlowsHavePerfettoSections_iter001_2026-07-12-07-42-31.perfetto-trace: 1 file pulled, 0 skipped. 14.1 MB/s (12310992 bytes in 0.831s)
+/storage/emulated/0/Android/media/com.terasumi.sellerkeyboard.benchmark/ImeShowBenchmark_productionKeyCandidateSurfaceAndTemplateFlowsHavePerfettoSections_iter000_2026-07-12-07-41-54.perfetto-trace: 1 file pulled, 0 skipped. 14.0 MB/s (12919444 bytes in 0.881s)
+/storage/emulated/0/Android/media/com.terasumi.sellerkeyboard.benchmark/com.terasumi.sellerkeyboard.benchmark-benchmarkData.json: 1 file pulled, 0 skipped. 0.8 MB/s (81312 bytes in 0.094s)
+/storage/emulated/0/Android/media/com.terasumi.sellerkeyboard.benchmark/ImeShowBenchmark_productionKeyCandidateSurfaceAndTemplateFlowsHavePerfettoSections_iter002_2026-07-12-07-43-08.perfetto-trace: 1 file pulled, 0 skipped. 14.0 MB/s (12838109 bytes in 0.874s)
+/storage/emulated/0/Android/media/com.terasumi.sellerkeyboard.benchmark/ImeShowBenchmark_productionKeyCandidateSurfaceAndTemplateFlowsHavePerfettoSections_iter001_2026-07-12-07-42-31.perfetto-trace: 1 file pulled, 0 skipped. 22.1 MB/s (12310992 bytes in 0.531s)
+/storage/emulated/0/Android/media/com.terasumi.sellerkeyboard.benchmark/ImeShowBenchmark_productionKeyCandidateSurfaceAndTemplateFlowsHavePerfettoSections_iter000_2026-07-12-07-41-54.perfetto-trace: 1 file pulled, 0 skipped. 11.9 MB/s (12919444 bytes in 1.040s)
+/storage/emulated/0/Android/media/com.terasumi.sellerkeyboard.benchmark/com.terasumi.sellerkeyboard.benchmark-benchmarkData.json: 1 file pulled, 0 skipped. 2.4 MB/s (81312 bytes in 0.033s)
+/storage/emulated/0/Android/media/com.terasumi.sellerkeyboard.benchmark/ImeShowBenchmark_productionKeyCandidateSurfaceAndTemplateFlowsHavePerfettoSections_iter002_2026-07-12-07-43-08.perfetto-trace: 1 file pulled, 0 skipped. 11.8 MB/s (12838109 bytes in 1.039s)
+/storage/emulated/0/Android/media/com.terasumi.sellerkeyboard.benchmark/ImeShowBenchmark_productionKeyCandidateSurfaceAndTemplateFlowsHavePerfettoSections_iter001_2026-07-12-07-42-31.perfetto-trace: 1 file pulled, 0 skipped. 12.1 MB/s (12310992 bytes in 0.973s)
+/storage/emulated/0/Android/media/com.terasumi.sellerkeyboard.benchmark/ImeShowBenchmark_productionKeyCandidateSurfaceAndTemplateFlowsHavePerfettoSections_iter000_2026-07-12-07-41-54.perfetto-trace: 1 file pulled, 0 skipped. 19.1 MB/s (12919444 bytes in 0.644s)
+/storage/emulated/0/Android/media/com.terasumi.sellerkeyboard.benchmark/com.terasumi.sellerkeyboard.benchmark-benchmarkData.json: 1 file pulled, 0 skipped. 1.2 MB/s (81312 bytes in 0.066s)
+/storage/emulated/0/Android/media/com.terasumi.sellerkeyboard.benchmark/ImeShowBenchmark_productionKeyCandidateSurfaceAndTemplateFlowsHavePerfettoSections_iter002_2026-07-12-07-43-08.perfetto-trace: 1 file pulled, 0 skipped. 13.3 MB/s (12838109 bytes in 0.922s)
+/storage/emulated/0/Android/media/com.terasumi.sellerkeyboard.benchmark/ImeShowBenchmark_productionKeyCandidateSurfaceAndTemplateFlowsHavePerfettoSections_iter001_2026-07-12-07-42-31.perfetto-trace: 1 file pulled, 0 skipped. 11.6 MB/s (12310992 bytes in 1.009s)
+/storage/emulated/0/Android/media/com.terasumi.sellerkeyboard.benchmark/ImeShowBenchmark_productionKeyCandidateSurfaceAndTemplateFlowsHavePerfettoSections_iter000_2026-07-12-07-41-54.perfetto-trace: 1 file pulled, 0 skipped. 10.8 MB/s (12919444 bytes in 1.141s)

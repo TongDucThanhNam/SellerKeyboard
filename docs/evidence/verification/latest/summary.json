@@ -1,0 +1,184 @@
+{
+  "generatedAt": "2026-07-12T22:07:31.1514412+07:00",
+  "repository": "C:\\Users\\terasumi\\Documents\\source_code\\SellerKeyboard",
+  "overall": "FAIL",
+  "approvedExceptionPath": "",
+  "productDecisionApprovalPath": "",
+  "results": [
+    {
+      "name": "Unit tests",
+      "status": "PASS",
+      "detail": "C:\\Users\\terasumi\\Documents\\source_code\\SellerKeyboard\\docs\\evidence\\verification\\latest\\unit-tests.log"
+    },
+    {
+      "name": "Unit test inventory",
+      "status": "PASS",
+      "detail": "59 suites; 194 tests; zero failures/errors/skips; C:\\Users\\terasumi\\Documents\\source_code\\SellerKeyboard\\docs\\evidence\\verification\\latest\\unit-test-inventory.json"
+    },
+    {
+      "name": "Candidate corpus",
+      "status": "PASS",
+      "detail": "C:\\Users\\terasumi\\Documents\\source_code\\SellerKeyboard\\docs\\evidence\\verification\\latest\\candidate-corpus.log"
+    },
+    {
+      "name": "Seller workflow benchmark",
+      "status": "PASS",
+      "detail": "C:\\Users\\terasumi\\Documents\\source_code\\SellerKeyboard\\docs\\evidence\\verification\\latest\\seller-workflow-benchmark.log"
+    },
+    {
+      "name": "Same-emulator seller workflow comparison",
+      "status": "PASS",
+      "detail": "120/120 exact drafts; interaction reduction 80.49%; Gboard 15.1.08.726012951-preload-x86_64; C:\\Users\\terasumi\\Documents\\source_code\\SellerKeyboard\\docs\\evidence\\verification\\seller-workflow-comparison\\full-2026-07-12\\summary.json"
+    },
+    {
+      "name": "API 36 named-app editors",
+      "status": "PASS",
+      "detail": "Chrome URL/search plus Google Messages search and unsent SMS compose; account-free, fictional recipient, unsubmitted; exact IME-UID network/log attribution 0/0 bytes and zero canaries; C:\\Users\\terasumi\\Documents\\source_code\\SellerKeyboard\\docs\\evidence\\verification\\emulator-named-apps\\full-privacy-2026-07-12\\summary.json"
+    },
+    {
+      "name": "API 36 account-gated target boundary",
+      "status": "PASS_SCOPED",
+      "detail": "Zero accounts; Gmail and Docs expose no account-free editor; Google Autofill is configured but has no approved credential fixture; no credentials/content submitted; C:\\Users\\terasumi\\Documents\\source_code\\SellerKeyboard\\docs\\evidence\\verification\\emulator-named-app-account-gates\\api36-2026-07-12\\manifest.json"
+    },
+    {
+      "name": "API 36 platform inline autofill",
+      "status": "PASS",
+      "detail": "Distinct provider/host/IME UIDs; real inline request, visible dataset selection, exact two-field fill, 0/0 bytes and zero controlled logs for all three UIDs, exact setting and package-presence restoration; C:\\Users\\terasumi\\Documents\\source_code\\SellerKeyboard\\docs\\evidence\\verification\\emulator-inline-autofill\\api36-2026-07-12-v1\\summary.json"
+    },
+    {
+      "name": "API 36 named password-manager inline autofill",
+      "status": "PASS",
+      "detail": "KeePassDX 4.4.5 official signed APK; local fictional vault; provider-owned picker and visible inline credential selection; exact two-field fill; distinct IME/provider/host UIDs at 0/0 bytes with zero controlled logs; exact settings/package/vault restoration; C:\\Users\\terasumi\\Documents\\source_code\\SellerKeyboard\\docs\\evidence\\verification\\emulator-named-password-manager\\api36-keepassdx-4.4.5-v1\\summary.json"
+    },
+    {
+      "name": "API 36 accessibility coexistence",
+      "status": "PASS_SCOPED",
+      "detail": "TalkBack host-gesture and two-switch USB-uinput traversal/actions pass with exact editor results; Switch Access exposes 46 semantic controls; a real physical external keyboard remains release-blocking; C:\\Users\\terasumi\\Documents\\source_code\\SellerKeyboard\\docs\\evidence\\verification\\emulator-accessibility\\windowed-2026-07-12\\summary.json"
+    },
+    {
+      "name": "API 36 tablet and foldable-width visuals",
+      "status": "PASS_SCOPED",
+      "detail": "Native tablet portrait/landscape and 600 dp live-resized window keep 48 dp controls, complete semantics, exact touch typing, and post-resize IME recovery; this tablet AVD has no hinge sensor, while Pixel Fold posture is checked separately; C:\\Users\\terasumi\\Documents\\source_code\\SellerKeyboard\\docs\\evidence\\verification\\emulator-large-window\\tablet-foldable-width-2026-07-12\\summary.json"
+    },
+    {
+      "name": "API 36 Pixel Fold posture transitions",
+      "status": "PASS_SCOPED",
+      "detail": "Declared hinge sensor and Android OPENED/HALF_OPENED/CLOSED states preserve 48 dp semantics and exact visible-key typing across inner, outer, and reopened displays without host relaunch; physical foldable acceptance remains open; C:\\Users\\terasumi\\Documents\\source_code\\SellerKeyboard\\docs\\evidence\\verification\\emulator-foldable-posture\\pixel-fold-api36-v4-2026-07-12\\summary.json"
+    },
+    {
+      "name": "API 36 low-memory process recreation",
+      "status": "PASS_SCOPED",
+      "detail": "TRIM_MEMORY_COMPLETE plus Android background-process kill changed PID 28934->29199; the IME reattached, rejected stale text, and entered exact recovery text through visible keys; C:\\Users\\terasumi\\Documents\\source_code\\SellerKeyboard\\docs\\evidence\\verification\\emulator-low-memory\\api36-complete-v2-2026-07-12\\summary.json"
+    },
+    {
+      "name": "Production product-image source policy",
+      "status": "PASS",
+      "detail": "authorized debug fixture accept/reject requests 1/1; unsupported and production cleartext requests 0/0; C:\\Users\\terasumi\\Documents\\source_code\\SellerKeyboard\\docs\\evidence\\verification\\emulator-rich-content\\product-source-policy-v2-2026-07-12\\summary.json"
+    },
+    {
+      "name": "API 36 personal dictionary flow",
+      "status": "PASS_SCOPED",
+      "detail": "real UI add/remove/clear and process persistence pass; exact personal candidate commit and sensitive suppression pass; UID RX/TX 0/0 and controlled-word logs 0; C:\\Users\\terasumi\\Documents\\source_code\\SellerKeyboard\\docs\\evidence\\verification\\emulator-dictionary\\api36-v3-2026-07-12\\summary.json"
+    },
+    {
+      "name": "API 36 emoji flow",
+      "status": "PASS_SCOPED",
+      "detail": "real touch-only search/category/variant commits pass; recents and Clear persist across process recreation; sensitive suppression passes; 48 dp semantics pass; UID RX/TX 0/0 and controlled-value logs 0; exact recents/variant rollback; C:\\Users\\terasumi\\Documents\\source_code\\SellerKeyboard\\docs\\evidence\\verification\\emulator-emoji\\api36-v4-2026-07-12\\summary.json"
+    },
+    {
+      "name": "Deterministic voice-recognition integration",
+      "status": "PASS_SCOPED",
+      "detail": "3/3 API 36 SpeechRecognizer binder cases passed; app/provider UID RX/TX 0/0; controlled transcript log occurrences 0; C:\\Users\\terasumi\\Documents\\source_code\\SellerKeyboard\\docs\\evidence\\verification\\emulator-voice\\deterministic-provider-api36-post-audio-v4-2026-07-12\\summary.json"
+    },
+    {
+      "name": "Voice permission disclosure",
+      "status": "PASS_SCOPED",
+      "detail": "API 36 dismiss/retry/system-grant flow passed; disclosure covers provider network, review, and no auto-send; real provider starts after grant and cancel restores Idle; C:\\Users\\terasumi\\Documents\\source_code\\SellerKeyboard\\docs\\evidence\\verification\\emulator-voice\\permission-disclosure-api36-v3-2026-07-12\\summary.json"
+    },
+    {
+      "name": "Configured-provider controlled audio",
+      "status": "PASS_SCOPED",
+      "detail": "byte-exact PCM produced a review-only transcript through the configured provider; editor unchanged, transcript logs zero, and device state restored; physical microphone/acoustic quality remains open; C:\\Users\\terasumi\\Documents\\source_code\\SellerKeyboard\\docs\\evidence\\verification\\emulator-connected\\SellerKeyboardApi36Privacy\\latest\\real-provider-audio\\summary.json"
+    },
+    {
+      "name": "Key dispatch performance",
+      "status": "PASS",
+      "detail": "C:\\Users\\terasumi\\Documents\\source_code\\SellerKeyboard\\docs\\evidence\\verification\\latest\\key-dispatch-performance.log"
+    },
+    {
+      "name": "Debug APK",
+      "status": "PASS",
+      "detail": "C:\\Users\\terasumi\\Documents\\source_code\\SellerKeyboard\\docs\\evidence\\verification\\latest\\debug-apk.log"
+    },
+    {
+      "name": "Instrumented test APK",
+      "status": "PASS",
+      "detail": "C:\\Users\\terasumi\\Documents\\source_code\\SellerKeyboard\\docs\\evidence\\verification\\latest\\instrumented-test-apk.log"
+    },
+    {
+      "name": "Autofill platform fixture APK",
+      "status": "PASS",
+      "detail": "C:\\Users\\terasumi\\Documents\\source_code\\SellerKeyboard\\docs\\evidence\\verification\\latest\\autofill-platform-fixture-apk.log"
+    },
+    {
+      "name": "Android lint",
+      "status": "PASS",
+      "detail": "C:\\Users\\terasumi\\Documents\\source_code\\SellerKeyboard\\docs\\evidence\\verification\\latest\\android-lint.log"
+    },
+    {
+      "name": "Macrobenchmark APK",
+      "status": "PASS",
+      "detail": "C:\\Users\\terasumi\\Documents\\source_code\\SellerKeyboard\\docs\\evidence\\verification\\latest\\macrobenchmark-apk.log"
+    },
+    {
+      "name": "Static privacy audit",
+      "status": "PASS",
+      "detail": "C:\\Users\\terasumi\\Documents\\source_code\\SellerKeyboard\\docs\\evidence\\verification\\latest\\privacy-static-audit.txt"
+    },
+    {
+      "name": "Compose compiler reports",
+      "status": "PASS",
+      "detail": "C:\\Users\\terasumi\\Documents\\source_code\\SellerKeyboard\\docs\\evidence\\verification\\latest\\compose-compiler"
+    },
+    {
+      "name": "Device configuration",
+      "status": "PASS",
+      "detail": "C:\\Users\\terasumi\\Documents\\source_code\\SellerKeyboard\\docs\\evidence\\verification\\latest\\device-configuration.txt"
+    },
+    {
+      "name": "Connected Android tests",
+      "status": "PASS_EMULATOR",
+      "detail": "C:\\Users\\terasumi\\Documents\\source_code\\SellerKeyboard\\docs\\evidence\\verification\\latest\\connected-android-tests-direct.log"
+    },
+    {
+      "name": "Optional live backend smoke tests",
+      "status": "IDENTIFIED_SKIP",
+      "detail": "2 opt-in Convex tests; C:\\Users\\terasumi\\Documents\\source_code\\SellerKeyboard\\docs\\evidence\\verification\\latest\\connected-test-skips.json"
+    },
+    {
+      "name": "Privacy/network typing probe",
+      "status": "PASS",
+      "detail": "C:\\Users\\terasumi\\Documents\\source_code\\SellerKeyboard\\docs\\evidence\\verification\\latest\\privacy-network-probe\\summary.json"
+    },
+    {
+      "name": "Connected Macrobenchmark",
+      "status": "PASS_REUSED_COMPLETE_RUN",
+      "detail": "C:\\Users\\terasumi\\Documents\\source_code\\SellerKeyboard\\docs\\evidence\\verification\\latest\\connected-macrobenchmark-direct.log; definitive OK (4 tests) footer and required metrics"
+    },
+    {
+      "name": "Macrobenchmark thresholds",
+      "status": "PASS",
+      "detail": "C:\\Users\\terasumi\\Documents\\source_code\\SellerKeyboard\\docs\\evidence\\verification\\latest\\macrobenchmark-thresholds.json"
+    },
+    {
+      "name": "Emulator API compatibility matrix",
+      "status": "PASS_EMULATOR",
+      "detail": "API 26/30/31/34/35/36 each pass 22 connected results plus sensitive, clipboard, rich-content, cross-app, privacy, and exact permission restoration; this does not replace physical-device/OEM evidence; C:\\Users\\terasumi\\Documents\\source_code\\SellerKeyboard\\docs\\evidence\\verification\\emulator-api-matrix\\latest\\summary.json"
+    },
+    {
+      "name": "Release evidence readiness",
+      "status": "BLOCKING_SKIP",
+      "detail": "C:\\Users\\terasumi\\Documents\\source_code\\SellerKeyboard\\docs\\evidence\\verification\\latest\\release-readiness.json"
+    }
+  ]
+}

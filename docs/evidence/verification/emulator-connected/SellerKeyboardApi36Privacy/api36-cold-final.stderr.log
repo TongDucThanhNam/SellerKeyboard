@@ -1,0 +1,9 @@
+Microsoft.PowerShell.Utility\Get-FileHash : The term 'Microsoft.PowerShell.Utility\Get-FileHash' is not recognized as 
+the name of a cmdlet, function, script file, or operable program. Check the spelling of the name, or if a path was 
+included, verify that the path is correct and try again.
+At C:\Users\terasumi\Documents\source_code\SellerKeyboard\scripts\verify-inline-autofill-platform.ps1:249 char:27
++ ...           sha256 = (Microsoft.PowerShell.Utility\Get-FileHash -Algori ...
++                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (Microsoft.Power...ty\Get-FileHash:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+ 

@@ -1,0 +1,26 @@
+﻿{
+    "capturedAt":  "2026-07-12T08:12:36.0716403+07:00",
+    "serial":  "emulator-5554",
+    "packageName":  "com.terasumi.sellerkeyboard",
+    "uid":  10216,
+    "networkExpectation":  "Record",
+    "networkAccountingSupported":  true,
+    "networkAccountingReason":  "",
+    "beforeRxBytes":  0,
+    "afterRxBytes":  0,
+    "beforeTxBytes":  0,
+    "afterTxBytes":  0,
+    "rxDelta":  0,
+    "txDelta":  0,
+    "canaries":  [
+                     {
+                         "value":  "Seller product | VND 100000 | https://example.invalid/product",
+                         "occurrences":  0
+                     },
+                     {
+                         "value":  "http://127.0.0.1:18080/logo.png?token=connectedremoteimage1783818712586",
+                         "occurrences":  0
+                     }
+                 ],
+    "canaryOccurrencesInUidLog":  0
+}

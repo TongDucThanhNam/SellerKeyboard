@@ -1,0 +1,34 @@
+{
+  "capturedAt": "2026-07-12T18:31:23.2260720+07:00",
+  "serial": "emulator-5554",
+  "packageName": "com.terasumi.sellerkeyboard.benchmarkhost",
+  "uid": 10234,
+  "networkExpectation": "Zero",
+  "networkAccountingSupported": true,
+  "networkAccountingReason": "",
+  "beforeRxBytes": 0,
+  "afterRxBytes": 0,
+  "beforeTxBytes": 0,
+  "afterTxBytes": 0,
+  "rxDelta": 0,
+  "txDelta": 0,
+  "canaries": [
+    {
+      "value": "Seller Keyboard Host",
+      "occurrences": 0
+    },
+    {
+      "value": "Seller Keyboard Browser",
+      "occurrences": 0
+    },
+    {
+      "value": "named-provider@example.invalid",
+      "occurrences": 0
+    },
+    {
+      "value": "Named-Provider-Autofill-42!",
+      "occurrences": 0
+    }
+  ],
+  "canaryOccurrencesInUidLog": 0
+}

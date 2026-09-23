@@ -1,0 +1,53 @@
+﻿{
+    "capturedAt":  "2026-07-12T20:37:34.1514833+07:00",
+    "serial":  "emulator-5556",
+    "uid":  10192,
+    "canaries":  [
+                     "sellerprobeplain",
+                     "sellerprobepassword",
+                     "731905284617"
+                 ],
+    "cases":  [
+                  {
+                      "id":  "plain",
+                      "inputType":  1,
+                      "privateImeOptions":  "",
+                      "canary":  "sellerprobeplain",
+                      "visibleTextFound":  true,
+                      "passwordNodeFound":  false,
+                      "editorModeVerified":  true,
+                      "windowXml":  "C:\\Users\\terasumi\\Documents\\source_code\\SellerKeyboard\\docs\\evidence\\verification\\emulator-connected\\SellerKeyboardApi34\\latest\\privacy-network-probe\\plain-window.xml"
+                  },
+                  {
+                      "id":  "password",
+                      "inputType":  129,
+                      "privateImeOptions":  "",
+                      "canary":  "sellerprobepassword",
+                      "visibleTextFound":  false,
+                      "passwordNodeFound":  true,
+                      "editorModeVerified":  true,
+                      "windowXml":  "C:\\Users\\terasumi\\Documents\\source_code\\SellerKeyboard\\docs\\evidence\\verification\\emulator-connected\\SellerKeyboardApi34\\latest\\privacy-network-probe\\password-window.xml"
+                  },
+                  {
+                      "id":  "otp-authentication",
+                      "inputType":  2,
+                      "privateImeOptions":  "sellerkeyboard.authentication",
+                      "canary":  "731905284617",
+                      "visibleTextFound":  true,
+                      "passwordNodeFound":  false,
+                      "editorModeVerified":  true,
+                      "windowXml":  "C:\\Users\\terasumi\\Documents\\source_code\\SellerKeyboard\\docs\\evidence\\verification\\emulator-connected\\SellerKeyboardApi34\\latest\\privacy-network-probe\\otp-authentication-window.xml"
+                  }
+              ],
+    "networkAccountingSupported":  true,
+    "networkAccountingReason":  "",
+    "beforeRxBytes":  0,
+    "afterRxBytes":  0,
+    "beforeTxBytes":  0,
+    "afterTxBytes":  0,
+    "rxDelta":  0,
+    "txDelta":  0,
+    "beforeMatchingLines":  1,
+    "afterMatchingLines":  1,
+    "canaryOccurrencesInUidLog":  0
+}

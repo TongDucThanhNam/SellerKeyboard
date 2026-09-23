@@ -1,0 +1,40 @@
+﻿{
+    "generatedAt":  "2026-07-12T20:24:20.3229800+07:00",
+    "overall":  "PASS",
+    "serial":  "emulator-5556",
+    "sellerUid":  10167,
+    "targetPackage":  "com.terasumi.sellerkeyboard.benchmarkhost",
+    "targetUid":  10169,
+    "crossUid":  true,
+    "imageSource":  "local-file",
+    "remoteImageUrl":  null,
+    "cases":  [
+                  {
+                      "mode":  "accept",
+                      "advertisedJpeg":  true,
+                      "expectedEditorText":  "RICH_ACCEPTED:image/jpeg",
+                      "session":  "Result: Bundle[{active_surface=KEYBOARD, translation_idle=true, completion_count=0, voice_idle=true, active=true, contains_disabled_clip=false, clipboard_started=true, language_mode=VIETNAMESE_ENGLISH, number_row=true, candidate_source=NONE, contains_password_clip=false, height_preset=STANDARD, seller_count=0, preferred_reply_pack_id=null, clipboard_history_enabled=true, contains_marked_sensitive_clip=false, supports_test_jpeg=true, contains_normal_clip=false, candidate_count=0, sensitive=false, active_profile_id=global, theme_mode=SYSTEM, clipboard_item_count=0, inline_count=0, clipboard_observed_changes=6, editor_package=com.terasumi.sellerkeyboard.benchmarkhost, active_profile_name=Global, toolbar_order=replies|products|clipboard|calculator|translate|voice|emoji|settings, session_id=20, supported_mime_count=1}]",
+                      "resultWindow":  "C:\\Users\\terasumi\\Documents\\source_code\\SellerKeyboard\\docs\\evidence\\verification\\emulator-connected\\SellerKeyboardApi30\\latest\\rich-content-targets\\accept-result-window.xml"
+                  },
+                  {
+                      "mode":  "reject",
+                      "advertisedJpeg":  true,
+                      "expectedEditorText":  "Seller product | VND 100000 | https://example.invalid/product",
+                      "session":  "Result: Bundle[{active_surface=KEYBOARD, translation_idle=true, completion_count=0, voice_idle=true, active=true, contains_disabled_clip=false, clipboard_started=true, language_mode=VIETNAMESE_ENGLISH, number_row=true, candidate_source=NONE, contains_password_clip=false, height_preset=STANDARD, seller_count=0, preferred_reply_pack_id=null, clipboard_history_enabled=true, contains_marked_sensitive_clip=false, supports_test_jpeg=true, contains_normal_clip=false, candidate_count=0, sensitive=false, active_profile_id=global, theme_mode=SYSTEM, clipboard_item_count=0, inline_count=0, clipboard_observed_changes=6, editor_package=com.terasumi.sellerkeyboard.benchmarkhost, active_profile_name=Global, toolbar_order=replies|products|clipboard|calculator|translate|voice|emoji|settings, session_id=23, supported_mime_count=1}]",
+                      "resultWindow":  "C:\\Users\\terasumi\\Documents\\source_code\\SellerKeyboard\\docs\\evidence\\verification\\emulator-connected\\SellerKeyboardApi30\\latest\\rich-content-targets\\reject-result-window.xml"
+                  },
+                  {
+                      "mode":  "unsupported",
+                      "advertisedJpeg":  false,
+                      "expectedEditorText":  "Seller product | VND 100000 | https://example.invalid/product",
+                      "session":  "Result: Bundle[{active_surface=KEYBOARD, translation_idle=true, completion_count=0, voice_idle=true, active=true, contains_disabled_clip=false, clipboard_started=true, language_mode=VIETNAMESE_ENGLISH, number_row=true, candidate_source=NONE, contains_password_clip=false, height_preset=STANDARD, seller_count=0, preferred_reply_pack_id=null, clipboard_history_enabled=true, contains_marked_sensitive_clip=false, supports_test_jpeg=false, contains_normal_clip=false, candidate_count=0, sensitive=false, active_profile_id=global, theme_mode=SYSTEM, clipboard_item_count=0, inline_count=0, clipboard_observed_changes=6, editor_package=com.terasumi.sellerkeyboard.benchmarkhost, active_profile_name=Global, toolbar_order=replies|products|clipboard|calculator|translate|voice|emoji|settings, session_id=25, supported_mime_count=0}]",
+                      "resultWindow":  "C:\\Users\\terasumi\\Documents\\source_code\\SellerKeyboard\\docs\\evidence\\verification\\emulator-connected\\SellerKeyboardApi30\\latest\\rich-content-targets\\unsupported-result-window.xml"
+                  }
+              ],
+    "productionSourcePolicy":  null,
+    "networkAccountingSupported":  true,
+    "uidRxDelta":  0,
+    "uidTxDelta":  0,
+    "controlledTextOccurrencesInUidLog":  0,
+    "claimBoundary":  "cross-UID neutral reference app; named third-party target apps remain pending"
+}

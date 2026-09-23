@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "contract": "sellerkeyboard-release-exceptions-v1",
+  "status": "DRAFT",
+  "approval": {
+    "approvedBy": "REPLACE_WITH_ACCOUNTABLE_APPROVER",
+    "approvedAt": "REPLACE_WITH_ISO_8601_TIMESTAMP"
+  },
+  "exceptions": [
+    {
+      "id": "REPLACE_WITH_RELEASE_BLOCKER_ID",
+      "status": "DRAFT",
+      "rationale": "REPLACE_WITH_SPECIFIC_ACCEPTED_RISK",
+      "scope": "REPLACE_WITH_NARROW_RELEASE_AND_VERSION_SCOPE",
+      "expiresAt": "REPLACE_WITH_ISO_8601_EXPIRY"
+    }
+  ]
+}

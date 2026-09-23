@@ -1,0 +1,109 @@
+﻿{
+    "generatedAt":  "2026-07-12T21:51:52.3103787+07:00",
+    "overall":  "PASS",
+    "serial":  "emulator-5554",
+    "voice":  {
+                  "providerComponent":  "com.google.android.tts/com.google.android.apps.speech.tts.googletts.service.GoogleTTSRecognitionService",
+                  "providerPackage":  "com.google.android.tts",
+                  "stateAfterStart":  "Listening",
+                  "errorAfterStart":  "",
+                  "usingOnDevice":  true,
+                  "restoredIdle":  true,
+                  "imeAttribution":  {
+                                         "capturedAt":  "2026-07-12T21:51:36.3135449+07:00",
+                                         "serial":  "emulator-5554",
+                                         "packageName":  "com.terasumi.sellerkeyboard",
+                                         "uid":  10232,
+                                         "networkExpectation":  "Zero",
+                                         "networkAccountingSupported":  true,
+                                         "networkAccountingReason":  "",
+                                         "beforeRxBytes":  0,
+                                         "afterRxBytes":  0,
+                                         "beforeTxBytes":  0,
+                                         "afterTxBytes":  0,
+                                         "rxDelta":  0,
+                                         "txDelta":  0,
+                                         "canaries":  [
+                                                          {
+                                                              "value":  "connectedvoicecontextcanary",
+                                                              "occurrences":  0
+                                                          }
+                                                      ],
+                                         "canaryOccurrencesInUidLog":  0
+                                     },
+                  "providerAttribution":  {
+                                              "capturedAt":  "2026-07-12T21:51:37.0359873+07:00",
+                                              "serial":  "emulator-5554",
+                                              "packageName":  "com.google.android.tts",
+                                              "uid":  10150,
+                                              "networkExpectation":  "Record",
+                                              "networkAccountingSupported":  true,
+                                              "networkAccountingReason":  "",
+                                              "beforeRxBytes":  0,
+                                              "afterRxBytes":  0,
+                                              "beforeTxBytes":  0,
+                                              "afterTxBytes":  0,
+                                              "rxDelta":  0,
+                                              "txDelta":  0,
+                                              "canaries":  [
+                                                               {
+                                                                   "value":  "connectedvoicecontextcanary",
+                                                                   "occurrences":  0
+                                                               }
+                                                           ],
+                                              "canaryOccurrencesInUidLog":  0
+                                          },
+                  "claimBoundary":  "real provider start/cancel on headless emulator; no deterministic spoken transcript"
+              },
+    "translation":  {
+                        "providerPackage":  "com.google.android.gms",
+                        "finalState":  "Preview",
+                        "originalMatchedCanary":  true,
+                        "restoredIdle":  true,
+                        "imeAttribution":  {
+                                               "capturedAt":  "2026-07-12T21:51:48.3636205+07:00",
+                                               "serial":  "emulator-5554",
+                                               "packageName":  "com.terasumi.sellerkeyboard",
+                                               "uid":  10232,
+                                               "networkExpectation":  "Record",
+                                               "networkAccountingSupported":  true,
+                                               "networkAccountingReason":  "",
+                                               "beforeRxBytes":  0,
+                                               "afterRxBytes":  0,
+                                               "beforeTxBytes":  0,
+                                               "afterTxBytes":  0,
+                                               "rxDelta":  0,
+                                               "txDelta":  0,
+                                               "canaries":  [
+                                                                {
+                                                                    "value":  "Don hang attribution rieng tu",
+                                                                    "occurrences":  0
+                                                                }
+                                                            ],
+                                               "canaryOccurrencesInUidLog":  0
+                                           },
+                        "providerAttribution":  {
+                                                    "capturedAt":  "2026-07-12T21:51:49.1860340+07:00",
+                                                    "serial":  "emulator-5554",
+                                                    "packageName":  "com.google.android.gms",
+                                                    "uid":  10146,
+                                                    "networkExpectation":  "Record",
+                                                    "networkAccountingSupported":  true,
+                                                    "networkAccountingReason":  "",
+                                                    "beforeRxBytes":  0,
+                                                    "afterRxBytes":  0,
+                                                    "beforeTxBytes":  0,
+                                                    "afterTxBytes":  0,
+                                                    "rxDelta":  0,
+                                                    "txDelta":  0,
+                                                    "canaries":  [
+                                                                     {
+                                                                         "value":  "Don hang attribution rieng tu",
+                                                                         "occurrences":  0
+                                                                     }
+                                                                 ],
+                                                    "canaryOccurrencesInUidLog":  0
+                                                },
+                        "claimBoundary":  "real ML Kit VI-to-EN model deletion, explicit download, and preview"
+                    }
+}

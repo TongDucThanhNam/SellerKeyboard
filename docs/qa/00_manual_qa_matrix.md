@@ -16,8 +16,8 @@ set must include a lower-midrange physical phone and a current mainstream physic
 
 | Dimension | Required coverage | Result/artifact |
 |---|---|---|
-| API level | 26, 30, 31, 33, 34, 35, 36 | Core connected suite passes on API 26/30/31/34/35/36 emulators and API 33 physical; `docs/evidence/emulator-connected-matrix-2026-07-11.md` |
-| Form factor | Compact phone, mainstream phone, tall phone, tablet/foldable width | API 36 Small Phone, Medium Phone, Pixel 6 Pro and Medium Tablet each pass 18 connected results; cold-booted Medium Tablet native portrait/landscape and a live 600 dp foldable-width resize have direct screenshots/hierarchies, 48 dp controls, exact touch typing, and post-resize IME recovery; a separate cold-booted Pixel Fold AVD declares a hinge sensor and passes Android `OPENED` 180°, `HALF_OPENED` 90°, `CLOSED` 0° outer-display, and reopened transitions without host relaunch, preserving 48 dp semantics and exact visible-key text | Physical foldable acceptance pending |
+| API level | 26, 30, 31, 33, 34, 35, 36 | Fresh unattended current-suite passes on API 26/30/31/34/35 plus the API 36 reference, each with 22 results, 2 identified opt-in backend skips, connected privacy probes, and exact permission restoration; prior API 33 physical evidence remains recorded; `docs/evidence/verification/emulator-api-matrix/latest/summary.json` and `docs/evidence/verification/emulator-connected/SellerKeyboardApi36Privacy/latest/summary.json` |
+| Form factor | Compact phone, mainstream phone, tall phone, tablet/foldable width | API 36 Small Phone, Medium Phone, Pixel 6 Pro and Medium Tablet retain their earlier suite evidence; the mainstream API 36 reference passes the current 22-result suite; cold-booted Medium Tablet native portrait/landscape and a live 600 dp foldable-width resize have direct screenshots/hierarchies, 48 dp controls, exact touch typing, and post-resize IME recovery; a separate cold-booted Pixel Fold AVD declares a hinge sensor and passes Android `OPENED` 180°, `HALF_OPENED` 90°, `CLOSED` 0° outer-display, and reopened transitions without host relaunch, preserving 48 dp semantics and exact visible-key text | Physical foldable acceptance pending |
 | Orientation | Portrait and landscape | API 33 pass: `docs/evidence/device-2026-07-11-api33-matrix.md` |
 | Navigation | Gesture and three-button | API 33 physical gesture capture; API 36 emulator connected suite passes in gestural and three-button modes; physical three-button acceptance pending |
 | Display | 60 Hz and high refresh where available | API 33 pass at actual 60/90 Hz; remaining devices pending |
@@ -42,7 +42,7 @@ Required app categories:
 - Gmail or equivalent email recipient/subject/body fields;
 - confirmed Vietnamese seller messaging apps;
 - confirmed commerce seller apps;
-- a password manager supplying inline autofill;
+- a password manager supplying inline autofill (KeePassDX 4.4.5 with a local fictional vault now passes on the API 36 emulator; physical OEM and alternate-provider coverage remain);
 - one editor accepting `image/jpeg` content and one rejecting it;
 - an editor with incomplete or unusual `InputConnection` behavior.
 
@@ -110,14 +110,18 @@ emoji, flags, skin tones, variation selectors, and mixed-direction text.
 ### Candidates and dictionary
 
 Automated API 36 evidence now proves that a normal session can populate candidate/completion/inline
-state and that a hot switch to password mode clears it and rejects stale late results. The checks
-below remain manual target-app/physical acceptance.
+state and that a hot switch to password mode clears it and rejects stale late results. A separate
+real product-UI flow adds a controlled personal word, proves process-recreation persistence, exposes
+and exactly commits the personal candidate through visible keys, suppresses it in a masked field,
+persists Remove and Clear, restores the original dictionary exactly, and records `0/0` exact-UID
+network bytes with zero controlled-word logs. The unchecked items below remain target-app/physical
+acceptance.
 
 - [ ] VI/EN/bilingual candidates remain responsive and match the offline corpus behavior.
 - [ ] Protected email, URL, phone, price, SKU, order, tracking, discount, hashtag, and mention tokens are unchanged.
 - [ ] Immediate Backspace after correction restores the exact original; cursor/unrelated edit closes undo.
-- [ ] Add/remove/clear personal dictionary persists across service recreation and stays local.
-- [ ] Sensitive/private fields show no candidates or learning.
+- [x] API 36 add/remove/clear personal dictionary persists across app/IME recreation and stays local; physical OEM acceptance remains pending.
+- [x] API 36 masked sensitive field shows no personal candidate and the IME bridge reports zero candidates; named physical/private-profile observation remains pending.
 
 ### Clipboard and emoji
 
@@ -126,18 +130,28 @@ history-disabled non-persistence, system-marked-sensitive rejection, listener re
 transition, and final repository clear. Pin/use/delete/expiry UI and physical OEM behavior remain
 manual.
 
+The real installed-IME API 36 emoji flow now covers toolbar open, touch-only local-keypad search,
+exact search and skin-tone variant commits, recents and Clear persistence across IME process
+recreation, masked-editor suppression, 48 dp action/key height with labeled semantics, exact rollback
+of recents and the Emoji2 sticky variant, and exact app-UID `0/0` attribution with zero controlled
+query/emoji logs. Physical OEM/font rendering and broader assistive-device acceptance remain pending.
+
 - [ ] Clipboard capture is optional; marked-sensitive clips are rejected.
 - [ ] Twenty-item unpinned bound, 30-day expiry, pin/unpin/use/delete/clear work across recreation.
 - [ ] Phone, URL, address, price, order, tracking, date/time, and discount fragments are correct.
 - [ ] Clipboard UI and retained context disappear in sensitive/private fields.
-- [ ] Emoji categories/search/recents/variants commit full sequences; recents clear locally.
+- [x] API 36 Emoji categories/search/recents/variants commit full sequences; recents clear locally and persist across recreation. Physical OEM/font acceptance remains pending.
 - [ ] Unsupported editor/font rendering degrades without corrupting text.
 
 ### Voice and translation
 
-- [ ] Pre-permission voice disclosure appears before the Android microphone prompt.
+- [ ] Pre-permission voice disclosure appears before the Android microphone prompt. API 36 emulator
+  dismissal/retry/grant passes unattended; the five-approval Xiaomi batch now captures the physical
+  OEM presentation after approval 5 without another install.
 - [ ] Denied permission, missing provider, listening, processing, final result, cancellation, and error are visible and interruptible.
-- [ ] Final voice transcript is not inserted automatically; Insert commits it, Discard does not.
+- [ ] Final voice transcript is not inserted automatically; Insert commits it, Discard does not. A
+  byte-exact API 36 controlled fixture now reaches the configured provider and remains review-only
+  with the target editor unchanged; real physical-microphone quality remains pending.
 - [ ] Provider/on-device network status is visible and the previous keyboard surface is restored.
 - [ ] Voice is unavailable in sensitive/private fields and leaves no transcript after field change.
 - [ ] Translation accepts only explicit draft/selection/paste and shows model download/progress/cancel/retry/delete.
@@ -150,7 +164,25 @@ manual.
 Automated API 36 evidence covers a real IME connection to a neutral app under a distinct UID in
 three modes: advertised JPEG accepted after reading the granted URI, advertised JPEG rejected with
 full text/link fallback, and unsupported MIME with the same fallback. Named third-party app
-acceptance remains manual.
+acceptance remains manual. A clean-account probe recorded under
+`docs/evidence/verification/emulator-named-app-account-gates/api36-2026-07-12/` proves that the
+installed Gmail and Google Docs builds do not expose account-free editors: Gmail requires at least
+one email address, while Docs' account-discovery **Skip** action leads to Google sign-in. Google
+Autofill is configured, but there is no approved Google-provider credential fixture. These are
+explicit external test-account/provider preconditions, not compatibility failures or passes. An
+API 36 test under `docs/evidence/verification/emulator-inline-autofill/` proves the
+actual platform path with three distinct UIDs: a deterministic `AutofillService` receives
+SellerKeyboard's real inline request, SellerKeyboard visibly renders the provider-owned dataset,
+and a UI tap fills exact username/password hashes in the neutral host. IME, provider, and host each
+record `0/0` UID bytes and zero controlled-value logs, and the Google Autofill/IME/package-presence
+state is restored exactly. A second clean-state verifier under
+`docs/evidence/verification/emulator-named-password-manager/` authenticates the official signed
+KeePassDX 4.4.5 APK, creates a fictional local-only vault, opens KeePassDX's provider-owned picker,
+returns to two visible SellerKeyboard inline chips, selects the exact credential, and fills both
+fields. It records `0/0` UID bytes plus zero controlled logs for the distinct IME/provider/host UIDs
+and removes the provider and fixture vault while restoring the original settings. This closes one
+named password-manager path, but not account-backed email/browser, alternate-provider, or physical
+OEM acceptance.
 
 - [ ] Android 11+ inline suggestions render without exposing hidden values before selection.
 - [ ] Empty/provider change/field change clears stale inline suggestions.
@@ -198,9 +230,9 @@ reviewable draft, corrections, wrong/unresolved insertion, offline completion, a
 
 - [ ] Network capture shows zero normal-typing/candidate/clipboard/seller traffic. API 33 physical normal typing and the API 36 synthetic matrix pass; a fresh account-free Chrome/Google Messages run also records exact SellerKeyboard-UID `0/0` RX/TX across URL/search, Messages search, recipient, and unsent SMS-draft typing (`docs/evidence/verification/emulator-named-apps/full-privacy-2026-07-12/summary.json`). Production-host and independent capture remain pending.
 - [ ] Voice, translation model download, remote image, and optional sync traffic is explicit and attributable.
-- [ ] Logcat contains no typed, selected, surrounding, template, clipboard, transcript, identifier, or URL text. Current exact-UID named-app evidence finds zero occurrences of `skqvz`, sentence-cased `Skqvz`, and fictional recipient `5550100`; deterministic spoken-transcript and independent capture remain pending.
+- [ ] Logcat contains no typed, selected, surrounding, template, clipboard, transcript, identifier, or URL text. Current exact-UID named-app evidence finds zero occurrences of `skqvz`, sentence-cased `Skqvz`, and fictional recipient `5550100`; deterministic and configured-provider controlled-audio evidence find zero controlled-transcript occurrences across app/provider UIDs. Physical-microphone, production-host, and independent capture remain pending.
 - [ ] Sensitive-mode matrix proves no prohibited surface, retention, or late async result.
-- [ ] Upgrade a representative backup and verify snippets, images, clipboard pins, profiles, dictionary, and settings.
+- [ ] Upgrade a representative backup and verify snippets, images, clipboard pins, profiles, dictionary, and settings. The Xiaomi batch now automatically covers a reversible legacy reply/body/image, pinned clipboard item, keyboard settings, and versioned export across the prompt-4 version-code 24→25 upgrade; profile/dictionary breadth and physical acceptance still require the attended run.
 - [ ] Run connected tests with zero unapproved skips.
 - [ ] Run 100 show/hide/editor-switch cycles across text, multiline, email, decimal, and password fields.
 - [ ] Macrobenchmark records frame timing, max heap/RSS, Perfetto traces, frozen frames, and ANRs.

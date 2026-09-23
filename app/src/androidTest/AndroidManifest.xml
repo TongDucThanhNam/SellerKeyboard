@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+
+    <application>
+        <service
+            android:name="com.terasumi.sellerkeyboard.voice.fixture.DeterministicRecognitionService"
+            android:exported="true"
+            android:permission="android.permission.BIND_SPEECH_RECOGNITION_SERVICE"
+            android:process=":recognition_test">
+            <intent-filter>
+                <action android:name="android.speech.RecognitionService" />
+            </intent-filter>
+        </service>
+        <service
+            android:name="com.terasumi.sellerkeyboard.voice.fixture.DeterministicCancelRecognitionService"
+            android:exported="true"
+            android:permission="android.permission.BIND_SPEECH_RECOGNITION_SERVICE"
+            android:process=":recognition_cancel_test">
+            <intent-filter>
+                <action android:name="android.speech.RecognitionService" />
+            </intent-filter>
+        </service>
+        <service
+            android:name="com.terasumi.sellerkeyboard.voice.fixture.DeterministicNetworkRecognitionService"
+            android:exported="true"
+            android:permission="android.permission.BIND_SPEECH_RECOGNITION_SERVICE"
+            android:process=":recognition_network_test">
+            <intent-filter>
+                <action android:name="android.speech.RecognitionService" />
+            </intent-filter>
+        </service>
+        <service
+            android:name="com.terasumi.sellerkeyboard.voice.fixture.DeterministicNoMatchRecognitionService"
+            android:exported="true"
+            android:permission="android.permission.BIND_SPEECH_RECOGNITION_SERVICE"
+            android:process=":recognition_no_match_test">
+            <intent-filter>
+                <action android:name="android.speech.RecognitionService" />
+            </intent-filter>
+        </service>
+        <!-- Android 8-11 SpeechRecognizer binds directly from the client UID,
+             before the system-server mediation used by modern Android. The
+             instrumentation-only legacy fixture therefore cannot require the
+             platform signature binding permission. It is selected only below
+             API 31 and is never packaged in the production APK. -->
+        <service
+            android:name="com.terasumi.sellerkeyboard.voice.fixture.LegacyDeterministicRecognitionService"
+            android:exported="true"
+            android:process=":recognition_legacy_test">
+            <intent-filter>
+                <action android:name="android.speech.RecognitionService" />
+            </intent-filter>
+        </service>
+    </application>
+</manifest>

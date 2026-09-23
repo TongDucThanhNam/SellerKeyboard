@@ -1,0 +1,9 @@
+API matrix failed for: 30, 34, 35. See 
+C:\Users\terasumi\Documents\source_code\SellerKeyboard\docs\evidence\verification\emulator-api-matrix\latest.
+At C:\Users\terasumi\Documents\source_code\SellerKeyboard\scripts\verify-emulator-api-matrix.ps1:202 char:5
++     throw "API matrix failed for: $($failed.api -join ', '). See $mat ...
++     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (API matrix fail...-matrix\latest.:String) [], RuntimeException
+    + FullyQualifiedErrorId : API matrix failed for: 30, 34, 35. See C:\Users\terasumi\Documents\source_code\SellerKey 
+   board\docs\evidence\verification\emulator-api-matrix\latest.
+ 

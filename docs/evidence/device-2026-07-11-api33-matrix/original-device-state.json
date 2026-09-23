@@ -1,0 +1,19 @@
+{
+  "defaultIme": "com.google.android.inputmethod.latin/com.android.inputmethod.latin.LatinIME",
+  "fontScale": "1.0",
+  "peakRefresh": "null",
+  "minRefresh": "null",
+  "userRefresh": "null",
+  "secureMiuiRefresh": "60",
+  "secureUserRefresh": "60",
+  "globalMiuiRefresh": "null",
+  "globalUserRefresh": "null",
+  "accelerometerRotation": "0",
+  "userRotation": "0",
+  "windowAnimation": "1.0",
+  "transitionAnimation": "1.0",
+  "animatorDuration": "1.0",
+  "accessibilityEnabled": "0",
+  "accessibilityServices": "null",
+  "nightMode": "Night mode: yes"
+}

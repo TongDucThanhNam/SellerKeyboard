@@ -1,0 +1,18 @@
+﻿{
+    "capturedAt":  "2026-07-12T21:38:54.6669312+07:00",
+    "serial":  "emulator-5554",
+    "packageName":  "com.google.android.tts",
+    "uid":  10150,
+    "networkExpectation":  "Record",
+    "logcatClearSucceeded":  true,
+    "network":  {
+                    "supported":  true,
+                    "reason":  "",
+                    "matchingLines":  0,
+                    "rxBytes":  0,
+                    "txBytes":  0,
+                    "lines":  [
+
+                              ]
+                }
+}

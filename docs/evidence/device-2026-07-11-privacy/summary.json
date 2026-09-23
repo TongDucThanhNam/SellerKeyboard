@@ -1,0 +1,15 @@
+{
+  "capturedAt": "2026-07-11T12:55:37.0173799+07:00",
+  "serial": "af339028",
+  "uid": 10299,
+  "canary": "qwerty",
+  "beforeRxBytes": 0,
+  "afterRxBytes": 0,
+  "beforeTxBytes": 0,
+  "afterTxBytes": 0,
+  "rxDelta": 0,
+  "txDelta": 0,
+  "beforeMatchingLines": 0,
+  "afterMatchingLines": 1,
+  "canaryOccurrencesInUidLog": 0
+}

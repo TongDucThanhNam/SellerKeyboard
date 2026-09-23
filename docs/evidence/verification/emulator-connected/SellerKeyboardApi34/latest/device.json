@@ -1,0 +1,9 @@
+﻿{
+    "serial":  "emulator-5556",
+    "manufacturer":  "Google",
+    "model":  "sdk_gphone64_x86_64",
+    "api":  34,
+    "android":  "14",
+    "build":  "google/sdk_gphone64_x86_64/emu64xa:14/UE1A.230829.050/12077443:userdebug/dev-keys",
+    "evidenceClass":  "emulator-only; not physical-device or Gboard-performance evidence"
+}

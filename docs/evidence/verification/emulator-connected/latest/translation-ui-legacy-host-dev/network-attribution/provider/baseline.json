@@ -1,0 +1,18 @@
+﻿{
+    "capturedAt":  "2026-07-11T23:42:55.4147773+07:00",
+    "serial":  "emulator-5554",
+    "packageName":  "com.google.android.gms",
+    "uid":  10145,
+    "networkExpectation":  "Record",
+    "logcatClearSucceeded":  false,
+    "network":  {
+                    "supported":  false,
+                    "reason":  "Android netstats poll unavailable or timed out.",
+                    "matchingLines":  0,
+                    "rxBytes":  null,
+                    "txBytes":  null,
+                    "lines":  [
+                                  "Forced poll"
+                              ]
+                }
+}

@@ -1,0 +1,4 @@
+package,name,composable,skippable,restartable,readonly,inline,isLambda,hasDefaults,defaultsGroup,groups,calls,
+com.terasumi.sellerkeyboard.keyboard.SnippetsKeyboard,SnippetsKeyboard,1,1,1,0,0,0,0,0,3,6,
+com.terasumi.sellerkeyboard.keyboard.TemplateFillReview,TemplateFillReview,1,1,1,0,0,0,0,0,3,1,
+com.terasumi.sellerkeyboard.keyboard.SnippetKeyboardPreview,SnippetKeyboardPreview,1,1,1,0,0,0,0,0,1,1,

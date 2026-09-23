@@ -1,0 +1,79 @@
+﻿{
+    "generatedAt":  "2026-07-12T20:43:14.0699461+07:00",
+    "overall":  "PASS",
+    "evidenceClass":  "emulator API compatibility; not physical-device or OEM evidence",
+    "preservedInitialEmulators":  [
+                                      "emulator-5554"
+                                  ],
+    "apiLevels":  [
+                      26,
+                      30,
+                      31,
+                      34,
+                      35
+                  ],
+    "passCount":  5,
+    "failCount":  0,
+    "runs":  [
+                 {
+                     "api":  26,
+                     "avd":  "SellerKeyboardApi26",
+                     "serial":  "emulator-5556",
+                     "overall":  "PASS",
+                     "results":  22,
+                     "optionalBackendSkips":  2,
+                     "durationSeconds":  196.5,
+                     "evidence":  "../../emulator-connected/SellerKeyboardApi26/latest/summary.json",
+                     "reused":  false,
+                     "error":  null
+                 },
+                 {
+                     "api":  30,
+                     "avd":  "SellerKeyboardApi30",
+                     "serial":  "emulator-5556",
+                     "overall":  "PASS",
+                     "results":  22,
+                     "optionalBackendSkips":  2,
+                     "durationSeconds":  297.81,
+                     "evidence":  "../../emulator-connected/SellerKeyboardApi30/latest/summary.json",
+                     "reused":  false,
+                     "error":  null
+                 },
+                 {
+                     "api":  31,
+                     "avd":  "SellerKeyboardApi31",
+                     "serial":  "emulator-5556",
+                     "overall":  "PASS",
+                     "results":  22,
+                     "optionalBackendSkips":  2,
+                     "durationSeconds":  401.42,
+                     "evidence":  "../../emulator-connected/SellerKeyboardApi31/latest/summary.json",
+                     "reused":  false,
+                     "error":  null
+                 },
+                 {
+                     "api":  34,
+                     "avd":  "SellerKeyboardApi34",
+                     "serial":  "emulator-5556",
+                     "overall":  "PASS",
+                     "results":  22,
+                     "optionalBackendSkips":  2,
+                     "durationSeconds":  347.35,
+                     "evidence":  "../../emulator-connected/SellerKeyboardApi34/latest/summary.json",
+                     "reused":  false,
+                     "error":  null
+                 },
+                 {
+                     "api":  35,
+                     "avd":  "SellerKeyboardApi35",
+                     "serial":  "emulator-5556",
+                     "overall":  "PASS",
+                     "results":  22,
+                     "optionalBackendSkips":  2,
+                     "durationSeconds":  335.46,
+                     "evidence":  "../../emulator-connected/SellerKeyboardApi35/latest/summary.json",
+                     "reused":  false,
+                     "error":  null
+                 }
+             ]
+}

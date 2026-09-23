@@ -1,0 +1,71 @@
+﻿{
+    "generatedAt":  "2026-07-12T21:55:38.5197005+07:00",
+    "overall":  "PASS",
+    "serial":  "emulator-5554",
+    "targetPackage":  "com.terasumi.sellerkeyboard.benchmarkhost",
+    "targetIsDistinctPackage":  true,
+    "direction":  "EN_TO_VI",
+    "sourceSelectedFromTargetEditor":  true,
+    "previewVerified":  true,
+    "visiblePreviewMatchedControllerHash":  true,
+    "replacedSelection":  true,
+    "restoredOriginal":  true,
+    "insertedAfterOriginalOnNewLine":  true,
+    "restoredIdle":  true,
+    "translatedUtf16Length":  22,
+    "translatedSha256":  "a2df6c9b965a42dce59291697e90b10df4bedf51ad933ec97e9d533ef350e289",
+    "imeAttribution":  {
+                           "capturedAt":  "2026-07-12T21:55:37.5842720+07:00",
+                           "serial":  "emulator-5554",
+                           "packageName":  "com.terasumi.sellerkeyboard",
+                           "uid":  10232,
+                           "networkExpectation":  "Record",
+                           "networkAccountingSupported":  true,
+                           "networkAccountingReason":  "",
+                           "beforeRxBytes":  0,
+                           "afterRxBytes":  0,
+                           "beforeTxBytes":  0,
+                           "afterTxBytes":  0,
+                           "rxDelta":  0,
+                           "txDelta":  0,
+                           "canaries":  [
+                                            {
+                                                "value":  "Thank you for your order",
+                                                "occurrences":  0
+                                            },
+                                            {
+                                                "value":  "Cảm ơn bạn đã đặt hàng",
+                                                "occurrences":  0
+                                            }
+                                        ],
+                           "canaryOccurrencesInUidLog":  0
+                       },
+    "providerAttribution":  {
+                                "capturedAt":  "2026-07-12T21:55:38.5082140+07:00",
+                                "serial":  "emulator-5554",
+                                "packageName":  "com.google.android.gms",
+                                "uid":  10146,
+                                "networkExpectation":  "Record",
+                                "networkAccountingSupported":  true,
+                                "networkAccountingReason":  "",
+                                "beforeRxBytes":  0,
+                                "afterRxBytes":  0,
+                                "beforeTxBytes":  0,
+                                "afterTxBytes":  0,
+                                "rxDelta":  0,
+                                "txDelta":  0,
+                                "canaries":  [
+                                                 {
+                                                     "value":  "Thank you for your order",
+                                                     "occurrences":  0
+                                                 },
+                                                 {
+                                                     "value":  "Cảm ơn bạn đã đặt hàng",
+                                                     "occurrences":  0
+                                                 }
+                                             ],
+                                "canaryOccurrencesInUidLog":  0
+                            },
+    "previewWindow":  "C:\\Users\\terasumi\\Documents\\source_code\\SellerKeyboard\\docs\\evidence\\verification\\emulator-connected\\SellerKeyboardApi36Privacy\\latest\\translation-ui\\preview-actions-window.xml",
+    "claimBoundary":  "real API 36 Compose IME review UI, ML Kit EN-to-VI translation, and distinct-package editor mutation; named third-party and physical acceptance remain pending"
+}

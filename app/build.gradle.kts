@@ -31,6 +31,12 @@ android {
     }
 
     buildTypes {
+        create("upgradeFixture") {
+            initWith(getByName("debug"))
+            signingConfig = signingConfigs.getByName("debug")
+            matchingFallbacks += listOf("debug")
+            isDebuggable = true
+        }
         release {
             isMinifyEnabled = true
             isShrinkResources = true
@@ -63,6 +69,17 @@ android {
     }
     sourceSets {
         getByName("debug").assets.srcDir(rootProject.file("benchmark-fixtures"))
+        getByName("upgradeFixture").apply {
+            java.srcDir("src/debug/java")
+            manifest.srcFile("src/debug/AndroidManifest.xml")
+            assets.srcDir(rootProject.file("benchmark-fixtures"))
+        }
+        // The debug-signed, non-release benchmark APK keeps the shell/same-signature-guarded
+        // evidence bridge so physical capture can continue after its attended install.
+        getByName("benchmark").apply {
+            java.srcDir("src/debug/java")
+            assets.srcDir(rootProject.file("benchmark-fixtures"))
+        }
         getByName("test").resources.srcDir(rootProject.file("benchmark-fixtures"))
     }
     packaging {
@@ -73,6 +90,15 @@ android {
     externalNativeBuild {
         ndkBuild {
             path = file("src/main/jni/Android.mk")
+        }
+    }
+}
+
+androidComponents {
+    onVariants(selector().withBuildType("upgradeFixture")) { variant ->
+        variant.outputs.forEach { output ->
+            output.versionCode.set(24)
+            output.versionName.set("1.3.4-upgrade-fixture")
         }
     }
 }
@@ -112,6 +138,7 @@ dependencies {
 //    implementation("com.google.firebase:firebase-storage:21.0.0")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.2.1")
+    androidTestImplementation("androidx.test:rules:1.6.1")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")
     androidTestImplementation("androidx.test.uiautomator:uiautomator:2.3.0")
     //Glide for image loading
@@ -136,6 +163,7 @@ dependencies {
     implementation("com.google.mlkit:translate:17.0.3")
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
+    add("upgradeFixtureImplementation", "androidx.compose.ui:ui-test-manifest")
     //Navigation compose
     implementation("androidx.navigation:navigation-compose:2.9.7")
     //com.google.accompanist:accompanist-pager

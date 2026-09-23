@@ -603,6 +603,11 @@ fun KeyboardContent() {
                     candidates = candidateState.candidates,
                     myColor = myColor,
                     isLandscape = isLandscape,
+                    onDisplayed = {
+                        candidateState.displayTraceCookie?.let { cookie ->
+                            candidateController?.markCandidatesDisplayed(cookie)
+                        }
+                    },
                     onCandidate = { candidate ->
                         handleKeyboardAction(
                             KeyboardAction.AcceptCandidate(

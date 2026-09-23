@@ -1,0 +1,71 @@
+﻿{
+    "generatedAt":  "2026-07-11T23:44:03.1853091+07:00",
+    "overall":  "PASS",
+    "serial":  "emulator-5554",
+    "targetPackage":  "com.terasumi.sellerkeyboard.benchmarkhost",
+    "targetIsDistinctPackage":  true,
+    "direction":  "EN_TO_VI",
+    "sourceSelectedFromTargetEditor":  true,
+    "previewVerified":  true,
+    "visiblePreviewMatchedControllerHash":  true,
+    "replacedSelection":  true,
+    "restoredOriginal":  true,
+    "insertedAfterOriginalOnNewLine":  true,
+    "restoredIdle":  true,
+    "translatedUtf16Length":  22,
+    "translatedSha256":  "a2df6c9b965a42dce59291697e90b10df4bedf51ad933ec97e9d533ef350e289",
+    "imeAttribution":  {
+                           "capturedAt":  "2026-07-11T23:44:02.3292821+07:00",
+                           "serial":  "emulator-5554",
+                           "packageName":  "com.terasumi.sellerkeyboard",
+                           "uid":  10216,
+                           "networkExpectation":  "Record",
+                           "networkAccountingSupported":  false,
+                           "networkAccountingReason":  "Android netstats poll unavailable or timed out. Android netstats poll unavailable or timed out.",
+                           "beforeRxBytes":  null,
+                           "afterRxBytes":  null,
+                           "beforeTxBytes":  null,
+                           "afterTxBytes":  null,
+                           "rxDelta":  null,
+                           "txDelta":  null,
+                           "canaries":  [
+                                            {
+                                                "value":  "Thank you for your order",
+                                                "occurrences":  0
+                                            },
+                                            {
+                                                "value":  "Cảm ơn bạn đã đặt hàng",
+                                                "occurrences":  0
+                                            }
+                                        ],
+                           "canaryOccurrencesInUidLog":  0
+                       },
+    "providerAttribution":  {
+                                "capturedAt":  "2026-07-11T23:44:03.1823092+07:00",
+                                "serial":  "emulator-5554",
+                                "packageName":  "com.google.android.gms",
+                                "uid":  10145,
+                                "networkExpectation":  "Record",
+                                "networkAccountingSupported":  false,
+                                "networkAccountingReason":  "Android netstats poll unavailable or timed out. Android netstats poll unavailable or timed out.",
+                                "beforeRxBytes":  null,
+                                "afterRxBytes":  null,
+                                "beforeTxBytes":  null,
+                                "afterTxBytes":  null,
+                                "rxDelta":  null,
+                                "txDelta":  null,
+                                "canaries":  [
+                                                 {
+                                                     "value":  "Thank you for your order",
+                                                     "occurrences":  0
+                                                 },
+                                                 {
+                                                     "value":  "Cảm ơn bạn đã đặt hàng",
+                                                     "occurrences":  0
+                                                 }
+                                             ],
+                                "canaryOccurrencesInUidLog":  0
+                            },
+    "previewWindow":  ".\\docs\\evidence\\verification\\emulator-connected\\latest\\translation-ui-legacy-host-dev\\preview-actions-window.xml",
+    "claimBoundary":  "real API 36 Compose IME review UI, ML Kit EN-to-VI translation, and distinct-package editor mutation; named third-party and physical acceptance remain pending"
+}

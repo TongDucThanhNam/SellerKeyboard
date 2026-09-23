@@ -1,0 +1,30 @@
+{
+  "capturedAt": "2026-07-12T10:33:25.8681486+07:00",
+  "serial": "emulator-5554",
+  "packageName": "com.terasumi.sellerkeyboard",
+  "uid": 10227,
+  "networkExpectation": "Zero",
+  "networkAccountingSupported": true,
+  "networkAccountingReason": "",
+  "beforeRxBytes": 0,
+  "afterRxBytes": 0,
+  "beforeTxBytes": 0,
+  "afterTxBytes": 0,
+  "rxDelta": 0,
+  "txDelta": 0,
+  "canaries": [
+    {
+      "value": "shipping",
+      "occurrences": 0
+    },
+    {
+      "value": "🚚",
+      "occurrences": 0
+    },
+    {
+      "value": "🙋🏽",
+      "occurrences": 0
+    }
+  ],
+  "canaryOccurrencesInUidLog": 0
+}

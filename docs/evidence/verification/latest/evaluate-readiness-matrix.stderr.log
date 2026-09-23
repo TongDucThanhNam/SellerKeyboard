@@ -1,0 +1,9 @@
+Automated gates passed, but release-blocking evidence is missing. See 
+C:\Users\terasumi\Documents\source_code\SellerKeyboard\docs\evidence\verification\latest\release-readiness.json
+At C:\Users\terasumi\Documents\source_code\SellerKeyboard\scripts\verify-competitive-keyboard.ps1:1761 char:9
++         throw "Automated gates passed, but release-blocking evidence  ...
++         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (Automated gates...-readiness.json:String) [], RuntimeException
+    + FullyQualifiedErrorId : Automated gates passed, but release-blocking evidence is missing. See C:\Users\terasumi\ 
+   Documents\source_code\SellerKeyboard\docs\evidence\verification\latest\release-readiness.json
+ 

@@ -1,0 +1,88 @@
+﻿{
+    "generatedAt":  "2026-07-12T21:39:04.0231296+07:00",
+    "overall":  "PASS",
+    "serial":  "emulator-5554",
+    "api":  36,
+    "model":  "sdk_gphone64_x86_64",
+    "manufacturer":  "Google",
+    "fingerprint":  "google/sdk_gphone64_x86_64/emu64xa:16/BE2A.250530.026.F3/13894323:userdebug/dev-keys",
+    "isEmulator":  true,
+    "providerComponent":  "com.google.android.tts/com.google.android.apps.speech.tts.googletts.service.GoogleTTSRecognitionService",
+    "providerPackage":  "com.google.android.tts",
+    "audio":  {
+                  "source":  "Windows SAPI synthesized fixture",
+                  "phrase":  "hello world hello world",
+                  "format":  "PCM signed 16-bit little-endian, 16000 Hz, mono",
+                  "bytes":  138240,
+                  "sha256":  "399bf606be167ee484f3353d8f0732afd3b78dfb0ae15df99b1186ab74369db8",
+                  "deviceBytes":  138240,
+                  "deviceSha256":  "399bf606be167ee484f3353d8f0732afd3b78dfb0ae15df99b1186ab74369db8",
+                  "transferredByteExact":  true
+              },
+    "state":  "Result",
+    "transcript":  "hello world hello world",
+    "transcriptSha256":  "79cc5fcbf139dbfe2155074558673e1ef0afebff9be34dd7ae9cf6b8cf176b1a",
+    "expectedTokens":  [
+                           "hello",
+                           "world"
+                       ],
+    "missingTokens":  [
+
+                      ],
+    "reviewRequired":  true,
+    "usingOnDevice":  false,
+    "editorTextLengthBefore":  0,
+    "editorTextLengthAfter":  0,
+    "editorTextHashUnchanged":  true,
+    "appAttribution":  {
+                           "capturedAt":  "2026-07-12T21:39:03.4661742+07:00",
+                           "serial":  "emulator-5554",
+                           "packageName":  "com.terasumi.sellerkeyboard",
+                           "uid":  10232,
+                           "networkExpectation":  "Zero",
+                           "networkAccountingSupported":  true,
+                           "networkAccountingReason":  "",
+                           "beforeRxBytes":  0,
+                           "afterRxBytes":  0,
+                           "beforeTxBytes":  0,
+                           "afterTxBytes":  0,
+                           "rxDelta":  0,
+                           "txDelta":  0,
+                           "canaries":  [
+                                            {
+                                                "value":  "hello world hello world",
+                                                "occurrences":  0
+                                            }
+                                        ],
+                           "canaryOccurrencesInUidLog":  0
+                       },
+    "providerAttribution":  {
+                                "capturedAt":  "2026-07-12T21:39:04.0171880+07:00",
+                                "serial":  "emulator-5554",
+                                "packageName":  "com.google.android.tts",
+                                "uid":  10150,
+                                "networkExpectation":  "Record",
+                                "networkAccountingSupported":  true,
+                                "networkAccountingReason":  "",
+                                "beforeRxBytes":  0,
+                                "afterRxBytes":  0,
+                                "beforeTxBytes":  0,
+                                "afterTxBytes":  0,
+                                "rxDelta":  0,
+                                "txDelta":  0,
+                                "canaries":  [
+                                                 {
+                                                     "value":  "hello world hello world",
+                                                     "occurrences":  0
+                                                 }
+                                             ],
+                                "canaryOccurrencesInUidLog":  0
+                            },
+    "claimBoundary":  "controlled PCM through the configured real Android provider into app review state; no physical microphone/acoustic-quality claim",
+    "restoration":  {
+                        "recordAudioPermissionExact":  true,
+                        "showImeWithHardKeyboardExact":  true,
+                        "defaultImeExact":  true,
+                        "privateAudioFixtureDeleted":  true
+                    }
+}

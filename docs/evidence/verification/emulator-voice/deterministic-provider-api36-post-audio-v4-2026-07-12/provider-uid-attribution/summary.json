@@ -1,0 +1,26 @@
+﻿{
+    "capturedAt":  "2026-07-12T09:16:17.7740955+07:00",
+    "serial":  "emulator-5554",
+    "packageName":  "com.terasumi.sellerkeyboard.test",
+    "uid":  10229,
+    "networkExpectation":  "Zero",
+    "networkAccountingSupported":  true,
+    "networkAccountingReason":  "",
+    "beforeRxBytes":  0,
+    "afterRxBytes":  0,
+    "beforeTxBytes":  0,
+    "afterTxBytes":  0,
+    "rxDelta":  0,
+    "txDelta":  0,
+    "canaries":  [
+                     {
+                         "value":  "xin chÃ o",
+                         "occurrences":  0
+                     },
+                     {
+                         "value":  "xin chÃ o khÃ¡ch hÃ ng",
+                         "occurrences":  0
+                     }
+                 ],
+    "canaryOccurrencesInUidLog":  0
+}

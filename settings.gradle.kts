@@ -20,3 +20,4 @@ rootProject.name = "SellerKeyboard"
 include(":app")
 include(":benchmark")
 include(":benchmark-host")
+include(":autofill-test-provider")

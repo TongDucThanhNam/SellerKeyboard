@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<testsuites tests="3" failures="0" errors="0" skipped="0" time="469.568" timestamp="2026-07-11T04:52:05" hostname="localhost">
+  <testsuite name="com.terasumi.sellerkeyboard.benchmark.ImeShowBenchmark" tests="3" failures="0" errors="0" skipped="0" time="454.509" timestamp="2026-07-11T04:52:05" hostname="localhost">
+    <properties>
+      <property name="device" value="2201117TG - 13" />
+      <property name="flavor" value="" />
+      <property name="project" value=":benchmark" />
+    </properties>
+    <testcase name="coldEditorLaunchAndSellerKeyboardImeShow" classname="com.terasumi.sellerkeyboard.benchmark.ImeShowBenchmark" time="103.428" />
+    <testcase name="coldEditorLaunchAndGboardImeShowReference" classname="com.terasumi.sellerkeyboard.benchmark.ImeShowBenchmark" time="90.395" />
+    <testcase name="oneHundredImeShowHideCyclesTrackFramesAndMemory" classname="com.terasumi.sellerkeyboard.benchmark.ImeShowBenchmark" time="260.686" />
+  </testsuite>
+</testsuites>

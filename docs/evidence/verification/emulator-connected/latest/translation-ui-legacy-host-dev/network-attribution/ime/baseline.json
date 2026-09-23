@@ -1,0 +1,18 @@
+﻿{
+    "capturedAt":  "2026-07-11T23:42:55.0144603+07:00",
+    "serial":  "emulator-5554",
+    "packageName":  "com.terasumi.sellerkeyboard",
+    "uid":  10216,
+    "networkExpectation":  "Record",
+    "logcatClearSucceeded":  false,
+    "network":  {
+                    "supported":  false,
+                    "reason":  "Android netstats poll unavailable or timed out.",
+                    "matchingLines":  0,
+                    "rxBytes":  null,
+                    "txBytes":  null,
+                    "lines":  [
+                                  "Forced poll"
+                              ]
+                }
+}

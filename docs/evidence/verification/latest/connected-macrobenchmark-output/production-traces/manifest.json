@@ -1,0 +1,28 @@
+{
+  "benchmark": "productionKeyCandidateSurfaceAndTemplateFlowsHavePerfettoSections",
+  "iterations": 3,
+  "metricsMaximumMs": {
+    "keyDispatchMaximumMs": 146.6774,
+    "candidateQueryMaximumMs": 323.3146,
+    "candidateDisplayMaximumMs": 229.5905,
+    "surfaceSwitchMaximumMs": 21.2093,
+    "templateInsertionMaximumMs": 19.3588
+  },
+  "files": [
+    {
+      "path": "production-flow-iter000.perfetto-trace",
+      "bytes": 12919444,
+      "sha256": "2D1C7C94B66AF09DF281F2BD6FB9985B53FAA8000BEEF90A5AE3ADBB49898861"
+    },
+    {
+      "path": "production-flow-iter001.perfetto-trace",
+      "bytes": 12310992,
+      "sha256": "3616FAF796976D27F9BF78638F9CDF2BFCA3A359086B2502B04DEC7DD6FDF8D8"
+    },
+    {
+      "path": "production-flow-iter002.perfetto-trace",
+      "bytes": 12838109,
+      "sha256": "0E0A937B2CF04342B9429B1FE81F27C0957122153BDB38C27BE065751F3910C8"
+    }
+  ]
+}

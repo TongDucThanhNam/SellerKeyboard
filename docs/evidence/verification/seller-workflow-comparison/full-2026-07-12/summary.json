@@ -1,0 +1,56 @@
+{
+  "generatedAt": "2026-07-12T02:28:30.8074780+07:00",
+  "overall": "PASS",
+  "evidenceClass": "same-emulator real-touch comparison; not human or physical-device timing",
+  "serial": "emulator-5554",
+  "manufacturer": "Google",
+  "model": "sdk_gphone64_x86_64",
+  "api": 36,
+  "android": "16",
+  "buildFingerprint": "google/sdk_gphone64_x86_64/emu64xa:16/BE2A.250530.026.F3/13894323:userdebug/dev-keys",
+  "locale": "en-US",
+  "gboardPackage": "com.google.android.inputmethod.latin",
+  "gboardVersionName": "15.1.08.726012951-preload-x86_64",
+  "gboardVersionCode": 163542536,
+  "gboardSelectedSubtype": "1594443099",
+  "gboardSettingsBoundary": "Private Gboard preferences are not shell-readable; public package version, selected subtype, surface, and input-method dump are captured.",
+  "sellerPackage": "com.terasumi.sellerkeyboard",
+  "scenarioFixture": "benchmark-fixtures/seller-workflow-scenarios.json",
+  "scenarioCount": 40,
+  "touchPacingMillis": 80,
+  "touchMethod": "real accessibility-resolved key coordinates injected with input tap",
+  "draftVerification": "distinct-package editor SHA-256 after every scenario",
+  "gboardMedianInteractions": 41.0,
+  "sellerDefaultMedianInteractions": 41.0,
+  "sellerCustomizedMedianInteractions": 8.0,
+  "interactionReduction": 0.8048780487804879,
+  "interactionGateMinimum": 0.5,
+  "gboardMedianMilliseconds": 7736.967500000001,
+  "sellerDefaultMedianMilliseconds": 7276.053,
+  "sellerCustomizedMedianMilliseconds": 5268.334000000001,
+  "customizedTimeReductionVsGboard": 0.3190699069112026,
+  "completedDrafts": 120,
+  "expectedDrafts": 120,
+  "autoSentMessages": 0,
+  "unresolvedVariablesCommitted": 0,
+  "videos": {
+    "gboard": [
+      "C:\\Users\\terasumi\\Documents\\source_code\\SellerKeyboard\\docs\\evidence\\verification\\seller-workflow-comparison\\full-2026-07-12\\gboard-part1.mp4",
+      "C:\\Users\\terasumi\\Documents\\source_code\\SellerKeyboard\\docs\\evidence\\verification\\seller-workflow-comparison\\full-2026-07-12\\gboard-part2.mp4",
+      "C:\\Users\\terasumi\\Documents\\source_code\\SellerKeyboard\\docs\\evidence\\verification\\seller-workflow-comparison\\full-2026-07-12\\gboard-part3.mp4",
+      "C:\\Users\\terasumi\\Documents\\source_code\\SellerKeyboard\\docs\\evidence\\verification\\seller-workflow-comparison\\full-2026-07-12\\gboard-part4.mp4"
+    ],
+    "sellerDefault": [
+      "C:\\Users\\terasumi\\Documents\\source_code\\SellerKeyboard\\docs\\evidence\\verification\\seller-workflow-comparison\\full-2026-07-12\\seller-default-part1.mp4",
+      "C:\\Users\\terasumi\\Documents\\source_code\\SellerKeyboard\\docs\\evidence\\verification\\seller-workflow-comparison\\full-2026-07-12\\seller-default-part2.mp4",
+      "C:\\Users\\terasumi\\Documents\\source_code\\SellerKeyboard\\docs\\evidence\\verification\\seller-workflow-comparison\\full-2026-07-12\\seller-default-part3.mp4",
+      "C:\\Users\\terasumi\\Documents\\source_code\\SellerKeyboard\\docs\\evidence\\verification\\seller-workflow-comparison\\full-2026-07-12\\seller-default-part4.mp4"
+    ],
+    "sellerCustomized": [
+      "C:\\Users\\terasumi\\Documents\\source_code\\SellerKeyboard\\docs\\evidence\\verification\\seller-workflow-comparison\\full-2026-07-12\\seller-customized-part1.mp4",
+      "C:\\Users\\terasumi\\Documents\\source_code\\SellerKeyboard\\docs\\evidence\\verification\\seller-workflow-comparison\\full-2026-07-12\\seller-customized-part2.mp4",
+      "C:\\Users\\terasumi\\Documents\\source_code\\SellerKeyboard\\docs\\evidence\\verification\\seller-workflow-comparison\\full-2026-07-12\\seller-customized-part3.mp4",
+      "C:\\Users\\terasumi\\Documents\\source_code\\SellerKeyboard\\docs\\evidence\\verification\\seller-workflow-comparison\\full-2026-07-12\\seller-customized-part4.mp4"
+    ]
+  }
+}

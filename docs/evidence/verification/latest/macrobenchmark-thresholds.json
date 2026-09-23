@@ -1,0 +1,18 @@
+{
+  "sellerVisibleImeMedianMs": 244.3945,
+  "gboardVisibleImeMedianMs": 199.9814,
+  "sellerToGboardRatio": 1.2220861540123231,
+  "ratioLimit": 1.25,
+  "stressSampledFrameMaximumMs": 140.4357,
+  "frozenFrameLimitMs": 700.0,
+  "stressHeapMaximumKb": 3917.0,
+  "stressRssAnonMaximumKb": 36908.0,
+  "productionTraceSections": {
+    "keyDispatchMaximumMs": 146.6774,
+    "candidateQueryMaximumMs": 323.3146,
+    "candidateDisplayMaximumMs": 229.5905,
+    "surfaceSwitchMaximumMs": 21.2093,
+    "templateInsertionMaximumMs": 19.3588
+  },
+  "benchmarkData": "C:\\Users\\terasumi\\Documents\\source_code\\SellerKeyboard\\docs\\evidence\\verification\\latest\\connected-macrobenchmark-output\\benchmarkData.json"
+}
