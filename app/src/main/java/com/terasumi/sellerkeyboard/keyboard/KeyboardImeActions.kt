@@ -28,7 +28,7 @@ internal fun Context.inputConnectionOps(): InputConnectionOps {
 }
 
 internal fun Context.currentInputType(): Int {
-    return (this as? SellerKeyboard)?.currentInputTypeState?.value ?: 0
+    return (this as? SellerKeyboard)?.currentInputTypeState?.intValue ?: 0
 }
 
 internal fun Context.currentEditorInfoPolicy(): EditorInfoPolicy {

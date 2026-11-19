@@ -109,43 +109,45 @@ composeCompiler {
 }
 
 dependencies {
-    implementation("androidx.appcompat:appcompat:1.7.1")
-    implementation("com.google.android.material:material:1.13.0")
-    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
-    implementation("androidx.annotation:annotation-jvm:1.9.1")
+    // The September 2026 BOM selects UI 1.12.1, which requires compileSdk 37.
+    // Share the SDK-36-compatible BOM between production and instrumentation.
+    val composeBom = platform("androidx.compose:compose-bom:2026.02.01")
+
+    implementation("androidx.appcompat:appcompat:1.8.0")
+    implementation("com.google.android.material:material:1.14.0")
+    implementation("androidx.annotation:annotation-jvm:1.11.0")
     implementation("androidx.autofill:autofill:1.3.0")
     implementation("dev.convex:android-convexmobile:0.8.0@aar") {
         isTransitive = true
     }
 
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.3")
+    // Serialization 1.9.x matches Kotlin 2.2; 1.12.x requires Kotlin 2.4.
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.9.0")
 //    implementation(platform("com.google.firebase:firebase-bom:33.1.2"))
-    implementation("androidx.navigation:navigation-runtime-ktx:2.7.7")
-    implementation("androidx.navigation:navigation-ui-ktx:2.9.7")
-    implementation("androidx.navigation:navigation-fragment-ktx:2.7.7")
     implementation("androidx.preference:preference-ktx:1.2.1")
+    // Lifecycle 2.11 pulls Compose artifacts that require compileSdk 37.
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.10.0")
-    implementation("androidx.activity:activity-compose:1.9.1")
-    implementation(platform("androidx.compose:compose-bom:2026.02.01"))
+    implementation("androidx.activity:activity-compose:1.13.0")
+    implementation(composeBom)
     implementation("androidx.compose.ui:ui")
     implementation("androidx.compose.ui:ui-graphics")
     implementation("androidx.compose.ui:ui-tooling-preview")
-    implementation("androidx.wear.compose:compose-material:1.3.1")
     implementation("androidx.lifecycle:lifecycle-service:2.10.0")
-    implementation("androidx.tracing:tracing:1.2.0")
+    // Keep the system-trace API used by the existing Macrobenchmark evidence gates.
+    implementation("androidx.tracing:tracing:1.3.0")
 //    implementation("com.google.firebase:firebase-database:21.0.0")
 //    implementation("com.google.firebase:firebase-firestore:25.0.0")
 //    implementation("com.google.firebase:firebase-storage:21.0.0")
     testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.2.1")
-    androidTestImplementation("androidx.test:rules:1.6.1")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")
-    androidTestImplementation("androidx.test.uiautomator:uiautomator:2.3.0")
+    androidTestImplementation("androidx.test.ext:junit:1.3.0")
+    androidTestImplementation("androidx.test:rules:1.7.0")
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.7.0")
+    androidTestImplementation("androidx.test.uiautomator:uiautomator:2.4.0")
     //Glide for image loading
+    // Glide 5.0.9 (and its image codecs) require compileSdk 37.
     implementation("com.github.bumptech.glide:glide:4.16.0")
-    androidTestImplementation(platform("androidx.compose:compose-bom:2024.08.00"))
+    androidTestImplementation(composeBom)
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
-    annotationProcessor("com.github.bumptech.glide:compiler:4.16.0")
     // Voice typing uses Android SpeechRecognizer directly.
 //    implementation("com.google.ar:core:1.44.0") // Thay thế bằng phiên bản ARCore mới nhất nếu cần
     // Material Design 3
@@ -159,12 +161,13 @@ dependencies {
     implementation("androidx.compose.material:material-icons-extended")
     // Optional - Add window size utils
     implementation("androidx.compose.material3:material3-window-size-class")
-    implementation("androidx.emoji2:emoji2-emojipicker:1.6.0")
+    implementation("androidx.emoji2:emoji2-emojipicker:1.7.0")
     implementation("com.google.mlkit:translate:17.0.3")
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
     add("upgradeFixtureImplementation", "androidx.compose.ui:ui-test-manifest")
     //Navigation compose
+    // Navigation 2.10.x requires compileSdk 37; keep the current SDK 36 contract.
     implementation("androidx.navigation:navigation-compose:2.9.7")
     //com.google.accompanist:accompanist-pager
     implementation("com.google.accompanist:accompanist-pager:0.36.0")
@@ -172,7 +175,7 @@ dependencies {
     // Room dependencies removed: project does not use Room annotations.
     // Re-add when migrating to Room: room-runtime, room-ktx, room-compiler (KSP).
     //Gson
-    implementation("com.google.code.gson:gson:2.13.2")
+    implementation("com.google.code.gson:gson:2.15.0")
     //exp4j
     implementation("net.objecthunter:exp4j:0.4.8")
     //relay

@@ -7,10 +7,12 @@ import android.database.Cursor
 import android.net.Uri
 import android.os.Binder
 import android.os.Bundle
-import android.os.Process
 import com.terasumi.sellerkeyboard.MyApplication
 import com.terasumi.sellerkeyboard.database.DatabaseHelper
 import com.terasumi.sellerkeyboard.database.Snippets
+
+// Stable shell UID, including API 26-28 before Process.SHELL_UID was public.
+internal const val ADB_SHELL_UID = 2000
 
 class CloudSyncTestBridgeProvider : ContentProvider() {
     private var seededSnippetId: Int? = null
@@ -18,7 +20,7 @@ class CloudSyncTestBridgeProvider : ContentProvider() {
     override fun onCreate(): Boolean = true
 
     override fun call(method: String, arg: String?, extras: Bundle?): Bundle {
-        check(Binder.getCallingUid() == Process.SHELL_UID) {
+        check(Binder.getCallingUid() == ADB_SHELL_UID) {
             "The cloud release-boundary bridge accepts adb shell only"
         }
         return when (method) {

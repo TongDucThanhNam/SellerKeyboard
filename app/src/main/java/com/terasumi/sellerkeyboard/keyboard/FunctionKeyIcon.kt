@@ -42,8 +42,8 @@ import kotlinx.coroutines.launch
 fun FunctionKeyIcon(
     key: KeyboardKeyDefinition,
     myColor: KeyboardColors,
-    isLandscape: Boolean = false,
     modifier: Modifier = Modifier,
+    isLandscape: Boolean = false,
     cursorPosition: Int = -1,
     onAction: (KeyboardAction) -> Unit,
 ) {

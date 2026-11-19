@@ -104,23 +104,87 @@
 
 ## Getting Started
 
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
+The Android app builds independently of the optional Convex backend. No production
+signing key, Google Services configuration, or backend credentials are needed for
+local debug builds.
 
 ### Prerequisites
 
-Before you begin, ensure you have met the following requirements:  
-Install Android Studio, Android Device or Virtual Machine.
+- Git for Windows with long-path support enabled **before checkout**. This repo
+  contains benchmark evidence with paths longer than Windows' legacy limit.
+- JDK 17. `JAVA_HOME` must point to the JDK directory, not its `bin` directory.
+  The Gradle daemon toolchain is pinned to Java 17.
+- Android Studio supporting Android Gradle Plugin 9.1, or the Android command-line
+  tools. Use the committed Gradle 9.3.1 wrapper, not a global Gradle installation.
+- Android SDK packages: `platform-tools`, `platforms;android-36`,
+  `build-tools;36.0.0`, and `ndk;27.0.12077973` (the app builds JNI code).
+- An authorized Android device or emulator running API 26 or newer for manual
+  testing. An emulator is not required for JVM tests.
+
+The [AGP compatibility table](https://developer.android.com/build/releases/agp-9-1-0-release-notes#compatibility)
+documents the Gradle, JDK, and build-tools requirements.
 
 ### Installation
 
-- Clone the repository:
+On Windows, clone with long paths enabled:
 
-```
-git clone https://github.com/TongDucThanhNam/SellerKeyboard
+```powershell
+git clone -c core.longpaths=true https://github.com/TongDucThanhNam/SellerKeyboard.git
+cd SellerKeyboard
+.\scripts\setup-dev.ps1 -Verify
 ```
 
-- Run with Android Studio
+The setup script checks Java and the SDK packages, enables long paths for this
+repository, writes the ignored `local.properties`, and builds/tests the debug app.
+It does not install software, accept SDK licenses, or change global Git settings.
+Pass `-SdkRoot 'C:\Android\Sdk'` if the SDK is not already discoverable. Existing
+`local.properties` settings other than `sdk.dir` are preserved.
+
+To install on a specific device without deleting existing app data:
+
+```powershell
+adb devices -l
+.\scripts\setup-dev.ps1 -Verify -Install -Serial emulator-5554
+adb -s emulator-5554 shell am start -n com.terasumi.sellerkeyboard/.HomeActivity
+```
+
+Use the app's onboarding screen to enable and select Seller Keyboard. In Android
+Studio, open the repository root, sync Gradle, select the `app` module and `debug`
+variant, and use JDK 17 for Gradle. Keep `local.properties` machine-local.
+
+For a **fresh clone that failed during checkout**, first enable long paths:
+
+```powershell
+git config --local core.longpaths true
+```
+
+If `.git/index` is missing, `git read-tree HEAD` reconstructs the index without
+overwriting source files. Then run `git ls-files --deleted` and restore only the
+missing paths with `git restore --source=HEAD --worktree -- '<missing-path>'`.
+Do not use `git reset --hard` to repair a clone with local work.
+
+### Daily development
+
+```powershell
+.\gradlew.bat :app:assembleDebug
+.\gradlew.bat :app:testDebugUnitTest
+.\gradlew.bat :app:lintDebug
+.\gradlew.bat :app:connectedDebugAndroidTest
+```
+
+The last command requires a connected device. The existing emulator provisioning
+and verification scripts are described in [test gates](docs/qa/test_gates.md).
+An API 36 test AVD named `SellerKeyboardSmoke` is separate from third-party
+emulators that may also appear in `adb devices`.
+
+The project currently opts out of AGP's built-in Kotlin and new DSL. Their
+deprecation messages are migration work, not a reason to downgrade Gradle or hide
+diagnostics. The `release` variant is unsigned until release signing is configured;
+use `debug` for local development.
+
+For optional Convex backend work only, install Bun, run
+`bun install --frozen-lockfile`, and follow [the backend smoke guide](docs/qa/convex_backup_smoke.md).
+Do not commit `.env.local` or deploy to production as part of Android setup.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

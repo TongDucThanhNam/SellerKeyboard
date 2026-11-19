@@ -32,8 +32,8 @@ import com.terasumi.sellerkeyboard.keyboard.theme.KeyboardColors
 fun SpecialFunctionKeyIcon(
     contentDescription: String,
     myColor: KeyboardColors,
-    isLandscape: Boolean = false,
     modifier: Modifier = Modifier,
+    isLandscape: Boolean = false,
     onPress: () -> Unit,
 ) {
     val iconSize = if (isLandscape) 20.dp else 22.dp

@@ -56,7 +56,7 @@ class AndroidSpeechRecognizerRepository(
                         appContext,
                         recognitionServiceComponent
                     )
-                    useOnDevice && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S ->
+                    useOnDevice ->
                         SpeechRecognizer.createOnDeviceSpeechRecognizer(appContext)
                     else -> SpeechRecognizer.createSpeechRecognizer(appContext)
                 }

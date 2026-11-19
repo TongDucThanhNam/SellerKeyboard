@@ -1,6 +1,7 @@
 package com.terasumi.sellerkeyboard.benchmark
 
 import android.app.Activity
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.text.InputType
@@ -92,6 +93,14 @@ class ImeBenchmarkActivity : Activity() {
         editor.requestFocus()
     }
 
+    override fun onDestroy() {
+        // Insets may never arrive when the activity is closed or input is canceled.
+        finishImeShowTrace()
+        super.onDestroy()
+    }
+
+    // Cross-callback trace: closed by the IME-visible insets listener or onDestroy.
+    @SuppressLint("UnclosedTrace")
     private fun beginImeShowTrace() {
         if (!imeShowTraceOpen) {
             // Both calls run on the activity main thread. A synchronous section is

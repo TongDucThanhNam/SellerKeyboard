@@ -1,6 +1,7 @@
 package com.terasumi.sellerkeyboard.seller
 
 import android.content.Context
+import androidx.core.content.edit
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 
@@ -31,14 +32,13 @@ class SharedPreferencesProductReplyStore(context: Context) : ProductReplyStore {
             imageSourceAuthorized = imageDecision.normalizedUrl != null
         )
         val updated = list().filterNot { it.id == product.id } + normalizedProduct
-        preferences.edit().putString(KEY_PRODUCTS, ProductReplyPersistenceCodec.encode(updated)).apply()
+        preferences.edit { putString(KEY_PRODUCTS, ProductReplyPersistenceCodec.encode(updated)) }
     }
 
     override fun delete(id: String) {
-        preferences.edit().putString(
-            KEY_PRODUCTS,
-            ProductReplyPersistenceCodec.encode(list().filterNot { it.id == id })
-        ).apply()
+        preferences.edit {
+            putString(KEY_PRODUCTS, ProductReplyPersistenceCodec.encode(list().filterNot { it.id == id }))
+        }
     }
 
     companion object {

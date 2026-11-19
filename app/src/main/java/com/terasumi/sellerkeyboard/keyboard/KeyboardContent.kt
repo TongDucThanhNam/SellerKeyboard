@@ -6,6 +6,8 @@ import android.content.res.Configuration
 import android.view.View
 import android.view.ViewConfiguration
 import android.os.Trace
+import com.terasumi.sellerkeyboard.performance.AndroidPerformanceTracer
+import com.terasumi.sellerkeyboard.performance.trace
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
@@ -395,62 +397,62 @@ fun KeyboardContent() {
     }
 
     fun handleKeyboardAction(action: KeyboardAction) {
-        Trace.beginSection("SellerKeyboard.keyDispatch")
-        try {
-        val tokenBeforeAction = if (action == KeyboardAction.Space) {
-            TokenContextParser.parse(inputConnectionOps.getTextBeforeCursor())
-        } else {
-            null
-        }
-        val correction = candidateState.autoCorrection
-            ?.takeIf { decision ->
-                candidateState.sessionId == editorSession.id &&
-                    decision.original == tokenBeforeAction?.currentToken
-            }
-        val effectiveAction = if (action == KeyboardAction.Space && correction != null) {
-            KeyboardAction.ApplyAutoCorrection(
-                original = correction.original,
-                corrected = correction.replacement
-            )
-        } else {
-            action
-        }
-        val result = keyboardActionDispatcher.dispatchRuntime(
-            action = effectiveAction,
-            state = keyboardRuntimeState,
-            lastShiftTapTime = lastShiftTapTime
-        )
-        keyboardRuntimeState = result.state
-        lastShiftTapTime = result.lastShiftTapTime
-        if (effectiveAction is KeyboardAction.KeyPress || effectiveAction == KeyboardAction.Delete ||
-            effectiveAction == KeyboardAction.Space || effectiveAction is KeyboardAction.AcceptCandidate ||
-            effectiveAction is KeyboardAction.ApplyAutoCorrection) {
-            val tokenContext = TokenContextParser.parse(inputConnectionOps.getTextBeforeCursor())
-            candidateController?.request(
-                sessionId = editorSession.id,
-                query = CandidateQuery(
-                    currentToken = tokenContext.currentToken,
-                    previousToken = tokenContext.previousToken,
-                    rawTelexToken = telexProcessor.rawSyllable.takeIf(String::isNotBlank),
-                    isSensitive = editorSession.privacy.isSensitive
+        AndroidPerformanceTracer.trace("SellerKeyboard.keyDispatch") {
+            try {
+                val tokenBeforeAction = if (action == KeyboardAction.Space) {
+                    TokenContextParser.parse(inputConnectionOps.getTextBeforeCursor())
+                } else {
+                    null
+                }
+                val correction = candidateState.autoCorrection
+                    ?.takeIf { decision ->
+                        candidateState.sessionId == editorSession.id &&
+                            decision.original == tokenBeforeAction?.currentToken
+                    }
+                val effectiveAction = if (action == KeyboardAction.Space && correction != null) {
+                    KeyboardAction.ApplyAutoCorrection(
+                        original = correction.original,
+                        corrected = correction.replacement
+                    )
+                } else {
+                    action
+                }
+                val result = keyboardActionDispatcher.dispatchRuntime(
+                    action = effectiveAction,
+                    state = keyboardRuntimeState,
+                    lastShiftTapTime = lastShiftTapTime
                 )
-            )
-            shortcutController?.request(
-                sessionId = editorSession.id,
-                token = tokenContext.currentToken,
-                isSensitive = editorSession.privacy.isSensitive
-            )
-            sellerTopicMatch = if (editorSession.privacy.canUseSellerTools) {
-                SellerTopicClassifier.classifyExplicitText(
-                    inputConnectionOps.getTextBeforeCursor()?.toString().orEmpty().takeLast(240)
-                )
-            } else {
-                null
+                keyboardRuntimeState = result.state
+                lastShiftTapTime = result.lastShiftTapTime
+                if (effectiveAction is KeyboardAction.KeyPress || effectiveAction == KeyboardAction.Delete ||
+                    effectiveAction == KeyboardAction.Space || effectiveAction is KeyboardAction.AcceptCandidate ||
+                    effectiveAction is KeyboardAction.ApplyAutoCorrection) {
+                    val tokenContext = TokenContextParser.parse(inputConnectionOps.getTextBeforeCursor())
+                    candidateController?.request(
+                        sessionId = editorSession.id,
+                        query = CandidateQuery(
+                            currentToken = tokenContext.currentToken,
+                            previousToken = tokenContext.previousToken,
+                            rawTelexToken = telexProcessor.rawSyllable.takeIf(String::isNotBlank),
+                            isSensitive = editorSession.privacy.isSensitive
+                        )
+                    )
+                    shortcutController?.request(
+                        sessionId = editorSession.id,
+                        token = tokenContext.currentToken,
+                        isSensitive = editorSession.privacy.isSensitive
+                    )
+                    sellerTopicMatch = if (editorSession.privacy.canUseSellerTools) {
+                        SellerTopicClassifier.classifyExplicitText(
+                            inputConnectionOps.getTextBeforeCursor()?.toString().orEmpty().takeLast(240)
+                        )
+                    } else {
+                        null
+                    }
+                }
+            } finally {
+                context.updateImeComposition(telexProcessor.composingText)
             }
-        }
-        } finally {
-            context.updateImeComposition(telexProcessor.composingText)
-            Trace.endSection()
         }
     }
 

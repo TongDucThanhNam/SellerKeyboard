@@ -53,6 +53,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.style.TextOverflow
@@ -470,7 +471,7 @@ private fun SnippetImagePickerSection(
                 targetState = when {
                     isLoadingImages -> stringResource(R.string.snippet_images_loading)
                     bitmaps.isEmpty() -> stringResource(R.string.snippet_tap_to_add_images)
-                    else -> stringResource(R.string.snippet_images_selected, bitmaps.size)
+                    else -> pluralStringResource(R.plurals.snippet_images_selected, bitmaps.size, bitmaps.size)
                 },
                 label = "image-selection"
             ) { animatedText ->

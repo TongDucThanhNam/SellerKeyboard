@@ -1,9 +1,9 @@
 package com.terasumi.sellerkeyboard.debug
 
+import android.annotation.SuppressLint
 import android.content.ContentProvider
 import android.content.ContentValues
 import android.content.ClipData
-import android.content.ClipDescription
 import android.content.ClipboardManager
 import android.content.ComponentName
 import android.content.Context
@@ -17,12 +17,14 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.os.ParcelFileDescriptor
-import android.os.Process
 import android.os.PersistableBundle
 import android.provider.Settings
 import android.view.View
 import android.view.inputmethod.CompletionInfo
 import androidx.annotation.Keep
+import androidx.core.graphics.createBitmap
+import androidx.core.net.toUri
+import com.terasumi.sellerkeyboard.clipboard.CLIPBOARD_SENSITIVE_KEY
 import com.google.gson.Gson
 import com.terasumi.sellerkeyboard.ime.ActiveImeSurface
 import com.terasumi.sellerkeyboard.ime.RichContentPolicy
@@ -420,6 +422,8 @@ class ImeTestBridgeProvider : ContentProvider() {
         .digest(value.toByteArray(Charsets.UTF_8))
         .joinToString("") { byte -> "%02x".format(byte.toInt() and 0xff) }
 
+    // KTX edit returns Unit; rollback must verify a synchronous commit before process restart.
+    @SuppressLint("UseKtx")
     private fun capturePersonalDictionaryFixture(service: SellerKeyboard): Bundle {
         val backup = service.getSharedPreferences(
             PERSONAL_DICTIONARY_FIXTURE_PREFS,
@@ -470,6 +474,8 @@ class ImeTestBridgeProvider : ContentProvider() {
         }
     }
 
+    // KTX edit returns Unit; rollback must verify a synchronous commit before process restart.
+    @SuppressLint("UseKtx")
     private fun restorePersonalDictionaryFixture(service: SellerKeyboard): Bundle {
         val backup = service.getSharedPreferences(
             PERSONAL_DICTIONARY_FIXTURE_PREFS,
@@ -537,6 +543,8 @@ class ImeTestBridgeProvider : ContentProvider() {
     private fun personalDictionaryWordsSha256(words: Set<String>): String =
         sha256(words.sorted().joinToString("\u0000"))
 
+    // KTX edit returns Unit; rollback must verify a synchronous commit before process restart.
+    @SuppressLint("UseKtx")
     private fun captureEmojiRecentsFixture(service: SellerKeyboard): Bundle {
         val backup = service.getSharedPreferences(EMOJI_RECENTS_FIXTURE_PREFS, Context.MODE_PRIVATE)
         val provider = LocalRecentEmojiProvider(service)
@@ -585,6 +593,8 @@ class ImeTestBridgeProvider : ContentProvider() {
         }
     }
 
+    // KTX edit returns Unit; rollback must verify a synchronous commit before process restart.
+    @SuppressLint("UseKtx")
     private fun restoreEmojiRecentsFixture(service: SellerKeyboard): Bundle {
         val backup = service.getSharedPreferences(EMOJI_RECENTS_FIXTURE_PREFS, Context.MODE_PRIVATE)
         check(backup.getBoolean(EMOJI_RECENTS_FIXTURE_CAPTURED, false)) {
@@ -663,6 +673,8 @@ class ImeTestBridgeProvider : ContentProvider() {
     private fun emojiRecentsSha256(recents: List<String>): String =
         sha256(recents.joinToString("\u0000"))
 
+    // KTX edit returns Unit; rollback must verify a synchronous commit before process restart.
+    @SuppressLint("UseKtx")
     private fun captureAndSeedUpgradeFixture(service: SellerKeyboard): Bundle {
         val fixturePreferences = service.getSharedPreferences(
             UPGRADE_FIXTURE_PREFS,
@@ -767,6 +779,8 @@ class ImeTestBridgeProvider : ContentProvider() {
         }
     }
 
+    // KTX edit returns Unit; rollback must verify a synchronous commit before process restart.
+    @SuppressLint("UseKtx")
     private fun restoreUpgradeFixture(service: SellerKeyboard): Bundle {
         val fixturePreferences = service.getSharedPreferences(
             UPGRADE_FIXTURE_PREFS,
@@ -1109,7 +1123,7 @@ class ImeTestBridgeProvider : ContentProvider() {
         val clip = ClipData.newPlainText("SellerKeyboard connected test", text)
         if (markedSensitive) {
             clip.description.extras = PersistableBundle().apply {
-                putBoolean(ClipDescription.EXTRA_IS_SENSITIVE, true)
+                putBoolean(CLIPBOARD_SENSITIVE_KEY, true)
             }
         }
         service.getSystemService(ClipboardManager::class.java)?.setPrimaryClip(clip)
@@ -1133,7 +1147,7 @@ class ImeTestBridgeProvider : ContentProvider() {
 
     private fun testImageUrl(service: SellerKeyboard): String {
         val image = File(service.cacheDir, "ime_test_product.jpg")
-        val bitmap = Bitmap.createBitmap(2, 2, Bitmap.Config.ARGB_8888).apply {
+        val bitmap = createBitmap(2, 2, Bitmap.Config.ARGB_8888).apply {
             eraseColor(Color.rgb(42, 111, 214))
         }
         FileOutputStream(image).use { output ->
@@ -1144,7 +1158,7 @@ class ImeTestBridgeProvider : ContentProvider() {
     }
 
     private fun validatedRemoteImageUrl(value: String?): String {
-        val uri = Uri.parse(value ?: error("Remote image URL is required"))
+        val uri = (value ?: error("Remote image URL is required")).toUri()
         check(
             uri.scheme == "http" && uri.host == "127.0.0.1" &&
                 uri.port == REMOTE_IMAGE_TEST_PORT && uri.path == "/logo.png"
@@ -1206,7 +1220,7 @@ class ImeTestBridgeProvider : ContentProvider() {
                 BENCHMARK_RUNNER_PACKAGE
             ) == PackageManager.SIGNATURE_MATCH
         check(
-            caller == Process.SHELL_UID ||
+            caller == ADB_SHELL_UID ||
                 caller == providerContext.applicationInfo.uid ||
                 signedBenchmarkRunner
         ) {

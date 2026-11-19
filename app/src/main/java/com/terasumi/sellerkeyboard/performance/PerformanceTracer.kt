@@ -1,5 +1,6 @@
 package com.terasumi.sellerkeyboard.performance
 
+import android.annotation.SuppressLint
 import androidx.tracing.Trace
 
 interface PerformanceTracer {
@@ -17,6 +18,8 @@ interface PerformanceTracer {
 }
 
 object AndroidPerformanceTracer : PerformanceTracer {
+    // Paired by PerformanceTracer.trace's finally block and the window tracker.
+    @SuppressLint("UnclosedTrace")
     override fun begin(section: String) = Trace.beginSection(section)
     override fun end() = Trace.endSection()
     override fun beginAsync(section: String, cookie: Int) =

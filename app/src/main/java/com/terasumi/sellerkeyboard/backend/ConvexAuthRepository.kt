@@ -1,6 +1,7 @@
 package com.terasumi.sellerkeyboard.backend
 
 import android.content.Context
+import androidx.core.content.edit
 import dev.convex.android.ConvexClient
 import kotlinx.coroutines.flow.first
 
@@ -62,24 +63,22 @@ class ConvexAuthRepository(
             "auth:whoAmI",
             args = mapOf("sessionToken" to session.sessionToken)
         ).first().getOrThrow()
-        preferences.edit()
-            .putString(KEY_EMAIL, result.email)
-            .apply()
+        preferences.edit { putString(KEY_EMAIL, result.email) }
         return result
     }
 
     fun clearSession() {
-        preferences.edit()
-            .remove(KEY_EMAIL)
-            .remove(KEY_SESSION_TOKEN)
-            .apply()
+        preferences.edit {
+            remove(KEY_EMAIL)
+            remove(KEY_SESSION_TOKEN)
+        }
     }
 
     private fun saveSession(result: AuthResultDto): AuthSession {
-        preferences.edit()
-            .putString(KEY_EMAIL, result.email)
-            .putString(KEY_SESSION_TOKEN, result.sessionToken)
-            .apply()
+        preferences.edit {
+            putString(KEY_EMAIL, result.email)
+            putString(KEY_SESSION_TOKEN, result.sessionToken)
+        }
         return AuthSession(
             email = result.email,
             sessionToken = result.sessionToken

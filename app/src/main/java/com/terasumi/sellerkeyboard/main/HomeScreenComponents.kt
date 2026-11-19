@@ -43,6 +43,7 @@ import androidx.compose.ui.graphics.lerp
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
@@ -326,8 +327,16 @@ fun RestoreBackupDialog(
             Text(
                 text = stringResource(
                     R.string.cloud_restore_message,
-                    restorePlan.snippetsToInsert.size,
-                    restorePlan.skippedExactMatches
+                    pluralStringResource(
+                        R.plurals.cloud_restore_insert_count,
+                        restorePlan.snippetsToInsert.size,
+                        restorePlan.snippetsToInsert.size
+                    ),
+                    pluralStringResource(
+                        R.plurals.cloud_restore_skip_count,
+                        restorePlan.skippedExactMatches,
+                        restorePlan.skippedExactMatches
+                    )
                 )
             )
         },
@@ -376,7 +385,7 @@ fun SnippetSectionHeader(snippetCount: Int) {
             color = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.8f)
         ) {
             Text(
-                text = stringResource(R.string.snippet_total_count, snippetCount),
+                text = pluralStringResource(R.plurals.snippet_total_count, snippetCount, snippetCount),
                 style = MaterialTheme.typography.labelSmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                 modifier = Modifier.padding(

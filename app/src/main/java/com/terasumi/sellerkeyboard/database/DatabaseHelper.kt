@@ -4,6 +4,7 @@ package com.terasumi.sellerkeyboard.database
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import androidx.core.database.sqlite.transaction
 
 class DatabaseHelper(context: Context) :
     SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
@@ -14,8 +15,7 @@ class DatabaseHelper(context: Context) :
     }
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
-        db.beginTransaction()
-        try {
+        db.transaction {
             if (oldVersion < 2) {
                 db.execSQL(SellerReplyTemplateTable.SQL_CREATE_TABLE)
                 db.execSQL(SellerReplyTemplateTable.SQL_MIGRATE_LEGACY_SNIPPETS)
@@ -23,9 +23,6 @@ class DatabaseHelper(context: Context) :
             if (oldVersion in 2 until 3) {
                 db.execSQL(SellerReplyTemplateTable.SQL_ADD_REPLY_PACK_COLUMN)
             }
-            db.setTransactionSuccessful()
-        } finally {
-            db.endTransaction()
         }
     }
 

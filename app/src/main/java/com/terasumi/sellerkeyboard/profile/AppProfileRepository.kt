@@ -1,6 +1,7 @@
 package com.terasumi.sellerkeyboard.profile
 
 import android.content.Context
+import androidx.core.content.edit
 import com.google.gson.Gson
 
 interface AppProfileStore {
@@ -25,15 +26,14 @@ class SharedPreferencesAppProfileStore(context: Context) : AppProfileStore {
     override fun saveProfile(profile: KeyboardProfile) {
         require(profile.id.isNotBlank() && profile.name.isNotBlank())
         val updated = (profiles().filterNot { it.id == profile.id } + profile)
-        preferences.edit().putString(KEY_PROFILES, gson.toJson(updated)).apply()
+        preferences.edit { putString(KEY_PROFILES, gson.toJson(updated)) }
     }
 
     override fun deleteProfile(profileId: String) {
         require(profileId.isNotBlank())
-        preferences.edit().putString(
-            KEY_PROFILES,
-            gson.toJson(profiles().filterNot { it.id == profileId })
-        ).apply()
+        preferences.edit {
+            putString(KEY_PROFILES, gson.toJson(profiles().filterNot { it.id == profileId }))
+        }
     }
 
     override fun bind(packageName: String, profileId: String) {
@@ -41,14 +41,13 @@ class SharedPreferencesAppProfileStore(context: Context) : AppProfileStore {
         val normalizedPackage = packageName.trim()
         val updated = bindings().filterNot { it.packageName == normalizedPackage } +
             AppProfileBinding(normalizedPackage, profileId)
-        preferences.edit().putString(KEY_BINDINGS, gson.toJson(updated)).apply()
+        preferences.edit { putString(KEY_BINDINGS, gson.toJson(updated)) }
     }
 
     override fun removeBinding(packageName: String) {
-        preferences.edit().putString(
-            KEY_BINDINGS,
-            gson.toJson(bindings().filterNot { it.packageName == packageName })
-        ).apply()
+        preferences.edit {
+            putString(KEY_BINDINGS, gson.toJson(bindings().filterNot { it.packageName == packageName }))
+        }
     }
 
     companion object {

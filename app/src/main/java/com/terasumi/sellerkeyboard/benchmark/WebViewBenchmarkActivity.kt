@@ -1,9 +1,11 @@
 package com.terasumi.sellerkeyboard.benchmark
 
 import android.app.Activity
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import android.webkit.WebResourceRequest
 import android.view.inputmethod.InputMethodManager
 
 /**
@@ -14,13 +16,20 @@ class WebViewBenchmarkActivity : Activity() {
     lateinit var editor: WebView
         private set
 
+    // Fixed local HTML and literal test scripts only; no remote navigation or file access.
+    @SuppressLint("SetJavaScriptEnabled")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         editor = WebView(this).apply {
             settings.javaScriptEnabled = true
+            settings.allowFileAccess = false
+            settings.allowContentAccess = false
+            settings.blockNetworkLoads = true
             isFocusable = true
             isFocusableInTouchMode = true
-            webViewClient = WebViewClient()
+            webViewClient = object : WebViewClient() {
+                override fun shouldOverrideUrlLoading(view: WebView, request: WebResourceRequest) = true
+            }
             loadDataWithBaseURL(
                 null,
                 HTML,

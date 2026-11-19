@@ -24,17 +24,8 @@
     <string name="enable_key_vibration">Bật rung khi nhấn phím</string>
     <string name="disable_key_vibration">Tắt rung khi nhấn phím</string>
     <string name="voice">Voice Assistance</string>
-    <string name="voice_status_listening">Đang nghe...</string>
-    <string name="voice_status_processing">Đang xử lý giọng nói...</string>
-    <string name="voice_status_permission_required">Cấp quyền micro rồi bấm mic lại</string>
-    <string name="voice_status_no_service">Không có dịch vụ nhận dạng giọng nói</string>
-    <string name="voice_status_disabled">Không thể dùng nhập giọng nói ở đây</string>
-    <string name="voice_status_no_match">Không nhận ra giọng nói</string>
-    <string name="voice_status_inserted">Đã chèn văn bản giọng nói</string>
-    <string name="voice_status_error">Lỗi nhập giọng nói</string>
     <string name="voice_cancel">Hủy nhập giọng nói</string>
     <string name="vietnamese_input">Gõ tiếng Việt</string>
-    <string name="subtype">Cài đặt ngôn ngữ phụ</string>
 
     <!-- Keyboard content -->
 
@@ -54,17 +45,20 @@
     <string name="keyboard">Keyboard</string>
     <string name="title_activity_home">Eragear Keyboard Copilot</string>
     <string name="switch_to_seller_keyboard">Chuyển sang Eragear Keyboard Copilot</string>
-    <string name="deleted">Đã xoá</string>
     <string name="settings">Cài đặt</string>
     <string name="switch_keyboard_hint">Mở danh sách bàn phím để dùng nhanh các snippet đã lưu.</string>
     <string name="open_keyboard_picker">Mở chọn bàn phím</string>
-    <string name="snippet_total_count">%1$d đoạn</string>
+    <plurals name="snippet_total_count">
+        <item quantity="other">%1$d đoạn</item>
+    </plurals>
     <string name="snippet_swipe_hint">Vuốt thẻ để xoá</string>
     <string name="empty_snippet_title">Chưa có snippet nào</string>
     <string name="empty_snippet_description">Tạo snippet đầu tiên để phản hồi khách nhanh và nhất quán hơn.</string>
     <string name="snippet_untitled">Snippet chưa có tiêu đề</string>
     <string name="snippet_content_empty">Chưa có nội dung.</string>
-    <string name="snippet_images_count">%1$d ảnh</string>
+    <plurals name="snippet_images_count">
+        <item quantity="other">%1$d ảnh</item>
+    </plurals>
     <string name="snippet_no_image">Chưa đính kèm ảnh</string>
     <string name="snippet_image">Ảnh của snippet</string>
     <string name="swipe_release_delete">Thả tay để xoá</string>
@@ -88,9 +82,11 @@
     <string name="clear_content">Xoá nội dung</string>
     <string name="images_section_title">Hình ảnh</string>
     <string name="images_section_description">Đính kèm tối đa năm ảnh sản phẩm hoặc ảnh phản hồi.</string>
-    <string name="snippet_images_loading">Đang tải ảnh...</string>
+    <string name="snippet_images_loading">Đang tải ảnh…</string>
     <string name="snippet_tap_to_add_images">Nhấn vào ô để thêm ảnh</string>
-    <string name="snippet_images_selected">Đã chọn %1$d ảnh</string>
+    <plurals name="snippet_images_selected">
+        <item quantity="other">Đã chọn %1$d ảnh</item>
+    </plurals>
     <string name="image_removed">Đã xoá ảnh</string>
     <string name="undo">Hoàn tác</string>
     <string name="selected_image">Ảnh đã chọn %1$d</string>
@@ -123,7 +119,7 @@
     <string name="cloud_backup_saved_suffix">snippet &#273;&#227; &#273;&#432;&#7907;c sao l&#432;u.</string>
     <string name="cloud_restore_empty">Kh&#244;ng c&#243; snippet m&#7899;i &#273;&#7875; kh&#244;i ph&#7909;c.</string>
     <string name="cloud_restore_title">Kh&#244;i ph&#7909;c backup</string>
-    <string name="cloud_restore_message">Ch&#232;n %1$d snippet t&#7915; cloud. %2$d snippet tr&#249;ng kh&#7899;p s&#7869; &#273;&#432;&#7907;c b&#7887; qua.</string>
+    <string name="cloud_restore_message">%1$s %2$s</string>
     <string name="cloud_restore_confirm">Kh&#244;i ph&#7909;c</string>
     <string name="cloud_restore_success_suffix">snippet &#273;&#227; &#273;&#432;&#7907;c kh&#244;i ph&#7909;c.</string>
     <string name="cloud_error_generic">Sao l&#432;u cloud th&#7845;t b&#7841;i.</string>
@@ -134,4 +130,10 @@
 
     <string name="subtype_vietnamese">Tiếng Việt</string>
     <string name="subtype_english">Tiếng Anh (Mỹ)</string>
+    <plurals name="cloud_restore_insert_count">
+        <item quantity="other">Chèn %1$d snippet từ cloud.</item>
+    </plurals>
+    <plurals name="cloud_restore_skip_count">
+        <item quantity="other">Bỏ qua %1$d snippet trùng khớp.</item>
+    </plurals>
 </resources>

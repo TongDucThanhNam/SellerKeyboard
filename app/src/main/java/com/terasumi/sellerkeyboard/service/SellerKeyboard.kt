@@ -10,6 +10,7 @@ import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
 import android.media.AudioManager
 import android.net.Uri
+import androidx.core.net.toUri
 import android.os.Build
 import android.os.Bundle
 import android.os.VibrationEffect
@@ -196,7 +197,7 @@ class SellerKeyboard : LifecycleInputMethodService(), ViewModelStoreOwner, Saved
     }
     private val textCandidateController by textCandidateControllerDelegate
 
-    val currentInputTypeState = androidx.compose.runtime.mutableStateOf(0)
+    val currentInputTypeState = androidx.compose.runtime.mutableIntStateOf(0)
     private val editorSessionCoordinator = EditorSessionCoordinator()
     private val keyboardRuntimeCoordinator = KeyboardRuntimeCoordinator()
     val currentEditorSessionState get() = editorSessionCoordinator.state
@@ -238,7 +239,7 @@ class SellerKeyboard : LifecycleInputMethodService(), ViewModelStoreOwner, Saved
         nextEditorSessionId += 1
         keyboardRuntimeCoordinator.reset()
         editorSessionCoordinator.start(resolveEditorSession(attribute, nextEditorSessionId))
-        currentInputTypeState.value = attribute?.inputType ?: 0
+        currentInputTypeState.intValue = attribute?.inputType ?: 0
         invalidateFieldScopedState()
     }
     private val audioManager: AudioManager? by lazy {
@@ -247,7 +248,7 @@ class SellerKeyboard : LifecycleInputMethodService(), ViewModelStoreOwner, Saved
 
     override fun onStartInputView(info: android.view.inputmethod.EditorInfo?, restarting: Boolean) {
         super.onStartInputView(info, restarting)
-        currentInputTypeState.value = info?.inputType ?: 0
+        currentInputTypeState.intValue = info?.inputType ?: 0
         if (currentEditorSessionState.value == EditorSession.Inactive) {
             nextEditorSessionId += 1
             editorSessionCoordinator.start(resolveEditorSession(info, nextEditorSessionId))
@@ -285,14 +286,14 @@ class SellerKeyboard : LifecycleInputMethodService(), ViewModelStoreOwner, Saved
     override fun onFinishInputView(finishingInput: Boolean) {
         invalidateFieldScopedState()
         super.onFinishInputView(finishingInput)
-        currentInputTypeState.value = 0
+        currentInputTypeState.intValue = 0
     }
 
     override fun onFinishInput() {
         editorSessionCoordinator.finish()
         keyboardRuntimeCoordinator.reset()
         invalidateFieldScopedState()
-        currentInputTypeState.value = 0
+        currentInputTypeState.intValue = 0
         super.onFinishInput()
     }
 
@@ -522,7 +523,7 @@ class SellerKeyboard : LifecycleInputMethodService(), ViewModelStoreOwner, Saved
         }
         if (!allowTestSource) return false
 
-        val uri = Uri.parse(imageUrl)
+        val uri = imageUrl.toUri()
         if (uri.scheme.equals("http", ignoreCase = true) &&
             uri.host == "127.0.0.1" && uri.port == DEBUG_REMOTE_IMAGE_TEST_PORT) {
             return true
@@ -618,7 +619,7 @@ class SellerKeyboard : LifecycleInputMethodService(), ViewModelStoreOwner, Saved
         return if (session.id != 0L) {
             EditorInfoPolicy(inputType = session.inputType, privacy = session.privacy)
         } else {
-            EditorInfoPolicy.fromInputType(currentInputEditorInfo?.inputType ?: currentInputTypeState.value)
+            EditorInfoPolicy.fromInputType(currentInputEditorInfo?.inputType ?: currentInputTypeState.intValue)
         }
     }
 
@@ -760,17 +761,12 @@ class SellerKeyboard : LifecycleInputMethodService(), ViewModelStoreOwner, Saved
         }
 
         try {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                targetVibrator.vibrate(
-                    VibrationEffect.createOneShot(
-                        HAPTIC_DURATION_MS,
-                        settingsRepository.hapticStrength
-                    )
+            targetVibrator.vibrate(
+                VibrationEffect.createOneShot(
+                    HAPTIC_DURATION_MS,
+                    settingsRepository.hapticStrength
                 )
-            } else {
-                @Suppress("DEPRECATION")
-                targetVibrator.vibrate(HAPTIC_DURATION_MS)
-            }
+            )
         } catch (_: SecurityException) {
             // Ignore when device policy blocks haptics for current user/profile.
         }

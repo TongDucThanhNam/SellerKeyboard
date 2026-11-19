@@ -2,8 +2,10 @@ package com.terasumi.sellerkeyboard.clipboard
 
 import android.content.ClipboardManager
 import android.content.Context
-import android.content.ClipDescription
 import com.terasumi.sellerkeyboard.ime.EditorInfoPolicy
+
+// EXTRA_IS_SENSITIVE became public in API 33; honor the same metadata on older Android too.
+internal const val CLIPBOARD_SENSITIVE_KEY = "android.content.extra.IS_SENSITIVE"
 
 class ActiveClipboardReader(
     context: Context,
@@ -52,7 +54,7 @@ class ActiveClipboardReader(
         val text = runCatching {
             val clip = clipboardManager?.primaryClip ?: return
             isSensitive = clipboardManager?.primaryClipDescription?.extras
-                ?.getBoolean(ClipDescription.EXTRA_IS_SENSITIVE, false) == true
+                ?.getBoolean(CLIPBOARD_SENSITIVE_KEY, false) == true
             if (clip.itemCount <= 0) {
                 return
             }

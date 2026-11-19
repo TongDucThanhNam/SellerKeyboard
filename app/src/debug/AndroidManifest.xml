@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
     <application android:usesCleartextTraffic="true">
         <service
             android:name=".service.SellerKeyboard"
@@ -10,19 +11,24 @@
         <activity
             android:name=".benchmark.WebViewBenchmarkActivity"
             android:exported="true" />
+        <!-- Debug-only bridge providers enforce Binder UID/signature checks in code;
+             manifest signature permissions would also block the intended adb shell caller. -->
         <provider
             android:name=".debug.ImeTestBridgeProvider"
             android:authorities="com.terasumi.sellerkeyboard.ime-test-bridge"
+            tools:ignore="ExportedContentProvider"
             android:exported="true"
             android:process=":ime" />
         <provider
             android:name=".debug.CloudSyncTestBridgeProvider"
             android:authorities="com.terasumi.sellerkeyboard.cloud-sync-test-bridge"
+            tools:ignore="ExportedContentProvider"
             android:exported="true" />
         <!-- The debug IME is isolated for process/UID evidence, so ML Kit must be
              initialized in that same process before the translation controller runs. -->
         <provider
             android:name="com.google.mlkit.common.internal.MlKitInitProvider"
+            android:exported="false"
             android:process=":ime" />
     </application>
 </manifest>

@@ -25,19 +25,24 @@ class ImeLifecycleStressInstrumentedTest {
 
     @Before
     fun selectSellerKeyboard() {
-        previousIme = device.executeShellCommand(
+        previousIme = selectedImeId() ?: device.executeShellCommand(
             "settings get secure default_input_method"
         ).trim()
         val enableResult = device.executeShellCommand("ime enable $IME_COMPONENT")
         val setResult = device.executeShellCommand("ime set $IME_COMPONENT")
-        val selectedIme = device.executeShellCommand(
-            "settings get secure default_input_method"
-        ).trim()
         assertTrue(
             "IME enable failed: $enableResult",
             "now enabled" in enableResult || "already enabled" in enableResult
         )
         assertTrue("IME selection failed: $setResult", "selected" in setResult)
+        // Some Android 9 images leave the SettingsProvider value stale after
+        // a successful switch. Verify the live system service, not that cache.
+        val deadline = SystemClock.elapsedRealtime() + IME_SELECTION_TIMEOUT_MILLIS
+        var selectedIme = selectedImeId()
+        while (selectedIme != IME_COMPONENT && SystemClock.elapsedRealtime() < deadline) {
+            SystemClock.sleep(IME_SELECTION_POLL_MILLIS)
+            selectedIme = selectedImeId()
+        }
         assertTrue("Unexpected selected IME: $selectedIme", selectedIme == IME_COMPONENT)
     }
 
@@ -100,6 +105,12 @@ class ImeLifecycleStressInstrumentedTest {
         }
     }
 
+    private fun selectedImeId(): String? {
+        val state = device.executeShellCommand("dumpsys input_method")
+        return Regex("""(?m)^\s*(?:mCurMethodId|mSelectedMethodId)=([^\s]+)""")
+            .find(state)?.groupValues?.get(1)
+    }
+
     private fun awaitOrientation(
         scenario: ActivityScenario<ImeBenchmarkActivity>,
         expected: Int
@@ -120,6 +131,8 @@ class ImeLifecycleStressInstrumentedTest {
     private companion object {
         const val IME_COMPONENT =
             "com.terasumi.sellerkeyboard/.service.SellerKeyboard"
+        const val IME_SELECTION_TIMEOUT_MILLIS = 10_000L
+        const val IME_SELECTION_POLL_MILLIS = 50L
         const val ORIENTATION_TIMEOUT_MILLIS = 10_000L
         const val ORIENTATION_POLL_MILLIS = 50L
     }

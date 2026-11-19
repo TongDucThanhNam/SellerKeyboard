@@ -45,8 +45,8 @@ fun SpecialFunctionKey(
     onPress: () -> Unit,
     action: String,
     myColor: KeyboardColors,
-    isLandscape: Boolean = false,
     modifier: Modifier = Modifier,
+    isLandscape: Boolean = false,
     accessibilityLabel: String = action,
 ) {
     var isPressed by remember { mutableStateOf(false) }

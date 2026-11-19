@@ -2,6 +2,7 @@ package com.terasumi.sellerkeyboard.settings
 
 import android.content.Context
 import android.content.SharedPreferences
+import androidx.core.content.edit
 
 class KeyboardSettingsRepository(context: Context) {
 
@@ -9,92 +10,92 @@ class KeyboardSettingsRepository(context: Context) {
 
     var hapticEnabled: Boolean
         get() = prefs.getBoolean(PREF_HAPTIC_ENABLED, true)
-        set(value) = prefs.edit().putBoolean(PREF_HAPTIC_ENABLED, value).apply()
+        set(value) = prefs.edit { putBoolean(PREF_HAPTIC_ENABLED, value) }
 
     // Feature Flags & Defaults for future goals
     var vietnameseInputEnabled: Boolean
         get() = prefs.getBoolean(PREF_VIETNAMESE_INPUT, true)
-        set(value) = prefs.edit().putBoolean(PREF_VIETNAMESE_INPUT, value).apply()
+        set(value) = prefs.edit { putBoolean(PREF_VIETNAMESE_INPUT, value) }
 
     var telexVariant: String
         get() = prefs.getString(PREF_TELEX_VARIANT, "default") ?: "default"
-        set(value) = prefs.edit().putString(PREF_TELEX_VARIANT, value).apply()
+        set(value) = prefs.edit { putString(PREF_TELEX_VARIANT, value) }
 
     var voiceTypingEnabled: Boolean
         get() = prefs.getBoolean(PREF_VOICE_TYPING, true)
-        set(value) = prefs.edit().putBoolean(PREF_VOICE_TYPING, value).apply()
+        set(value) = prefs.edit { putBoolean(PREF_VOICE_TYPING, value) }
 
     var clipboardHistoryEnabled: Boolean
         get() = prefs.getBoolean(PREF_CLIPBOARD_HISTORY, true)
-        set(value) = prefs.edit().putBoolean(PREF_CLIPBOARD_HISTORY, value).apply()
+        set(value) = prefs.edit { putBoolean(PREF_CLIPBOARD_HISTORY, value) }
 
     var clipboardAutoDeleteDays: Int
         get() = prefs.getInt(PREF_CLIPBOARD_AUTO_DELETE_DAYS, 30)
-        set(value) = prefs.edit().putInt(PREF_CLIPBOARD_AUTO_DELETE_DAYS, value).apply()
+        set(value) = prefs.edit { putInt(PREF_CLIPBOARD_AUTO_DELETE_DAYS, value) }
 
     var inlineAutofillEnabled: Boolean
         get() = prefs.getBoolean(PREF_INLINE_AUTOFILL, true)
-        set(value) = prefs.edit().putBoolean(PREF_INLINE_AUTOFILL, value).apply()
+        set(value) = prefs.edit { putBoolean(PREF_INLINE_AUTOFILL, value) }
 
     var themeMode: KeyboardThemeMode
         get() = enumPreference(
             prefs.getString(PREF_THEME_MODE, null),
             KeyboardThemeMode.SYSTEM
         )
-        set(value) = prefs.edit().putString(PREF_THEME_MODE, value.name).apply()
+        set(value) = prefs.edit { putString(PREF_THEME_MODE, value.name) }
 
     var keyBorders: Boolean
         get() = prefs.getBoolean(PREF_KEY_BORDERS, false)
-        set(value) = prefs.edit().putBoolean(PREF_KEY_BORDERS, value).apply()
+        set(value) = prefs.edit { putBoolean(PREF_KEY_BORDERS, value) }
 
     var highContrast: Boolean
         get() = prefs.getBoolean(PREF_HIGH_CONTRAST, false)
-        set(value) = prefs.edit().putBoolean(PREF_HIGH_CONTRAST, value).apply()
+        set(value) = prefs.edit { putBoolean(PREF_HIGH_CONTRAST, value) }
 
     var numberRow: Boolean
         get() = prefs.getBoolean(PREF_NUMBER_ROW, true)
-        set(value) = prefs.edit().putBoolean(PREF_NUMBER_ROW, value).apply()
+        set(value) = prefs.edit { putBoolean(PREF_NUMBER_ROW, value) }
 
     var popupPreview: Boolean
         get() = prefs.getBoolean(PREF_POPUP_PREVIEW, true)
-        set(value) = prefs.edit().putBoolean(PREF_POPUP_PREVIEW, value).apply()
+        set(value) = prefs.edit { putBoolean(PREF_POPUP_PREVIEW, value) }
 
     var soundEnabled: Boolean
         get() = prefs.getBoolean(PREF_SOUND_ENABLED, false)
-        set(value) = prefs.edit().putBoolean(PREF_SOUND_ENABLED, value).apply()
+        set(value) = prefs.edit { putBoolean(PREF_SOUND_ENABLED, value) }
 
     var soundVolume: Float
         get() = prefs.getFloat(PREF_SOUND_VOLUME, 0.5f).coerceIn(0f, 1f)
-        set(value) = prefs.edit().putFloat(PREF_SOUND_VOLUME, value.coerceIn(0f, 1f)).apply()
+        set(value) = prefs.edit { putFloat(PREF_SOUND_VOLUME, value.coerceIn(0f, 1f)) }
 
     var hapticStrength: Int
         get() = prefs.getInt(PREF_HAPTIC_STRENGTH, 128).coerceIn(1, 255)
-        set(value) = prefs.edit().putInt(PREF_HAPTIC_STRENGTH, value.coerceIn(1, 255)).apply()
+        set(value) = prefs.edit { putInt(PREF_HAPTIC_STRENGTH, value.coerceIn(1, 255)) }
 
     var learningEnabled: Boolean
         get() = prefs.getBoolean(PREF_LEARNING_ENABLED, true)
-        set(value) = prefs.edit().putBoolean(PREF_LEARNING_ENABLED, value).apply()
+        set(value) = prefs.edit { putBoolean(PREF_LEARNING_ENABLED, value) }
 
     var heightPreset: KeyboardHeightPreset
         get() = enumPreference(
             prefs.getString(PREF_HEIGHT_PRESET, null),
             KeyboardHeightPreset.STANDARD
         )
-        set(value) = prefs.edit().putString(PREF_HEIGHT_PRESET, value.name).apply()
+        set(value) = prefs.edit { putString(PREF_HEIGHT_PRESET, value.name) }
 
     var oneHandedSide: OneHandedSide
         get() = enumPreference(
             prefs.getString(PREF_ONE_HANDED_SIDE, null),
             OneHandedSide.OFF
         )
-        set(value) = prefs.edit().putString(PREF_ONE_HANDED_SIDE, value.name).apply()
+        set(value) = prefs.edit { putString(PREF_ONE_HANDED_SIDE, value.name) }
 
     var languageMode: KeyboardLanguageMode
         get() = enumPreference(
             prefs.getString(PREF_LANGUAGE_MODE, null),
             KeyboardLanguageMode.VIETNAMESE_ENGLISH
         )
-        set(value) = prefs.edit().putString(PREF_LANGUAGE_MODE, value.name).apply()
+        set(value) = prefs.edit { putString(PREF_LANGUAGE_MODE, value.name) }
 
     var toolbarOrder: List<String>
         get() = prefs.getString(PREF_TOOLBAR_ORDER, null)
@@ -104,10 +105,12 @@ class KeyboardSettingsRepository(context: Context) {
             ?.distinct()
             ?.takeIf(List<String>::isNotEmpty)
             ?: KeyboardPreferences.DEFAULT_TOOLBAR_ORDER
-        set(value) = prefs.edit().putString(
-            PREF_TOOLBAR_ORDER,
-            value.map(String::trim).filter(String::isNotEmpty).distinct().joinToString(",")
-        ).apply()
+        set(value) = prefs.edit {
+            putString(
+                PREF_TOOLBAR_ORDER,
+                value.map(String::trim).filter(String::isNotEmpty).distinct().joinToString(",")
+            )
+        }
 
     fun snapshot(): KeyboardPreferences = KeyboardPreferences(
         themeMode = themeMode,
@@ -127,26 +130,26 @@ class KeyboardSettingsRepository(context: Context) {
     )
 
     fun save(preferences: KeyboardPreferences) {
-        prefs.edit()
-            .putString(PREF_THEME_MODE, preferences.themeMode.name)
-            .putBoolean(PREF_KEY_BORDERS, preferences.keyBorders)
-            .putBoolean(PREF_HIGH_CONTRAST, preferences.highContrast)
-            .putBoolean(PREF_NUMBER_ROW, preferences.numberRow)
-            .putBoolean(PREF_POPUP_PREVIEW, preferences.popupPreview)
-            .putBoolean(PREF_SOUND_ENABLED, preferences.soundEnabled)
-            .putFloat(PREF_SOUND_VOLUME, preferences.soundVolume.coerceIn(0f, 1f))
-            .putBoolean(PREF_HAPTIC_ENABLED, preferences.hapticEnabled)
-            .putInt(PREF_HAPTIC_STRENGTH, preferences.hapticStrength.coerceIn(1, 255))
-            .putBoolean(PREF_LEARNING_ENABLED, preferences.learningEnabled)
-            .putString(PREF_HEIGHT_PRESET, preferences.heightPreset.name)
-            .putString(PREF_ONE_HANDED_SIDE, preferences.oneHandedSide.name)
-            .putString(PREF_LANGUAGE_MODE, preferences.languageMode.name)
-            .putString(PREF_TOOLBAR_ORDER, preferences.toolbarOrder.joinToString(","))
-            .apply()
+        prefs.edit {
+            putString(PREF_THEME_MODE, preferences.themeMode.name)
+            putBoolean(PREF_KEY_BORDERS, preferences.keyBorders)
+            putBoolean(PREF_HIGH_CONTRAST, preferences.highContrast)
+            putBoolean(PREF_NUMBER_ROW, preferences.numberRow)
+            putBoolean(PREF_POPUP_PREVIEW, preferences.popupPreview)
+            putBoolean(PREF_SOUND_ENABLED, preferences.soundEnabled)
+            putFloat(PREF_SOUND_VOLUME, preferences.soundVolume.coerceIn(0f, 1f))
+            putBoolean(PREF_HAPTIC_ENABLED, preferences.hapticEnabled)
+            putInt(PREF_HAPTIC_STRENGTH, preferences.hapticStrength.coerceIn(1, 255))
+            putBoolean(PREF_LEARNING_ENABLED, preferences.learningEnabled)
+            putString(PREF_HEIGHT_PRESET, preferences.heightPreset.name)
+            putString(PREF_ONE_HANDED_SIDE, preferences.oneHandedSide.name)
+            putString(PREF_LANGUAGE_MODE, preferences.languageMode.name)
+            putString(PREF_TOOLBAR_ORDER, preferences.toolbarOrder.joinToString(","))
+        }
     }
 
     fun resetToDefaults() {
-        prefs.edit().clear().apply()
+        prefs.edit { clear() }
     }
 
     companion object {

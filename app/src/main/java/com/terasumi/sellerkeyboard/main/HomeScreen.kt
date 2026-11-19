@@ -64,6 +64,7 @@ import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
@@ -600,8 +601,9 @@ fun ItemCard(
                                 )
                                 Spacer(modifier = Modifier.width(4.dp))
                                 Text(
-                                    text = stringResource(
-                                        R.string.snippet_images_count,
+                                    text = pluralStringResource(
+                                        R.plurals.snippet_images_count,
+                                        imageCount,
                                         imageCount
                                     ),
                                     style = MaterialTheme.typography.labelSmall,

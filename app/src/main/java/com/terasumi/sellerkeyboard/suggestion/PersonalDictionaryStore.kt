@@ -1,6 +1,7 @@
 package com.terasumi.sellerkeyboard.suggestion
 
 import android.content.Context
+import androidx.core.content.edit
 import java.util.Locale
 
 interface PersonalDictionaryStore {
@@ -21,7 +22,7 @@ class SharedPreferencesPersonalDictionary(context: Context) : PersonalDictionary
         val normalized = validatedWord(word) ?: return false
         val updated = words() + normalized
         if (updated == words()) return false
-        preferences.edit().putStringSet(KEY_WORDS, updated).apply()
+        preferences.edit { putStringSet(KEY_WORDS, updated) }
         return true
     }
 
@@ -29,12 +30,12 @@ class SharedPreferencesPersonalDictionary(context: Context) : PersonalDictionary
         val normalized = word.trim().lowercase(Locale.ROOT)
         val current = words()
         if (normalized !in current) return false
-        preferences.edit().putStringSet(KEY_WORDS, current - normalized).apply()
+        preferences.edit { putStringSet(KEY_WORDS, current - normalized) }
         return true
     }
 
     override fun clear() {
-        preferences.edit().remove(KEY_WORDS).apply()
+        preferences.edit { remove(KEY_WORDS) }
     }
 
     private fun validatedWord(word: String): String? {

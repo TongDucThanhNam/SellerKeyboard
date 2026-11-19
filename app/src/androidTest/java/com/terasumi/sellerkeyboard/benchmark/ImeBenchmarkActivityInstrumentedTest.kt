@@ -10,6 +10,7 @@ import androidx.test.core.app.ActivityScenario
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertFalse
 import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertTrue
 import org.junit.Test
@@ -81,6 +82,12 @@ class ImeBenchmarkActivityInstrumentedTest {
             addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
         }
         ActivityScenario.launch<WebViewBenchmarkActivity>(intent).use { scenario ->
+            scenario.onActivity { activity ->
+                assertTrue(activity.editor.settings.javaScriptEnabled)
+                assertTrue(activity.editor.settings.blockNetworkLoads)
+                assertFalse(activity.editor.settings.allowFileAccess)
+                assertFalse(activity.editor.settings.allowContentAccess)
+            }
             awaitWebViewValue(scenario, "\"editor\"") { activity, callback ->
                 activity.focusEditor(callback)
             }
